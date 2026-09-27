@@ -1,0 +1,1531 @@
+{
+  "$schema": "internal://llm-bench/metrics/v1",
+  "generated_by": "harness/build-metrics-json.mjs",
+  "generated_on": "2026-09-27",
+  "owner": "A2 (Standards Lab)",
+  "subject": "opencode/space-bunny-free",
+  "doc": "harness/METRICS.md",
+  "psychometrics_doc": "harness/PSYCHOMETRICS.md",
+  "verification": {
+    "numeric_self_tests": "harness/psycho-verify.mjs",
+    "run": "node harness/psycho-verify.mjs",
+    "note": "All formulas marked VERIFIED in metrics.json notes were re-derived and self-tested. Formulas marked [RECALL] in METRICS.md Appendix B were cited from memory and NOT re-verified online."
+  },
+  "conventions": {
+    "direction": "higher_is_better | lower_is_better | toward_zero | signed",
+    "computable_without_hidden_ground_truth": "true  = a deterministic checker suffices (no LLM judge, no hidden ground truth). false = requires an LLM judge or privileged access (logits/KV/knowledge source), OR is undefined for a free-tier subject. Metrics with false are EXCLUDED from the pre-registered primary set by default.",
+    "range": "null means unbounded. For brier_* the range is CONVENTION-DEPENDENT and is stated per-entry."
+  },
+  "pre_registration": {
+    "doc_section": "harness/PSYCHOMETRICS.md section 5.7",
+    "primaries": [
+      "pass_at_1",
+      "task_success_rate",
+      "ifeval_inst_strict",
+      "accuracy_lang",
+      "ttft_model",
+      "shadow_cost_per_solved_task",
+      "sign_test_wins"
+    ],
+    "primary_parameterisations": {
+      "accuracy_lang": "language=ko (the pre-registered instance of this metric; its paired cost twin is tokenization_premium with language=ko)",
+      "ifeval_inst_strict": "cluster-bootstrap over PROMPTS, not instructions",
+      "ttft_model": "median + IQR, boot-excluded; median used in the test"
+    },
+    "excluded_by_design": [
+      "context_utilization",
+      "time_horizon_50",
+      "factscore",
+      "translation_adequacy",
+      "cost_per_solved_task"
+    ],
+    "correction": {
+      "primaries": "Holm across 7 primaries",
+      "secondary": "Benjamini-Hochberg FDR=0.10, reported as exploratory"
+    },
+    "min_n_for_5pt_gap": {
+      "unpaired_p50": 1562,
+      "paired_q20": 628,
+      "paired_q10": 314,
+      "note": "alpha=.05 two-sided, power=.80"
+    }
+  },
+  "census": {
+    "accuracy": {
+      "count": 12,
+      "judge_dependent": 0
+    },
+    "calibration": {
+      "count": 12,
+      "judge_dependent": 0
+    },
+    "long_context": {
+      "count": 9,
+      "judge_dependent": 1
+    },
+    "efficiency": {
+      "count": 11,
+      "judge_dependent": 0
+    },
+    "agentic": {
+      "count": 12,
+      "judge_dependent": 0
+    },
+    "instruction_following": {
+      "count": 8,
+      "judge_dependent": 0
+    },
+    "multilingual": {
+      "count": 8,
+      "judge_dependent": 1
+    },
+    "robustness_safety": {
+      "count": 9,
+      "judge_dependent": 7
+    },
+    "hallucination": {
+      "count": 6,
+      "judge_dependent": 6
+    },
+    "judge_validity": {
+      "count": 5,
+      "judge_dependent": 5
+    },
+    "effect_size": {
+      "count": 4,
+      "judge_dependent": 0
+    },
+    "total": 96,
+    "judge_dependent_total": 20
+  },
+  "metrics": [
+    {
+      "id": "exact_match",
+      "name": "Exact match",
+      "family": "accuracy",
+      "formula": "1[normalize(pred) == normalize(gold)]",
+      "unit": "indicator",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Primary capability scorer. Must always be reported alongside contains_match so verbosity is visible."
+    },
+    {
+      "id": "relaxed_match",
+      "name": "Relaxed/soft match",
+      "family": "accuracy",
+      "formula": "1[normalize(pred) contains normalize(gold)]",
+      "unit": "indicator",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Upper bound on exact_match; the gap between them is a length signal, not a capability signal."
+    },
+    {
+      "id": "contains_match",
+      "name": "Substring contains",
+      "family": "accuracy",
+      "formula": "1[normalize(gold) is a substring of normalize(pred)]",
+      "unit": "indicator",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Favors verbose answers. Never report alone."
+    },
+    {
+      "id": "regex_match",
+      "name": "Regex match",
+      "family": "accuracy",
+      "formula": "1[re.search(pattern, pred) is not None]",
+      "unit": "indicator",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Implemented in harness/scorers.mjs:regexMatch."
+    },
+    {
+      "id": "token_f1",
+      "name": "Token-level F1",
+      "family": "accuracy",
+      "formula": "2PR/(P+R) over bag-of-tokens after normalization",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "SQuAD-v2 style. [RECALL] definition not re-verified this session."
+    },
+    {
+      "id": "pass_at_1",
+      "name": "Single-sample accuracy",
+      "family": "accuracy",
+      "formula": "mean_i 1[correct(x_i, y_1)]",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "PRIMARY P1. k=1. For a mean, SE depends only on n*k, so spend the whole budget on items not samples."
+    },
+    {
+      "id": "pass_at_k_unbiased",
+      "name": "Unbiased pass@k",
+      "family": "accuracy",
+      "formula": "1 - C(n-c,k)/C(n,k)",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Chen et al. 2021 Eq.1, verified verbatim. Convention: if n-c<k return 1.0."
+    },
+    {
+      "id": "pass_at_k_naive",
+      "name": "Naive pass@k (DO NOT USE)",
+      "family": "accuracy",
+      "formula": "1 - (1-p_hat)^k",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Biased. ALWAYS <= unbiased, by up to 10.58pp at n=200,c=1,k=100. Kept only so the gap is demonstrable."
+    },
+    {
+      "id": "maj_at_k",
+      "name": "Majority vote @ k",
+      "family": "accuracy",
+      "formula": "acc(argmax_a sum_j 1[a_j == a])",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Unweighted majority vote; length-normalized weighting was tested and rejected (Wang et al. 2022). Requires a fixed answer set."
+    },
+    {
+      "id": "consistency_k",
+      "name": "Within-item answer agreement",
+      "family": "accuracy",
+      "formula": "mean_i sum_a p_i(a)^2 where p_i(a)=count_j[a_j=a]/k",
+      "unit": "ratio",
+      "range": {
+        "min": 0.001,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "GAMABLE: a consistently wrong model scores 1.0. MUST be reported jointly with accuracy."
+    },
+    {
+      "id": "mean_pairwise_agreement",
+      "name": "Pairwise sample agreement",
+      "family": "accuracy",
+      "formula": "mean_{i<j} 1[a_i == a_j]",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Same gaming exposure as consistency_k."
+    },
+    {
+      "id": "partial_credit",
+      "name": "Fractional credit",
+      "family": "accuracy",
+      "formula": "mean_i score_i, score_i in [0,1] from the task rubric",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Compresses bimodal outcomes. Use only as a diagnostic alongside binary success."
+    },
+    {
+      "id": "ece_toplabel",
+      "name": "Expected Calibration Error (top-label)",
+      "family": "calibration",
+      "formula": "sum_m (|B_m|/n)*|acc(B_m)-conf(B_m)|",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Guo et al. 2017 Eq.3, M=15 bins. M is a convention, not a theorem: ECE falls mechanically as M grows, so M must always be published."
+    },
+    {
+      "id": "mce",
+      "name": "Maximum Calibration Error",
+      "family": "calibration",
+      "formula": "max_m |acc(B_m)-conf(B_m)|",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Guo et al. 2017 Eq.5. Use instead of ECE when one high-stakes bin dominates."
+    },
+    {
+      "id": "ace_adaptive",
+      "name": "Adaptive (classwise/equal-mass) ECE",
+      "family": "calibration",
+      "formula": "E_m (|B_m|/n)*|acc(B_m)-conf(B_m)| over equal-mass bins",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "[RECALL] Kull et al. 2019 distinction. Fixes the fixed-mass binning artefact."
+    },
+    {
+      "id": "brier_binary",
+      "name": "Brier score, single event",
+      "family": "calibration",
+      "formula": "(1/N) sum_i (p_i - o_i)^2",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "CONVENTION 1 of 3. Range [0,1]. [RECALL] Brier 1950 primary text not re-verified."
+    },
+    {
+      "id": "brier_sum",
+      "name": "Brier, C-class SUM",
+      "family": "calibration",
+      "formula": "(1/N) sum_i sum_c (p_ic - y_ic)^2",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 2
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "CONVENTION 2 of 3. Range is [0, 1+1/(C-1)]: 2 for C=2, 1.5 for C=3, 1.111 for C=10. NOT comparable to brier_binary."
+    },
+    {
+      "id": "brier_mean",
+      "name": "Brier, C-class MEAN",
+      "family": "calibration",
+      "formula": "brier_sum / C",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "CONVENTION 3 of 3. Range [0, (1+1/(C-1))/C]. A Brier number without its convention and class count is meaningless."
+    },
+    {
+      "id": "nll",
+      "name": "Negative log-likelihood",
+      "family": "calibration",
+      "formula": "-(1/N) sum_i log pi_hat(y_i|x_i)",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Proper scoring rule; not binning-dependent. Preferred over ECE for cross-harness comparability."
+    },
+    {
+      "id": "overconfidence_rate",
+      "name": "Overconfidence rate",
+      "family": "calibration",
+      "formula": "mean_i 1[p_hat_i > y_i] * (p_hat_i - y_i)",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Signed excess confidence on wrong answers only."
+    },
+    {
+      "id": "auroc_abstention",
+      "name": "AUROC of the correctness signal",
+      "family": "calibration",
+      "formula": "AUROC separating correct from incorrect using p_hat",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Answers \"can it tell when it is wrong\", independent of threshold. [RECALL] Hanley & McNeil 1982."
+    },
+    {
+      "id": "selective_risk_R",
+      "name": "Selective risk at coverage R",
+      "family": "calibration",
+      "formula": "error rate among the R most-confident items",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "NEVER report a single (risk, coverage) point: abstaining on everything trivially minimises risk. Report the curve."
+    },
+    {
+      "id": "risk_coverage_curve",
+      "name": "Risk-coverage curve",
+      "family": "calibration",
+      "formula": "{(coverage(c), risk(c)) : c in [0,1]}",
+      "unit": "curve",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "The honest deliverable for the safety-utility trade-off. [RECALL] El-Yaniv & Wiener 2010."
+    },
+    {
+      "id": "aurc",
+      "name": "Area under risk-coverage",
+      "family": "calibration",
+      "formula": "integral of risk(c) dc",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Not comparable across different abstention policies. [RECALL] Geifman & El-Yaniv 2017."
+    },
+    {
+      "id": "ecl_absolute",
+      "name": "Effective context length, absolute rule",
+      "family": "long_context",
+      "formula": "max{L : score(L) >= 85.6%}",
+      "unit": "tokens",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Hsieh et al. 2024 (RULER). Threshold is ABSOLUTE (Llama2-7B@4K = 85.6%), not relative to the model own short-context score. ORDER-DEPENDENT if the sweep is non-monotone: verified {4k:85.0,8k:86.0,16k:30.0} -> ECL=8192. Always publish the full curve."
+    },
+    {
+      "id": "ecl_relative",
+      "name": "Effective context length, self-referenced",
+      "family": "long_context",
+      "formula": "max{L : score(L) >= alpha * score(L_short)}",
+      "unit": "tokens",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Our construction. Exists because ecl_absolute has at least three rival published meanings; name the rule in the column header every time."
+    },
+    {
+      "id": "needle_accuracy",
+      "name": "Single-needle retrieval accuracy",
+      "family": "long_context",
+      "formula": "1[needle value appears in output]",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "A LOWER BOUND on retrieval, not a measure of understanding: a model can pattern-match a literal string."
+    },
+    {
+      "id": "multi_needle_recall",
+      "name": "Multi-needle recall",
+      "family": "long_context",
+      "formula": "#needles recovered / #needles inserted",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Recall-based, per RULER."
+    },
+    {
+      "id": "position_spread",
+      "name": "Best-minus-worst across needle position",
+      "family": "long_context",
+      "formula": "max_pos acc - min_pos acc",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "OUR construction from the Liu et al. 2023 protocol; that paper defines NO metric symbol and NO named benchmark. This is the citable object."
+    },
+    {
+      "id": "position_curvature",
+      "name": "U-shape / primacy-recency curvature",
+      "family": "long_context",
+      "formula": "second difference of accuracy across position bins",
+      "unit": "ratio",
+      "range": null,
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Liu et al. name the phenomenon the serial-position effect (Ebbinghaus 1913). The U-shape requires sufficient scale: 7B Llama-2 is solely recency-biased."
+    },
+    {
+      "id": "kv_retrieval_accuracy",
+      "name": "Synthetic KV retrieval accuracy",
+      "family": "long_context",
+      "formula": "exact-value accuracy as a function of key position",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "UUID key-value pairs; minimal natural-language confounds (Liu et al. design intent)."
+    },
+    {
+      "id": "cliff_index",
+      "name": "Context-length cliff",
+      "family": "long_context",
+      "formula": "max single-interval accuracy drop / interval size",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Grid-sensitive: a coarse grid averages a cliff away. The grid must be pre-registered."
+    },
+    {
+      "id": "context_utilization",
+      "name": "Fraction of context actually attended to",
+      "family": "long_context",
+      "formula": "tokens attended to / tokens supplied",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "NOT COMPUTABLE through our interface (needs logit/attention access). EXCLUDED from primaries."
+    },
+    {
+      "id": "ttft_spawn",
+      "name": "TTFT from process spawn",
+      "family": "efficiency",
+      "formula": "t(first non-empty text) - t(spawn)",
+      "unit": "ms",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Includes 8-14s of CLI boot. Report alongside ttft_model but NEVER headline it."
+    },
+    {
+      "id": "ttft_model",
+      "name": "TTFT, boot-excluded",
+      "family": "efficiency",
+      "formula": "t(first non-empty text) - t(first provider event)",
+      "unit": "ms",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "PRIMARY P5. Report MEDIAN and IQR, not mean. Already implemented correctly at harness/runner.mjs:183."
+    },
+    {
+      "id": "itl_mean",
+      "name": "Inter-token latency",
+      "family": "efficiency",
+      "formula": "(t(last)-t(first)) / (n_out_tokens - 1)",
+      "unit": "ms/token",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Strongly right-skewed. Publish the distribution: the mean is dominated by the slowest tokens. Undefined for 0-token answers, which our harness classifies as retryable failures."
+    },
+    {
+      "id": "output_tps",
+      "name": "Output throughput",
+      "family": "efficiency",
+      "formula": "n_out_tokens / (t(last) - t(first))",
+      "unit": "tokens/s",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": ""
+    },
+    {
+      "id": "total_latency",
+      "name": "End-to-end latency",
+      "family": "efficiency",
+      "formula": "t(last event) - t(spawn)",
+      "unit": "ms",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": ""
+    },
+    {
+      "id": "cost_per_1k_tokens",
+      "name": "Price per 1K tokens",
+      "family": "efficiency",
+      "formula": "cost / (tokens/1000)",
+      "unit": "currency",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Requires a dated vendor price list. Tag PRICED, never MEASURED."
+    },
+    {
+      "id": "cost_per_solved_task",
+      "name": "Cost per solved task (measured)",
+      "family": "efficiency",
+      "formula": "total_cost / #tasks_solved",
+      "unit": "currency/task",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "DEGENERATE for our free-tier subject: cost=0 for every model including one that solves nothing, so it reports 0/inf. Do not report as measured. Replaced by shadow_cost_per_solved_task."
+    },
+    {
+      "id": "shadow_cost_per_solved_task",
+      "name": "Token-priced cost per solved task",
+      "family": "efficiency",
+      "formula": "sum(shadow_price_l * tokens_l) / #tasks_solved",
+      "unit": "currency/task",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "PRIMARY P6. Price list must be dated and printed next to the number. Missing price = MISSING cell, never imputed to zero."
+    },
+    {
+      "id": "tokens_per_tool_call",
+      "name": "Output tokens per tool call",
+      "family": "efficiency",
+      "formula": "n_out_tokens / n_tool_calls",
+      "unit": "tokens",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Inversely related to trajectory_efficiency in a way that can be gamed (fewer, larger steps). Report both."
+    },
+    {
+      "id": "parallel_scaling_efficiency",
+      "name": "Parallel efficiency",
+      "family": "efficiency",
+      "formula": "T_sequential / (T_parallel * n_workers)",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": ""
+    },
+    {
+      "id": "intelligence_per_dollar",
+      "name": "Intelligence per dollar",
+      "family": "efficiency",
+      "formula": "primary_accuracy / cost_per_solved_task",
+      "unit": "acc/currency",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "GAMABLE: maximised by a model that is free and bad. Secondary tier only; never report alone."
+    },
+    {
+      "id": "task_success_rate",
+      "name": "Binary task success",
+      "family": "agentic",
+      "formula": "mean_i 1[final state passes deterministic checker]",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "PRIMARY P2. Checker MUST be a program. Final-state assertion is the least gameable success criterion."
+    },
+    {
+      "id": "trajectory_efficiency",
+      "name": "Step efficiency",
+      "family": "agentic",
+      "formula": "min(1, optimal_steps / actual_steps)",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "optimal_steps is a property of the TASK and encodes the authors own bias. Gameable by taking fewer, larger steps."
+    },
+    {
+      "id": "tool_call_precision",
+      "name": "Tool-call precision",
+      "family": "agentic",
+      "formula": "TP / (TP + FP) over emitted calls",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "No single standard definition exists; ours is a construction. Label it as such."
+    },
+    {
+      "id": "tool_call_recall",
+      "name": "Tool-call recall",
+      "family": "agentic",
+      "formula": "TP / (TP + FN) against a reference plan",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Requires a defensible reference plan."
+    },
+    {
+      "id": "tool_call_f1",
+      "name": "Tool-call F1",
+      "family": "agentic",
+      "formula": "harmonic mean of tool_call_precision and tool_call_recall",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": ""
+    },
+    {
+      "id": "argument_correctness",
+      "name": "Tool-argument correctness",
+      "family": "agentic",
+      "formula": "mean_calls 1[args match required schema and values]",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Separates right-tool-wrong-args from right-tool-right-args, which success rate alone hides."
+    },
+    {
+      "id": "error_recovery_rate",
+      "name": "Recovery after a failed tool call",
+      "family": "agentic",
+      "formula": "mean 1[failed call AND final state correct] / #failed calls",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "SELECTION EFFECT: conditioned on failing, a model that never fails has no denominator and a model that fails more often gets more chances. MUST be reported jointly with the failure rate."
+    },
+    {
+      "id": "plan_adherence",
+      "name": "Adherence to a reference plan",
+      "family": "agentic",
+      "formula": "LCS(emitted order, reference order) / len(reference)",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Only valid where a reference trajectory genuinely exists; otherwise it measures conformity to our authorial style."
+    },
+    {
+      "id": "state_tracking_correctness",
+      "name": "Environment state fidelity",
+      "family": "agentic",
+      "formula": "mean 1[final env state == expected]",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Deterministic. Preferred over judge-scored success."
+    },
+    {
+      "id": "long_horizon_slope",
+      "name": "Per-step success decay",
+      "family": "agentic",
+      "formula": "OLS slope of per-step success on step index",
+      "unit": "pp/step",
+      "range": null,
+      "direction": "toward_zero",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "DENOMINATOR TRAP: harness/runner.mjs:190 counts stepFinishes = LLM API steps, NOT agent/tool steps. A model packing 10 tool calls per LLM step shows an artificially flat slope. Confirm the definition with B1 before use."
+    },
+    {
+      "id": "human_intervention_rate",
+      "name": "Human handoff rate",
+      "family": "agentic",
+      "formula": "#tasks needing intervention / #tasks",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": ""
+    },
+    {
+      "id": "time_horizon_50",
+      "name": "50% task-completion time horizon",
+      "family": "agentic",
+      "formula": "p_success = sigma((log h_model - log t_task) * beta_model); report h_model",
+      "unit": "duration",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "METR (Kwa et al. 2025). t_task = geometric mean HUMAN wall-clock time of successful baselines. NOT COMPUTABLE for us: our task lengths sit on one side of the logistic so h_model is unidentified. EXCLUDED from primaries."
+    },
+    {
+      "id": "ifeval_prompt_strict",
+      "name": "IFEval prompt-level strict accuracy",
+      "family": "instruction_following",
+      "formula": "mean_prompts 1[ALL verifiable instructions in the prompt are followed]",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Zhou et al. 2023. AND-aggregated over instructions within a prompt."
+    },
+    {
+      "id": "ifeval_inst_strict",
+      "name": "IFEval instruction-level strict accuracy",
+      "family": "instruction_following",
+      "formula": "mean_instructions 1[instruction followed]",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "PRIMARY P3. Program-verified, judge-free. Cluster-bootstrap over PROMPTS, not instructions: instructions within a prompt are correlated."
+    },
+    {
+      "id": "ifeval_prompt_loose",
+      "name": "IFEval prompt-level loose accuracy",
+      "family": "instruction_following",
+      "formula": "prompt-level accuracy under any of 8 response transforms",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Authors: loose is a COMPLEMENT to strict, not a replacement, because it introduces false positives."
+    },
+    {
+      "id": "ifeval_inst_loose",
+      "name": "IFEval instruction-level loose accuracy",
+      "family": "instruction_following",
+      "formula": "instruction-level accuracy under any of 8 response transforms",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "The 8 transforms: identity, strip markdown font modifiers, drop first line, drop last line, + all pairwise and 3-way combos."
+    },
+    {
+      "id": "json_schema_conformance",
+      "name": "JSON-schema conformance",
+      "family": "instruction_following",
+      "formula": "1[parsed value validates against the schema]",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Deterministic. Implemented in harness/scorers.mjs:jsonSchema."
+    },
+    {
+      "id": "format_violation_rate",
+      "name": "Format violation rate",
+      "family": "instruction_following",
+      "formula": "1[output violates the stated format constraint]",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": ""
+    },
+    {
+      "id": "constraint_violation_severity",
+      "name": "Severity-weighted violation",
+      "family": "instruction_following",
+      "formula": "sum_j severity_j * 1[violated_j] / #constraints",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "severity_j is an AUTHORIAL PRIOR dressed as a measurement. Always ship the unweighted violation count alongside."
+    },
+    {
+      "id": "prompt_robustness_delta",
+      "name": "Robustness under perturbation",
+      "family": "instruction_following",
+      "formula": "metric(clean) - metric(perturbed), averaged over perturbation types",
+      "unit": "ratio",
+      "range": {
+        "min": -1,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Perturbation set must be pre-registered."
+    },
+    {
+      "id": "accuracy_lang",
+      "name": "Per-language accuracy",
+      "family": "multilingual",
+      "formula": "mean accuracy over items in that language",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Never report as a single average. See macro/micro."
+    },
+    {
+      "id": "lang_gap_vs_en",
+      "name": "Gap vs English",
+      "family": "multilingual",
+      "formula": "acc_en - acc_lang",
+      "unit": "ratio",
+      "range": {
+        "min": -1,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "English is the CHEAPEST language for every subword BPE tokenizer tested, so gaps measured only against English overstate typical disparity."
+    },
+    {
+      "id": "macro_avg_accuracy",
+      "name": "Macro-average across languages",
+      "family": "multilingual",
+      "formula": "mean over languages, equal weight each",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Equal weight per language. Disagrees with micro in DIRECTION, not just magnitude."
+    },
+    {
+      "id": "micro_avg_accuracy",
+      "name": "Micro-average across languages",
+      "family": "multilingual",
+      "formula": "mean over all items",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Weights by item count. Report BOTH; a large gap between them is itself the finding."
+    },
+    {
+      "id": "tokens_per_char",
+      "name": "Tokenizer efficiency per character",
+      "family": "multilingual",
+      "formula": "n_tokens / n_chars",
+      "unit": "tokens/char",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Drives cost, latency and effective context simultaneously. Measure on OUR subject tokenizer; the subject tokenizer is not published to us, so this must never be imported from the literature."
+    },
+    {
+      "id": "tokens_per_word",
+      "name": "Tokenizer efficiency per word",
+      "family": "multilingual",
+      "formula": "n_tokens / n_words",
+      "unit": "tokens/word",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": ""
+    },
+    {
+      "id": "tokenization_premium",
+      "name": "Premium relative to English",
+      "family": "multilingual",
+      "formula": "ratio_lang / ratio_en",
+      "unit": "ratio",
+      "range": {
+        "min": 1,
+        "max": null
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Petrov et al. 2023: disparities up to 15x for subword BPE, over 4x even for char/byte models. The multiplier is TOKENIZER-SPECIFIC (Korean: 5.07x on GPT-2 but 2.38x on cl100k), so any premium claim must name the tokenizer."
+    },
+    {
+      "id": "translation_adequacy",
+      "name": "Translation adequacy proxy",
+      "family": "multilingual",
+      "formula": "task-judged semantic preservation of the source meaning",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "No accepted cheap deterministic proxy. An LLM judge is least reliable exactly in the languages where we are weakest. Exploratory only."
+    },
+    {
+      "id": "over_refusal_full",
+      "name": "Over-refusal rate (full refusal)",
+      "family": "robustness_safety",
+      "formula": "#full refusals on safe prompts / #safe prompts",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "XSTest 250 safe prompts, 10 types. Full refusal includes offering only alternatives. Must be reported jointly with unsafe_refusal_rate."
+    },
+    {
+      "id": "over_refusal_partial",
+      "name": "Over-refusal rate (partial refusal)",
+      "family": "robustness_safety",
+      "formula": "#partial refusals on safe prompts / #safe prompts",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "Full + partial + compliance = 100%. NOTE the XSTest paper has an internal typo: section 4.3 says 200 safe, the abstract and all tables say 250."
+    },
+    {
+      "id": "unsafe_refusal_rate",
+      "name": "Refusal rate on unsafe contrasts",
+      "family": "robustness_safety",
+      "formula": "#refusals on unsafe prompts / #unsafe prompts",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "XSTest 200 unsafe contrasts. The safety-utility trade-off only has meaning as a CURVE."
+    },
+    {
+      "id": "jailbreak_success_rate",
+      "name": "Jailbreak success rate",
+      "family": "robustness_safety",
+      "formula": "#prompts yielding compliance / #jailbreak attempts",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "No canonical first-party definition verified."
+    },
+    {
+      "id": "prompt_injection_success_rate",
+      "name": "Prompt-injection success rate (agent setting)",
+      "family": "robustness_safety",
+      "formula": "#runs where injected content changed behaviour / #runs",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Prefer the CANARY form: plant a unique string in tool output, check for reappearance in the final answer or in a tool argument. Deterministic, no judge, unambiguous ground truth."
+    },
+    {
+      "id": "refusal_precision",
+      "name": "Refusal precision",
+      "family": "robustness_safety",
+      "formula": "TP / #refusals",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "Over-refusal is the false-positive side."
+    },
+    {
+      "id": "refusal_recall",
+      "name": "Refusal recall",
+      "family": "robustness_safety",
+      "formula": "TP / #truly unsafe prompts",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": false,
+      "notes": ""
+    },
+    {
+      "id": "pii_leak_rate",
+      "name": "PII leakage rate",
+      "family": "robustness_safety",
+      "formula": "#items where a planted canary appears in output / #items",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Canary form is deterministic and judge-free."
+    },
+    {
+      "id": "harmfulness_rate",
+      "name": "Harmfulness rate",
+      "family": "robustness_safety",
+      "formula": "graded",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "No deterministic route. If judged, subject to every artifact in PSYCHOMETRICS.md section 3."
+    },
+    {
+      "id": "simpleqa_correct_rate",
+      "name": "SimpleQA overall-correct rate",
+      "family": "hallucination",
+      "formula": "c / N",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "Wei et al. 2024. One of three RAW rates that should be the actual deliverable."
+    },
+    {
+      "id": "simpleqa_correct_given_attempted",
+      "name": "SimpleQA correct-given-attempted",
+      "family": "hallucination",
+      "formula": "c / (c + i)",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "Rewards abstention. The tension with overall-correct is the entire point of the benchmark."
+    },
+    {
+      "id": "simpleqa_f",
+      "name": "SimpleQA F-score",
+      "family": "hallucination",
+      "formula": "2c / (2c + 2i + n)",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "UNWEIGHTED harmonic mean of the two rates above - it does NOT weight the three categories. Verified numerically against 6/6 published rows. KNOWN GAMING DIRECTION: below 50% accuracy, guessing dominates. Exploratory only."
+    },
+    {
+      "id": "factscore",
+      "name": "FActScore",
+      "family": "hallucination",
+      "formula": "mean over atomic facts a in A_y of 1[a supported by knowledge source C]",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "PRECISION ONLY - no recall, no F1, no F score. Labels are Supported / Not-supported / Irrelevant; contradicted is NOT a label. Authors: does not penalise abstaining or emitting few facts. NOT COMPUTABLE for us (needs a knowledge source + NLI annotator). EXCLUDED from primaries."
+    },
+    {
+      "id": "citation_correctness",
+      "name": "Citation entailment correctness",
+      "family": "hallucination",
+      "formula": "#citations entailed by the generated text / #citations",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": false,
+      "notes": ""
+    },
+    {
+      "id": "attribution_precision",
+      "name": "Attribution precision",
+      "family": "hallucination",
+      "formula": "same as factscore",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "Separate from recall, which FActScore does not provide."
+    },
+    {
+      "id": "position_swap_delta",
+      "name": "Judge position-swap delta",
+      "family": "judge_validity",
+      "formula": "|score(A before B) - score(B before A)|",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "DIAGNOSTIC ABOUT THE JUDGE, not the subject. If non-zero the judge is order-dependent."
+    },
+    {
+      "id": "verbosity_correlation",
+      "name": "Judge verbosity correlation",
+      "family": "judge_validity",
+      "formula": "corr(judge score, response length)",
+      "unit": "ratio",
+      "range": {
+        "min": -1,
+        "max": 1
+      },
+      "direction": "toward_zero",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "A strong positive value means the judge is rewarding length."
+    },
+    {
+      "id": "self_preference_delta",
+      "name": "Self-preference delta",
+      "family": "judge_validity",
+      "formula": "|score with identity - score with identity stripped|",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "DIAGNOSTIC. Test by re-grading human-labelled pairs with model names and self-referential phrasing removed. Using a DIFFERENT-FAMILY judge removes the dominant term but NOT the judge own family preference."
+    },
+    {
+      "id": "inter_judge_agreement",
+      "name": "Inter-judge agreement",
+      "family": "judge_validity",
+      "formula": "Cohen kappa (2 raters) or Krippendorff alpha (>2, with missing data)",
+      "unit": "ratio",
+      "range": {
+        "min": -1,
+        "max": 1
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "If below ~0.6 the judge is not a measurement instrument and every metric it touches must be demoted to exploratory."
+    },
+    {
+      "id": "shuffle_control_false_positive_rate",
+      "name": "Judge shuffle-control FPR",
+      "family": "judge_validity",
+      "formula": "P(judge scores a wrong answer as fully correct)",
+      "unit": "ratio",
+      "range": {
+        "min": 0,
+        "max": 1
+      },
+      "direction": "lower_is_better",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": false,
+      "notes": "Mandatory sanity control: grade gold-vs-gold (expect ~1.0) and gold-vs-shuffled-wrong (expect the FPR). A judge failing the shuffle control is unusable at any alpha."
+    },
+    {
+      "id": "standardized_diff",
+      "name": "Standardized difference (Cohen d)",
+      "family": "effect_size",
+      "formula": "(p_A - p_B) / sqrt((p_A(1-p_A) + p_B(1-p_B))/2)",
+      "unit": "ratio",
+      "range": null,
+      "direction": "signed",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Use when the two scores come from different harnesses or different n."
+    },
+    {
+      "id": "rank_correlation",
+      "name": "Spearman rank correlation across metrics",
+      "family": "effect_size",
+      "formula": "rho between two models per-metric ranks",
+      "unit": "ratio",
+      "range": {
+        "min": -1,
+        "max": 1
+      },
+      "direction": "signed",
+      "higher_is_better": false,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Use to compare two whole PROFILES when raw scores are not comparable."
+    },
+    {
+      "id": "sign_test_wins",
+      "name": "Wins across metrics (sign test)",
+      "family": "effect_size",
+      "formula": "#metrics where model wins, vs m/2",
+      "unit": "count",
+      "range": {
+        "min": 0,
+        "max": null
+      },
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "PRIMARY P7. 5 models x 15 metrics = 75 cells: chance gives 37.5, sd 4.33. Needs >=48/75 before beats-chance."
+    },
+    {
+      "id": "normalized_score",
+      "name": "Normalized cross-harness score",
+      "family": "effect_size",
+      "formula": "z-score or min-max of a metric across models",
+      "unit": "ratio",
+      "range": null,
+      "direction": "higher_is_better",
+      "higher_is_better": true,
+      "computable_without_hidden_ground_truth": true,
+      "notes": "Only valid WITHIN one harness and one item set. Never across harnesses."
+    }
+  ]
+}

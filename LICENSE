@@ -1,0 +1,72 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+=======================================================================
+
+This repository is licensed under the Creative Commons Attribution 4.0
+International License.
+
+    Human-readable summary:  https://creativecommons.org/licenses/by/4.0/
+    Full legal code:          https://creativecommons.org/licenses/by/4.0/legalcode
+
+You are free to:
+
+    Share  — copy and redistribute the material in any medium or format
+    Adapt  — remix, transform, and build upon the material
+
+for any purpose, even commercially, provided you give appropriate credit,
+provide a link to the license, and indicate if changes were made.
+
+The licensor cannot revoke these freedoms as long as you follow the license
+terms.
+
+=======================================================================
+
+SCOPE AND ONE EXPLICIT CARVE-OUT
+-----------------------------------------------------------------------
+
+This licence covers the whole of this repository: the harness, the audit
+tool, the item bank, the statistical self-tests, the analysis, the prose,
+and the data files we produced.
+
+ONE SUBSET IS EXTERNALLY LICENSED AND REMAINS SO REGARDLESS OF THIS FILE:
+
+    data/frontier-scores.json
+
+1,685 of its 1,711 records are derived from the Epoch AI public benchmark
+dataset, which Epoch AI publishes under CC BY 4.0 and which requires that
+the source and the authors be credited. Those records remain under
+Epoch AI's CC BY 4.0 terms and attribution obligations. Redistributing
+this file under a different or more permissive licence does not alter that,
+and does not discharge the attribution requirement.
+
+The remaining records in that file come from other first-party sources,
+each under its own terms, enumerated with retrieval dates in
+data/ATTRIBUTION.md.
+
+data/benchmarks.json and data/metrics.json describe benchmarks and metrics
+designed by other people. Their definitions are quoted from the primary
+papers and official documentation, with URLs; the underlying benchmark works
+are the property of their authors and are cited, not relicensed.
+
+The raw run logs under reports/round1/ are measurements of a model's output
+and are covered by this licence. The model names appearing in them are
+trademarks of their respective owners and are used nominatively, to identify
+what was measured.
+
+=======================================================================
+
+CITATION
+-----------------------------------------------------------------------
+
+See CITATION.cff. If you reuse data/frontier-scores.json, cite Epoch AI
+as well — see data/ATTRIBUTION.md for the required credit string.
+
+=======================================================================
+
+HOW TO SATISFY ATTRIBUTION
+-----------------------------------------------------------------------
+
+State that you used this work, name the authors of the underlying dataset
+where applicable, link to the licence, and indicate whether you made changes.
+For Epoch AI-derived records, reproduce the credit recorded in
+data/ATTRIBUTION.md verbatim.

@@ -1,0 +1,2270 @@
+{
+  "schema": "llm-bench/summary/v1",
+  "overall": {
+    "attempts": 48,
+    "n": 48,
+    "correct": 42,
+    "accuracy": 0.875,
+    "ci95": {
+      "low": 0.753,
+      "high": 0.9414
+    },
+    "ci95_centre": 0.8472,
+    "failed_attempts": 3,
+    "reliability": 0.9375,
+    "latency_ms": {
+      "n": 48,
+      "mean": 31180.73,
+      "median": 25419,
+      "p95": 74728,
+      "max": 102094,
+      "min": 12462,
+      "stdev": 18863.97,
+      "sum": 1496675
+    },
+    "ttft_spawn_ms": {
+      "n": 45,
+      "mean": 26501,
+      "median": 24720,
+      "p95": 45569,
+      "max": 56711,
+      "min": 12249,
+      "stdev": 9497.36,
+      "sum": 1192545
+    },
+    "ttft_model_ms": {
+      "n": 45,
+      "mean": 5756.78,
+      "median": 2540,
+      "p95": 21123,
+      "max": 31636,
+      "min": 0,
+      "stdev": 7488.56,
+      "sum": 259055
+    },
+    "ttft_opencode_ms": {
+      "n": 45,
+      "mean": 5753.16,
+      "median": 2541,
+      "p95": 21123,
+      "max": 31685,
+      "min": 0,
+      "stdev": 7492.37,
+      "sum": 258892
+    },
+    "generation_ms": {
+      "n": 45,
+      "mean": 73.76,
+      "median": 25,
+      "p95": 238,
+      "max": 394,
+      "min": 5,
+      "stdev": 91.51,
+      "sum": 3319
+    },
+    "output_tokens": {
+      "n": 48,
+      "mean": 127.5,
+      "median": 36.5,
+      "p95": 424,
+      "max": 2188,
+      "min": 11,
+      "stdev": 321.72,
+      "sum": 6120
+    },
+    "reasoning_tokens": {
+      "n": 48,
+      "mean": 563.25,
+      "median": 294,
+      "p95": 2679,
+      "max": 4511,
+      "min": 63,
+      "stdev": 909.5,
+      "sum": 27036
+    },
+    "prompt_tokens": {
+      "n": 48,
+      "mean": 25685.23,
+      "median": 17277,
+      "p95": 53523,
+      "max": 89459,
+      "min": 17190,
+      "stdev": 17783.21,
+      "sum": 1232891
+    },
+    "output_tokens_total": 6120,
+    "token_source": "usage",
+    "cost_total": 0.9830733000000001
+  },
+  "per_model": {
+    "google/gemini-flash-latest": {
+      "attempts": 2,
+      "n": 2,
+      "correct": 0,
+      "accuracy": 0,
+      "ci95": {
+        "low": 0,
+        "high": 0.6576
+      },
+      "ci95_centre": 0.3288,
+      "failed_attempts": 2,
+      "reliability": 0,
+      "latency_ms": {
+        "n": 2,
+        "mean": 101961.5,
+        "median": 101961.5,
+        "p95": 102094,
+        "max": 102094,
+        "min": 101829,
+        "stdev": 187.38,
+        "sum": 203923
+      },
+      "ttft_spawn_ms": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "max": null,
+        "min": null,
+        "stdev": null,
+        "sum": 0
+      },
+      "ttft_model_ms": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "max": null,
+        "min": null,
+        "stdev": null,
+        "sum": 0
+      },
+      "ttft_opencode_ms": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "max": null,
+        "min": null,
+        "stdev": null,
+        "sum": 0
+      },
+      "generation_ms": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "max": null,
+        "min": null,
+        "stdev": null,
+        "sum": 0
+      },
+      "output_tokens": {
+        "n": 2,
+        "mean": 179.5,
+        "median": 179.5,
+        "p95": 257,
+        "max": 257,
+        "min": 102,
+        "stdev": 109.6,
+        "sum": 359
+      },
+      "reasoning_tokens": {
+        "n": 2,
+        "mean": 64.5,
+        "median": 64.5,
+        "p95": 66,
+        "max": 66,
+        "min": 63,
+        "stdev": 2.12,
+        "sum": 129
+      },
+      "prompt_tokens": {
+        "n": 2,
+        "mean": 37610,
+        "median": 37610,
+        "p95": 37626,
+        "max": 37626,
+        "min": 37594,
+        "stdev": 22.63,
+        "sum": 75220
+      },
+      "output_tokens_total": 359,
+      "token_source": "usage",
+      "cost_total": 0.02538195
+    },
+    "meta/muse-spark-1.3": {
+      "attempts": 46,
+      "n": 46,
+      "correct": 42,
+      "accuracy": 0.913,
+      "ci95": {
+        "low": 0.7968,
+        "high": 0.9657
+      },
+      "ci95_centre": 0.8812,
+      "failed_attempts": 1,
+      "reliability": 0.9783,
+      "latency_ms": {
+        "n": 46,
+        "mean": 28103.3,
+        "median": 25256,
+        "p95": 53001,
+        "max": 74728,
+        "min": 12462,
+        "stdev": 11803.39,
+        "sum": 1292752
+      },
+      "ttft_spawn_ms": {
+        "n": 45,
+        "mean": 26501,
+        "median": 24720,
+        "p95": 45569,
+        "max": 56711,
+        "min": 12249,
+        "stdev": 9497.36,
+        "sum": 1192545
+      },
+      "ttft_model_ms": {
+        "n": 45,
+        "mean": 5756.78,
+        "median": 2540,
+        "p95": 21123,
+        "max": 31636,
+        "min": 0,
+        "stdev": 7488.56,
+        "sum": 259055
+      },
+      "ttft_opencode_ms": {
+        "n": 45,
+        "mean": 5753.16,
+        "median": 2541,
+        "p95": 21123,
+        "max": 31685,
+        "min": 0,
+        "stdev": 7492.37,
+        "sum": 258892
+      },
+      "generation_ms": {
+        "n": 45,
+        "mean": 73.76,
+        "median": 25,
+        "p95": 238,
+        "max": 394,
+        "min": 5,
+        "stdev": 91.51,
+        "sum": 3319
+      },
+      "output_tokens": {
+        "n": 46,
+        "mean": 125.24,
+        "median": 35,
+        "p95": 424,
+        "max": 2188,
+        "min": 11,
+        "stdev": 328.19,
+        "sum": 5761
+      },
+      "reasoning_tokens": {
+        "n": 46,
+        "mean": 584.93,
+        "median": 294.5,
+        "p95": 2679,
+        "max": 4511,
+        "min": 108,
+        "stdev": 923.26,
+        "sum": 26907
+      },
+      "prompt_tokens": {
+        "n": 46,
+        "mean": 25166.76,
+        "median": 17273,
+        "p95": 53523,
+        "max": 89459,
+        "min": 17190,
+        "stdev": 17991.75,
+        "sum": 1157671
+      },
+      "output_tokens_total": 5761,
+      "token_source": "usage",
+      "cost_total": 0.9576913500000003
+    }
+  },
+  "per_category": {
+    "abstention_hallucination": {
+      "attempts": 3,
+      "n": 3,
+      "correct": 3,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.4385,
+        "high": 1
+      },
+      "ci95_centre": 0.7193,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 3,
+        "mean": 29134.67,
+        "median": 30636,
+        "p95": 30754,
+        "max": 30754,
+        "min": 26014,
+        "stdev": 2703.22,
+        "sum": 87404
+      },
+      "ttft_spawn_ms": {
+        "n": 3,
+        "mean": 28593.33,
+        "median": 30069,
+        "p95": 30197,
+        "max": 30197,
+        "min": 25514,
+        "stdev": 2667.55,
+        "sum": 85780
+      },
+      "ttft_model_ms": {
+        "n": 3,
+        "mean": 3138,
+        "median": 3251,
+        "p95": 3787,
+        "max": 3787,
+        "min": 2376,
+        "stdev": 712.25,
+        "sum": 9414
+      },
+      "ttft_opencode_ms": {
+        "n": 3,
+        "mean": 3120.33,
+        "median": 3200,
+        "p95": 3787,
+        "max": 3787,
+        "min": 2374,
+        "stdev": 709.86,
+        "sum": 9361
+      },
+      "generation_ms": {
+        "n": 3,
+        "mean": 90.67,
+        "median": 43,
+        "p95": 219,
+        "max": 219,
+        "min": 10,
+        "stdev": 112.36,
+        "sum": 272
+      },
+      "output_tokens": {
+        "n": 3,
+        "mean": 33,
+        "median": 32,
+        "p95": 36,
+        "max": 36,
+        "min": 31,
+        "stdev": 2.65,
+        "sum": 99
+      },
+      "reasoning_tokens": {
+        "n": 3,
+        "mean": 255.33,
+        "median": 268,
+        "p95": 273,
+        "max": 273,
+        "min": 225,
+        "stdev": 26.39,
+        "sum": 766
+      },
+      "prompt_tokens": {
+        "n": 3,
+        "mean": 17233.33,
+        "median": 17233,
+        "p95": 17234,
+        "max": 17234,
+        "min": 17233,
+        "stdev": 0.58,
+        "sum": 51700
+      },
+      "output_tokens_total": 99,
+      "token_source": "usage",
+      "cost_total": 0.040472350000000004
+    },
+    "code": {
+      "attempts": 4,
+      "n": 4,
+      "correct": 4,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.5101,
+        "high": 1
+      },
+      "ci95_centre": 0.7551,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 4,
+        "mean": 27325,
+        "median": 29489,
+        "p95": 35705,
+        "max": 35705,
+        "min": 14617,
+        "stdev": 9623.88,
+        "sum": 109300
+      },
+      "ttft_spawn_ms": {
+        "n": 4,
+        "mean": 26448.75,
+        "median": 28997,
+        "p95": 33378,
+        "max": 33378,
+        "min": 14423,
+        "stdev": 8985.28,
+        "sum": 105795
+      },
+      "ttft_model_ms": {
+        "n": 4,
+        "mean": 6388.25,
+        "median": 5348,
+        "p95": 13162,
+        "max": 13162,
+        "min": 1695,
+        "stdev": 5349.28,
+        "sum": 25553
+      },
+      "ttft_opencode_ms": {
+        "n": 4,
+        "mean": 6366.5,
+        "median": 5329.5,
+        "p95": 13112,
+        "max": 13112,
+        "min": 1695,
+        "stdev": 5323.75,
+        "sum": 25466
+      },
+      "generation_ms": {
+        "n": 4,
+        "mean": 71,
+        "median": 34.5,
+        "p95": 206,
+        "max": 206,
+        "min": 9,
+        "stdev": 92.98,
+        "sum": 284
+      },
+      "output_tokens": {
+        "n": 4,
+        "mean": 115.25,
+        "median": 39.5,
+        "p95": 355,
+        "max": 355,
+        "min": 27,
+        "stdev": 160,
+        "sum": 461
+      },
+      "reasoning_tokens": {
+        "n": 4,
+        "mean": 608,
+        "median": 469,
+        "p95": 1125,
+        "max": 1125,
+        "min": 369,
+        "stdev": 347.88,
+        "sum": 2432
+      },
+      "prompt_tokens": {
+        "n": 4,
+        "mean": 26388.5,
+        "median": 17364,
+        "p95": 53523,
+        "max": 53523,
+        "min": 17303,
+        "stdev": 18089.71,
+        "sum": 105554
+      },
+      "output_tokens_total": 461,
+      "token_source": "usage",
+      "cost_total": 0.10303285000000001
+    },
+    "format_control": {
+      "attempts": 4,
+      "n": 4,
+      "correct": 2,
+      "accuracy": 0.5,
+      "ci95": {
+        "low": 0.15,
+        "high": 0.85
+      },
+      "ci95_centre": 0.5,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 4,
+        "mean": 26382.25,
+        "median": 25400,
+        "p95": 32472,
+        "max": 32472,
+        "min": 22257,
+        "stdev": 4512.05,
+        "sum": 105529
+      },
+      "ttft_spawn_ms": {
+        "n": 4,
+        "mean": 25777.75,
+        "median": 24872,
+        "p95": 31905,
+        "max": 31905,
+        "min": 21462,
+        "stdev": 4568.99,
+        "sum": 103111
+      },
+      "ttft_model_ms": {
+        "n": 4,
+        "mean": 3958.5,
+        "median": 2948.5,
+        "p95": 9124,
+        "max": 9124,
+        "min": 813,
+        "stdev": 3726.47,
+        "sum": 15834
+      },
+      "ttft_opencode_ms": {
+        "n": 4,
+        "mean": 3960.5,
+        "median": 2948,
+        "p95": 9133,
+        "max": 9133,
+        "min": 813,
+        "stdev": 3731.05,
+        "sum": 15842
+      },
+      "generation_ms": {
+        "n": 4,
+        "mean": 167.25,
+        "median": 157,
+        "p95": 305,
+        "max": 305,
+        "min": 50,
+        "stdev": 111.3,
+        "sum": 669
+      },
+      "output_tokens": {
+        "n": 4,
+        "mean": 63.5,
+        "median": 57,
+        "p95": 91,
+        "max": 91,
+        "min": 49,
+        "stdev": 19.57,
+        "sum": 254
+      },
+      "reasoning_tokens": {
+        "n": 4,
+        "mean": 452.5,
+        "median": 416,
+        "p95": 706,
+        "max": 706,
+        "min": 272,
+        "stdev": 185.79,
+        "sum": 1810
+      },
+      "prompt_tokens": {
+        "n": 4,
+        "mean": 17263,
+        "median": 17269,
+        "p95": 17284,
+        "max": 17284,
+        "min": 17230,
+        "stdev": 23.24,
+        "sum": 69052
+      },
+      "output_tokens_total": 254,
+      "token_source": "usage",
+      "cost_total": 0.0773957
+    },
+    "function_calling": {
+      "attempts": 4,
+      "n": 4,
+      "correct": 4,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.5101,
+        "high": 1
+      },
+      "ci95_centre": 0.7551,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 4,
+        "mean": 24654,
+        "median": 25421,
+        "p95": 28754,
+        "max": 28754,
+        "min": 19020,
+        "stdev": 4224.43,
+        "sum": 98616
+      },
+      "ttft_spawn_ms": {
+        "n": 4,
+        "mean": 23926.25,
+        "median": 24784,
+        "p95": 27358,
+        "max": 27358,
+        "min": 18779,
+        "stdev": 3768.44,
+        "sum": 95705
+      },
+      "ttft_model_ms": {
+        "n": 4,
+        "mean": 2235.5,
+        "median": 2226.5,
+        "p95": 2604,
+        "max": 2604,
+        "min": 1885,
+        "stdev": 352.86,
+        "sum": 8942
+      },
+      "ttft_opencode_ms": {
+        "n": 4,
+        "mean": 2232.5,
+        "median": 2220,
+        "p95": 2604,
+        "max": 2604,
+        "min": 1886,
+        "stdev": 355.17,
+        "sum": 8930
+      },
+      "generation_ms": {
+        "n": 4,
+        "mean": 221,
+        "median": 210,
+        "p95": 394,
+        "max": 394,
+        "min": 70,
+        "stdev": 134.83,
+        "sum": 884
+      },
+      "output_tokens": {
+        "n": 4,
+        "mean": 46.75,
+        "median": 46.5,
+        "p95": 60,
+        "max": 60,
+        "min": 34,
+        "stdev": 13.15,
+        "sum": 187
+      },
+      "reasoning_tokens": {
+        "n": 4,
+        "mean": 220.75,
+        "median": 227,
+        "p95": 258,
+        "max": 258,
+        "min": 171,
+        "stdev": 36.47,
+        "sum": 883
+      },
+      "prompt_tokens": {
+        "n": 4,
+        "mean": 17288.75,
+        "median": 17286,
+        "p95": 17303,
+        "max": 17303,
+        "min": 17280,
+        "stdev": 11.06,
+        "sum": 69155
+      },
+      "output_tokens_total": 187,
+      "token_source": "usage",
+      "cost_total": 0.054449250000000005
+    },
+    "instruction_following": {
+      "attempts": 7,
+      "n": 7,
+      "correct": 7,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.6457,
+        "high": 1
+      },
+      "ci95_centre": 0.8228,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 7,
+        "mean": 26425,
+        "median": 24625,
+        "p95": 36723,
+        "max": 36723,
+        "min": 22777,
+        "stdev": 4911.31,
+        "sum": 184975
+      },
+      "ttft_spawn_ms": {
+        "n": 7,
+        "mean": 25894.29,
+        "median": 24223,
+        "p95": 35944,
+        "max": 35944,
+        "min": 21913,
+        "stdev": 4854.99,
+        "sum": 181260
+      },
+      "ttft_model_ms": {
+        "n": 7,
+        "mean": 2664.29,
+        "median": 2432,
+        "p95": 7744,
+        "max": 7744,
+        "min": 0,
+        "stdev": 2641.36,
+        "sum": 18650
+      },
+      "ttft_opencode_ms": {
+        "n": 7,
+        "mean": 2654.29,
+        "median": 2432,
+        "p95": 7743,
+        "max": 7743,
+        "min": 1,
+        "stdev": 2643.44,
+        "sum": 18580
+      },
+      "generation_ms": {
+        "n": 7,
+        "mean": 106.29,
+        "median": 85,
+        "p95": 204,
+        "max": 204,
+        "min": 23,
+        "stdev": 60.5,
+        "sum": 744
+      },
+      "output_tokens": {
+        "n": 7,
+        "mean": 38.14,
+        "median": 29,
+        "p95": 69,
+        "max": 69,
+        "min": 15,
+        "stdev": 23.66,
+        "sum": 267
+      },
+      "reasoning_tokens": {
+        "n": 7,
+        "mean": 302,
+        "median": 250,
+        "p95": 651,
+        "max": 651,
+        "min": 124,
+        "stdev": 192.1,
+        "sum": 2114
+      },
+      "prompt_tokens": {
+        "n": 7,
+        "mean": 17199.86,
+        "median": 17197,
+        "p95": 17209,
+        "max": 17209,
+        "min": 17190,
+        "stdev": 8.84,
+        "sum": 120399
+      },
+      "output_tokens_total": 267,
+      "token_source": "usage",
+      "cost_total": 0.11761569999999999
+    },
+    "long_context": {
+      "attempts": 5,
+      "n": 5,
+      "correct": 4,
+      "accuracy": 0.8,
+      "ci95": {
+        "low": 0.3755,
+        "high": 0.9638
+      },
+      "ci95_centre": 0.6697,
+      "failed_attempts": 1,
+      "reliability": 0.8,
+      "latency_ms": {
+        "n": 5,
+        "mean": 41520.8,
+        "median": 40405,
+        "p95": 74728,
+        "max": 74728,
+        "min": 21431,
+        "stdev": 21142.55,
+        "sum": 207604
+      },
+      "ttft_spawn_ms": {
+        "n": 4,
+        "mean": 32842.5,
+        "median": 32341,
+        "p95": 45569,
+        "max": 45569,
+        "min": 21119,
+        "stdev": 11669.21,
+        "sum": 131370
+      },
+      "ttft_model_ms": {
+        "n": 4,
+        "mean": 15573.75,
+        "median": 14300,
+        "p95": 30273,
+        "max": 30273,
+        "min": 3422,
+        "stdev": 12383.92,
+        "sum": 62295
+      },
+      "ttft_opencode_ms": {
+        "n": 4,
+        "mean": 15573.5,
+        "median": 14299.5,
+        "p95": 30273,
+        "max": 30273,
+        "min": 3422,
+        "stdev": 12384.14,
+        "sum": 62294
+      },
+      "generation_ms": {
+        "n": 4,
+        "mean": 26.75,
+        "median": 10.5,
+        "p95": 78,
+        "max": 78,
+        "min": 8,
+        "stdev": 34.21,
+        "sum": 107
+      },
+      "output_tokens": {
+        "n": 5,
+        "mean": 498.8,
+        "median": 89,
+        "p95": 2188,
+        "max": 2188,
+        "min": 30,
+        "stdev": 945.11,
+        "sum": 2494
+      },
+      "reasoning_tokens": {
+        "n": 5,
+        "mean": 2502.2,
+        "median": 2679,
+        "p95": 4511,
+        "max": 4511,
+        "min": 341,
+        "stdev": 2000.68,
+        "sum": 12511
+      },
+      "prompt_tokens": {
+        "n": 5,
+        "mean": 25595.8,
+        "median": 21403,
+        "p95": 43811,
+        "max": 43811,
+        "min": 18674,
+        "stdev": 10381.78,
+        "sum": 127979
+      },
+      "output_tokens_total": 2494,
+      "token_source": "usage",
+      "cost_total": 0.1829955
+    },
+    "multilingual": {
+      "attempts": 8,
+      "n": 8,
+      "correct": 7,
+      "accuracy": 0.875,
+      "ci95": {
+        "low": 0.5291,
+        "high": 0.9776
+      },
+      "ci95_centre": 0.7533,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 8,
+        "mean": 32231.5,
+        "median": 30662,
+        "p95": 57214,
+        "max": 57214,
+        "min": 21892,
+        "stdev": 11761.59,
+        "sum": 257852
+      },
+      "ttft_spawn_ms": {
+        "n": 8,
+        "mean": 31519.88,
+        "median": 29713.5,
+        "p95": 56711,
+        "max": 56711,
+        "min": 21497,
+        "stdev": 11716.29,
+        "sum": 252159
+      },
+      "ttft_model_ms": {
+        "n": 8,
+        "mean": 8030.38,
+        "median": 3328,
+        "p95": 31636,
+        "max": 31636,
+        "min": 1,
+        "stdev": 10815.88,
+        "sum": 64243
+      },
+      "ttft_opencode_ms": {
+        "n": 8,
+        "mean": 8036.75,
+        "median": 3327.5,
+        "p95": 31685,
+        "max": 31685,
+        "min": 0,
+        "stdev": 10831.19,
+        "sum": 64294
+      },
+      "generation_ms": {
+        "n": 8,
+        "mean": 30,
+        "median": 24.5,
+        "p95": 56,
+        "max": 56,
+        "min": 9,
+        "stdev": 17.78,
+        "sum": 240
+      },
+      "output_tokens": {
+        "n": 8,
+        "mean": 94,
+        "median": 26.5,
+        "p95": 225,
+        "max": 225,
+        "min": 12,
+        "stdev": 102,
+        "sum": 752
+      },
+      "reasoning_tokens": {
+        "n": 8,
+        "mean": 425.38,
+        "median": 415,
+        "p95": 719,
+        "max": 719,
+        "min": 155,
+        "stdev": 213.52,
+        "sum": 3403
+      },
+      "prompt_tokens": {
+        "n": 8,
+        "mean": 30717.75,
+        "median": 17248,
+        "p95": 53325,
+        "max": 53325,
+        "min": 17199,
+        "stdev": 18619.35,
+        "sum": 245742
+      },
+      "output_tokens_total": 752,
+      "token_source": "usage",
+      "cost_total": 0.13482995
+    },
+    "reasoning": {
+      "attempts": 10,
+      "n": 10,
+      "correct": 8,
+      "accuracy": 0.8,
+      "ci95": {
+        "low": 0.4902,
+        "high": 0.9433
+      },
+      "ci95_centre": 0.7167,
+      "failed_attempts": 2,
+      "reliability": 0.8,
+      "latency_ms": {
+        "n": 10,
+        "mean": 38085,
+        "median": 20144.5,
+        "p95": 102094,
+        "max": 102094,
+        "min": 12462,
+        "stdev": 35912.61,
+        "sum": 380850
+      },
+      "ttft_spawn_ms": {
+        "n": 8,
+        "mean": 21793.13,
+        "median": 14162.5,
+        "p95": 52676,
+        "max": 52676,
+        "min": 12249,
+        "stdev": 14171.79,
+        "sum": 174345
+      },
+      "ttft_model_ms": {
+        "n": 8,
+        "mean": 6591.38,
+        "median": 2554,
+        "p95": 19330,
+        "max": 19330,
+        "min": 1100,
+        "stdev": 7066.21,
+        "sum": 52731
+      },
+      "ttft_opencode_ms": {
+        "n": 8,
+        "mean": 6591.13,
+        "median": 2554,
+        "p95": 19329,
+        "max": 19329,
+        "min": 1100,
+        "stdev": 7066.05,
+        "sum": 52729
+      },
+      "generation_ms": {
+        "n": 8,
+        "mean": 10.5,
+        "median": 10,
+        "p95": 22,
+        "max": 22,
+        "min": 5,
+        "stdev": 5.01,
+        "sum": 84
+      },
+      "output_tokens": {
+        "n": 10,
+        "mean": 157,
+        "median": 67,
+        "p95": 451,
+        "max": 451,
+        "min": 11,
+        "stdev": 171.35,
+        "sum": 1570
+      },
+      "reasoning_tokens": {
+        "n": 10,
+        "mean": 269.9,
+        "median": 247.5,
+        "p95": 527,
+        "max": 527,
+        "min": 63,
+        "stdev": 153.39,
+        "sum": 2699
+      },
+      "prompt_tokens": {
+        "n": 10,
+        "mean": 39164.3,
+        "median": 27481.5,
+        "p95": 89459,
+        "max": 89459,
+        "min": 17204,
+        "stdev": 28874.07,
+        "sum": 391643
+      },
+      "output_tokens_total": 1570,
+      "token_source": "usage",
+      "cost_total": 0.24373525
+    },
+    "robustness": {
+      "attempts": 3,
+      "n": 3,
+      "correct": 3,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.4385,
+        "high": 1
+      },
+      "ci95_centre": 0.7193,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 3,
+        "mean": 21515,
+        "median": 22998,
+        "p95": 23300,
+        "max": 23300,
+        "min": 18247,
+        "stdev": 2834.2,
+        "sum": 64545
+      },
+      "ttft_spawn_ms": {
+        "n": 3,
+        "mean": 21006.67,
+        "median": 22285,
+        "p95": 22954,
+        "max": 22954,
+        "min": 17781,
+        "stdev": 2813.46,
+        "sum": 63020
+      },
+      "ttft_model_ms": {
+        "n": 3,
+        "mean": 464.33,
+        "median": 358,
+        "p95": 750,
+        "max": 750,
+        "min": 285,
+        "stdev": 250.07,
+        "sum": 1393
+      },
+      "ttft_opencode_ms": {
+        "n": 3,
+        "mean": 465.33,
+        "median": 359,
+        "p95": 751,
+        "max": 751,
+        "min": 286,
+        "stdev": 250.07,
+        "sum": 1396
+      },
+      "generation_ms": {
+        "n": 3,
+        "mean": 11.67,
+        "median": 12,
+        "p95": 13,
+        "max": 13,
+        "min": 10,
+        "stdev": 1.53,
+        "sum": 35
+      },
+      "output_tokens": {
+        "n": 3,
+        "mean": 12,
+        "median": 12,
+        "p95": 12,
+        "max": 12,
+        "min": 12,
+        "stdev": 0,
+        "sum": 36
+      },
+      "reasoning_tokens": {
+        "n": 3,
+        "mean": 139.33,
+        "median": 115,
+        "p95": 195,
+        "max": 195,
+        "min": 108,
+        "stdev": 48.34,
+        "sum": 418
+      },
+      "prompt_tokens": {
+        "n": 3,
+        "mean": 17222.33,
+        "median": 17201,
+        "p95": 17266,
+        "max": 17266,
+        "min": 17200,
+        "stdev": 37.82,
+        "sum": 51667
+      },
+      "output_tokens_total": 36,
+      "token_source": "usage",
+      "cost_total": 0.028546749999999996
+    }
+  },
+  "per_model_category": {
+    "google/gemini-flash-latest :: reasoning": {
+      "attempts": 2,
+      "n": 2,
+      "correct": 0,
+      "accuracy": 0,
+      "ci95": {
+        "low": 0,
+        "high": 0.6576
+      },
+      "ci95_centre": 0.3288,
+      "failed_attempts": 2,
+      "reliability": 0,
+      "latency_ms": {
+        "n": 2,
+        "mean": 101961.5,
+        "median": 101961.5,
+        "p95": 102094,
+        "max": 102094,
+        "min": 101829,
+        "stdev": 187.38,
+        "sum": 203923
+      },
+      "ttft_spawn_ms": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "max": null,
+        "min": null,
+        "stdev": null,
+        "sum": 0
+      },
+      "ttft_model_ms": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "max": null,
+        "min": null,
+        "stdev": null,
+        "sum": 0
+      },
+      "ttft_opencode_ms": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "max": null,
+        "min": null,
+        "stdev": null,
+        "sum": 0
+      },
+      "generation_ms": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "max": null,
+        "min": null,
+        "stdev": null,
+        "sum": 0
+      },
+      "output_tokens": {
+        "n": 2,
+        "mean": 179.5,
+        "median": 179.5,
+        "p95": 257,
+        "max": 257,
+        "min": 102,
+        "stdev": 109.6,
+        "sum": 359
+      },
+      "reasoning_tokens": {
+        "n": 2,
+        "mean": 64.5,
+        "median": 64.5,
+        "p95": 66,
+        "max": 66,
+        "min": 63,
+        "stdev": 2.12,
+        "sum": 129
+      },
+      "prompt_tokens": {
+        "n": 2,
+        "mean": 37610,
+        "median": 37610,
+        "p95": 37626,
+        "max": 37626,
+        "min": 37594,
+        "stdev": 22.63,
+        "sum": 75220
+      },
+      "output_tokens_total": 359,
+      "token_source": "usage",
+      "cost_total": 0.02538195
+    },
+    "meta/muse-spark-1.3 :: abstention_hallucination": {
+      "attempts": 3,
+      "n": 3,
+      "correct": 3,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.4385,
+        "high": 1
+      },
+      "ci95_centre": 0.7193,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 3,
+        "mean": 29134.67,
+        "median": 30636,
+        "p95": 30754,
+        "max": 30754,
+        "min": 26014,
+        "stdev": 2703.22,
+        "sum": 87404
+      },
+      "ttft_spawn_ms": {
+        "n": 3,
+        "mean": 28593.33,
+        "median": 30069,
+        "p95": 30197,
+        "max": 30197,
+        "min": 25514,
+        "stdev": 2667.55,
+        "sum": 85780
+      },
+      "ttft_model_ms": {
+        "n": 3,
+        "mean": 3138,
+        "median": 3251,
+        "p95": 3787,
+        "max": 3787,
+        "min": 2376,
+        "stdev": 712.25,
+        "sum": 9414
+      },
+      "ttft_opencode_ms": {
+        "n": 3,
+        "mean": 3120.33,
+        "median": 3200,
+        "p95": 3787,
+        "max": 3787,
+        "min": 2374,
+        "stdev": 709.86,
+        "sum": 9361
+      },
+      "generation_ms": {
+        "n": 3,
+        "mean": 90.67,
+        "median": 43,
+        "p95": 219,
+        "max": 219,
+        "min": 10,
+        "stdev": 112.36,
+        "sum": 272
+      },
+      "output_tokens": {
+        "n": 3,
+        "mean": 33,
+        "median": 32,
+        "p95": 36,
+        "max": 36,
+        "min": 31,
+        "stdev": 2.65,
+        "sum": 99
+      },
+      "reasoning_tokens": {
+        "n": 3,
+        "mean": 255.33,
+        "median": 268,
+        "p95": 273,
+        "max": 273,
+        "min": 225,
+        "stdev": 26.39,
+        "sum": 766
+      },
+      "prompt_tokens": {
+        "n": 3,
+        "mean": 17233.33,
+        "median": 17233,
+        "p95": 17234,
+        "max": 17234,
+        "min": 17233,
+        "stdev": 0.58,
+        "sum": 51700
+      },
+      "output_tokens_total": 99,
+      "token_source": "usage",
+      "cost_total": 0.040472350000000004
+    },
+    "meta/muse-spark-1.3 :: code": {
+      "attempts": 4,
+      "n": 4,
+      "correct": 4,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.5101,
+        "high": 1
+      },
+      "ci95_centre": 0.7551,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 4,
+        "mean": 27325,
+        "median": 29489,
+        "p95": 35705,
+        "max": 35705,
+        "min": 14617,
+        "stdev": 9623.88,
+        "sum": 109300
+      },
+      "ttft_spawn_ms": {
+        "n": 4,
+        "mean": 26448.75,
+        "median": 28997,
+        "p95": 33378,
+        "max": 33378,
+        "min": 14423,
+        "stdev": 8985.28,
+        "sum": 105795
+      },
+      "ttft_model_ms": {
+        "n": 4,
+        "mean": 6388.25,
+        "median": 5348,
+        "p95": 13162,
+        "max": 13162,
+        "min": 1695,
+        "stdev": 5349.28,
+        "sum": 25553
+      },
+      "ttft_opencode_ms": {
+        "n": 4,
+        "mean": 6366.5,
+        "median": 5329.5,
+        "p95": 13112,
+        "max": 13112,
+        "min": 1695,
+        "stdev": 5323.75,
+        "sum": 25466
+      },
+      "generation_ms": {
+        "n": 4,
+        "mean": 71,
+        "median": 34.5,
+        "p95": 206,
+        "max": 206,
+        "min": 9,
+        "stdev": 92.98,
+        "sum": 284
+      },
+      "output_tokens": {
+        "n": 4,
+        "mean": 115.25,
+        "median": 39.5,
+        "p95": 355,
+        "max": 355,
+        "min": 27,
+        "stdev": 160,
+        "sum": 461
+      },
+      "reasoning_tokens": {
+        "n": 4,
+        "mean": 608,
+        "median": 469,
+        "p95": 1125,
+        "max": 1125,
+        "min": 369,
+        "stdev": 347.88,
+        "sum": 2432
+      },
+      "prompt_tokens": {
+        "n": 4,
+        "mean": 26388.5,
+        "median": 17364,
+        "p95": 53523,
+        "max": 53523,
+        "min": 17303,
+        "stdev": 18089.71,
+        "sum": 105554
+      },
+      "output_tokens_total": 461,
+      "token_source": "usage",
+      "cost_total": 0.10303285000000001
+    },
+    "meta/muse-spark-1.3 :: format_control": {
+      "attempts": 4,
+      "n": 4,
+      "correct": 2,
+      "accuracy": 0.5,
+      "ci95": {
+        "low": 0.15,
+        "high": 0.85
+      },
+      "ci95_centre": 0.5,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 4,
+        "mean": 26382.25,
+        "median": 25400,
+        "p95": 32472,
+        "max": 32472,
+        "min": 22257,
+        "stdev": 4512.05,
+        "sum": 105529
+      },
+      "ttft_spawn_ms": {
+        "n": 4,
+        "mean": 25777.75,
+        "median": 24872,
+        "p95": 31905,
+        "max": 31905,
+        "min": 21462,
+        "stdev": 4568.99,
+        "sum": 103111
+      },
+      "ttft_model_ms": {
+        "n": 4,
+        "mean": 3958.5,
+        "median": 2948.5,
+        "p95": 9124,
+        "max": 9124,
+        "min": 813,
+        "stdev": 3726.47,
+        "sum": 15834
+      },
+      "ttft_opencode_ms": {
+        "n": 4,
+        "mean": 3960.5,
+        "median": 2948,
+        "p95": 9133,
+        "max": 9133,
+        "min": 813,
+        "stdev": 3731.05,
+        "sum": 15842
+      },
+      "generation_ms": {
+        "n": 4,
+        "mean": 167.25,
+        "median": 157,
+        "p95": 305,
+        "max": 305,
+        "min": 50,
+        "stdev": 111.3,
+        "sum": 669
+      },
+      "output_tokens": {
+        "n": 4,
+        "mean": 63.5,
+        "median": 57,
+        "p95": 91,
+        "max": 91,
+        "min": 49,
+        "stdev": 19.57,
+        "sum": 254
+      },
+      "reasoning_tokens": {
+        "n": 4,
+        "mean": 452.5,
+        "median": 416,
+        "p95": 706,
+        "max": 706,
+        "min": 272,
+        "stdev": 185.79,
+        "sum": 1810
+      },
+      "prompt_tokens": {
+        "n": 4,
+        "mean": 17263,
+        "median": 17269,
+        "p95": 17284,
+        "max": 17284,
+        "min": 17230,
+        "stdev": 23.24,
+        "sum": 69052
+      },
+      "output_tokens_total": 254,
+      "token_source": "usage",
+      "cost_total": 0.0773957
+    },
+    "meta/muse-spark-1.3 :: function_calling": {
+      "attempts": 4,
+      "n": 4,
+      "correct": 4,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.5101,
+        "high": 1
+      },
+      "ci95_centre": 0.7551,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 4,
+        "mean": 24654,
+        "median": 25421,
+        "p95": 28754,
+        "max": 28754,
+        "min": 19020,
+        "stdev": 4224.43,
+        "sum": 98616
+      },
+      "ttft_spawn_ms": {
+        "n": 4,
+        "mean": 23926.25,
+        "median": 24784,
+        "p95": 27358,
+        "max": 27358,
+        "min": 18779,
+        "stdev": 3768.44,
+        "sum": 95705
+      },
+      "ttft_model_ms": {
+        "n": 4,
+        "mean": 2235.5,
+        "median": 2226.5,
+        "p95": 2604,
+        "max": 2604,
+        "min": 1885,
+        "stdev": 352.86,
+        "sum": 8942
+      },
+      "ttft_opencode_ms": {
+        "n": 4,
+        "mean": 2232.5,
+        "median": 2220,
+        "p95": 2604,
+        "max": 2604,
+        "min": 1886,
+        "stdev": 355.17,
+        "sum": 8930
+      },
+      "generation_ms": {
+        "n": 4,
+        "mean": 221,
+        "median": 210,
+        "p95": 394,
+        "max": 394,
+        "min": 70,
+        "stdev": 134.83,
+        "sum": 884
+      },
+      "output_tokens": {
+        "n": 4,
+        "mean": 46.75,
+        "median": 46.5,
+        "p95": 60,
+        "max": 60,
+        "min": 34,
+        "stdev": 13.15,
+        "sum": 187
+      },
+      "reasoning_tokens": {
+        "n": 4,
+        "mean": 220.75,
+        "median": 227,
+        "p95": 258,
+        "max": 258,
+        "min": 171,
+        "stdev": 36.47,
+        "sum": 883
+      },
+      "prompt_tokens": {
+        "n": 4,
+        "mean": 17288.75,
+        "median": 17286,
+        "p95": 17303,
+        "max": 17303,
+        "min": 17280,
+        "stdev": 11.06,
+        "sum": 69155
+      },
+      "output_tokens_total": 187,
+      "token_source": "usage",
+      "cost_total": 0.054449250000000005
+    },
+    "meta/muse-spark-1.3 :: instruction_following": {
+      "attempts": 7,
+      "n": 7,
+      "correct": 7,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.6457,
+        "high": 1
+      },
+      "ci95_centre": 0.8228,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 7,
+        "mean": 26425,
+        "median": 24625,
+        "p95": 36723,
+        "max": 36723,
+        "min": 22777,
+        "stdev": 4911.31,
+        "sum": 184975
+      },
+      "ttft_spawn_ms": {
+        "n": 7,
+        "mean": 25894.29,
+        "median": 24223,
+        "p95": 35944,
+        "max": 35944,
+        "min": 21913,
+        "stdev": 4854.99,
+        "sum": 181260
+      },
+      "ttft_model_ms": {
+        "n": 7,
+        "mean": 2664.29,
+        "median": 2432,
+        "p95": 7744,
+        "max": 7744,
+        "min": 0,
+        "stdev": 2641.36,
+        "sum": 18650
+      },
+      "ttft_opencode_ms": {
+        "n": 7,
+        "mean": 2654.29,
+        "median": 2432,
+        "p95": 7743,
+        "max": 7743,
+        "min": 1,
+        "stdev": 2643.44,
+        "sum": 18580
+      },
+      "generation_ms": {
+        "n": 7,
+        "mean": 106.29,
+        "median": 85,
+        "p95": 204,
+        "max": 204,
+        "min": 23,
+        "stdev": 60.5,
+        "sum": 744
+      },
+      "output_tokens": {
+        "n": 7,
+        "mean": 38.14,
+        "median": 29,
+        "p95": 69,
+        "max": 69,
+        "min": 15,
+        "stdev": 23.66,
+        "sum": 267
+      },
+      "reasoning_tokens": {
+        "n": 7,
+        "mean": 302,
+        "median": 250,
+        "p95": 651,
+        "max": 651,
+        "min": 124,
+        "stdev": 192.1,
+        "sum": 2114
+      },
+      "prompt_tokens": {
+        "n": 7,
+        "mean": 17199.86,
+        "median": 17197,
+        "p95": 17209,
+        "max": 17209,
+        "min": 17190,
+        "stdev": 8.84,
+        "sum": 120399
+      },
+      "output_tokens_total": 267,
+      "token_source": "usage",
+      "cost_total": 0.11761569999999999
+    },
+    "meta/muse-spark-1.3 :: long_context": {
+      "attempts": 5,
+      "n": 5,
+      "correct": 4,
+      "accuracy": 0.8,
+      "ci95": {
+        "low": 0.3755,
+        "high": 0.9638
+      },
+      "ci95_centre": 0.6697,
+      "failed_attempts": 1,
+      "reliability": 0.8,
+      "latency_ms": {
+        "n": 5,
+        "mean": 41520.8,
+        "median": 40405,
+        "p95": 74728,
+        "max": 74728,
+        "min": 21431,
+        "stdev": 21142.55,
+        "sum": 207604
+      },
+      "ttft_spawn_ms": {
+        "n": 4,
+        "mean": 32842.5,
+        "median": 32341,
+        "p95": 45569,
+        "max": 45569,
+        "min": 21119,
+        "stdev": 11669.21,
+        "sum": 131370
+      },
+      "ttft_model_ms": {
+        "n": 4,
+        "mean": 15573.75,
+        "median": 14300,
+        "p95": 30273,
+        "max": 30273,
+        "min": 3422,
+        "stdev": 12383.92,
+        "sum": 62295
+      },
+      "ttft_opencode_ms": {
+        "n": 4,
+        "mean": 15573.5,
+        "median": 14299.5,
+        "p95": 30273,
+        "max": 30273,
+        "min": 3422,
+        "stdev": 12384.14,
+        "sum": 62294
+      },
+      "generation_ms": {
+        "n": 4,
+        "mean": 26.75,
+        "median": 10.5,
+        "p95": 78,
+        "max": 78,
+        "min": 8,
+        "stdev": 34.21,
+        "sum": 107
+      },
+      "output_tokens": {
+        "n": 5,
+        "mean": 498.8,
+        "median": 89,
+        "p95": 2188,
+        "max": 2188,
+        "min": 30,
+        "stdev": 945.11,
+        "sum": 2494
+      },
+      "reasoning_tokens": {
+        "n": 5,
+        "mean": 2502.2,
+        "median": 2679,
+        "p95": 4511,
+        "max": 4511,
+        "min": 341,
+        "stdev": 2000.68,
+        "sum": 12511
+      },
+      "prompt_tokens": {
+        "n": 5,
+        "mean": 25595.8,
+        "median": 21403,
+        "p95": 43811,
+        "max": 43811,
+        "min": 18674,
+        "stdev": 10381.78,
+        "sum": 127979
+      },
+      "output_tokens_total": 2494,
+      "token_source": "usage",
+      "cost_total": 0.1829955
+    },
+    "meta/muse-spark-1.3 :: multilingual": {
+      "attempts": 8,
+      "n": 8,
+      "correct": 7,
+      "accuracy": 0.875,
+      "ci95": {
+        "low": 0.5291,
+        "high": 0.9776
+      },
+      "ci95_centre": 0.7533,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 8,
+        "mean": 32231.5,
+        "median": 30662,
+        "p95": 57214,
+        "max": 57214,
+        "min": 21892,
+        "stdev": 11761.59,
+        "sum": 257852
+      },
+      "ttft_spawn_ms": {
+        "n": 8,
+        "mean": 31519.88,
+        "median": 29713.5,
+        "p95": 56711,
+        "max": 56711,
+        "min": 21497,
+        "stdev": 11716.29,
+        "sum": 252159
+      },
+      "ttft_model_ms": {
+        "n": 8,
+        "mean": 8030.38,
+        "median": 3328,
+        "p95": 31636,
+        "max": 31636,
+        "min": 1,
+        "stdev": 10815.88,
+        "sum": 64243
+      },
+      "ttft_opencode_ms": {
+        "n": 8,
+        "mean": 8036.75,
+        "median": 3327.5,
+        "p95": 31685,
+        "max": 31685,
+        "min": 0,
+        "stdev": 10831.19,
+        "sum": 64294
+      },
+      "generation_ms": {
+        "n": 8,
+        "mean": 30,
+        "median": 24.5,
+        "p95": 56,
+        "max": 56,
+        "min": 9,
+        "stdev": 17.78,
+        "sum": 240
+      },
+      "output_tokens": {
+        "n": 8,
+        "mean": 94,
+        "median": 26.5,
+        "p95": 225,
+        "max": 225,
+        "min": 12,
+        "stdev": 102,
+        "sum": 752
+      },
+      "reasoning_tokens": {
+        "n": 8,
+        "mean": 425.38,
+        "median": 415,
+        "p95": 719,
+        "max": 719,
+        "min": 155,
+        "stdev": 213.52,
+        "sum": 3403
+      },
+      "prompt_tokens": {
+        "n": 8,
+        "mean": 30717.75,
+        "median": 17248,
+        "p95": 53325,
+        "max": 53325,
+        "min": 17199,
+        "stdev": 18619.35,
+        "sum": 245742
+      },
+      "output_tokens_total": 752,
+      "token_source": "usage",
+      "cost_total": 0.13482995
+    },
+    "meta/muse-spark-1.3 :: reasoning": {
+      "attempts": 8,
+      "n": 8,
+      "correct": 8,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.6756,
+        "high": 1
+      },
+      "ci95_centre": 0.8378,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 8,
+        "mean": 22115.88,
+        "median": 14552,
+        "p95": 53001,
+        "max": 53001,
+        "min": 12462,
+        "stdev": 14176.87,
+        "sum": 176927
+      },
+      "ttft_spawn_ms": {
+        "n": 8,
+        "mean": 21793.13,
+        "median": 14162.5,
+        "p95": 52676,
+        "max": 52676,
+        "min": 12249,
+        "stdev": 14171.79,
+        "sum": 174345
+      },
+      "ttft_model_ms": {
+        "n": 8,
+        "mean": 6591.38,
+        "median": 2554,
+        "p95": 19330,
+        "max": 19330,
+        "min": 1100,
+        "stdev": 7066.21,
+        "sum": 52731
+      },
+      "ttft_opencode_ms": {
+        "n": 8,
+        "mean": 6591.13,
+        "median": 2554,
+        "p95": 19329,
+        "max": 19329,
+        "min": 1100,
+        "stdev": 7066.05,
+        "sum": 52729
+      },
+      "generation_ms": {
+        "n": 8,
+        "mean": 10.5,
+        "median": 10,
+        "p95": 22,
+        "max": 22,
+        "min": 5,
+        "stdev": 5.01,
+        "sum": 84
+      },
+      "output_tokens": {
+        "n": 8,
+        "mean": 151.38,
+        "median": 32,
+        "p95": 451,
+        "max": 451,
+        "min": 11,
+        "stdev": 189.35,
+        "sum": 1211
+      },
+      "reasoning_tokens": {
+        "n": 8,
+        "mean": 321.25,
+        "median": 275.5,
+        "p95": 527,
+        "max": 527,
+        "min": 169,
+        "stdev": 123.21,
+        "sum": 2570
+      },
+      "prompt_tokens": {
+        "n": 8,
+        "mean": 39552.88,
+        "median": 17368,
+        "p95": 89459,
+        "max": 89459,
+        "min": 17204,
+        "stdev": 32726.93,
+        "sum": 316423
+      },
+      "output_tokens_total": 1211,
+      "token_source": "usage",
+      "cost_total": 0.2183533
+    },
+    "meta/muse-spark-1.3 :: robustness": {
+      "attempts": 3,
+      "n": 3,
+      "correct": 3,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.4385,
+        "high": 1
+      },
+      "ci95_centre": 0.7193,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 3,
+        "mean": 21515,
+        "median": 22998,
+        "p95": 23300,
+        "max": 23300,
+        "min": 18247,
+        "stdev": 2834.2,
+        "sum": 64545
+      },
+      "ttft_spawn_ms": {
+        "n": 3,
+        "mean": 21006.67,
+        "median": 22285,
+        "p95": 22954,
+        "max": 22954,
+        "min": 17781,
+        "stdev": 2813.46,
+        "sum": 63020
+      },
+      "ttft_model_ms": {
+        "n": 3,
+        "mean": 464.33,
+        "median": 358,
+        "p95": 750,
+        "max": 750,
+        "min": 285,
+        "stdev": 250.07,
+        "sum": 1393
+      },
+      "ttft_opencode_ms": {
+        "n": 3,
+        "mean": 465.33,
+        "median": 359,
+        "p95": 751,
+        "max": 751,
+        "min": 286,
+        "stdev": 250.07,
+        "sum": 1396
+      },
+      "generation_ms": {
+        "n": 3,
+        "mean": 11.67,
+        "median": 12,
+        "p95": 13,
+        "max": 13,
+        "min": 10,
+        "stdev": 1.53,
+        "sum": 35
+      },
+      "output_tokens": {
+        "n": 3,
+        "mean": 12,
+        "median": 12,
+        "p95": 12,
+        "max": 12,
+        "min": 12,
+        "stdev": 0,
+        "sum": 36
+      },
+      "reasoning_tokens": {
+        "n": 3,
+        "mean": 139.33,
+        "median": 115,
+        "p95": 195,
+        "max": 195,
+        "min": 108,
+        "stdev": 48.34,
+        "sum": 418
+      },
+      "prompt_tokens": {
+        "n": 3,
+        "mean": 17222.33,
+        "median": 17201,
+        "p95": 17266,
+        "max": 17266,
+        "min": 17200,
+        "stdev": 37.82,
+        "sum": 51667
+      },
+      "output_tokens_total": 36,
+      "token_source": "usage",
+      "cost_total": 0.028546749999999996
+    }
+  },
+  "per_scorer": {
+    "contains": {
+      "n": 2,
+      "correct": 2,
+      "accuracy": 1
+    },
+    "exact_match": {
+      "n": 13,
+      "correct": 12,
+      "accuracy": 0.9231
+    },
+    "json_schema": {
+      "n": 8,
+      "correct": 6,
+      "accuracy": 0.75
+    },
+    "multi_all_of": {
+      "n": 1,
+      "correct": 1,
+      "accuracy": 1
+    },
+    "numeric": {
+      "n": 17,
+      "correct": 14,
+      "accuracy": 0.8235
+    },
+    "regex": {
+      "n": 7,
+      "correct": 7,
+      "accuracy": 1
+    }
+  },
+  "failure_kinds": {
+    "empty_answer": 1,
+    "error_event": 2
+  },
+  "diagnostics": {
+    "runs_with_tool_calls": 10,
+    "runs_with_stripped_banner": 0,
+    "runs_with_malformed_json": 0,
+    "runs_with_empty_answer": 3,
+    "peak_rss_kb": {
+      "n": 48,
+      "mean": 552334.58,
+      "median": 559598,
+      "p95": 574640,
+      "max": 594688,
+      "min": 501304,
+      "stdev": 20222.52,
+      "sum": 26512060
+    }
+  },
+  "problems": [
+    {
+      "run_id": "1acedf5203fdbfc1",
+      "model": "google/gemini-flash-latest",
+      "item_id": "rsn-modpow-01",
+      "rep": 0,
+      "category": "reasoning",
+      "scorer": "numeric",
+      "failure": {
+        "kind": "error_event",
+        "retriable": true,
+        "reason": "error event name=APIError"
+      },
+      "detail": "numeric: no number in answer \"\"",
+      "answer_preview": ""
+    },
+    {
+      "run_id": "6da06dd5c6bbbe52",
+      "model": "google/gemini-flash-latest",
+      "item_id": "rsn-modpow-02",
+      "rep": 0,
+      "category": "reasoning",
+      "scorer": "numeric",
+      "failure": {
+        "kind": "error_event",
+        "retriable": true,
+        "reason": "error event name=APIError"
+      },
+      "detail": "numeric: no number in answer \"\"",
+      "answer_preview": ""
+    },
+    {
+      "run_id": "29a0c1e4ebd0966a",
+      "model": "meta/muse-spark-1.3",
+      "item_id": "fmt-flat-01",
+      "rep": 0,
+      "category": "format_control",
+      "scorer": "json_schema",
+      "failure": null,
+      "detail": "json_schema: $.warmest_condition: \"clear\" not in enum [\"windy\"]",
+      "answer_preview": "{\"station\": \"ridge-top\", \"readings_c\": [-1, 4, 22], \"mean_c\": 8.3, \"warmest_condition\": \"clear\"}"
+    },
+    {
+      "run_id": "0adfb25f1f73c0dc",
+      "model": "meta/muse-spark-1.3",
+      "item_id": "fmt-nested-02",
+      "rep": 0,
+      "category": "format_control",
+      "scorer": "json_schema",
+      "failure": null,
+      "detail": "json_schema: $.survey.id: \"S240\" not in enum [\"S-240\"]",
+      "answer_preview": "{\"survey\":{\"id\":\"S240\",\"region\":\"coast\",\"scored\":{\"raw\":80,\"bonus\":42}}}"
+    },
+    {
+      "run_id": "5e7db37ebb7cfbc7",
+      "model": "meta/muse-spark-1.3",
+      "item_id": "ml-chain-ja",
+      "rep": 0,
+      "category": "multilingual",
+      "scorer": "numeric",
+      "failure": null,
+      "detail": "numeric 23359 != 23854 (|d|=495, absTol=0, relTol=0)",
+      "answer_preview": "23359"
+    },
+    {
+      "run_id": "80cf9322ce58c54b",
+      "model": "meta/muse-spark-1.3",
+      "item_id": "lc-needle-01",
+      "rep": 0,
+      "category": "long_context",
+      "scorer": "exact_match",
+      "failure": {
+        "kind": "empty_answer",
+        "retriable": true,
+        "reason": "exit=0 with empty answer"
+      },
+      "detail": "normalized: \"\" != \"2080\"",
+      "answer_preview": ""
+    }
+  ],
+  "generated_at": "2026-09-27T16:46:41.229Z",
+  "provenance": {
+    "models": {
+      "meta/muse-spark-1.3": {
+        "id": "meta/muse-spark-1.3"
+      }
+    },
+    "opencode_bin": "/usr/local/bin/opencode",
+    "format": "json",
+    "pure": true,
+    "isolation_dir": "/tmp/t2bench-O63EIf",
+    "concurrency": 2,
+    "item_bank": "/tmp/chunk-meta_muse-spark-1_3-36.json",
+    "logPath": "reports/round1/anchors-fast/run-log.jsonl",
+    "n_items": 9,
+    "reps": 1
+  }
+}

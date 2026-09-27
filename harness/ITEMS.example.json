@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "meta": {
+    "name": "llm-bench example bank",
+    "purpose": "Shape demonstration only. NOT the real benchmark item bank — that is A3's deliverable. Three items chosen to exercise three different scorers.",
+    "notes": [
+      "Keep prompts short and self-contained: the harness prepends no system prompt unless `system` is set.",
+      "Prompts that ask for a specific output shape score far more reliably than open questions.",
+      "Every item MUST be answerable without network access or tool use."
+    ]
+  },
+  "items": [
+    {
+      "id": "ex-format-exact-01",
+      "category": "format",
+      "prompt": "Reply with exactly the following text and nothing else: PING-OK",
+      "scorer": "exact_match",
+      "scorer_args": { "case_sensitive": true, "ignore_punctuation": false },
+      "expected": "PING-OK",
+      "notes": "Calibration item. Measures instruction-adherence and the format axis. If this fails, the harness or the isolation flags are wrong — not the model."
+    },
+    {
+      "id": "ex-math-numeric-01",
+      "category": "math",
+      "prompt": "What is 17 multiplied by 23? Reply with the number only, no units, no commas.",
+      "scorer": "numeric",
+      "scorer_args": { "abs_tol": 0 },
+      "expected": 391,
+      "notes": "Ground truth 17*23=391. abs_tol 0 forces an exact integer; loosen to 1e-6 for float items."
+    },
+    {
+      "id": "ex-reasoning-choice-01",
+      "category": "reasoning",
+      "prompt": "A train leaves at 09:00 travelling 80 km/h. A second train leaves the same station at 09:30 travelling 120 km/h on the same track. At what time does the second train catch the first? Reply in the form 'ANSWER: HH:MM'.",
+      "scorer": "choice",
+      "scorer_args": { "allowed": ["10:00", "10:30", "11:00", "11:30"] },
+      "expected": "11:00",
+      "notes": "First train has a 30-minute = 40 km head start; closing speed 40 km/h so the catch takes 1 h. Demonstrates a multi-token expected value with scorer_args.allowed."
+    }
+  ]
+}

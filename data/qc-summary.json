@@ -1,0 +1,648 @@
+{
+  "schema": "llm-bench/qc/v1",
+  "produced_by": "B3/harness/adjudicate.mjs",
+  "note": "One entry per audited log, keyed by its path relative to the project root. Re-running the tool for another log ADDS an entry and does not modify existing ones.",
+  "carried_over_from_earlier_flat_format": {
+    "note": "One entry per audited log, keyed by its path relative to the project root. Re-running the tool for another log ADDS an entry and does not modify existing ones.",
+    "carried_over_from_earlier_flat_format": {
+      "note": "One entry per audited log, keyed by its path relative to the project root. Re-running the tool for another log ADDS an entry and does not modify existing ones.",
+      "carried_over_from_earlier_flat_format": {
+        "note": "One entry per audited log, keyed by its path relative to the project root. Re-running the tool for another log ADDS an entry and does not modify existing ones.",
+        "carried_over_from_earlier_flat_format": {
+          "note": "One entry per audited log, keyed by its path relative to the project root. Re-running the tool for another log ADDS an entry and does not modify existing ones.",
+          "carried_over_from_earlier_flat_format": {
+            "note": "One entry per audited log, keyed by its path relative to the project root. Re-running the tool for another log ADDS an entry and does not modify existing ones."
+          }
+        }
+      }
+    }
+  },
+  "entries": {
+    "reports/round1/subject-88/run-log.jsonl": {
+      "schema": "llm-bench/qc/v1",
+      "produced_by": "B3/harness/adjudicate.mjs",
+      "log_audited": "reports/round1/subject-88/run-log.jsonl",
+      "raw_log_modified": false,
+      "adjudicated_log": "reports/round1/subject-88/run-log.adjudicated.jsonl",
+      "adjudication_table": "reports/round1/subject-88/run-log.adjudication-table.md",
+      "headline": {
+        "naive": {
+          "n": 176,
+          "correct": 153,
+          "accuracy": 0.8693,
+          "ci95_low": 0.8115,
+          "ci95_high": 0.9113
+        },
+        "corrected_conservative_keep_unresolvable_items": {
+          "n": 174,
+          "correct": 161,
+          "accuracy": 0.9253,
+          "ci95_low": 0.8764,
+          "ci95_high": 0.9558,
+          "note": "R1 not-measured runs dropped from the denominator + scorer artifacts flipped; the 2 unresolvable items stay in the denominator scored as-is (wrong)."
+        },
+        "corrected_full": {
+          "n": 170,
+          "correct": 161,
+          "incorrect": 9,
+          "accuracy": 0.9471,
+          "ci95_low": 0.9025,
+          "ci95_high": 0.9719,
+          "wilson_halfwidth": 0.0347,
+          "wilson_cross_check_agrees": true
+        }
+      },
+      "defects": {
+        "defect_1_scorer_artifacts": {
+          "status": "CONFIRMED",
+          "runs": 8,
+          "by_rule": {
+            "R3a-digit-lookahead": 5,
+            "R5a-first-number-extraction": 2,
+            "R4a-vocabulary-gap": 1
+          }
+        },
+        "defect_2_empty_answer_as_wrong": {
+          "status": "CONFIRMED_BUT_ROOT_CAUSE_IS_A_HARNESS_CODE_BUG_NOT_TRANSPORT",
+          "runs": 2,
+          "code_locations": [
+            "harness/runner.mjs:328 (catch calls finish() before const outChunks at :331 -> TDZ ReferenceError)",
+            "harness/pool.mjs:244 (applyScore applied to failed records too)",
+            "harness/aggregate.mjs:81-83 (isScored ignores failure and answer text)"
+          ],
+          "trigger": "lc-needle-08 prompt = 180351 chars > Linux MAX_ARG_STRLEN 131072 -> spawn throws E2BIG synchronously",
+          "readme_contract_false": true
+        },
+        "defect_3_contamination": {
+          "status": "PARTIALLY_CONFIRMED_AND_PARTIALLY_REFUTED",
+          "injected_boilerplate_runs": 2,
+          "false_positive_refuted": "ifr-forbid-02 \"someone is still awake\" is the model's own answer, not a leaked note",
+          "tool_call_runs": 5,
+          "tool_calls": 7,
+          "all_tool_runs_correct": true,
+          "directional_bias": "none"
+        }
+      },
+      "per_category": {
+        "abstention_hallucination": {
+          "naive": {
+            "n": 12,
+            "correct": 6,
+            "accuracy": 0.5,
+            "ci95_low": 0.2538,
+            "ci95_high": 0.7462
+          },
+          "corrected": {
+            "n": 12,
+            "correct": 12,
+            "incorrect": 0,
+            "accuracy": 1,
+            "ci95_low": 0.7575,
+            "ci95_high": 1,
+            "wilson_halfwidth": 0.1212,
+            "wilson_cross_check_agrees": true
+          },
+          "excluded_runs": 0
+        },
+        "code": {
+          "naive": {
+            "n": 16,
+            "correct": 13,
+            "accuracy": 0.8125,
+            "ci95_low": 0.5699,
+            "ci95_high": 0.9341
+          },
+          "corrected": {
+            "n": 16,
+            "correct": 13,
+            "incorrect": 3,
+            "accuracy": 0.8125,
+            "ci95_low": 0.5699,
+            "ci95_high": 0.9341,
+            "wilson_halfwidth": 0.1821,
+            "wilson_cross_check_agrees": true
+          },
+          "excluded_runs": 0
+        },
+        "format_control": {
+          "naive": {
+            "n": 16,
+            "correct": 12,
+            "accuracy": 0.75,
+            "ci95_low": 0.505,
+            "ci95_high": 0.8982
+          },
+          "corrected": {
+            "n": 12,
+            "correct": 12,
+            "incorrect": 0,
+            "accuracy": 1,
+            "ci95_low": 0.7575,
+            "ci95_high": 1,
+            "wilson_halfwidth": 0.1212,
+            "wilson_cross_check_agrees": true
+          },
+          "excluded_runs": 4
+        },
+        "function_calling": {
+          "naive": {
+            "n": 16,
+            "correct": 16,
+            "accuracy": 1,
+            "ci95_low": 0.8064,
+            "ci95_high": 1
+          },
+          "corrected": {
+            "n": 16,
+            "correct": 16,
+            "incorrect": 0,
+            "accuracy": 1,
+            "ci95_low": 0.8064,
+            "ci95_high": 1,
+            "wilson_halfwidth": 0.0968,
+            "wilson_cross_check_agrees": true
+          },
+          "excluded_runs": 0
+        },
+        "instruction_following": {
+          "naive": {
+            "n": 28,
+            "correct": 27,
+            "accuracy": 0.9643,
+            "ci95_low": 0.8229,
+            "ci95_high": 0.9937
+          },
+          "corrected": {
+            "n": 28,
+            "correct": 27,
+            "incorrect": 1,
+            "accuracy": 0.9643,
+            "ci95_low": 0.8229,
+            "ci95_high": 0.9937,
+            "wilson_halfwidth": 0.0854,
+            "wilson_cross_check_agrees": true
+          },
+          "excluded_runs": 0
+        },
+        "long_context": {
+          "naive": {
+            "n": 16,
+            "correct": 14,
+            "accuracy": 0.875,
+            "ci95_low": 0.6398,
+            "ci95_high": 0.965
+          },
+          "corrected": {
+            "n": 14,
+            "correct": 14,
+            "incorrect": 0,
+            "accuracy": 1,
+            "ci95_low": 0.7847,
+            "ci95_high": 1,
+            "wilson_halfwidth": 0.1077,
+            "wilson_cross_check_agrees": true
+          },
+          "excluded_runs": 2
+        },
+        "multilingual": {
+          "naive": {
+            "n": 30,
+            "correct": 23,
+            "accuracy": 0.7667,
+            "ci95_low": 0.5907,
+            "ci95_high": 0.8821
+          },
+          "corrected": {
+            "n": 30,
+            "correct": 25,
+            "incorrect": 5,
+            "accuracy": 0.8333,
+            "ci95_low": 0.6644,
+            "ci95_high": 0.9266,
+            "wilson_halfwidth": 0.1311,
+            "wilson_cross_check_agrees": true
+          },
+          "excluded_runs": 0
+        },
+        "reasoning": {
+          "naive": {
+            "n": 30,
+            "correct": 30,
+            "accuracy": 1,
+            "ci95_low": 0.8865,
+            "ci95_high": 1
+          },
+          "corrected": {
+            "n": 30,
+            "correct": 30,
+            "incorrect": 0,
+            "accuracy": 1,
+            "ci95_low": 0.8865,
+            "ci95_high": 1,
+            "wilson_halfwidth": 0.0568,
+            "wilson_cross_check_agrees": true
+          },
+          "excluded_runs": 0
+        },
+        "robustness": {
+          "naive": {
+            "n": 12,
+            "correct": 12,
+            "accuracy": 1,
+            "ci95_low": 0.7575,
+            "ci95_high": 1
+          },
+          "corrected": {
+            "n": 12,
+            "correct": 12,
+            "incorrect": 0,
+            "accuracy": 1,
+            "ci95_low": 0.7575,
+            "ci95_high": 1,
+            "wilson_halfwidth": 0.1212,
+            "wilson_cross_check_agrees": true
+          },
+          "excluded_runs": 0
+        }
+      },
+      "reproducibility_floor": {
+        "naive": {
+          "items_with_both_reps": 88,
+          "self_agreement": 83,
+          "self_agreement_rate": 0.9432,
+          "discordant_items": 5,
+          "discordant_rate": 0.0568,
+          "mcnemar_b_rep0_fail_rep1_pass": 3,
+          "mcnemar_c_rep0_pass_rep1_fail": 2,
+          "q_discordance": 0.056818,
+          "mcnemar_z_continuity_corrected": 0.2236,
+          "mcnemar_p_two_sided": 0.8231,
+          "mcnemar_exact_p_two_sided": 1,
+          "mcnemar_resolvable": true,
+          "detectable_effect_size_pp_80pct_power": 7.1188,
+          "detectable_effect_size_pp_2rep_mean": 5.0337,
+          "discordant_item_list": [
+            {
+              "item_id": "cod-anagram",
+              "rep0": "incorrect",
+              "rep1": "correct"
+            },
+            {
+              "item_id": "ifr-words-6",
+              "rep0": "incorrect",
+              "rep1": "correct"
+            },
+            {
+              "item_id": "ml-sum-zh",
+              "rep0": "incorrect",
+              "rep1": "correct"
+            },
+            {
+              "item_id": "ml-chain-zh",
+              "rep0": "correct",
+              "rep1": "incorrect"
+            },
+            {
+              "item_id": "ml-reverse_sub-ja",
+              "rep0": "correct",
+              "rep1": "incorrect"
+            }
+          ]
+        },
+        "corrected": {
+          "items_with_both_reps": 85,
+          "self_agreement": 80,
+          "self_agreement_rate": 0.9412,
+          "discordant_items": 5,
+          "discordant_rate": 0.0588,
+          "mcnemar_b_rep0_fail_rep1_pass": 3,
+          "mcnemar_c_rep0_pass_rep1_fail": 2,
+          "q_discordance": 0.058824,
+          "mcnemar_z_continuity_corrected": 0.2236,
+          "mcnemar_p_two_sided": 0.8231,
+          "mcnemar_exact_p_two_sided": 1,
+          "mcnemar_resolvable": true,
+          "detectable_effect_size_pp_80pct_power": 7.37,
+          "detectable_effect_size_pp_2rep_mean": 5.2114,
+          "discordant_item_list": [
+            {
+              "item_id": "cod-anagram",
+              "rep0": "incorrect",
+              "rep1": "correct"
+            },
+            {
+              "item_id": "ifr-words-6",
+              "rep0": "incorrect",
+              "rep1": "correct"
+            },
+            {
+              "item_id": "ml-sum-zh",
+              "rep0": "incorrect",
+              "rep1": "correct"
+            },
+            {
+              "item_id": "ml-chain-ja",
+              "rep0": "correct",
+              "rep1": "incorrect"
+            },
+            {
+              "item_id": "ml-reverse_sub-ja",
+              "rep0": "correct",
+              "rep1": "incorrect"
+            }
+          ]
+        }
+      },
+      "simpleqa_abstention": {
+        "note": "SimpleQA's c/i/n are per-QUESTION over one item set. Our abstention family has 6 answerable (abs-ans-*) and 6 unanswerable (abs-noans-*) run-slots, and on the unanswerable ones DECLINING is the item-design-correct response. SimpleQA has no slot for \"correctly declined\" — its `n` means not-attempted, which here means exactly what we want to reward. The family therefore has NO convention-free F. All three defensible conventions are reported; the spread is 50 F-points, far larger than any effect this round is trying to detect.",
+        "answerable_slots": 6,
+        "answerable_correct_after_adjudication": 6,
+        "unanswerable_slots": 6,
+        "unanswerable_correct_after_adjudication": 6,
+        "unanswerable_hallucinated_after_adjudication": 0,
+        "conventions": {
+          "i_declined_equals_correct": {
+            "c": 12,
+            "i": 0,
+            "n": 0,
+            "F": 1,
+            "matches": "item design: declining an unanswerable question is the target behaviour"
+          },
+          "ii_declined_equals_not_attempted": {
+            "c": 6,
+            "i": 0,
+            "n": 6,
+            "F": 0.6667,
+            "matches": "SimpleQA's letter: `n` is not-attempted"
+          },
+          "iii_declined_equals_incorrect": {
+            "c": 6,
+            "i": 6,
+            "n": 0,
+            "F": 0.5,
+            "matches": "what the shipped harness effectively reported"
+          }
+        }
+      },
+      "contamination": {
+        "runs_with_injected_boilerplate": 2,
+        "detail": [
+          {
+            "run_id": "29d2aa399a6400f2",
+            "item_id": "ifr-forbid-02",
+            "rep": 1,
+            "hits": [
+              "memory-prologue-ko"
+            ],
+            "adjudicated": "correct",
+            "rule": "R6-correct"
+          },
+          {
+            "run_id": "e690184a3c50f0bb",
+            "item_id": "abs-noans-02",
+            "rep": 1,
+            "hits": [
+              "memory-prologue-ko",
+              "memory-tool-name"
+            ],
+            "adjudicated": "correct",
+            "rule": "R3a-digit-lookahead"
+          }
+        ],
+        "verdict": "Directional bias is ZERO in this round: the boilerplate is prepended to an answer that already answers the question, and every affected run is adjudicated on the abstention, not the prefix. It cost nothing and gained nothing.",
+        "per_item_rate": [
+          {
+            "item_id": "ifr-forbid-02",
+            "reps": 2,
+            "contaminated": 1
+          },
+          {
+            "item_id": "abs-noans-02",
+            "reps": 2,
+            "contaminated": 1
+          }
+        ],
+        "runs_that_called_tools": 5,
+        "tool_call_total": 7,
+        "tool_runs_detail": [
+          {
+            "run_id": "84f34bd398b47532",
+            "item_id": "cod-primes",
+            "rep": 1,
+            "calls": 1,
+            "adjudicated": "correct"
+          },
+          {
+            "run_id": "db9424d705fe01f4",
+            "item_id": "cod-fib_mod",
+            "rep": 0,
+            "calls": 2,
+            "adjudicated": "correct"
+          },
+          {
+            "run_id": "6bb9165c20fa95ff",
+            "item_id": "cod-fib_mod",
+            "rep": 1,
+            "calls": 2,
+            "adjudicated": "correct"
+          },
+          {
+            "run_id": "d2ca99e2e2aecbc0",
+            "item_id": "ifr-oneline-01",
+            "rep": 1,
+            "calls": 1,
+            "adjudicated": "correct"
+          },
+          {
+            "run_id": "fd4cef8055b2165f",
+            "item_id": "ifr-multi-01",
+            "rep": 1,
+            "calls": 1,
+            "adjudicated": "correct"
+          }
+        ],
+        "tool_runs_all_correct": true,
+        "false_positive_check": "A phrase-based scanner flags \"someone is still awake\" in ifr-forbid-02, but that is the model's own natural English answer to \"say what a lamp left burning suggests about a house\" — the item's forbidden word is \"basically\", which the model avoided. That is NOT contamination and is not counted here."
+      },
+      "integrity_problems": [],
+      "rule_fire_counts": {
+        "R6-correct": 153,
+        "R6-real-failure": 9,
+        "R3a-digit-lookahead": 5,
+        "R1-not-measured": 2,
+        "R2a-prompt-contradicts-expected": 2,
+        "R2b-answer-not-determined": 2,
+        "R5a-first-number-extraction": 2,
+        "R4a-vocabulary-gap": 1
+      }
+    },
+    "reports/round1/subject-lc/run-log.jsonl": {
+      "schema": "llm-bench/qc/v1",
+      "produced_by": "B3/harness/adjudicate.mjs",
+      "log_audited": "reports/round1/subject-lc/run-log.jsonl",
+      "raw_log_modified": false,
+      "adjudicated_log": "reports/round1/subject-lc/run-log.adjudicated.jsonl",
+      "adjudication_table": "reports/round1/subject-lc/run-log.adjudication-table.md",
+      "headline": {
+        "naive": {
+          "n": 8,
+          "correct": 7,
+          "accuracy": 0.875,
+          "ci95_low": 0.5291,
+          "ci95_high": 0.9776
+        },
+        "corrected_conservative_keep_unresolvable_items": {
+          "n": 7,
+          "correct": 7,
+          "accuracy": 1,
+          "ci95_low": 0.6457,
+          "ci95_high": 1,
+          "note": "R1 not-measured runs dropped from the denominator + scorer artifacts flipped; the 2 unresolvable items stay in the denominator scored as-is (wrong)."
+        },
+        "corrected_full": {
+          "n": 7,
+          "correct": 7,
+          "incorrect": 0,
+          "accuracy": 1,
+          "ci95_low": 0.6457,
+          "ci95_high": 1,
+          "wilson_halfwidth": 0.1772,
+          "wilson_cross_check_agrees": true
+        }
+      },
+      "defects": {
+        "defect_1_scorer_artifacts": {
+          "status": "CONFIRMED",
+          "runs": 0,
+          "by_rule": {}
+        },
+        "defect_2_empty_answer_as_wrong": {
+          "status": "CONFIRMED_BUT_ROOT_CAUSE_IS_A_HARNESS_CODE_BUG_NOT_TRANSPORT",
+          "runs": 1,
+          "code_locations": [
+            "harness/runner.mjs:328 (catch calls finish() before const outChunks at :331 -> TDZ ReferenceError)",
+            "harness/pool.mjs:244 (applyScore applied to failed records too)",
+            "harness/aggregate.mjs:81-83 (isScored ignores failure and answer text)"
+          ],
+          "trigger": "lc-needle-08 prompt = 180351 chars > Linux MAX_ARG_STRLEN 131072 -> spawn throws E2BIG synchronously",
+          "readme_contract_false": true
+        },
+        "defect_3_contamination": {
+          "status": "PARTIALLY_CONFIRMED_AND_PARTIALLY_REFUTED",
+          "injected_boilerplate_runs": 0,
+          "false_positive_refuted": "ifr-forbid-02 \"someone is still awake\" is the model's own answer, not a leaked note",
+          "tool_call_runs": 0,
+          "tool_calls": 0,
+          "all_tool_runs_correct": true,
+          "directional_bias": "none"
+        }
+      },
+      "per_category": {
+        "long_context": {
+          "naive": {
+            "n": 8,
+            "correct": 7,
+            "accuracy": 0.875,
+            "ci95_low": 0.5291,
+            "ci95_high": 0.9776
+          },
+          "corrected": {
+            "n": 7,
+            "correct": 7,
+            "incorrect": 0,
+            "accuracy": 1,
+            "ci95_low": 0.6457,
+            "ci95_high": 1,
+            "wilson_halfwidth": 0.1772,
+            "wilson_cross_check_agrees": true
+          },
+          "excluded_runs": 1
+        }
+      },
+      "reproducibility_floor": {
+        "naive": {
+          "items_with_both_reps": 0,
+          "self_agreement": 0,
+          "self_agreement_rate": null,
+          "discordant_items": 0,
+          "discordant_rate": null,
+          "mcnemar_b_rep0_fail_rep1_pass": 0,
+          "mcnemar_c_rep0_pass_rep1_fail": 0,
+          "q_discordance": 0,
+          "mcnemar_z_continuity_corrected": 0,
+          "mcnemar_p_two_sided": 1,
+          "mcnemar_exact_p_two_sided": 1,
+          "mcnemar_resolvable": false,
+          "detectable_effect_size_pp_80pct_power": null,
+          "detectable_effect_size_pp_2rep_mean": null,
+          "discordant_item_list": []
+        },
+        "corrected": {
+          "items_with_both_reps": 0,
+          "self_agreement": 0,
+          "self_agreement_rate": null,
+          "discordant_items": 0,
+          "discordant_rate": null,
+          "mcnemar_b_rep0_fail_rep1_pass": 0,
+          "mcnemar_c_rep0_pass_rep1_fail": 0,
+          "q_discordance": 0,
+          "mcnemar_z_continuity_corrected": 0,
+          "mcnemar_p_two_sided": 1,
+          "mcnemar_exact_p_two_sided": 1,
+          "mcnemar_resolvable": false,
+          "detectable_effect_size_pp_80pct_power": null,
+          "detectable_effect_size_pp_2rep_mean": null,
+          "discordant_item_list": []
+        }
+      },
+      "simpleqa_abstention": {
+        "note": "SimpleQA's c/i/n are per-QUESTION over one item set. Our abstention family has 6 answerable (abs-ans-*) and 6 unanswerable (abs-noans-*) run-slots, and on the unanswerable ones DECLINING is the item-design-correct response. SimpleQA has no slot for \"correctly declined\" — its `n` means not-attempted, which here means exactly what we want to reward. The family therefore has NO convention-free F. All three defensible conventions are reported; the spread is 50 F-points, far larger than any effect this round is trying to detect.",
+        "answerable_slots": 0,
+        "answerable_correct_after_adjudication": 0,
+        "unanswerable_slots": 0,
+        "unanswerable_correct_after_adjudication": 0,
+        "unanswerable_hallucinated_after_adjudication": 0,
+        "conventions": {
+          "i_declined_equals_correct": {
+            "c": 0,
+            "i": 0,
+            "n": 0,
+            "F": null,
+            "matches": "item design: declining an unanswerable question is the target behaviour"
+          },
+          "ii_declined_equals_not_attempted": {
+            "c": 0,
+            "i": 0,
+            "n": 0,
+            "F": null,
+            "matches": "SimpleQA's letter: `n` is not-attempted"
+          },
+          "iii_declined_equals_incorrect": {
+            "c": 0,
+            "i": 0,
+            "n": 0,
+            "F": null,
+            "matches": "what the shipped harness effectively reported"
+          }
+        }
+      },
+      "contamination": {
+        "runs_with_injected_boilerplate": 0,
+        "detail": [],
+        "verdict": "Directional bias is ZERO in this round: the boilerplate is prepended to an answer that already answers the question, and every affected run is adjudicated on the abstention, not the prefix. It cost nothing and gained nothing.",
+        "per_item_rate": [],
+        "runs_that_called_tools": 0,
+        "tool_call_total": 0,
+        "tool_runs_detail": [],
+        "tool_runs_all_correct": true,
+        "false_positive_check": "A phrase-based scanner flags \"someone is still awake\" in ifr-forbid-02, but that is the model's own natural English answer to \"say what a lamp left burning suggests about a house\" — the item's forbidden word is \"basically\", which the model avoided. That is NOT contamination and is not counted here."
+      },
+      "integrity_problems": [],
+      "rule_fire_counts": {
+        "R6-correct": 7,
+        "R1-not-measured": 1
+      }
+    }
+  },
+  "appended_at": "2026-09-27T16:21:29.883Z"
+}

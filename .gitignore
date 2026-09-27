@@ -1,0 +1,22 @@
+# Nothing in this repository is disposable. Every file here is either the
+# evidence trail for a published claim or the tool that produced it, so the
+# defaults are "ignore nothing" and only genuine local noise is listed.
+
+# Node never produced a node_modules here (zero third-party dependencies), but
+# a reader experimenting locally may create one.
+node_modules/
+
+# Editor / OS noise only.
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Transient files from the JSONL run logs. The logs themselves are KEPT.
+*.tmp
+*.tmp.*
+*.part
+
+# Local scratch isolation directories the harness creates per run.
+.t2bench-*
+t2bench-*

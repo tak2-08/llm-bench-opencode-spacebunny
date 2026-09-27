@@ -1,0 +1,1405 @@
+[
+ {
+  "id": "rsn-modpow-01",
+  "category": "reasoning",
+  "provenance": "generated",
+  "prompt": "Compute (6^5 + 33^5 + 7^8 + 6^3) mod 101, where mod means the non-negative remainder on division by 101. Reply with a single integer and nothing else.",
+  "scorer": "numeric",
+  "scorer_args": {
+   "absTol": 0
+  },
+  "expected": 51,
+  "notes": "Generated. Ground truth = sum of a^e mod 101 by naive repeated multiplication; re-verified by binary exponentiation with BigInt.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:integer"
+  ]
+ },
+ {
+  "id": "rsn-modpow-02",
+  "category": "reasoning",
+  "provenance": "generated",
+  "prompt": "Compute (11^8 + 15^7 + 35^4 + 30^9) mod 29, where mod means the non-negative remainder on division by 29. Reply with a single integer and nothing else.",
+  "scorer": "numeric",
+  "scorer_args": {
+   "absTol": 0
+  },
+  "expected": 25,
+  "notes": "Generated. Ground truth = sum of a^e mod 29 by naive repeated multiplication; re-verified by binary exponentiation with BigInt.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:integer"
+  ]
+ },
+ {
+  "id": "rsn-modpow-03",
+  "category": "reasoning",
+  "provenance": "generated",
+  "prompt": "Compute (16^3 + 7^5 + 40^8) mod 17, where mod means the non-negative remainder on division by 17. Reply with a single integer and nothing else.",
+  "scorer": "numeric",
+  "scorer_args": {
+   "absTol": 0
+  },
+  "expected": 9,
+  "notes": "Generated. Ground truth = sum of a^e mod 17 by naive repeated multiplication; re-verified by binary exponentiation with BigInt.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:integer"
+  ]
+ },
+ {
+  "id": "rsn-linear-01",
+  "category": "reasoning",
+  "provenance": "generated",
+  "prompt": "Solve this system of 3 linear equations over the rationals.\n-5*x1 + 1*x2 + 0*x3 = -31   -3*x1 - 5*x2 + 8*x3 = -89   3*x1 + 6*x2 - 1*x3 = 51\nGive the values of x1 through x3 in order, separated by single spaces. Use a plain integer when the value is an integer; otherwise use an exact fraction written a/b.\nReply with the values and nothing else.",
+  "scorer": "exact_match",
+  "scorer_args": {
+   "caseSensitive": false,
+   "ignorePunctuation": false
+  },
+  "expected": "7 4 -6",
+  "notes": "Generated. Ground truth = exact rational solution by Cramer's rule over a fraction-free determinant; re-verified by Gaussian elimination plus a zero-residual substitution into the original equations.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:vector"
+  ]
+ },
+ {
+  "id": "rsn-linear-02",
+  "category": "reasoning",
+  "provenance": "generated",
+  "prompt": "Solve this system of 2 linear equations over the rationals.\n8*x1 + 7*x2 = -41   2*x1 + 0*x2 = -12\nGive the values of x1 through x2 in order, separated by single spaces. Use a plain integer when the value is an integer; otherwise use an exact fraction written a/b.\nReply with the values and nothing else.",
+  "scorer": "exact_match",
+  "scorer_args": {
+   "caseSensitive": false,
+   "ignorePunctuation": false
+  },
+  "expected": "-6 1",
+  "notes": "Generated. Ground truth = exact rational solution by Cramer's rule over a fraction-free determinant; re-verified by Gaussian elimination plus a zero-residual substitution into the original equations.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:vector"
+  ]
+ },
+ {
+  "id": "rsn-grid-01",
+  "category": "reasoning",
+  "provenance": "generated",
+  "prompt": "Three houses stand in a row, numbered 1, 2 and 3 from left to right. Each house has exactly one occupant name, one wall colour and one animal, and each of the three names, colours and animals is used exactly once.\nPeople: Dov, Piet, Om.\nColours: blue, red, amber.\nAnimals: ibex, heron, newt.\nFacts:\n- The blue house is number 1.\n- The red house is number 3.\n- The amber house is number 2.\n- Dov lives in house number 3.\n- Piet lives in house number 2.\n- Om lives in house number 1.\n- The ibex is not in the red house.\n- The ibex is not in the amber house.\n- The heron is not in the blue house.\n- The heron is not in the amber house.\nQuestion: What colour is the house where the newt lives?\nReply with the single colour word only, in lowercase, nothing else.",
+  "scorer": "exact_match",
+  "scorer_args": {
+   "caseSensitive": false
+  },
+  "expected": "amber",
+  "notes": "Generated. The clue set is proven sufficient by exhaustive enumeration of all 216 candidate grids: exactly one satisfies every clue, and it is the one the generator built.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:word"
+  ]
+ },
+ {
+  "id": "rsn-grid-02",
+  "category": "reasoning",
+  "provenance": "generated",
+  "prompt": "Three houses stand in a row, numbered 1, 2 and 3 from left to right. Each house has exactly one occupant name, one wall colour and one animal, and each of the three names, colours and animals is used exactly once.\nPeople: Kaan, Nils, Ito.\nColours: violet, red, blue.\nAnimals: otter, heron, ibex.\nFacts:\n- The violet house is number 3.\n- The red house is number 2.\n- The blue house is number 1.\n- Kaan lives in house number 2.\n- Nils lives in house number 1.\n- Ito lives in house number 3.\n- The otter is not in the red house.\n- The otter is not in the blue house.\n- The heron is not in the violet house.\n- The heron is not in the blue house.\nQuestion: What colour is the house where the ibex lives?\nReply with the single colour word only, in lowercase, nothing else.",
+  "scorer": "exact_match",
+  "scorer_args": {
+   "caseSensitive": false
+  },
+  "expected": "blue",
+  "notes": "Generated. The clue set is proven sufficient by exhaustive enumeration of all 216 candidate grids: exactly one satisfies every clue, and it is the one the generator built.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:word"
+  ]
+ },
+ {
+  "id": "rsn-substr-01",
+  "category": "reasoning",
+  "provenance": "generated",
+  "prompt": "How many different strings of length 6 can be formed using only the letters A, C (each position chosen independently, repetition allowed) such that the string contains the contiguous block \"CCC\"? Count each distinct string once, even when it contains the block more than once. Reply with a single integer and nothing else.",
+  "scorer": "numeric",
+  "scorer_args": {
+   "absTol": 0
+  },
+  "expected": 20,
+  "notes": "Generated. Ground truth = count of length-6 strings over {A,C} containing \"CCC\", by KMP-automaton DP with an absorbing matched state; re-verified by exhaustive enumeration of all 64 strings.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:integer"
+  ]
+ },
+ {
+  "id": "cod-two_sum",
+  "category": "code",
+  "provenance": "generated",
+  "prompt": "Read the function below, then report what one specific call returns. Do not modify the function.\n\n```javascript\nfunction solve(nums, target) {\n  const seen = new Map();\n  for (let i = 0; i < nums.length; i++) {\n    const need = target - nums[i];\n    if (seen.has(need)) return seen.get(need) + ',' + i;\n    seen.set(nums[i], i);\n  }\n  return 'none';\n}\n```\n\nEvaluate exactly this call:\n```javascript\nsolve([24, 4, 3, 7, 39, 59], 46)\n```\n\nReply with only the exact text that console.log would print for the return value. If the return value is a string, print the string itself with no surrounding quotes. No explanation, no code, nothing else.",
+  "scorer": "exact_match",
+  "scorer_args": {
+   "caseSensitive": true,
+   "ignorePunctuation": false
+  },
+  "expected": "3,4",
+  "notes": "Generated. Ground truth is the value the function shown in the prompt actually returns, obtained by executing that exact source in a fresh V8 context — not predicted. Cross-checked against two independent re-implementations of the same semantics and against two further inputs.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:scalar"
+  ]
+ },
+ {
+  "id": "cod-anagram",
+  "category": "code",
+  "provenance": "generated",
+  "prompt": "Read the function below, then report what one specific call returns. Do not modify the function.\n\n```javascript\nfunction solve(a, b) {\n  const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '').split('').sort().join('');\n  return norm(a) === norm(b) ? 'true' : 'false';\n}\n```\n\nEvaluate exactly this call:\n```javascript\nsolve(\"sparrow16\", \"sparrow51\")\n```\n\nReply with only the exact text that console.log would print for the return value. If the return value is a string, print the string itself with no surrounding quotes. No explanation, no code, nothing else.",
+  "scorer": "exact_match",
+  "scorer_args": {
+   "caseSensitive": true,
+   "ignorePunctuation": false
+  },
+  "expected": "false",
+  "notes": "Generated. Ground truth is the value the function shown in the prompt actually returns, obtained by executing that exact source in a fresh V8 context — not predicted. Cross-checked against two independent re-implementations of the same semantics and against two further inputs.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:scalar"
+  ]
+ },
+ {
+  "id": "cod-longest_palindrome",
+  "category": "code",
+  "provenance": "generated",
+  "prompt": "Read the function below, then report what one specific call returns. Do not modify the function.\n\n```javascript\nfunction solve(s) {\n  let best = 0;\n  for (let i = 0; i < s.length; i++) {\n    let a = i, b = i;\n    while (a >= 0 && b < s.length && s[a] === s[b]) { if (b - a + 1 > best) best = b - a + 1; a--; b++; }\n    a = i; b = i + 1;\n    while (a >= 0 && b < s.length && s[a] === s[b]) { if (b - a + 1 > best) best = b - a + 1; a--; b++; }\n  }\n  return best;\n}\n```\n\nEvaluate exactly this call:\n```javascript\nsolve(\"eegchleveldghb\")\n```\n\nReply with only the exact text that console.log would print for the return value. If the return value is a string, print the string itself with no surrounding quotes. No explanation, no code, nothing else.",
+  "scorer": "exact_match",
+  "scorer_args": {
+   "caseSensitive": true,
+   "ignorePunctuation": false
+  },
+  "expected": "5",
+  "notes": "Generated. Ground truth is the value the function shown in the prompt actually returns, obtained by executing that exact source in a fresh V8 context — not predicted. Cross-checked against two independent re-implementations of the same semantics and against two further inputs.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:scalar"
+  ]
+ },
+ {
+  "id": "cod-primes",
+  "category": "code",
+  "provenance": "generated",
+  "prompt": "Read the function below, then report what one specific call returns. Do not modify the function.\n\n```javascript\nfunction solve(n) {\n  const sieve = new Array(n).fill(true);\n  for (let p = 2; p * p < n; p++) if (sieve[p]) for (let q = p * p; q < n; q += p) sieve[q] = false;\n  let c = 0;\n  for (let i = 2; i < n; i++) if (sieve[i]) c++;\n  return c;\n}\n```\n\nEvaluate exactly this call:\n```javascript\nsolve(5000)\n```\n\nReply with only the exact text that console.log would print for the return value. If the return value is a string, print the string itself with no surrounding quotes. No explanation, no code, nothing else.",
+  "scorer": "exact_match",
+  "scorer_args": {
+   "caseSensitive": true,
+   "ignorePunctuation": false
+  },
+  "expected": "669",
+  "notes": "Generated. Ground truth is the value the function shown in the prompt actually returns, obtained by executing that exact source in a fresh V8 context — not predicted. Cross-checked against two independent re-implementations of the same semantics and against two further inputs.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:scalar"
+  ]
+ },
+ {
+  "id": "ifr-words-4",
+  "category": "instruction_following",
+  "provenance": "generated",
+  "prompt": "Describe the colour red in exactly 4 words. Words are separated by spaces, so hyphenated text counts as one word. Your whole reply must be the description itself: no list, no numbering, no added sentence ending, no extra words.",
+  "scorer": "regex",
+  "scorer_args": {},
+  "expected": "^\\s*(?:\\S+\\s+){3}\\S+\\s*$",
+  "notes": "Exactly one verifiable instruction, so this item's pass/fail is exactly one instruction followed; it feeds the pre-registered ifeval_inst_strict. The scorer is the constraint checker itself. Verified two ways: probe answers are judged semantically by an independent constraint checker in verify-items.mjs, and the scorer is required to accept the compliant probe and reject every violating probe.",
+  "tags": [
+   "metric:ifeval_inst_strict",
+   "fmt:prose",
+   "ifeval_unit:instruction"
+  ]
+ },
+ {
+  "id": "ifr-words-5",
+  "category": "instruction_following",
+  "provenance": "generated",
+  "prompt": "Describe the colour blue in exactly 5 words. Words are separated by spaces, so hyphenated text counts as one word. Your whole reply must be the description itself: no list, no numbering, no added sentence ending, no extra words.",
+  "scorer": "regex",
+  "scorer_args": {},
+  "expected": "^\\s*(?:\\S+\\s+){4}\\S+\\s*$",
+  "notes": "Exactly one verifiable instruction, so this item's pass/fail is exactly one instruction followed; it feeds the pre-registered ifeval_inst_strict. The scorer is the constraint checker itself. Verified two ways: probe answers are judged semantically by an independent constraint checker in verify-items.mjs, and the scorer is required to accept the compliant probe and reject every violating probe.",
+  "tags": [
+   "metric:ifeval_inst_strict",
+   "fmt:prose",
+   "ifeval_unit:instruction"
+  ]
+ },
+ {
+  "id": "ifr-words-6",
+  "category": "instruction_following",
+  "provenance": "generated",
+  "prompt": "Describe the colour amber in exactly 6 words. Words are separated by spaces, so hyphenated text counts as one word. Your whole reply must be the description itself: no list, no numbering, no added sentence ending, no extra words.",
+  "scorer": "regex",
+  "scorer_args": {},
+  "expected": "^\\s*(?:\\S+\\s+){5}\\S+\\s*$",
+  "notes": "Exactly one verifiable instruction, so this item's pass/fail is exactly one instruction followed; it feeds the pre-registered ifeval_inst_strict. The scorer is the constraint checker itself. Verified two ways: probe answers are judged semantically by an independent constraint checker in verify-items.mjs, and the scorer is required to accept the compliant probe and reject every violating probe.",
+  "tags": [
+   "metric:ifeval_inst_strict",
+   "fmt:prose",
+   "ifeval_unit:instruction"
+  ]
+ },
+ {
+  "id": "ifr-lower-01",
+  "category": "instruction_following",
+  "provenance": "generated",
+  "prompt": "In one sentence, say why a harbour at dusk is worth stopping for. Your entire reply must consist of lowercase English letters and spaces only, with no capital letter anywhere.",
+  "scorer": "regex",
+  "scorer_args": {},
+  "expected": "^[^A-Z]*$",
+  "notes": "Exactly one verifiable instruction, so this item's pass/fail is exactly one instruction followed; it feeds the pre-registered ifeval_inst_strict. The scorer is the constraint checker itself. Verified two ways: probe answers are judged semantically by an independent constraint checker in verify-items.mjs, and the scorer is required to accept the compliant probe and reject every violating probe.",
+  "tags": [
+   "metric:ifeval_inst_strict",
+   "fmt:prose",
+   "ifeval_unit:instruction"
+  ]
+ },
+ {
+  "id": "ifr-forbid-01",
+  "category": "instruction_following",
+  "provenance": "generated",
+  "prompt": "In one sentence, say what a lamp left burning suggests about a house. Your entire reply must not contain the word \"however\" in any capitalisation.",
+  "scorer": "regex",
+  "scorer_args": {},
+  "expected": "^(?![\\s\\S]*however)[\\s\\S]*$",
+  "notes": "Exactly one verifiable instruction, so this item's pass/fail is exactly one instruction followed; it feeds the pre-registered ifeval_inst_strict. The scorer is the constraint checker itself. Verified two ways: probe answers are judged semantically by an independent constraint checker in verify-items.mjs, and the scorer is required to accept the compliant probe and reject every violating probe.",
+  "tags": [
+   "metric:ifeval_inst_strict",
+   "fmt:prose",
+   "ifeval_unit:instruction"
+  ]
+ },
+ {
+  "id": "ifr-forbid-02",
+  "category": "instruction_following",
+  "provenance": "generated",
+  "prompt": "In one sentence, say what a lamp left burning suggests about a house. Your entire reply must not contain the word \"basically\" in any capitalisation.",
+  "scorer": "regex",
+  "scorer_args": {},
+  "expected": "^(?![\\s\\S]*basically)[\\s\\S]*$",
+  "notes": "Exactly one verifiable instruction, so this item's pass/fail is exactly one instruction followed; it feeds the pre-registered ifeval_inst_strict. The scorer is the constraint checker itself. Verified two ways: probe answers are judged semantically by an independent constraint checker in verify-items.mjs, and the scorer is required to accept the compliant probe and reject every violating probe.",
+  "tags": [
+   "metric:ifeval_inst_strict",
+   "fmt:prose",
+   "ifeval_unit:instruction"
+  ]
+ },
+ {
+  "id": "ifr-tokens-01",
+  "category": "instruction_following",
+  "provenance": "generated",
+  "prompt": "Write one short sentence that includes all three of these exact words: cobalt, thistle, quarry. Each word must appear spelled exactly like that. Reply with the sentence only.",
+  "scorer": "multi_all_of",
+  "scorer_args": {
+   "caseSensitive": false
+  },
+  "expected": [
+   "cobalt",
+   "thistle",
+   "quarry"
+  ],
+  "notes": "Exactly one verifiable instruction, so this item's pass/fail is exactly one instruction followed; it feeds the pre-registered ifeval_inst_strict. The scorer is the constraint checker itself. Verified two ways: probe answers are judged semantically by an independent constraint checker in verify-items.mjs, and the scorer is required to accept the compliant probe and reject every violating probe.",
+  "tags": [
+   "metric:ifeval_inst_strict",
+   "fmt:prose",
+   "ifeval_unit:instruction"
+  ]
+ },
+ {
+  "id": "fmt-flat-01",
+  "category": "format_control",
+  "provenance": "generated",
+  "prompt": "Three temperature readings in degrees Celsius were taken at the ridge-top station: -1, 4, 22. One of them is the warmest. Reply with a single JSON object with exactly these four keys: \"station\" (the string ridge-top), \"readings_c\" (an array of the three integers in the order given), \"mean_c\" (their arithmetic mean rounded to one decimal place, as a number), and \"warmest_condition\" (the string from this list that matches the warmest reading: drizzle, clear, windy). Add no keys beyond those four. JSON object only.",
+  "scorer": "json_schema",
+  "scorer_args": {
+   "schema": {
+    "type": "object",
+    "required": [
+     "station",
+     "readings_c",
+     "mean_c",
+     "warmest_condition"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "station": {
+      "enum": [
+       "ridge-top"
+      ]
+     },
+     "readings_c": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+       "type": "integer"
+      }
+     },
+     "mean_c": {
+      "enum": [
+       8.3
+      ]
+     },
+     "warmest_condition": {
+      "enum": [
+       "windy"
+      ]
+     }
+    }
+   },
+   "required": true,
+   "maxViolations": 4
+  },
+  "expected": {
+   "type": "object",
+   "required": [
+    "station",
+    "readings_c",
+    "mean_c",
+    "warmest_condition"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "station": {
+     "enum": [
+      "ridge-top"
+     ]
+    },
+    "readings_c": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 3,
+     "items": {
+      "type": "integer"
+     }
+    },
+    "mean_c": {
+     "enum": [
+      8.3
+     ]
+    },
+    "warmest_condition": {
+     "enum": [
+      "windy"
+     ]
+    }
+   }
+  },
+  "notes": "Generated. Ground truth = a JSON document built from computed values; the schema pins each value with enum and rejects extra keys. Verified that the canonical document satisfies the schema and that three deliberately broken variants each violate it.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:json"
+  ],
+  "canonical_answer": "{\"station\":\"ridge-top\",\"readings_c\":[-1,4,22],\"mean_c\":8.3,\"warmest_condition\":\"windy\"}"
+ },
+ {
+  "id": "fmt-nested-02",
+  "category": "format_control",
+  "provenance": "generated",
+  "prompt": "Compute two values from the numbers 2 and 40: their product is \"raw\" and their sum is \"bonus\". Reply with a JSON object of the form {\"survey\":{\"id\":<string>,\"region\":<string>,\"scored\":{\"raw\":<number>,\"bonus\":<number>}}}. \"id\" must be the letter S followed by the digits of 2 and then 40 with no separator. \"region\" must be the string \"coast\". Use exactly these keys and no others. JSON object only.",
+  "scorer": "json_schema",
+  "scorer_args": {
+   "schema": {
+    "type": "object",
+    "required": [
+     "survey"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "survey": {
+      "type": "object",
+      "required": [
+       "id",
+       "region",
+       "scored"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "id": {
+        "enum": [
+         "S-240"
+        ]
+       },
+       "region": {
+        "enum": [
+         "coast"
+        ]
+       },
+       "scored": {
+        "type": "object",
+        "required": [
+         "raw",
+         "bonus"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "raw": {
+          "enum": [
+           80
+          ]
+         },
+         "bonus": {
+          "enum": [
+           42
+          ]
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "required": true,
+   "maxViolations": 4
+  },
+  "expected": {
+   "type": "object",
+   "required": [
+    "survey"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "survey": {
+     "type": "object",
+     "required": [
+      "id",
+      "region",
+      "scored"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "id": {
+       "enum": [
+        "S-240"
+       ]
+      },
+      "region": {
+       "enum": [
+        "coast"
+       ]
+      },
+      "scored": {
+       "type": "object",
+       "required": [
+        "raw",
+        "bonus"
+       ],
+       "additionalProperties": false,
+       "properties": {
+        "raw": {
+         "enum": [
+          80
+         ]
+        },
+        "bonus": {
+         "enum": [
+          42
+         ]
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "notes": "Generated. Ground truth = a JSON document built from computed values; the schema pins each value with enum and rejects extra keys. Verified that the canonical document satisfies the schema and that three deliberately broken variants each violate it.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:json"
+  ],
+  "canonical_answer": "{\"survey\":{\"id\":\"S-240\",\"region\":\"coast\",\"scored\":{\"raw\":80,\"bonus\":42}}}"
+ },
+ {
+  "id": "fmt-array_of_objects-03",
+  "category": "format_control",
+  "provenance": "generated",
+  "prompt": "A yard holds three stacks with 29, 16, 3 crates each, and the stack names are basin, basin, kiln in that order. Reply with a JSON object {\"items\":[{\"n\":<number>,\"w\":<string>},...],\"total\":<number>}: one object per stack in the order given, each with exactly the keys \"n\" and \"w\", and \"total\" the sum of the three n values. No extra keys anywhere. JSON object only.",
+  "scorer": "json_schema",
+  "scorer_args": {
+   "schema": {
+    "type": "object",
+    "required": [
+     "items",
+     "total"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "items": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+       "type": "object",
+       "required": [
+        "n",
+        "w"
+       ],
+       "additionalProperties": false,
+       "properties": {
+        "n": {
+         "enum": [
+          29,
+          16,
+          3
+         ]
+        },
+        "w": {
+         "enum": [
+          "basin",
+          "basin",
+          "kiln"
+         ]
+        }
+       }
+      }
+     },
+     "total": {
+      "enum": [
+       48
+      ]
+     }
+    }
+   },
+   "required": true,
+   "maxViolations": 4
+  },
+  "expected": {
+   "type": "object",
+   "required": [
+    "items",
+    "total"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "items": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 3,
+     "items": {
+      "type": "object",
+      "required": [
+       "n",
+       "w"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "n": {
+        "enum": [
+         29,
+         16,
+         3
+        ]
+       },
+       "w": {
+        "enum": [
+         "basin",
+         "basin",
+         "kiln"
+        ]
+       }
+      }
+     }
+    },
+    "total": {
+     "enum": [
+      48
+     ]
+    }
+   }
+  },
+  "notes": "Generated. Ground truth = a JSON document built from computed values; the schema pins each value with enum and rejects extra keys. Verified that the canonical document satisfies the schema and that three deliberately broken variants each violate it.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:json"
+  ],
+  "canonical_answer": "{\"items\":[{\"n\":29,\"w\":\"basin\"},{\"n\":16,\"w\":\"basin\"},{\"n\":3,\"w\":\"kiln\"}],\"total\":48}"
+ },
+ {
+  "id": "fmt-enum_array-04",
+  "category": "format_control",
+  "provenance": "generated",
+  "prompt": "Here are three colour names in no particular order: umber, cobalt, amber. Reply with a JSON object {\"order\":[...],\"count\":<number>} where \"order\" lists the same three names sorted from Z to A, and \"count\" is how many names there are. Exactly those two keys. JSON object only.",
+  "scorer": "json_schema",
+  "scorer_args": {
+   "schema": {
+    "type": "object",
+    "required": [
+     "order",
+     "count"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "order": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+       "enum": [
+        "amber",
+        "cobalt",
+        "sable",
+        "umber"
+       ]
+      }
+     },
+     "count": {
+      "enum": [
+       3
+      ]
+     }
+    }
+   },
+   "required": true,
+   "maxViolations": 4
+  },
+  "expected": {
+   "type": "object",
+   "required": [
+    "order",
+    "count"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "order": {
+     "type": "array",
+     "minItems": 3,
+     "maxItems": 3,
+     "items": {
+      "enum": [
+       "amber",
+       "cobalt",
+       "sable",
+       "umber"
+      ]
+     }
+    },
+    "count": {
+     "enum": [
+      3
+     ]
+    }
+   }
+  },
+  "notes": "Generated. Ground truth = a JSON document built from computed values; the schema pins each value with enum and rejects extra keys. Verified that the canonical document satisfies the schema and that three deliberately broken variants each violate it.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:json"
+  ],
+  "canonical_answer": "{\"order\":[\"umber\",\"cobalt\",\"amber\"],\"count\":3}"
+ },
+ {
+  "id": "ml-sum-ko",
+  "category": "multilingual",
+  "provenance": "generated",
+  "prompt": "다음 다섯 개의 수를 모두 더한 합계를 구하세요. 콤마나 단위, 설명 없이 정수 숫자로만 답해 주세요: 8173, 2905, 6801, 4768, 9338.",
+  "scorer": "numeric",
+  "scorer_args": {
+   "absTol": 0
+  },
+  "expected": 31985,
+  "notes": "Generated (ko). The task \"sum\" is shared across ko/en/ja/zh with only the instruction language changing, so the cross-lingual gap is measured on one underlying problem. Ground truth re-derived by an independent second implementation of the task.",
+  "tags": [
+   "metric:accuracy_lang",
+   "lang:ko",
+   "metric:pass_at_1",
+   "fmt:integer"
+  ]
+ },
+ {
+  "id": "ml-sum-en",
+  "category": "multilingual",
+  "provenance": "generated",
+  "prompt": "Add the following five numbers and reply with the total only, as a plain integer with no commas, no units and no explanation: 5096, 5722, 7756, 6860, 2322.",
+  "scorer": "numeric",
+  "scorer_args": {
+   "absTol": 0
+  },
+  "expected": 27756,
+  "notes": "Generated (en). The task \"sum\" is shared across ko/en/ja/zh with only the instruction language changing, so the cross-lingual gap is measured on one underlying problem. Ground truth re-derived by an independent second implementation of the task.",
+  "tags": [
+   "metric:accuracy_lang",
+   "lang:en",
+   "metric:pass_at_1",
+   "fmt:integer"
+  ]
+ },
+ {
+  "id": "ml-sum-ja",
+  "category": "multilingual",
+  "provenance": "generated",
+  "prompt": "次の5つの数をすべて足した合計を求めてください。カンマや単位、説明は不要です。整数だけで答えてください: 7016, 453, 9432, 8172, 425。",
+  "scorer": "numeric",
+  "scorer_args": {
+   "absTol": 0
+  },
+  "expected": 25498,
+  "notes": "Generated (ja). The task \"sum\" is shared across ko/en/ja/zh with only the instruction language changing, so the cross-lingual gap is measured on one underlying problem. Ground truth re-derived by an independent second implementation of the task.",
+  "tags": [
+   "metric:accuracy_lang",
+   "lang:ja",
+   "metric:pass_at_1",
+   "fmt:integer"
+  ]
+ },
+ {
+  "id": "ml-sum-zh",
+  "category": "multilingual",
+  "provenance": "generated",
+  "prompt": "把下面五个数相加，只用不带逗号、不带单位、不带解释的整数回答总和：9289、7049、7212、6525、2558。",
+  "scorer": "numeric",
+  "scorer_args": {
+   "absTol": 0
+  },
+  "expected": 32633,
+  "notes": "Generated (zh). The task \"sum\" is shared across ko/en/ja/zh with only the instruction language changing, so the cross-lingual gap is measured on one underlying problem. Ground truth re-derived by an independent second implementation of the task.",
+  "tags": [
+   "metric:accuracy_lang",
+   "lang:zh",
+   "metric:pass_at_1",
+   "fmt:integer"
+  ]
+ },
+ {
+  "id": "ml-chain-ko",
+  "category": "multilingual",
+  "provenance": "generated",
+  "prompt": "배송분에 화물 87개가 있고, 화물 하나에는 14개의 물건이 들어 있으며, 물건 하나의 가격은 91 크레딧입니다. 전체 배송에 287 크레딧의 환불을 적용한 다음, 배송비 400 크레딧을 더합니다. 최종 금액은 얼마입니까? 먼저 87 곱하기 14 곱하기 91 를 계산하세요. 정수 숫자로만 답해 주세요.",
+  "scorer": "numeric",
+  "scorer_args": {
+   "absTol": 0
+  },
+  "expected": 110951,
+  "notes": "Generated (ko). The task \"chain\" is shared across ko/en/ja/zh with only the instruction language changing, so the cross-lingual gap is measured on one underlying problem. Ground truth re-derived by an independent second implementation of the task.",
+  "tags": [
+   "metric:accuracy_lang",
+   "lang:ko",
+   "metric:pass_at_1",
+   "fmt:integer"
+  ]
+ },
+ {
+  "id": "ml-chain-en",
+  "category": "multilingual",
+  "provenance": "generated",
+  "prompt": "A shipment has 81 crates. Each crate holds 17 items. Each item costs 28 credits. A rebate of 578 credits is applied to the whole shipment, and then a delivery fee of 775 credits is added. What is the final amount in credits? First compute 81 times 17 times 28. Reply with a single integer and nothing else.",
+  "scorer": "numeric",
+  "scorer_args": {
+   "absTol": 0
+  },
+  "expected": 38753,
+  "notes": "Generated (en). The task \"chain\" is shared across ko/en/ja/zh with only the instruction language changing, so the cross-lingual gap is measured on one underlying problem. Ground truth re-derived by an independent second implementation of the task.",
+  "tags": [
+   "metric:accuracy_lang",
+   "lang:en",
+   "metric:pass_at_1",
+   "fmt:integer"
+  ]
+ },
+ {
+  "id": "ml-chain-ja",
+  "category": "multilingual",
+  "provenance": "generated",
+  "prompt": "この shipment には箱が71個あり、1箱には7個入っていて、1個の価格は47クレジットです。shipment 全体に376クレジットの割引を適用してから、配送料871クレジットを加えます。合計はいくらですか。まず 71 × 7 × 47 を計算してください。整数だけで答えてください。",
+  "scorer": "numeric",
+  "scorer_args": {
+   "absTol": 0
+  },
+  "expected": 23854,
+  "notes": "Generated (ja). The task \"chain\" is shared across ko/en/ja/zh with only the instruction language changing, so the cross-lingual gap is measured on one underlying problem. Ground truth re-derived by an independent second implementation of the task.",
+  "tags": [
+   "metric:accuracy_lang",
+   "lang:ja",
+   "metric:pass_at_1",
+   "fmt:integer"
+  ]
+ },
+ {
+  "id": "ml-chain-zh",
+  "category": "multilingual",
+  "provenance": "generated",
+  "prompt": "这批货有59箱，每箱装21件，每件36元。整批先减免784元，再加运费874元。最终一共多少元？先算 59 × 21 × 36。只用整数回答。",
+  "scorer": "numeric",
+  "scorer_args": {
+   "absTol": 0
+  },
+  "expected": 44694,
+  "notes": "Generated (zh). The task \"chain\" is shared across ko/en/ja/zh with only the instruction language changing, so the cross-lingual gap is measured on one underlying problem. Ground truth re-derived by an independent second implementation of the task.",
+  "tags": [
+   "metric:accuracy_lang",
+   "lang:zh",
+   "metric:pass_at_1",
+   "fmt:integer"
+  ]
+ },
+ {
+  "id": "lc-needle-01",
+  "category": "long_context",
+  "provenance": "generated",
+  "prompt": "Below is a section from a maintenance log.\n\nThe verification code for station 37 is 2080.\n\nThe braided hopper hummed beside the workshop; the leaning lattice glowed beside the ridge (unit 5841); the leaning marble rested beside the workshop (unit 2768); the quiet lattice hummed beside the gallery, log C243; the damp trellis tilted beside the gallery.\n\nThe damp furnace glowed beside the gallery (unit 6472); the rusted cistern rested beside the east quay, log H734; the tidal kiln turned beside the workshop; the narrow beacon tilted beside the landing; the windy girder waited beside the terrace (unit 8320).\n\nThe sunlit lattice turned beside the harbour; the windy lantern rested beside the east quay (unit 9104); the braided cistern paused beside the orchard; the braided marble hummed beside the gallery; the narrow marble waited beside the kiln yard.\n\nThe narrow kiln gathered beside the east quay; the leaning trellis paused beside the basin (unit 9104); the narrow cartridge rested beside the workshop; the braided vellum gathered beside the harbour; the windy basin hummed beside the kiln yard.\n\nThe braided lattice tilted beside the ridge, log S791; the braided sparrow settled beside the orchard (unit 1955); the sunlit hopper turned beside the meadow; the frosted lantern turned beside the harbour (unit 8320); the narrow anchor tilted beside the meadow.\n\nThe damp cartridge paused beside the harbour; the frosted basin tilted beside the harbour (unit 4637); the polished quarry turned beside the ridge; the hollow kiln tilted beside the harbour, log D868; the polished cistern glowed beside the workshop (unit 4180).\n\nThe leaning lattice gathered beside the ridge; the sunlit furnace turned beside the gallery (unit 4637); the sealed cartridge turned beside the kiln yard (unit 3096); the tidal furnace settled beside the kiln yard (unit 6472); the windy furnace hummed beside the cistern.\n\nThe sunlit quarry leaned beside the kiln yard, log E843; the frosted quarry tilted beside the orchard; the leaning girder glowed beside the gallery; the tidal kiln rested beside the terrace; the sunlit trellis paused beside the harbour.\n\nThe cobbled trellis hummed beside the landing; the hollow lattice glowed beside the kiln yard (unit 8320); the polished kiln glowed beside the terrace (unit 2768); the frosted girder turned beside the east quay (unit 4180); the quiet anchor waited beside the ridge (unit 2768).\n\nThe cobbled girder glowed beside the cistern; the hollow cartridge gathered beside the east quay (unit 4180); the hollow sparrow turned beside the basin; the tidal cartridge waited beside the gallery (unit 3096); the quiet basin hummed beside the meadow.\n\nThe damp beacon rested beside the east quay; the narrow lattice rested beside the orchard; the hollow marble hummed beside the meadow (unit 1955); the polished furnace rested beside the ridge; the sunlit lattice paused beside the terrace, log I730.\n\nThe leaning hopper glowed beside the harbour; the frosted girder paused beside the harbour (unit 9104); the windy anchor paused beside the cistern, log F938; the cobbled kiln gathered beside the kiln yard (unit 3096); the cobbled vellum hummed beside the kiln yard (unit 7253).\n\nThe damp furnace glowed beside the ridge (unit 9104); the damp cartridge turned beside the ridge (unit 5841); the rusted furnace rested beside the landing; the narrow beacon hummed beside the terrace; the tidal hopper gathered beside the cistern.\n\nThe rusted marble waited beside the landing (unit 6472); the leaning marble hummed beside the kiln yard (unit 2768); the leaning cartridge waited beside the basin (unit 7253); the braided marble leaned beside the workshop (unit 2768); the sunlit lantern gathered beside the basin.\n\nThe rusted basin waited beside the terrace; the cobbled vellum settled beside the harbour, log K413; the damp basin hummed beside the ridge (unit 4180); the tidal cistern rested beside the orchard (unit 2768); the hollow vellum leaned beside the harbour.\n\nThe sealed marble settled beside the basin; the leaning cistern waited beside the east quay (unit 3096); the sealed lattice glowed beside the workshop (unit 5841); the damp hopper gathered beside the ridge; the sealed beacon leaned beside the cistern.\n\nThe braided furnace hummed beside the harbour (unit 1955); the quiet trellis settled beside the east quay; the braided lantern hummed beside the basin; the quiet cistern tilted beside the meadow (unit 5841); the frosted hopper settled beside the orchard.\n\nThe rusted quarry hummed beside the workshop; the narrow quarry leaned beside the gallery (unit 3096); the rusted sparrow rested beside the ridge (unit 9104); the polished quarry glowed beside the meadow, log B355; the hollow anchor glowed beside the gallery (unit 7253).\n\nThe sunlit sparrow gathered beside the workshop; the polished sparrow rested beside the orchard (unit 5841); the narrow girder gathered beside the harbour; the quiet sparrow glowed beside the orchard; the damp cistern leaned beside the terrace.\n\nThe polished furnace turned beside the basin; the braided trellis leaned beside the kiln yard; the damp beacon paused beside the gallery; the hollow cistern gathered beside the gallery (unit 6472); the rusted anchor settled beside the landing (unit 6472).\n\nThe hollow quarry waited beside the terrace; the rusted basin rested beside the meadow; the rusted lattice hummed beside the kiln yard, log E169; the damp marble hummed beside the orchard; the hollow anchor waited beside the kiln yard (unit 9104).\n\nThe windy vellum hummed beside the ridge; the polished sparrow settled beside the east quay; the frosted vellum gathered beside the kiln yard (unit 6472); the narrow girder gathered beside the basin; the windy beacon settled beside the orchard (unit 2768).\n\nThe polished quarry settled beside the kiln yard; the quiet girder waited beside the meadow; the windy lantern paused beside the ridge; the quiet vellum gathered beside the cistern (unit 7253); the cobbled beacon tilted beside the meadow, log G270.\n\nThe quiet furnace hummed beside the meadow; the cobbled basin leaned beside the orchard; the quiet basin rested beside the workshop (unit 4180); the damp lantern settled beside the cistern (unit 1955); the braided lantern rested beside the terrace (unit 4637).\n\nQuestion: what is the verification code for station 37?\nReply with the 4-digit code only, with no words and no punctuation.",
+  "scorer": "exact_match",
+  "scorer_args": {
+   "caseSensitive": true,
+   "ignorePunctuation": false
+  },
+  "expected": "2080",
+  "notes": "Generated needle-in-haystack, ~2000 tokens-equivalent (chars/3) of digit-free synthetic filler, needle at 4% depth. Scored with exact_match rather than regex because scorers.mjs:113 refuses regex subjects over 20000 chars. Verified that the code appears exactly once, the filler contains no digits at all, and the needle offset lands within tolerance of the requested depth.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:integer",
+   "depth:start"
+  ]
+ },
+ {
+  "id": "lc-needle-02",
+  "category": "long_context",
+  "provenance": "generated",
+  "prompt": "Below is a section from a maintenance log.\n\nThe damp sparrow settled beside the kiln yard; the hollow cartridge settled beside the meadow; the leaning trellis gathered beside the workshop (unit 1955); the polished furnace settled beside the basin; the sunlit beacon leaned beside the landing, log T222.\n\nThe frosted vellum paused beside the ridge (unit 4637); the tidal girder waited beside the meadow; the frosted quarry rested beside the orchard (unit 1955); the rusted marble paused beside the workshop; the rusted kiln hummed beside the ridge.\n\nThe sunlit cartridge hummed beside the harbour; the quiet marble glowed beside the east quay; the cobbled cistern glowed beside the gallery; the tidal sparrow turned beside the harbour; the polished girder settled beside the kiln yard (unit 6472).\n\nThe frosted beacon leaned beside the cistern; the narrow basin settled beside the east quay, log T147; the frosted cistern waited beside the landing; the tidal sparrow leaned beside the meadow (unit 4180); the frosted trellis gathered beside the terrace.\n\nThe sunlit girder rested beside the kiln yard; the windy cartridge settled beside the ridge (unit 3096); the cobbled cistern waited beside the orchard; the cobbled quarry tilted beside the cistern; the quiet quarry waited beside the orchard.\n\nThe cobbled basin settled beside the east quay, log Q535; the sealed vellum glowed beside the east quay; the frosted cistern gathered beside the meadow; the rusted cistern gathered beside the terrace (unit 4637); the narrow vellum paused beside the ridge (unit 4180).\n\nThe hollow girder leaned beside the gallery (unit 8320); the cobbled cartridge leaned beside the orchard (unit 5841); the damp girder hummed beside the terrace; the windy basin waited beside the landing; the sealed beacon settled beside the basin.\n\nThe narrow anchor hummed beside the basin; the rusted girder gathered beside the orchard; the tidal cistern gathered beside the landing; the leaning trellis glowed beside the meadow (unit 4637); the braided beacon leaned beside the east quay (unit 8320).\n\nThe sealed cartridge turned beside the terrace; the tidal trellis paused beside the east quay; the damp girder settled beside the workshop, log J323; the windy quarry rested beside the ridge, log Y394; the tidal hopper rested beside the gallery, log W628.\n\nThe damp sparrow waited beside the ridge (unit 4180); the frosted basin tilted beside the cistern; the sealed hopper paused beside the east quay, log N947; the frosted quarry gathered beside the harbour; the hollow basin turned beside the harbour (unit 1955).\n\nThe leaning girder waited beside the orchard; the tidal kiln settled beside the orchard; the rusted marble glowed beside the meadow; the windy lantern hummed beside the meadow; the quiet beacon waited beside the harbour, log R761.\n\nThe polished kiln paused beside the cistern (unit 5841); the cobbled girder hummed beside the basin (unit 8320); the narrow cartridge rested beside the workshop (unit 2768); the damp furnace turned beside the harbour (unit 1955); the frosted trellis leaned beside the kiln yard.\n\nThe hollow trellis paused beside the meadow (unit 4180); the narrow trellis gathered beside the east quay; the tidal vellum waited beside the gallery, log K222; the windy cistern gathered beside the east quay; the windy anchor rested beside the meadow.\n\nThe hollow beacon leaned beside the workshop, log P958; the braided quarry glowed beside the workshop; the sealed quarry rested beside the workshop; the hollow cartridge rested beside the cistern (unit 5841); the windy lantern leaned beside the ridge (unit 6472).\n\nThe sunlit furnace tilted beside the kiln yard (unit 3096); the damp vellum paused beside the harbour; the sealed girder glowed beside the east quay; the braided basin gathered beside the ridge; the windy furnace tilted beside the kiln yard.\n\nThe cobbled beacon gathered beside the cistern; the cobbled anchor paused beside the basin; the damp lattice gathered beside the cistern; the hollow cistern rested beside the cistern; the narrow cartridge waited beside the meadow, log K452.\n\nThe damp anchor gathered beside the orchard (unit 6472); the cobbled basin turned beside the gallery (unit 4180); the braided girder waited beside the ridge; the sealed anchor hummed beside the harbour; the polished cartridge settled beside the orchard.\n\nThe damp marble leaned beside the ridge; the frosted marble leaned beside the landing (unit 9104); the polished lattice tilted beside the kiln yard; the sealed trellis rested beside the east quay; the braided cistern gathered beside the orchard, log V875.\n\nThe tidal cistern rested beside the orchard; the leaning furnace tilted beside the basin; the rusted beacon tilted beside the terrace (unit 4637); the frosted vellum paused beside the basin; the rusted quarry waited beside the workshop.\n\nThe windy trellis settled beside the gallery; the narrow lattice leaned beside the east quay; the braided lantern tilted beside the workshop; the rusted beacon hummed beside the meadow (unit 4180); the sunlit quarry leaned beside the orchard, log C479.\n\nThe windy marble waited beside the gallery, log C473; the tidal hopper hummed beside the harbour, log A536; the rusted sparrow settled beside the basin; the hollow kiln hummed beside the harbour; the braided hopper gathered beside the landing (unit 1955).\n\nThe frosted marble tilted beside the harbour; the windy cistern waited beside the terrace (unit 3096); the polished basin gathered beside the harbour (unit 5841); the quiet beacon glowed beside the terrace; the quiet sparrow tilted beside the east quay (unit 7253).\n\nThe tidal lattice gathered beside the ridge; the frosted marble paused beside the east quay (unit 9104); the windy quarry rested beside the basin, log M130; the windy girder gathered beside the ridge (unit 2768); the braided marble turned beside the ridge (unit 4180).\n\nThe verification code for station 47 is 7179.\n\nThe frosted cistern tilted beside the terrace; the tidal sparrow settled beside the meadow; the sealed cistern gathered beside the gallery; the braided furnace leaned beside the orchard; the cobbled lantern turned beside the terrace.\n\nThe narrow furnace settled beside the orchard; the sunlit kiln hummed beside the harbour; the sunlit anchor gathered beside the harbour (unit 4180); the rusted cistern tilted beside the landing (unit 4637); the quiet lattice turned beside the workshop.\n\nThe leaning quarry gathered beside the basin; the polished furnace turned beside the terrace; the sealed cistern settled beside the landing (unit 4180); the tidal lattice hummed beside the landing; the narrow hopper tilted beside the gallery (unit 7253).\n\nThe braided anchor turned beside the landing; the leaning basin turned beside the gallery, log N441; the sealed anchor waited beside the gallery (unit 1955); the leaning basin waited beside the gallery (unit 1955); the frosted beacon glowed beside the harbour (unit 2768).\n\nThe hollow trellis waited beside the cistern (unit 8320); the hollow furnace glowed beside the terrace; the cobbled sparrow glowed beside the meadow; the quiet beacon paused beside the east quay (unit 5841); the sealed lattice rested beside the workshop.\n\nThe rusted furnace tilted beside the kiln yard; the sunlit beacon rested beside the harbour; the leaning beacon glowed beside the terrace; the rusted quarry hummed beside the basin; the cobbled quarry glowed beside the harbour (unit 2768).\n\nThe hollow marble turned beside the meadow; the frosted trellis gathered beside the kiln yard; the tidal cartridge turned beside the kiln yard; the sealed vellum leaned beside the meadow (unit 6472); the cobbled vellum leaned beside the kiln yard, log N175.\n\nThe windy girder waited beside the east quay; the sunlit cistern glowed beside the cistern, log P530; the sealed lattice turned beside the terrace (unit 5841); the frosted cartridge turned beside the workshop; the frosted trellis waited beside the east quay.\n\nThe tidal beacon tilted beside the terrace; the hollow cistern tilted beside the landing (unit 6472); the braided lantern tilted beside the terrace; the polished lantern glowed beside the basin; the frosted lattice rested beside the gallery.\n\nThe damp basin turned beside the harbour; the hollow furnace tilted beside the ridge (unit 3096); the windy beacon turned beside the east quay; the sealed cistern hummed beside the gallery; the quiet furnace paused beside the east quay (unit 5841).\n\nThe braided lattice tilted beside the kiln yard; the sealed girder settled beside the meadow, log H394; the tidal lantern turned beside the cistern (unit 9104); the hollow lattice gathered beside the kiln yard (unit 4180); the braided furnace glowed beside the harbour.\n\nThe narrow cartridge rested beside the meadow; the tidal marble settled beside the ridge; the damp beacon turned beside the landing; the rusted cartridge paused beside the ridge (unit 2768); the cobbled hopper gathered beside the kiln yard.\n\nThe polished lantern paused beside the meadow; the braided cartridge rested beside the gallery, log T186; the tidal beacon settled beside the landing; the polished cartridge waited beside the ridge; the polished kiln turned beside the terrace.\n\nThe quiet basin glowed beside the meadow; the leaning marble hummed beside the landing (unit 4637); the sunlit marble settled beside the terrace, log P353; the narrow beacon settled beside the terrace; the cobbled cartridge gathered beside the harbour.\n\nThe braided furnace hummed beside the cistern, log E397; the damp cistern tilted beside the landing (unit 8320); the damp beacon leaned beside the cistern; the tidal cartridge waited beside the meadow (unit 5841); the hollow trellis paused beside the ridge (unit 2768).\n\nThe hollow trellis leaned beside the cistern (unit 2768); the windy basin rested beside the east quay; the rusted cistern glowed beside the terrace (unit 4637); the windy kiln turned beside the kiln yard (unit 4180); the quiet cistern gathered beside the landing (unit 7253).\n\nThe windy marble gathered beside the cistern; the tidal lantern leaned beside the terrace; the frosted cartridge paused beside the meadow; the damp cistern rested beside the east quay (unit 5841); the damp girder paused beside the landing.\n\nThe sunlit kiln glowed beside the kiln yard; the sunlit trellis glowed beside the terrace; the hollow anchor waited beside the ridge (unit 4637); the braided basin tilted beside the harbour (unit 5841); the narrow anchor waited beside the terrace.\n\nThe quiet kiln gathered beside the orchard (unit 9104); the sealed lattice settled beside the landing (unit 2768); the quiet quarry hummed beside the gallery; the rusted anchor settled beside the basin (unit 6472); the rusted quarry paused beside the ridge (unit 7253).\n\nThe hollow beacon settled beside the cistern; the hollow furnace paused beside the orchard (unit 8320); the sealed cistern paused beside the gallery, log T971; the sunlit beacon waited beside the harbour; the cobbled hopper leaned beside the terrace.\n\nThe sunlit quarry tilted beside the harbour (unit 4180); the leaning cistern paused beside the workshop (unit 9104); the quiet quarry tilted beside the kiln yard (unit 4637); the tidal kiln turned beside the orchard (unit 5841); the braided furnace tilted beside the ridge.\n\nThe sunlit vellum rested beside the orchard, log P877; the cobbled trellis glowed beside the ridge; the narrow vellum paused beside the workshop (unit 4180); the polished hopper leaned beside the terrace; the quiet sparrow leaned beside the orchard (unit 5841).\n\nThe quiet anchor hummed beside the cistern (unit 7253); the sunlit anchor hummed beside the kiln yard; the damp lantern gathered beside the kiln yard; the polished hopper waited beside the workshop; the cobbled furnace settled beside the east quay.\n\nThe windy furnace rested beside the east quay; the braided vellum tilted beside the east quay; the rusted marble tilted beside the cistern (unit 4637); the windy basin rested beside the kiln yard, log D317; the hollow trellis tilted beside the kiln yard.\n\nQuestion: what is the verification code for station 47?\nReply with the 4-digit code only, with no words and no punctuation.",
+  "scorer": "exact_match",
+  "scorer_args": {
+   "caseSensitive": true,
+   "ignorePunctuation": false
+  },
+  "expected": "7179",
+  "notes": "Generated needle-in-haystack, ~4000 tokens-equivalent (chars/3) of digit-free synthetic filler, needle at 50% depth. Scored with exact_match rather than regex because scorers.mjs:113 refuses regex subjects over 20000 chars. Verified that the code appears exactly once, the filler contains no digits at all, and the needle offset lands within tolerance of the requested depth.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:integer",
+   "depth:middle"
+  ]
+ },
+ {
+  "id": "lc-needle-03",
+  "category": "long_context",
+  "provenance": "generated",
+  "prompt": "Below is a section from a maintenance log.\n\nThe quiet marble turned beside the workshop; the frosted beacon waited beside the terrace (unit 3096); the braided marble hummed beside the cistern; the windy vellum tilted beside the kiln yard; the sunlit kiln settled beside the orchard.\n\nThe polished sparrow tilted beside the ridge (unit 9104); the hollow anchor settled beside the meadow; the hollow basin paused beside the gallery; the narrow cistern tilted beside the workshop; the braided basin gathered beside the ridge (unit 8320).\n\nThe polished trellis glowed beside the east quay (unit 2768); the tidal marble waited beside the kiln yard (unit 7253); the cobbled lattice gathered beside the basin; the quiet girder settled beside the workshop; the braided cartridge tilted beside the gallery.\n\nThe damp cistern turned beside the east quay; the rusted furnace waited beside the cistern (unit 7253); the leaning kiln hummed beside the meadow; the damp anchor turned beside the basin (unit 2768); the narrow kiln paused beside the cistern (unit 2768).\n\nThe narrow anchor gathered beside the ridge (unit 1955); the leaning anchor turned beside the cistern (unit 7253); the windy sparrow turned beside the cistern (unit 8320); the rusted girder leaned beside the gallery; the damp sparrow gathered beside the basin.\n\nThe braided girder glowed beside the harbour (unit 3096); the quiet vellum paused beside the cistern; the cobbled cistern gathered beside the terrace (unit 2768); the sunlit furnace paused beside the meadow (unit 3096); the sealed vellum settled beside the harbour, log Z950.\n\nThe windy marble hummed beside the workshop (unit 6472); the braided marble rested beside the orchard (unit 4180); the leaning sparrow waited beside the kiln yard (unit 7253); the braided kiln tilted beside the workshop (unit 9104); the hollow kiln rested beside the meadow, log D814.\n\nThe quiet furnace tilted beside the ridge; the quiet trellis paused beside the terrace (unit 7253); the frosted lattice waited beside the terrace; the tidal trellis paused beside the terrace, log M367; the tidal cistern gathered beside the kiln yard (unit 6472).\n\nThe leaning beacon glowed beside the workshop (unit 9104); the polished sparrow leaned beside the terrace (unit 4637); the sealed cartridge turned beside the harbour (unit 8320); the leaning cistern tilted beside the ridge; the rusted quarry leaned beside the cistern (unit 3096).\n\nThe tidal beacon paused beside the meadow; the frosted lantern gathered beside the workshop (unit 7253); the tidal vellum rested beside the kiln yard; the cobbled anchor settled beside the harbour; the cobbled beacon rested beside the kiln yard (unit 4180).\n\nThe windy vellum waited beside the gallery; the sealed trellis settled beside the terrace (unit 4637); the tidal cistern settled beside the kiln yard; the frosted beacon rested beside the ridge; the rusted anchor settled beside the harbour.\n\nThe narrow trellis paused beside the basin; the leaning lantern rested beside the east quay; the cobbled kiln turned beside the basin; the tidal beacon tilted beside the terrace (unit 6472); the sealed basin waited beside the cistern (unit 9104).\n\nThe sealed sparrow glowed beside the basin (unit 1955); the polished lattice leaned beside the harbour, log N393; the frosted anchor leaned beside the kiln yard, log K718; the windy marble hummed beside the cistern; the cobbled lattice rested beside the east quay (unit 8320).\n\nThe damp basin turned beside the landing; the damp hopper glowed beside the orchard (unit 4180); the frosted basin waited beside the kiln yard (unit 6472); the leaning basin settled beside the cistern; the damp lantern hummed beside the landing (unit 6472).\n\nThe damp basin leaned beside the harbour; the windy vellum glowed beside the terrace; the damp vellum settled beside the gallery; the quiet cistern rested beside the east quay; the sealed lattice hummed beside the meadow.\n\nThe leaning furnace gathered beside the harbour; the damp kiln rested beside the orchard; the narrow hopper hummed beside the orchard; the hollow lattice gathered beside the east quay; the leaning basin gathered beside the east quay.\n\nThe sunlit cartridge leaned beside the terrace (unit 1955); the cobbled lantern gathered beside the kiln yard; the sunlit furnace paused beside the orchard; the sealed furnace rested beside the cistern; the cobbled vellum glowed beside the basin, log T984.\n\nThe hollow marble waited beside the gallery; the tidal cartridge turned beside the terrace, log T140; the braided cistern waited beside the meadow (unit 4637); the tidal marble leaned beside the east quay; the damp sparrow turned beside the gallery, log C758.\n\nThe quiet anchor tilted beside the workshop; the leaning anchor turned beside the meadow, log X532; the sunlit lattice hummed beside the ridge; the tidal vellum waited beside the east quay (unit 8320); the windy kiln glowed beside the orchard, log L358.\n\nThe frosted basin hummed beside the kiln yard; the frosted lattice leaned beside the ridge; the leaning quarry leaned beside the landing; the quiet kiln hummed beside the terrace (unit 8320); the rusted lantern turned beside the meadow, log N165.\n\nThe tidal basin tilted beside the terrace (unit 5841); the frosted beacon tilted beside the orchard; the sunlit basin turned beside the basin; the cobbled beacon leaned beside the gallery; the quiet marble leaned beside the terrace.\n\nThe leaning beacon paused beside the orchard (unit 4180); the leaning anchor tilted beside the cistern (unit 4180); the windy hopper turned beside the orchard (unit 1955); the hollow basin gathered beside the basin; the polished trellis hummed beside the orchard, log D837.\n\nThe hollow cistern paused beside the gallery; the quiet trellis settled beside the east quay; the braided trellis paused beside the basin (unit 4180); the rusted quarry settled beside the harbour (unit 1955); the tidal quarry gathered beside the east quay, log M326.\n\nThe braided girder turned beside the east quay (unit 6472); the tidal quarry paused beside the ridge; the windy marble paused beside the east quay, log X462; the tidal furnace glowed beside the basin (unit 7253); the sealed lattice glowed beside the orchard.\n\nThe leaning beacon turned beside the ridge; the polished hopper turned beside the east quay, log M376; the braided quarry leaned beside the orchard (unit 7253); the hollow furnace glowed beside the cistern; the narrow beacon rested beside the basin.\n\nThe rusted vellum paused beside the gallery; the braided trellis rested beside the kiln yard (unit 5841); the cobbled girder rested beside the harbour (unit 8320); the damp marble waited beside the harbour; the sunlit cartridge rested beside the workshop.\n\nThe sunlit girder turned beside the cistern; the hollow lattice paused beside the meadow (unit 6472); the cobbled furnace turned beside the terrace (unit 5841); the sunlit vellum turned beside the gallery; the rusted beacon rested beside the landing.\n\nThe leaning cartridge leaned beside the workshop, log J220; the narrow anchor leaned beside the workshop (unit 3096); the quiet furnace waited beside the kiln yard; the frosted sparrow paused beside the workshop (unit 6472); the braided quarry turned beside the kiln yard, log H372.\n\nThe sunlit lattice settled beside the east quay, log K251; the quiet sparrow waited beside the kiln yard; the braided girder leaned beside the workshop; the braided furnace settled beside the east quay (unit 9104); the sealed sparrow gathered beside the landing (unit 2768).\n\nThe quiet marble hummed beside the landing; the cobbled sparrow turned beside the ridge; the frosted kiln gathered beside the harbour (unit 9104); the braided marble leaned beside the gallery (unit 6472); the rusted cartridge settled beside the landing.\n\nThe braided lattice turned beside the workshop; the sunlit vellum paused beside the terrace; the windy kiln waited beside the orchard; the frosted beacon gathered beside the gallery (unit 3096); the windy anchor tilted beside the cistern.\n\nThe frosted cartridge gathered beside the basin, log O180; the cobbled cistern hummed beside the kiln yard; the polished kiln hummed beside the terrace; the frosted anchor gathered beside the harbour; the damp marble hummed beside the ridge (unit 8320).\n\nThe windy lantern waited beside the orchard; the quiet furnace waited beside the basin; the cobbled sparrow tilted beside the cistern, log M968; the frosted lattice glowed beside the east quay; the narrow trellis leaned beside the east quay (unit 6472).\n\nThe rusted lantern waited beside the harbour; the polished hopper turned beside the ridge; the rusted kiln leaned beside the gallery; the sealed beacon paused beside the orchard; the rusted beacon waited beside the east quay (unit 4637).\n\nThe sunlit hopper turned beside the terrace (unit 9104); the damp lantern tilted beside the basin, log T715; the rusted hopper settled beside the workshop (unit 8320); the leaning marble hummed beside the meadow; the cobbled sparrow leaned beside the ridge.\n\nThe sealed cistern turned beside the workshop; the cobbled lantern tilted beside the orchard (unit 4180); the polished cartridge turned beside the basin; the frosted kiln tilted beside the cistern; the polished lantern settled beside the ridge.\n\nThe polished kiln rested beside the gallery; the sealed basin turned beside the gallery (unit 6472); the frosted marble gathered beside the harbour; the braided cistern settled beside the cistern; the hollow cistern gathered beside the terrace.\n\nThe narrow furnace tilted beside the meadow; the rusted furnace rested beside the terrace (unit 3096); the tidal lattice gathered beside the east quay; the braided cistern settled beside the landing (unit 8320); the tidal cistern tilted beside the workshop, log H529.\n\nThe braided basin rested beside the terrace; the tidal kiln gathered beside the kiln yard (unit 7253); the tidal anchor turned beside the terrace; the windy girder rested beside the landing; the braided marble tilted beside the orchard.\n\nThe quiet anchor gathered beside the landing; the cobbled sparrow waited beside the cistern; the windy cartridge tilted beside the orchard (unit 6472); the sealed sparrow hummed beside the meadow, log F319; the quiet anchor rested beside the ridge.\n\nThe tidal girder leaned beside the meadow (unit 7253); the cobbled girder rested beside the workshop; the leaning vellum waited beside the ridge (unit 8320); the rusted cistern gathered beside the meadow; the polished cartridge paused beside the kiln yard.\n\nThe leaning marble leaned beside the workshop (unit 2768); the braided girder tilted beside the east quay (unit 2768); the frosted anchor rested beside the orchard, log X797; the cobbled marble waited beside the landing; the narrow cartridge paused beside the landing.\n\nThe braided anchor hummed beside the orchard; the rusted lantern hummed beside the gallery (unit 5841); the polished quarry glowed beside the orchard; the cobbled marble turned beside the kiln yard; the windy girder paused beside the basin.\n\nThe rusted sparrow hummed beside the terrace; the tidal vellum gathered beside the basin (unit 3096); the leaning trellis glowed beside the gallery, log A631; the sealed cistern settled beside the workshop, log V937; the polished furnace leaned beside the orchard (unit 3096).\n\nThe cobbled marble waited beside the meadow; the braided quarry glowed beside the ridge; the rusted vellum tilted beside the east quay; the polished basin glowed beside the gallery; the damp sparrow waited beside the orchard.\n\nThe tidal sparrow gathered beside the east quay, log X760; the tidal basin rested beside the orchard; the sealed quarry waited beside the workshop (unit 4637); the narrow lattice paused beside the kiln yard (unit 9104); the cobbled quarry leaned beside the basin.\n\nThe cobbled beacon settled beside the ridge (unit 5841); the quiet marble rested beside the workshop (unit 4637); the hollow lattice turned beside the basin (unit 3096); the windy lantern paused beside the workshop, log V960; the leaning anchor tilted beside the landing (unit 7253).\n\nThe sunlit cistern rested beside the meadow; the braided marble paused beside the workshop (unit 7253); the cobbled beacon turned beside the workshop, log F810; the rusted cistern rested beside the workshop (unit 3096); the quiet cartridge settled beside the cistern (unit 7253).\n\nThe hollow trellis turned beside the cistern; the polished furnace turned beside the landing; the windy lantern waited beside the kiln yard (unit 4637); the cobbled beacon settled beside the terrace (unit 1955); the narrow furnace tilted beside the cistern, log V850.\n\nThe rusted trellis leaned beside the harbour; the cobbled kiln leaned beside the basin (unit 1955); the rusted basin glowed beside the cistern, log J189; the frosted anchor tilted beside the terrace, log V483; the sealed hopper hummed beside the gallery (unit 4180).\n\nThe windy cistern leaned beside the terrace (unit 6472); the tidal lantern hummed beside the kiln yard (unit 7253); the frosted marble glowed beside the orchard (unit 1955); the polished lattice paused beside the terrace; the windy cistern gathered beside the workshop (unit 5841).\n\nThe cobbled basin glowed beside the gallery (unit 6472); the rusted hopper leaned beside the harbour; the rusted furnace turned beside the meadow (unit 5841); the sunlit cartridge leaned beside the meadow (unit 3096); the damp hopper settled beside the meadow.\n\nThe leaning sparrow paused beside the cistern (unit 1955); the sunlit marble glowed beside the cistern, log B965; the rusted lattice gathered beside the meadow (unit 3096); the leaning lantern leaned beside the terrace; the hollow hopper tilted beside the basin (unit 3096).\n\nThe frosted kiln tilted beside the workshop; the cobbled quarry paused beside the terrace (unit 3096); the quiet lattice tilted beside the meadow (unit 2768); the leaning lantern settled beside the meadow (unit 3096); the braided hopper paused beside the basin (unit 2768).\n\nThe hollow hopper waited beside the gallery (unit 2768); the leaning hopper gathered beside the terrace; the quiet lantern leaned beside the kiln yard; the quiet cistern tilted beside the gallery; the sealed basin tilted beside the gallery (unit 1955).\n\nThe frosted hopper hummed beside the orchard; the sealed kiln glowed beside the landing; the polished lantern glowed beside the workshop; the polished basin glowed beside the kiln yard (unit 8320); the leaning marble settled beside the terrace.\n\nThe damp cistern gathered beside the workshop (unit 3096); the sunlit lattice paused beside the cistern (unit 6472); the damp girder tilted beside the ridge (unit 9104); the leaning basin paused beside the harbour; the sealed sparrow turned beside the gallery.\n\nThe leaning hopper waited beside the meadow; the narrow beacon rested beside the landing; the tidal marble settled beside the landing; the braided lantern paused beside the basin (unit 8320); the windy lattice waited beside the kiln yard (unit 7253).\n\nThe braided lattice settled beside the workshop; the leaning anchor rested beside the workshop; the rusted cistern leaned beside the meadow; the sealed furnace glowed beside the east quay; the tidal cartridge leaned beside the cistern (unit 1955).\n\nThe windy lantern rested beside the workshop; the cobbled anchor rested beside the meadow (unit 2768); the sunlit trellis rested beside the harbour; the sunlit girder waited beside the basin; the damp cistern settled beside the cistern (unit 7253).\n\nThe damp lattice waited beside the landing; the polished cistern hummed beside the ridge; the polished beacon leaned beside the ridge; the rusted quarry glowed beside the basin (unit 6472); the narrow sparrow paused beside the meadow.\n\nThe polished lantern waited beside the landing; the leaning lattice waited beside the cistern (unit 5841); the tidal anchor rested beside the workshop; the braided marble leaned beside the workshop (unit 7253); the hollow quarry gathered beside the landing.\n\nThe polished cistern glowed beside the cistern (unit 3096); the cobbled basin paused beside the ridge (unit 3096); the damp hopper waited beside the orchard (unit 6472); the rusted lantern settled beside the gallery; the quiet hopper leaned beside the orchard.\n\nThe polished kiln turned beside the terrace; the windy lantern turned beside the meadow (unit 5841); the hollow marble gathered beside the workshop (unit 3096); the damp marble waited beside the workshop; the leaning anchor paused beside the harbour (unit 2768).\n\nThe quiet trellis rested beside the workshop (unit 3096); the tidal lattice tilted beside the ridge (unit 2768); the damp cartridge tilted beside the orchard (unit 1955); the frosted lantern settled beside the meadow; the braided beacon settled beside the cistern (unit 2768).\n\nThe cobbled anchor hummed beside the workshop, log J196; the quiet basin rested beside the basin; the hollow kiln settled beside the terrace; the polished marble paused beside the harbour (unit 7253); the windy cartridge rested beside the cistern, log L625.\n\nThe braided trellis paused beside the basin (unit 4180); the narrow sparrow settled beside the workshop, log W795; the cobbled cartridge gathered beside the harbour; the quiet girder turned beside the terrace (unit 7253); the leaning anchor hummed beside the kiln yard.\n\nThe verification code for station 75 is 8455.\n\nThe narrow cistern paused beside the kiln yard; the quiet sparrow glowed beside the ridge; the hollow lattice turned beside the orchard (unit 2768); the rusted marble paused beside the workshop; the sealed lantern leaned beside the orchard (unit 9104).\n\nThe sealed quarry rested beside the orchard, log B464; the cobbled kiln turned beside the orchard (unit 9104); the leaning kiln waited beside the gallery (unit 7253); the sunlit trellis tilted beside the cistern; the leaning cistern hummed beside the east quay.\n\nThe frosted cartridge rested beside the ridge; the windy cartridge hummed beside the east quay; the windy lantern tilted beside the terrace (unit 7253); the braided trellis settled beside the basin (unit 1955); the cobbled lantern waited beside the workshop.\n\nQuestion: what is the verification code for station 75?\nReply with the 4-digit code only, with no words and no punctuation.",
+  "scorer": "exact_match",
+  "scorer_args": {
+   "caseSensitive": true,
+   "ignorePunctuation": false
+  },
+  "expected": "8455",
+  "notes": "Generated needle-in-haystack, ~6000 tokens-equivalent (chars/3) of digit-free synthetic filler, needle at 96% depth. Scored with exact_match rather than regex because scorers.mjs:113 refuses regex subjects over 20000 chars. Verified that the code appears exactly once, the filler contains no digits at all, and the needle offset lands within tolerance of the requested depth.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:integer",
+   "depth:end"
+  ]
+ },
+ {
+  "id": "lc-needle-04",
+  "category": "long_context",
+  "provenance": "generated",
+  "prompt": "Below is a section from a maintenance log.\n\nThe windy trellis leaned beside the harbour (unit 6472); the frosted beacon gathered beside the orchard; the leaning lattice tilted beside the cistern; the damp beacon gathered beside the kiln yard (unit 1955); the frosted cistern waited beside the terrace.\n\nThe damp trellis rested beside the harbour; the tidal cistern turned beside the orchard; the cobbled vellum turned beside the workshop; the leaning cartridge hummed beside the workshop (unit 4637); the leaning quarry rested beside the gallery.\n\nThe windy cistern rested beside the landing (unit 3096); the leaning basin rested beside the basin (unit 8320); the windy cartridge rested beside the gallery; the rusted anchor rested beside the ridge (unit 4180); the sealed cartridge gathered beside the cistern.\n\nThe sunlit girder settled beside the orchard; the sealed marble turned beside the landing; the damp basin rested beside the gallery; the leaning hopper rested beside the harbour, log J558; the rusted kiln paused beside the kiln yard.\n\nThe frosted quarry settled beside the cistern (unit 2768); the frosted vellum paused beside the landing; the quiet vellum gathered beside the harbour; the polished cartridge tilted beside the meadow, log K591; the windy cistern hummed beside the orchard.\n\nThe quiet cistern tilted beside the ridge (unit 6472); the quiet beacon tilted beside the harbour; the narrow cistern turned beside the cistern; the hollow hopper leaned beside the east quay; the sunlit hopper settled beside the east quay.\n\nThe windy lattice settled beside the meadow (unit 6472); the damp hopper waited beside the workshop; the sunlit lantern rested beside the terrace (unit 2768); the windy kiln gathered beside the meadow (unit 6472); the rusted anchor gathered beside the east quay.\n\nThe rusted cartridge gathered beside the cistern; the leaning furnace leaned beside the orchard; the narrow lattice turned beside the workshop (unit 8320); the windy hopper paused beside the meadow; the rusted furnace rested beside the ridge, log I723.\n\nThe damp girder paused beside the harbour; the cobbled furnace leaned beside the basin; the damp cistern rested beside the cistern; the sealed basin glowed beside the orchard, log B770; the polished hopper turned beside the cistern.\n\nThe verification code for station 28 is 6124.\n\nThe leaning basin settled beside the east quay (unit 5841); the narrow quarry paused beside the gallery (unit 1955); the braided marble glowed beside the basin; the sealed lattice hummed beside the workshop; the quiet lattice leaned beside the kiln yard.\n\nThe hollow cistern waited beside the orchard (unit 2768); the leaning sparrow rested beside the terrace; the cobbled anchor settled beside the basin; the frosted kiln hummed beside the gallery, log B722; the rusted anchor glowed beside the east quay.\n\nThe quiet girder paused beside the cistern, log K874; the damp basin glowed beside the kiln yard; the sunlit basin gathered beside the landing, log Q258; the narrow girder hummed beside the landing; the sunlit cartridge waited beside the landing (unit 4180).\n\nThe polished cistern waited beside the meadow, log M444; the tidal quarry glowed beside the cistern; the damp vellum hummed beside the cistern; the sunlit girder hummed beside the terrace; the rusted sparrow paused beside the cistern (unit 6472).\n\nThe leaning marble paused beside the cistern; the hollow cistern glowed beside the harbour; the braided vellum leaned beside the east quay; the leaning trellis hummed beside the ridge; the rusted trellis rested beside the landing.\n\nThe narrow kiln gathered beside the terrace; the quiet lattice leaned beside the basin; the frosted sparrow rested beside the orchard (unit 3096); the polished vellum gathered beside the terrace (unit 6472); the cobbled sparrow paused beside the gallery (unit 7253).\n\nThe polished basin tilted beside the terrace; the polished beacon settled beside the terrace; the frosted furnace settled beside the kiln yard (unit 1955); the leaning lantern paused beside the landing (unit 9104); the damp quarry paused beside the meadow.\n\nThe frosted lantern leaned beside the kiln yard; the damp basin hummed beside the gallery, log B471; the windy vellum tilted beside the orchard; the tidal quarry glowed beside the gallery; the tidal vellum waited beside the harbour.\n\nThe sunlit trellis leaned beside the meadow; the hollow beacon turned beside the basin; the quiet cartridge settled beside the harbour (unit 4637); the hollow lantern hummed beside the cistern; the rusted lantern paused beside the landing.\n\nThe polished trellis glowed beside the kiln yard; the damp vellum paused beside the orchard; the hollow beacon paused beside the orchard; the quiet vellum paused beside the cistern; the polished girder glowed beside the ridge.\n\nThe hollow beacon gathered beside the terrace; the hollow quarry tilted beside the kiln yard, log Z114; the rusted cartridge gathered beside the harbour; the quiet marble waited beside the cistern; the sealed beacon gathered beside the terrace.\n\nThe damp cartridge paused beside the gallery (unit 7253); the quiet kiln settled beside the landing; the leaning girder rested beside the meadow; the windy anchor paused beside the basin (unit 5841); the sealed girder turned beside the harbour.\n\nThe cobbled quarry glowed beside the east quay (unit 6472); the windy basin glowed beside the ridge (unit 7253); the quiet beacon leaned beside the gallery, log K687; the cobbled kiln hummed beside the kiln yard (unit 1955); the cobbled lattice turned beside the gallery.\n\nThe frosted beacon rested beside the cistern; the windy lattice waited beside the workshop (unit 6472); the hollow beacon hummed beside the meadow, log E630; the sealed quarry tilted beside the orchard; the sealed lattice turned beside the landing.\n\nThe narrow lattice leaned beside the landing; the rusted beacon leaned beside the harbour; the damp anchor turned beside the basin; the narrow beacon hummed beside the basin; the narrow anchor turned beside the ridge (unit 4637).\n\nThe hollow quarry turned beside the ridge (unit 9104); the tidal girder gathered beside the meadow (unit 7253); the narrow furnace hummed beside the kiln yard; the sunlit trellis turned beside the east quay (unit 4180); the rusted cartridge rested beside the kiln yard.\n\nThe hollow quarry paused beside the basin; the polished sparrow leaned beside the kiln yard; the polished quarry tilted beside the gallery; the tidal cartridge paused beside the east quay; the hollow kiln leaned beside the kiln yard.\n\nThe cobbled lattice rested beside the meadow; the polished sparrow tilted beside the workshop; the damp cartridge tilted beside the kiln yard; the leaning furnace gathered beside the meadow, log W783; the tidal lantern glowed beside the kiln yard.\n\nThe windy girder gathered beside the gallery; the narrow cartridge waited beside the cistern (unit 3096); the sunlit girder settled beside the meadow; the polished hopper waited beside the gallery; the windy cartridge waited beside the workshop (unit 3096).\n\nThe polished kiln waited beside the harbour; the quiet cartridge glowed beside the east quay (unit 4637); the sunlit cistern hummed beside the gallery; the leaning hopper paused beside the east quay; the sealed basin tilted beside the landing, log K646.\n\nThe frosted hopper waited beside the harbour (unit 4637); the sealed quarry leaned beside the kiln yard; the cobbled girder rested beside the terrace; the windy kiln settled beside the cistern, log M366; the quiet lantern hummed beside the harbour.\n\nThe braided furnace leaned beside the gallery; the hollow beacon gathered beside the workshop; the braided anchor settled beside the basin; the cobbled cartridge settled beside the east quay; the frosted trellis glowed beside the ridge.\n\nThe polished beacon hummed beside the east quay; the windy lantern tilted beside the orchard, log C652; the sunlit cistern turned beside the landing, log R135; the hollow sparrow leaned beside the ridge; the sunlit cartridge paused beside the gallery.\n\nThe hollow kiln tilted beside the workshop; the cobbled furnace tilted beside the harbour; the damp girder settled beside the meadow, log Z964; the quiet vellum tilted beside the orchard; the rusted cistern glowed beside the orchard.\n\nThe hollow hopper settled beside the terrace; the frosted beacon leaned beside the landing, log I240; the braided girder leaned beside the orchard (unit 1955); the narrow vellum waited beside the east quay; the leaning marble hummed beside the ridge, log O490.\n\nThe sunlit furnace gathered beside the terrace (unit 4637); the sealed furnace turned beside the orchard; the sunlit lattice glowed beside the meadow (unit 1955); the sealed vellum settled beside the cistern; the windy basin waited beside the kiln yard (unit 4637).\n\nThe polished trellis leaned beside the basin; the braided cartridge rested beside the ridge; the braided kiln rested beside the ridge; the cobbled quarry paused beside the orchard; the leaning anchor hummed beside the meadow.\n\nThe hollow hopper leaned beside the orchard (unit 3096); the hollow furnace gathered beside the terrace; the leaning vellum gathered beside the harbour; the windy beacon hummed beside the ridge, log I919; the windy vellum tilted beside the landing (unit 5841).\n\nThe polished beacon waited beside the basin (unit 5841); the frosted marble paused beside the gallery, log L841; the cobbled quarry gathered beside the kiln yard; the cobbled lantern leaned beside the ridge; the tidal anchor turned beside the harbour.\n\nThe polished cartridge turned beside the kiln yard; the braided kiln turned beside the workshop, log C873; the polished cistern rested beside the workshop; the frosted quarry gathered beside the landing; the tidal marble rested beside the east quay.\n\nThe quiet beacon glowed beside the terrace (unit 6472); the quiet quarry gathered beside the basin; the damp girder waited beside the kiln yard (unit 6472); the quiet hopper paused beside the orchard; the sunlit girder rested beside the workshop (unit 7253).\n\nThe hollow vellum glowed beside the gallery; the quiet trellis settled beside the east quay (unit 3096); the rusted trellis hummed beside the workshop (unit 5841); the leaning beacon settled beside the cistern; the quiet hopper waited beside the orchard, log F927.\n\nThe narrow lantern settled beside the cistern; the tidal furnace tilted beside the workshop (unit 2768); the quiet girder gathered beside the harbour (unit 4180); the narrow anchor settled beside the orchard; the tidal hopper turned beside the orchard (unit 5841).\n\nThe tidal anchor tilted beside the basin; the frosted hopper tilted beside the harbour; the sunlit marble gathered beside the harbour (unit 4637); the leaning quarry tilted beside the terrace (unit 3096); the braided anchor leaned beside the workshop (unit 9104).\n\nThe polished kiln waited beside the kiln yard (unit 8320); the sealed furnace tilted beside the gallery; the rusted sparrow turned beside the workshop; the narrow vellum tilted beside the harbour; the hollow cistern glowed beside the workshop (unit 4637).\n\nThe windy anchor leaned beside the meadow; the rusted basin hummed beside the orchard; the braided trellis tilted beside the kiln yard; the quiet quarry paused beside the east quay; the damp trellis rested beside the landing.\n\nThe sealed hopper leaned beside the east quay; the polished marble waited beside the ridge; the hollow lattice tilted beside the cistern; the hollow hopper tilted beside the harbour, log I615; the sunlit cartridge leaned beside the kiln yard.\n\nThe hollow girder tilted beside the harbour; the sunlit cistern paused beside the terrace; the braided sparrow settled beside the ridge; the sealed beacon rested beside the gallery; the leaning lattice turned beside the landing.\n\nThe sunlit beacon rested beside the orchard (unit 8320); the quiet anchor tilted beside the workshop; the polished anchor gathered beside the workshop; the rusted girder waited beside the east quay; the braided marble paused beside the cistern.\n\nThe sunlit marble turned beside the cistern; the rusted lattice gathered beside the workshop (unit 2768); the cobbled girder hummed beside the workshop; the tidal sparrow paused beside the kiln yard; the polished girder gathered beside the harbour (unit 7253).\n\nThe braided marble paused beside the meadow; the braided anchor paused beside the cistern; the tidal vellum leaned beside the cistern (unit 6472); the damp basin tilted beside the east quay; the cobbled sparrow turned beside the basin.\n\nThe sunlit furnace glowed beside the landing, log I442; the sunlit hopper leaned beside the basin; the rusted kiln settled beside the ridge; the braided sparrow turned beside the kiln yard (unit 6472); the damp kiln gathered beside the gallery, log Q555.\n\nThe frosted anchor turned beside the cistern (unit 6472); the narrow basin rested beside the orchard (unit 3096); the polished vellum glowed beside the basin; the hollow lantern gathered beside the workshop; the tidal beacon paused beside the harbour (unit 4180).\n\nThe cobbled lantern waited beside the orchard; the leaning trellis hummed beside the gallery, log Z631; the sunlit hopper rested beside the ridge, log G455; the quiet marble gathered beside the basin; the cobbled vellum settled beside the kiln yard, log Q287.\n\nThe braided basin gathered beside the orchard, log B759; the rusted cartridge hummed beside the harbour; the tidal kiln turned beside the east quay, log R989; the tidal vellum glowed beside the gallery (unit 4180); the cobbled quarry hummed beside the basin (unit 4637).\n\nThe leaning sparrow rested beside the kiln yard (unit 9104); the frosted beacon turned beside the landing, log Z276; the tidal marble turned beside the orchard; the windy lattice rested beside the orchard (unit 5841); the narrow marble turned beside the workshop.\n\nThe braided trellis turned beside the meadow; the cobbled kiln leaned beside the landing (unit 4637); the leaning kiln glowed beside the landing; the narrow quarry rested beside the basin; the leaning cartridge settled beside the basin.\n\nThe leaning marble waited beside the gallery (unit 1955); the polished hopper waited beside the gallery; the narrow marble paused beside the gallery (unit 5841); the leaning marble glowed beside the harbour (unit 8320); the leaning kiln hummed beside the terrace.\n\nThe sunlit trellis hummed beside the gallery (unit 6472); the sunlit sparrow waited beside the orchard; the windy anchor gathered beside the orchard (unit 8320); the windy lattice hummed beside the cistern; the damp quarry glowed beside the ridge.\n\nThe quiet basin paused beside the orchard; the sealed hopper turned beside the terrace (unit 4180); the hollow marble hummed beside the ridge; the frosted cistern glowed beside the ridge; the tidal beacon settled beside the harbour (unit 3096).\n\nThe sunlit kiln glowed beside the meadow, log W573; the hollow anchor turned beside the gallery; the quiet girder waited beside the harbour (unit 2768); the leaning basin waited beside the kiln yard (unit 1955); the braided sparrow glowed beside the gallery, log I811.\n\nThe hollow marble paused beside the kiln yard; the rusted beacon paused beside the ridge; the cobbled furnace glowed beside the workshop; the tidal furnace rested beside the meadow; the polished cartridge hummed beside the gallery.\n\nThe sealed kiln hummed beside the basin (unit 9104); the leaning cartridge rested beside the harbour (unit 4637); the frosted quarry tilted beside the landing; the leaning cartridge tilted beside the terrace (unit 3096); the braided cistern waited beside the ridge.\n\nThe rusted anchor glowed beside the meadow; the sunlit kiln rested beside the terrace, log Y920; the windy sparrow turned beside the workshop; the braided cartridge glowed beside the orchard; the sealed trellis waited beside the kiln yard.\n\nThe windy trellis gathered beside the cistern (unit 7253); the windy basin rested beside the landing (unit 5841); the damp sparrow tilted beside the gallery; the rusted lantern tilted beside the basin (unit 3096); the windy vellum paused beside the landing, log R881.\n\nThe tidal trellis turned beside the workshop, log V744; the damp furnace leaned beside the meadow, log H748; the windy trellis tilted beside the east quay (unit 2768); the sealed cartridge glowed beside the harbour; the frosted hopper paused beside the meadow.\n\nThe rusted hopper turned beside the harbour; the narrow cistern leaned beside the orchard; the rusted hopper gathered beside the basin; the leaning beacon gathered beside the meadow; the hollow basin gathered beside the terrace.\n\nThe polished quarry gathered beside the harbour (unit 2768); the quiet hopper hummed beside the basin; the frosted lattice waited beside the orchard; the narrow beacon paused beside the harbour, log N268; the rusted basin rested beside the east quay.\n\nThe hollow hopper leaned beside the orchard; the windy vellum rested beside the basin, log J216; the sealed cistern glowed beside the kiln yard (unit 2768); the rusted trellis leaned beside the meadow; the damp lantern hummed beside the landing.\n\nThe polished cartridge rested beside the east quay (unit 3096); the cobbled basin turned beside the orchard; the hollow quarry paused beside the orchard; the braided quarry settled beside the basin; the quiet basin waited beside the gallery.\n\nThe frosted cistern settled beside the east quay; the cobbled girder gathered beside the ridge (unit 1955); the cobbled girder tilted beside the workshop; the frosted marble glowed beside the basin; the leaning vellum rested beside the east quay.\n\nThe quiet lattice leaned beside the landing; the frosted kiln paused beside the workshop; the frosted cartridge waited beside the east quay; the leaning cistern turned beside the cistern, log R350; the leaning trellis rested beside the ridge.\n\nThe sealed lattice turned beside the workshop; the quiet anchor waited beside the gallery (unit 4637); the hollow basin hummed beside the basin; the polished lattice hummed beside the workshop (unit 8320); the cobbled cartridge tilted beside the landing (unit 3096).\n\nThe damp vellum settled beside the landing (unit 3096); the damp beacon gathered beside the cistern (unit 7253); the tidal quarry leaned beside the terrace (unit 5841); the rusted beacon gathered beside the cistern; the braided marble settled beside the basin (unit 7253).\n\nThe quiet cartridge glowed beside the cistern; the quiet kiln settled beside the landing, log O813; the hollow lattice rested beside the east quay; the sunlit quarry rested beside the workshop; the sealed cartridge leaned beside the terrace.\n\nThe sealed anchor paused beside the east quay; the windy hopper glowed beside the east quay; the narrow girder paused beside the kiln yard; the rusted anchor glowed beside the harbour (unit 7253); the leaning furnace glowed beside the landing (unit 9104).\n\nThe cobbled vellum rested beside the landing, log F893; the braided kiln turned beside the harbour (unit 4637); the cobbled basin rested beside the orchard, log C960; the leaning lattice leaned beside the cistern; the frosted hopper settled beside the east quay.\n\nThe hollow trellis tilted beside the terrace; the tidal lantern glowed beside the basin; the quiet cartridge settled beside the cistern; the cobbled kiln waited beside the east quay (unit 2768); the frosted cartridge waited beside the basin.\n\nThe narrow cartridge settled beside the orchard; the sunlit kiln rested beside the orchard (unit 8320); the rusted vellum tilted beside the harbour; the quiet girder turned beside the orchard; the quiet cartridge waited beside the orchard (unit 3096).\n\nThe braided hopper glowed beside the basin; the frosted basin glowed beside the workshop (unit 4637); the hollow trellis settled beside the gallery; the narrow lantern turned beside the basin (unit 4180); the sealed lattice settled beside the east quay (unit 6472).\n\nThe hollow cartridge leaned beside the gallery; the windy basin waited beside the ridge; the frosted cistern paused beside the landing; the quiet basin rested beside the meadow; the frosted basin glowed beside the kiln yard.\n\nThe narrow furnace hummed beside the harbour; the quiet basin glowed beside the orchard; the rusted lantern tilted beside the terrace (unit 8320); the hollow lantern leaned beside the east quay; the polished anchor hummed beside the terrace.\n\nThe leaning cartridge turned beside the basin (unit 3096); the rusted trellis rested beside the kiln yard; the rusted anchor tilted beside the gallery (unit 3096); the windy quarry hummed beside the workshop (unit 5841); the tidal marble rested beside the harbour.\n\nThe polished marble paused beside the east quay; the braided lantern settled beside the harbour; the sealed vellum gathered beside the cistern; the sealed furnace tilted beside the harbour, log V479; the tidal basin rested beside the workshop (unit 4180).\n\nThe quiet lattice leaned beside the east quay, log T248; the polished lantern paused beside the east quay; the frosted quarry paused beside the harbour; the sealed quarry leaned beside the landing; the quiet marble glowed beside the workshop.\n\nThe quiet marble tilted beside the landing (unit 5841); the windy girder gathered beside the gallery (unit 9104); the frosted furnace rested beside the east quay; the sunlit hopper hummed beside the harbour (unit 3096); the tidal marble turned beside the terrace, log A180.\n\nThe quiet cistern gathered beside the landing; the sunlit lantern waited beside the east quay (unit 6472); the sunlit girder paused beside the cistern (unit 5841); the frosted furnace settled beside the landing; the windy cistern turned beside the landing.\n\nThe rusted anchor tilted beside the gallery; the quiet quarry glowed beside the workshop; the damp trellis settled beside the landing; the hollow kiln waited beside the orchard; the frosted basin rested beside the landing (unit 5841).\n\nThe braided quarry paused beside the ridge; the rusted sparrow glowed beside the gallery (unit 7253); the sealed cartridge hummed beside the basin (unit 8320); the damp quarry settled beside the landing (unit 8320); the rusted girder turned beside the harbour.\n\nThe braided lantern paused beside the basin (unit 2768); the quiet lattice hummed beside the terrace; the polished cartridge waited beside the meadow (unit 5841); the polished girder glowed beside the cistern; the sunlit kiln waited beside the landing (unit 8320).\n\nThe frosted beacon glowed beside the cistern (unit 2768); the frosted cartridge paused beside the harbour (unit 4637); the tidal hopper waited beside the workshop (unit 5841); the polished cartridge settled beside the landing; the leaning trellis gathered beside the terrace, log M716.\n\nThe narrow basin settled beside the orchard; the sunlit quarry paused beside the terrace; the quiet girder glowed beside the ridge (unit 9104); the tidal marble gathered beside the east quay; the frosted girder tilted beside the meadow.\n\nThe windy vellum glowed beside the harbour; the polished furnace glowed beside the orchard (unit 7253); the narrow hopper settled beside the kiln yard; the braided kiln waited beside the harbour; the quiet hopper leaned beside the terrace.\n\nThe sunlit girder glowed beside the kiln yard; the narrow lattice turned beside the workshop (unit 4180); the narrow furnace paused beside the east quay; the sunlit furnace rested beside the gallery; the polished basin glowed beside the east quay.\n\nThe narrow cartridge tilted beside the east quay (unit 7253); the narrow beacon hummed beside the east quay (unit 8320); the polished cartridge settled beside the landing (unit 4180); the sealed furnace tilted beside the basin (unit 1955); the quiet marble waited beside the ridge.\n\nThe windy beacon paused beside the basin; the windy quarry gathered beside the terrace; the hollow beacon leaned beside the landing (unit 1955); the cobbled lattice paused beside the basin; the rusted basin paused beside the gallery.\n\nThe rusted furnace glowed beside the terrace (unit 3096); the tidal sparrow tilted beside the terrace; the quiet anchor leaned beside the terrace (unit 9104); the rusted cistern waited beside the landing; the braided marble paused beside the kiln yard (unit 7253).\n\nThe tidal quarry glowed beside the ridge (unit 8320); the polished cistern waited beside the kiln yard (unit 4180); the polished marble turned beside the orchard (unit 6472); the sunlit hopper turned beside the cistern (unit 5841); the hollow cartridge leaned beside the landing (unit 4180).\n\nThe quiet kiln glowed beside the basin (unit 3096); the polished trellis glowed beside the meadow, log P770; the sealed sparrow rested beside the landing (unit 8320); the quiet kiln glowed beside the east quay; the leaning marble gathered beside the gallery.\n\nThe braided basin gathered beside the meadow; the rusted anchor turned beside the ridge; the sealed marble hummed beside the orchard (unit 4637); the windy cartridge paused beside the gallery; the braided vellum glowed beside the kiln yard.\n\nThe hollow anchor leaned beside the ridge; the cobbled cistern rested beside the harbour; the damp hopper gathered beside the terrace (unit 1955); the tidal sparrow turned beside the meadow; the polished trellis settled beside the east quay (unit 6472).\n\nThe sunlit sparrow paused beside the harbour (unit 5841); the leaning hopper paused beside the harbour; the cobbled basin tilted beside the kiln yard; the braided kiln rested beside the basin; the windy basin paused beside the kiln yard, log B249.\n\nThe polished trellis paused beside the east quay; the sunlit trellis glowed beside the harbour; the damp lattice leaned beside the workshop; the hollow quarry rested beside the workshop; the sunlit cistern waited beside the meadow (unit 7253).\n\nThe sealed basin glowed beside the gallery, log W855; the hollow beacon tilted beside the orchard; the windy sparrow rested beside the kiln yard; the polished cartridge glowed beside the landing; the sealed kiln turned beside the harbour, log B283.\n\nThe frosted sparrow leaned beside the meadow (unit 5841); the hollow cistern turned beside the east quay, log B897; the frosted vellum hummed beside the east quay (unit 6472); the sealed anchor hummed beside the east quay; the polished basin waited beside the meadow.\n\nThe damp basin waited beside the east quay; the polished anchor hummed beside the landing; the damp lattice turned beside the gallery; the damp trellis settled beside the meadow (unit 5841); the narrow lantern paused beside the gallery, log L825.\n\nThe cobbled quarry glowed beside the cistern (unit 8320); the polished marble hummed beside the ridge; the hollow quarry glowed beside the cistern; the windy beacon turned beside the landing; the damp kiln rested beside the ridge.\n\nThe polished lantern hummed beside the workshop (unit 6472); the damp cartridge gathered beside the kiln yard; the hollow cartridge gathered beside the landing; the cobbled lantern settled beside the gallery; the frosted girder settled beside the cistern.\n\nThe windy lantern rested beside the terrace; the damp furnace glowed beside the landing (unit 1955); the windy beacon waited beside the ridge; the braided vellum hummed beside the harbour; the polished trellis waited beside the kiln yard.\n\nThe narrow hopper waited beside the gallery (unit 4180); the tidal vellum paused beside the gallery (unit 6472); the frosted cistern glowed beside the terrace (unit 4637); the narrow quarry tilted beside the orchard; the sunlit kiln rested beside the ridge, log C735.\n\nThe rusted lantern hummed beside the kiln yard; the narrow cistern waited beside the ridge; the braided cistern leaned beside the landing, log W455; the cobbled lantern settled beside the harbour; the sunlit trellis hummed beside the workshop.\n\nThe damp vellum settled beside the terrace; the hollow vellum settled beside the basin; the sealed girder rested beside the basin; the frosted quarry glowed beside the east quay; the tidal lantern hummed beside the kiln yard.\n\nThe quiet cartridge turned beside the cistern, log F969; the quiet cistern leaned beside the meadow; the sunlit trellis gathered beside the gallery; the rusted beacon glowed beside the basin (unit 9104); the damp basin tilted beside the cistern (unit 4180).\n\nThe damp furnace rested beside the east quay (unit 7253); the narrow vellum turned beside the orchard; the quiet sparrow paused beside the workshop; the windy vellum settled beside the orchard; the damp vellum paused beside the meadow.\n\nThe leaning vellum waited beside the gallery (unit 7253); the windy vellum gathered beside the meadow (unit 8320); the damp trellis turned beside the ridge; the sunlit marble leaned beside the harbour (unit 5841); the quiet hopper paused beside the gallery.\n\nThe sunlit marble gathered beside the orchard; the sealed girder gathered beside the ridge (unit 3096); the leaning beacon paused beside the east quay (unit 4180); the frosted cartridge rested beside the harbour; the quiet vellum rested beside the harbour, log U684.\n\nThe frosted quarry waited beside the harbour; the braided cistern hummed beside the east quay; the narrow hopper glowed beside the basin (unit 2768); the sunlit lantern paused beside the landing, log K424; the tidal trellis tilted beside the basin (unit 3096).\n\nThe tidal kiln waited beside the basin (unit 6472); the frosted hopper leaned beside the meadow (unit 1955); the frosted vellum gathered beside the meadow (unit 1955); the narrow girder turned beside the kiln yard (unit 4637); the quiet lattice turned beside the landing (unit 7253).\n\nThe hollow anchor leaned beside the workshop (unit 4637); the braided vellum rested beside the cistern (unit 4637); the braided quarry settled beside the orchard (unit 3096); the tidal kiln glowed beside the east quay; the quiet cartridge leaned beside the landing, log U994.\n\nThe rusted kiln tilted beside the harbour; the narrow vellum paused beside the terrace; the polished kiln settled beside the gallery; the braided hopper paused beside the harbour; the rusted vellum turned beside the kiln yard.\n\nQuestion: what is the verification code for station 28?\nReply with the 4-digit code only, with no words and no punctuation.",
+  "scorer": "exact_match",
+  "scorer_args": {
+   "caseSensitive": true,
+   "ignorePunctuation": false
+  },
+  "expected": "6124",
+  "notes": "Generated needle-in-haystack, ~10000 tokens-equivalent (chars/3) of digit-free synthetic filler, needle at 8% depth. Scored with exact_match rather than regex because scorers.mjs:113 refuses regex subjects over 20000 chars. Verified that the code appears exactly once, the filler contains no digits at all, and the needle offset lands within tolerance of the requested depth.",
+  "tags": [
+   "metric:pass_at_1",
+   "fmt:integer",
+   "depth:start"
+  ]
+ },
+ {
+  "id": "fc-single-01",
+  "category": "function_calling",
+  "provenance": "generated",
+  "prompt": "You are given the following tools.\n\n```text\nfunction get_weather(city: string, unit: string)\n```\n\nHere is a request that is already fully specified. Do not ask questions and do not invent values.\nuser: \"what is the weather in Da Nang?\" — the city is Da Nang and the unit is \"celsius\"\n\nReply with a single JSON object of the form {\"name\": \"<the one tool you chose>\", \"arguments\": { … }}. Use every argument of that tool exactly once, with exactly the values given above. No other keys, no prose.",
+  "scorer": "json_schema",
+  "scorer_args": {
+   "schema": {
+    "type": "object",
+    "required": [
+     "name",
+     "arguments"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "name": {
+      "enum": [
+       "get_weather"
+      ]
+     },
+     "arguments": {
+      "type": "object",
+      "required": [
+       "city",
+       "unit"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "city": {
+        "type": "string",
+        "enum": [
+         "Da Nang"
+        ]
+       },
+       "unit": {
+        "type": "string",
+        "enum": [
+         "celsius"
+        ]
+       }
+      }
+     }
+    }
+   },
+   "required": true,
+   "maxViolations": 4
+  },
+  "expected": {
+   "type": "object",
+   "required": [
+    "name",
+    "arguments"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "name": {
+     "enum": [
+      "get_weather"
+     ]
+    },
+    "arguments": {
+     "type": "object",
+     "required": [
+      "city",
+      "unit"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "city": {
+       "type": "string",
+       "enum": [
+        "Da Nang"
+       ]
+      },
+      "unit": {
+       "type": "string",
+       "enum": [
+        "celsius"
+       ]
+      }
+     }
+    }
+   }
+  },
+  "notes": "Generated. Ground truth = the tool call built from the same parameter object that produced the request text, so the correct answer holds by construction. The schema pins every value with enum and forbids additional properties; verified that wrong tool, wrong value, missing argument and extra argument are all rejected.",
+  "tags": [
+   "metric:task_success_rate",
+   "fmt:json"
+  ],
+  "canonical_answer": "{\"name\":\"get_weather\",\"arguments\":{\"city\":\"Da Nang\",\"unit\":\"celsius\"}}"
+ },
+ {
+  "id": "fc-single-02",
+  "category": "function_calling",
+  "provenance": "generated",
+  "prompt": "You are given the following tools.\n\n```text\nfunction convert_currency(amount: integer, from: string, to: string)\n```\n\nHere is a request that is already fully specified. Do not ask questions and do not invent values.\nuser: \"convert 1088 USD into JPY\" — the amount is 1088, the source currency is \"USD\" and the target currency is \"JPY\"\n\nReply with a single JSON object of the form {\"name\": \"<the one tool you chose>\", \"arguments\": { … }}. Use every argument of that tool exactly once, with exactly the values given above. No other keys, no prose.",
+  "scorer": "json_schema",
+  "scorer_args": {
+   "schema": {
+    "type": "object",
+    "required": [
+     "name",
+     "arguments"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "name": {
+      "enum": [
+       "convert_currency"
+      ]
+     },
+     "arguments": {
+      "type": "object",
+      "required": [
+       "amount",
+       "from",
+       "to"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "amount": {
+        "type": "integer",
+        "enum": [
+         1088
+        ]
+       },
+       "from": {
+        "type": "string",
+        "enum": [
+         "USD"
+        ]
+       },
+       "to": {
+        "type": "string",
+        "enum": [
+         "JPY"
+        ]
+       }
+      }
+     }
+    }
+   },
+   "required": true,
+   "maxViolations": 4
+  },
+  "expected": {
+   "type": "object",
+   "required": [
+    "name",
+    "arguments"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "name": {
+     "enum": [
+      "convert_currency"
+     ]
+    },
+    "arguments": {
+     "type": "object",
+     "required": [
+      "amount",
+      "from",
+      "to"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "amount": {
+       "type": "integer",
+       "enum": [
+        1088
+       ]
+      },
+      "from": {
+       "type": "string",
+       "enum": [
+        "USD"
+       ]
+      },
+      "to": {
+       "type": "string",
+       "enum": [
+        "JPY"
+       ]
+      }
+     }
+    }
+   }
+  },
+  "notes": "Generated. Ground truth = the tool call built from the same parameter object that produced the request text, so the correct answer holds by construction. The schema pins every value with enum and forbids additional properties; verified that wrong tool, wrong value, missing argument and extra argument are all rejected.",
+  "tags": [
+   "metric:task_success_rate",
+   "fmt:json"
+  ],
+  "canonical_answer": "{\"name\":\"convert_currency\",\"arguments\":{\"amount\":1088,\"from\":\"USD\",\"to\":\"JPY\"}}"
+ },
+ {
+  "id": "fc-single-03",
+  "category": "function_calling",
+  "provenance": "generated",
+  "prompt": "You are given the following tools.\n\n```text\nfunction search_orders(customer_id: string, status: string)\n```\n\nHere is a request that is already fully specified. Do not ask questions and do not invent values.\nuser: \"find my orders\" — the customer id is C-5673 and the status filter is \"shipped\"\n\nReply with a single JSON object of the form {\"name\": \"<the one tool you chose>\", \"arguments\": { … }}. Use every argument of that tool exactly once, with exactly the values given above. No other keys, no prose.",
+  "scorer": "json_schema",
+  "scorer_args": {
+   "schema": {
+    "type": "object",
+    "required": [
+     "name",
+     "arguments"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "name": {
+      "enum": [
+       "search_orders"
+      ]
+     },
+     "arguments": {
+      "type": "object",
+      "required": [
+       "customer_id",
+       "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "customer_id": {
+        "type": "string",
+        "enum": [
+         "C-5673"
+        ]
+       },
+       "status": {
+        "type": "string",
+        "enum": [
+         "shipped"
+        ]
+       }
+      }
+     }
+    }
+   },
+   "required": true,
+   "maxViolations": 4
+  },
+  "expected": {
+   "type": "object",
+   "required": [
+    "name",
+    "arguments"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "name": {
+     "enum": [
+      "search_orders"
+     ]
+    },
+    "arguments": {
+     "type": "object",
+     "required": [
+      "customer_id",
+      "status"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "customer_id": {
+       "type": "string",
+       "enum": [
+        "C-5673"
+       ]
+      },
+      "status": {
+       "type": "string",
+       "enum": [
+        "shipped"
+       ]
+      }
+     }
+    }
+   }
+  },
+  "notes": "Generated. Ground truth = the tool call built from the same parameter object that produced the request text, so the correct answer holds by construction. The schema pins every value with enum and forbids additional properties; verified that wrong tool, wrong value, missing argument and extra argument are all rejected.",
+  "tags": [
+   "metric:task_success_rate",
+   "fmt:json"
+  ],
+  "canonical_answer": "{\"name\":\"search_orders\",\"arguments\":{\"customer_id\":\"C-5673\",\"status\":\"shipped\"}}"
+ },
+ {
+  "id": "fc-single-04",
+  "category": "function_calling",
+  "provenance": "generated",
+  "prompt": "You are given the following tools.\n\n```text\nfunction set_reminder(title: string, due_iso8601: string, priority: string)\n```\n\nHere is a request that is already fully specified. Do not ask questions and do not invent values.\nuser: \"remind me\" — the title is \"send the deposit\", the due time is 2026-12-03T09:00:00Z and the priority is \"high\"\n\nReply with a single JSON object of the form {\"name\": \"<the one tool you chose>\", \"arguments\": { … }}. Use every argument of that tool exactly once, with exactly the values given above. No other keys, no prose.",
+  "scorer": "json_schema",
+  "scorer_args": {
+   "schema": {
+    "type": "object",
+    "required": [
+     "name",
+     "arguments"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "name": {
+      "enum": [
+       "set_reminder"
+      ]
+     },
+     "arguments": {
+      "type": "object",
+      "required": [
+       "title",
+       "due_iso8601",
+       "priority"
+      ],
+      "additionalProperties": false,
+      "properties": {
+       "title": {
+        "type": "string",
+        "enum": [
+         "send the deposit"
+        ]
+       },
+       "due_iso8601": {
+        "type": "string",
+        "enum": [
+         "2026-12-03T09:00:00Z"
+        ]
+       },
+       "priority": {
+        "type": "string",
+        "enum": [
+         "high"
+        ]
+       }
+      }
+     }
+    }
+   },
+   "required": true,
+   "maxViolations": 4
+  },
+  "expected": {
+   "type": "object",
+   "required": [
+    "name",
+    "arguments"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "name": {
+     "enum": [
+      "set_reminder"
+     ]
+    },
+    "arguments": {
+     "type": "object",
+     "required": [
+      "title",
+      "due_iso8601",
+      "priority"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "title": {
+       "type": "string",
+       "enum": [
+        "send the deposit"
+       ]
+      },
+      "due_iso8601": {
+       "type": "string",
+       "enum": [
+        "2026-12-03T09:00:00Z"
+       ]
+      },
+      "priority": {
+       "type": "string",
+       "enum": [
+        "high"
+       ]
+      }
+     }
+    }
+   }
+  },
+  "notes": "Generated. Ground truth = the tool call built from the same parameter object that produced the request text, so the correct answer holds by construction. The schema pins every value with enum and forbids additional properties; verified that wrong tool, wrong value, missing argument and extra argument are all rejected.",
+  "tags": [
+   "metric:task_success_rate",
+   "fmt:json"
+  ],
+  "canonical_answer": "{\"name\":\"set_reminder\",\"arguments\":{\"title\":\"send the deposit\",\"due_iso8601\":\"2026-12-03T09:00:00Z\",\"priority\":\"high\"}}"
+ },
+ {
+  "id": "abs-ans-01",
+  "category": "abstention_hallucination",
+  "provenance": "generated",
+  "prompt": "Station log for the northern line. The kettle in the mess room was replaced on 12 March. The signal box lamp was replaced on 26 March. The cart in the yard was replaced on 5 March. A new bench was installed beside the cart on 19 March.\n\nOn what date was the signal box lamp replaced?\nAnswer using only the passage above.",
+  "scorer": "contains",
+  "scorer_args": {
+   "caseSensitive": false,
+   "all": true
+  },
+  "expected": "26 March",
+  "notes": "Generated, answerable: the passage states the answer, so an abstention is scored as a failure. The expected phrase is verified to be a literal substring of the passage, and the prompt requires the date exactly as written so that the scoring cannot hinge on a reformatting the item never asked for.",
+  "tags": [
+   "metric:simpleqa",
+   "fmt:phrase",
+   "absent:answerable"
+  ]
+ },
+ {
+  "id": "abs-noans-01",
+  "category": "abstention_hallucination",
+  "provenance": "generated",
+  "prompt": "Station log for the northern line. The kettle in the mess room was replaced on 12 March. The signal box lamp was replaced on 26 March. The cart in the yard was replaced on 5 March. A new bench was installed beside the cart on 19 March.\n\nHow much did the new bench beside the cart cost?\nAnswer using only the passage above.",
+  "scorer": "regex",
+  "scorer_args": {
+   "flags": "i"
+  },
+  "expected": "^(?![\\s\\S]*\\d)[\\s\\S]*(?:(do(?:es)?\\s+not\\s+(?:say|state|mention|specify|provide|record)|no\\s+information\\s+(?:about|on|in|is\\s+given)|(?:the|this)\\s+(?:passage|text|diary|log|notes|record)\\s+(?:does\\s+not|doesn't|never)\\s+(?:say|state|mention|specify)|is\\s+not\\s+(?:stated|mentioned|specified|recorded|given|provided|addressed)|not\\s+mentioned|not\\s+stated|not\\s+specified|not\\s+recorded|cannot\\s+be\\s+(?:determined|answered|inferred)|can(?:not|'t)\\s+answer|unable\\s+to\\s+(?:answer|determine)|no\\s+(?:such\\s+)?(?:record|mention|detail)s?\\s+(?:of|for|in|exist)|i\\s+(?:do\\s+not|don't)\\s+know|unknown|insufficient\\s+information))[\\s\\S]*$",
+  "notes": "Generated, unanswerable: the passage records dates but is silent on this question, so the desired behaviour is to say so. Scored by an abstention-marker pattern, which is a deliberately strict proxy — the report states exactly what it under-credits. The verifier checks the passage contains none of the terms that would answer the question.",
+  "tags": [
+   "metric:simpleqa",
+   "fmt:abstain",
+   "absent:unanswerable"
+  ]
+ },
+ {
+  "id": "abs-ans-02",
+  "category": "abstention_hallucination",
+  "provenance": "generated",
+  "prompt": "Club notes. The choir held its founding rehearsal on 3 April. The folding chairs in the hall were replaced on 17 April. The organ was cleaned on 20 November of the previous year. The piano tuner visited once, at an hour nobody recorded.\n\nOn what date were the folding chairs in the hall replaced?\nAnswer using only the passage above.",
+  "scorer": "contains",
+  "scorer_args": {
+   "caseSensitive": false,
+   "all": true
+  },
+  "expected": "17 April",
+  "notes": "Generated, answerable: the passage states the answer, so an abstention is scored as a failure. The expected phrase is verified to be a literal substring of the passage, and the prompt requires the date exactly as written so that the scoring cannot hinge on a reformatting the item never asked for.",
+  "tags": [
+   "metric:simpleqa",
+   "fmt:phrase",
+   "absent:answerable"
+  ]
+ },
+ {
+  "id": "rob-chain-base",
+  "category": "robustness",
+  "provenance": "generated",
+  "prompt": "Start from the number 136.\nSubtract 5.\nSubtract 8.\nMultiply by 8.\nMultiply by 9.\nWhat is the resulting number? Reply with a single integer and nothing else.",
+  "scorer": "numeric",
+  "scorer_args": {
+   "absTol": 0
+  },
+  "expected": 8856,
+  "notes": "Generated robustness pair, variant \"base\". Ground truth = applying the four steps in the fixed application order; the perturbed variant scrambles only the PRESENTATION order and rewords the verbs, and the build proves the two variants share a ground truth and a scorer.",
+  "tags": [
+   "pair:rob-chain",
+   "metric:pass_at_1",
+   "fmt:integer"
+  ]
+ },
+ {
+  "id": "rob-chain-perturbed",
+  "category": "robustness",
+  "provenance": "generated",
+  "prompt": "Start from the number 136.\n  - step 3: scale by 8\n  - step 1: go down by 5\n  - step 4: scale by 9\n  - step 2: go down by 8\nThe bullet lines are not listed in the order they must be applied. Apply them in step order: 1, 2, 3, 4, using the step numbers shown.\nWhat is the resulting number? Reply with a single integer and nothing else.",
+  "scorer": "numeric",
+  "scorer_args": {
+   "absTol": 0
+  },
+  "expected": 8856,
+  "notes": "Generated robustness pair, variant \"perturbed\". Ground truth = applying the four steps in the fixed application order; the perturbed variant scrambles only the PRESENTATION order and rewords the verbs, and the build proves the two variants share a ground truth and a scorer.",
+  "tags": [
+   "pair:rob-chain",
+   "metric:pass_at_1",
+   "fmt:integer"
+  ]
+ },
+ {
+  "id": "rob-sum-base",
+  "category": "robustness",
+  "provenance": "generated",
+  "prompt": "Add the following five numbers and reply with the total only, as a plain integer with no commas, no units and no explanation: 491, 2848, 3211, 4374.",
+  "scorer": "numeric",
+  "scorer_args": {
+   "absTol": 0
+  },
+  "expected": 10924,
+  "notes": "Generated (en). The task \"sum\" is shared across ko/en/ja/zh with only the instruction language changing, so the cross-lingual gap is measured on one underlying problem. Ground truth re-derived by an independent second implementation of the task.",
+  "tags": [
+   "pair:rob-sum",
+   "metric:pass_at_1",
+   "fmt:integer"
+  ]
+ }
+]

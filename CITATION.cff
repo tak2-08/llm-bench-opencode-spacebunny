@@ -1,0 +1,47 @@
+cff-version: 1.2.0
+title: "What does opencode/space-bunny-free resemble among frontier commercial models? A self-measured comparison with its audit trail."
+message: "If you use this dataset or harness, please cite this work and retain the measured-vs-reported distinction described in README.md."
+type: dataset
+authors:
+  - name: "LLM Benchmark Federation"
+    website: "https://github.com/tak2-08/llm-bench-opencode-spacebunny"
+abstract: >-
+  A self-run evaluation of the text model opencode/space-bunny-free on 88
+  programmatically generated, deterministically scored items (176 measured
+  runs, 2 repetitions), together with an independent audit of the measurement
+  harness that corrected the headline accuracy from an incorrect 86.9% to
+  92.5% (conservative) / 94.7% (with two defective items excluded). The
+  repository also assembles 1,711 reported scores for frontier commercial
+  models on 27 benchmarks from first-party sources, and reports an honest
+  scaffold-aware matching analysis. The central negative methodological
+  finding is that absolute score matching against frontier models is not
+  supportable: the same model on the same benchmark varies by 18-43
+  percentage points purely by changing the agent scaffold or reasoning
+  budget.
+keywords:
+  - large language model
+  - benchmark
+  - evaluation harness
+  - LLM-as-judge-free scoring
+  - reproducibility
+  - scaffold variance
+  - measurement audit
+license: MIT
+repository-code: "https://github.com/tak2-08/llm-bench-opencode-spacebunny"
+references:
+  - type: dataset
+    title: "Epoch AI benchmark dataset (CC BY 4.0) — source of 1,685 of the 1,711 reported cells"
+    repository-code: "https://epoch.ai/benchmarks/use-this-data"
+    license: "CC-BY-4.0"
+    authors:
+      - name: "Epoch AI"
+  - type: dataset
+    title: "Berkeley Function Calling Leaderboard V4 — source of BFCL tool-calling scores"
+    repository-code: "https://gorilla.cs.berkeley.edu/leaderboard.html"
+    authors:
+      - name: "Gorilla LLM (UC Berkeley)"
+  - type: dataset
+    title: "HAL GAIA leaderboard (Princeton) — source of the 43.64pp scaffold-swing evidence"
+    repository-code: "https://hal.cs.princeton.edu/"
+    authors:
+      - name: "Princeton NLP / HAL"
