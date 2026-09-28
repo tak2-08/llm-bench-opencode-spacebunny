@@ -1,246 +1,231 @@
-# LIMITATIONS — threats to validity, ranked
+# LIMITATIONS — 타당성 위협, 순위
 
-Ten threats, ordered by how much each could change the conclusion. Each is quantified where it
-can be. The internal ordering used in the working reports differs slightly in the tail; what
-follows is the ordering by expected effect on the headline claim.
+열 가지 위협을 각자가 결론을 얼마나 바꿀 수 있는가 순으로 놓는다. 될 수 있는 만큼은 수치를 붙였다.
+작업 보고서가 쓴 내부 정렬은 끝부분에서 조금 다르다. 아래는 본문 주장에 대한 예상 효과 기준의
+정렬이다.
 
-**Machine-readable:** `data/matching.json` → `threats_to_validity`.
-**Scrubbing audit:** [`PII-SCAN.md`](PII-SCAN.md).
+**기계 판독 가능:** `data/matching.json` → `threats_to_validity`.
+**정소 감사:** [`PII-SCAN.md`](PII-SCAN.md).
 
 ---
 
-## Summary
+## 요약
 
-| # | threat | resolvable in this study? |
+| # | 위협 | 이 연구에서 해결 가능한가? |
 |---|---|---|
-| 1 | The item bank was written by an LLM of the same family that grades it | **no** — only a second bank could |
-| 2 | Format compliance is confounded with capability | no |
-| 3 | n is below what a 5 pp claim requires | no |
-| 4 | `function_calling` and `code` are proxies, not agentic success | no |
-| 5 | The reasoning budget is undisclosed and worth 15–28 pp | no |
-| 6 | Scaffold dominates score identity; no constant correction exists | no |
-| 7 | Anchors ran 1 rep, the subject 2 | partially (falsification F5) |
-| 8 | The abstention family has no convention-free F | resolved by naming the convention |
-| 9 | 5 of 9 categories have no frontier counterpart, capping the axis count | no (falsification F3) |
-| 10 | The 4-axis corner is 2025-vintage and two-vendor only | no (data staleness) |
+| 1 | 문항 뱅크를 그것을 채점하는 것과 같은 계열의 LLM이 작성했다 | **아니오** — 두 번째 뱅크만 가능 |
+| 2 | 포맷 준수는 능력과 뒤엉켜 있다 | 아니오 |
+| 3 | n이 5 pp 주장에 필요한 수준에 미달 | 아니오 |
+| 4 | `function_calling`과 `code`는 대리지표이지 에이전틱 성공이 아니다 | 아니오 |
+| 5 | 추론 예산이 공개되지 않으며 15–28 pp를 좌우한다 | 아니오 |
+| 6 | 스캐폴드가 점수 정체성을 지배한다. 상수 보정이 존재하지 않는다 | 아니오 |
+| 7 | 앵커는 1rep, subject는 2rep | 부분적으로(페일시피케이션 F5) |
+| 8 | abstention 계열에는 규약 없는 F가 없다 | 규약을 명시함으로써 해결 |
+| 9 | 9개 범주 중 5개에 프런티어 대응물이 없어 축 개수가 캡된다 | 아니오(페일시피케이션 F3) |
+| 10 | 4축 코너는 2025년식이고 두 회사뿐이다 | 아니오(데이터 낡음) |
 
 ---
 
-## 1. The item bank was written by the same family of model that grades it — **UNRESOLVABLE HERE**
+## 1. 문항 뱅크를 그것을 채점하는 같은 계열의 모델이 작성했다 — **여기서는 해결 불가**
 
-**88 items** (45 in the shared anchor subset). 84 are emitted by a seeded generator; 4 are
-hand-written canonical cases. Every answer is re-derived by a **second, deliberately different
-implementation** — 824 checks, 0 failures, including 88/88 positive controls, 80/80 negative
-controls and 55/55 mutations.
+**문항 88개**(앵커 공유 부분집합에는 45개). 84개는 시드 생성기가 내놓고 4개는 손으로 쓴 정본
+사례다. 모든 정답은 **의도적으로 다른 두 번째 구현**으로 재도출된다 — 824 checks, 0 failures,
+여기에는 88/88 positive control, 80/80 negative control, 55/55 mutation이 들어 있다.
 
-**What that buys:** answer *correctness* is machine-guaranteed. Reading the code cannot find
-these — an absorbing state missing from a substring DP returned 6 where the truth is 4; a
-`B-417` answer scored with a numeric scorer became `NaN` so the *right* answer scored wrong; an
-item's prompt contradicted its own expected output.
+**그것이 사 주는 것:** 정답의 *정확성*은 기계로 보장된다. 코드를 읽어서는 이들을 찾을 수 없다 —
+부분문자열 DP에 빠진 흡수 상태가 정답 4인 곳에 6을 반환했고, `B-417` 정답을 numeric 스코어러로
+채점해 `NaN`이 되어 *정답*이 오답으로 채점됐고, 어떤 문항의 프롬프트가 자신의 기대 출력과 모순됐다.
 
-**What it does not buy:** item *selection*, vocabulary, phrasing and difficulty calibration
-carry the author's fingerprint. **An advantage on this bank cannot be separated from genealogy.**
-Any per-item or per-category pattern could be a property of the bank rather than of the model.
+**그것이 사 주지 않는 것:** *문항 선별*·어휘·표현·난이도 보정에는 작성자의 지문이 남는다. **이 뱅크에서의
+우위는 계보와 분리할 수 없다.** 항목별이나 범주별 패턴이 모델의 성질이 아니라 뱅크의 성질일 수 있다.
 
-**The only experiment that addresses it:** build a second bank with a different model family and
-measure per-item agreement (falsification **F2** — the highest-value experiment available,
-because everything else is downstream of it). Two further limitations compound this: the
-grading model and the bank-writing model are from the same lineage, and the anchors' model
-families are *not* the bank's.
+**이것을 다룰 수 있는 유일한 실험:** 다른 모델 계열로 두 번째 뱅크를 만들고 항목별 일치를 재는 것
+(페일시피케이션 **F2** — 나머지 전부 그것의 하류에 있기 때문에 지금 가능한 실험 중 가치가 가장
+높다). 두 가지 제한이 이것을 더 복잡하게 만든다: 채점 모델과 뱅크 작성 모델이 같은 계통이고, 앵커의
+모델 계열은 뱅크의 계열이 *아니라는* 점이다.
 
-## 2. Format compliance is confounded with capability
+## 2. 포맷 준수는 능력과 뒤엉켜 있다
 
-**52 of 88 items** use strict format scorers (`exact_match`, `numeric`, `json_schema`,
-`regex`). A model that computes the right thing and formats it differently scores zero.
+**88개 중 52개**가 엄격한 포맷 스코어러(`exact_match`, `numeric`, `json_schema`, `regex`)를 쓴다.
+옳은 것을 계산하고 다르게 포맷한 모델은 0점을 받는다.
 
-The clearest instance: the subject's *hinted* abstentions were **correct** and scored wrong,
-costing 6 runs before adjudication. Inverting the item's own hint — making a hinted abstention a
-*wrong* answer — flips the difficulty of the whole family.
+가장 분명한 사례: subject의 *힌트가 있는* 기권은 **정답**이었는데 오답으로 채점됐다. 심사에 6회
+실행의 값이 들었다. 문항 자체의 힌트를 뒤집어서 — 힌트가 있는 기권을 *오답*으로 만들면 — 그 계열
+전체의 난이도가 뒤집힌다.
 
-**Consequence:** a chunk of the 8.4 pp raw-to-conservative movement is format credit, not
-capability credit. We cannot cleanly separate the two with this bank.
+**결과:** 원시에서 보수적까지의 8.4 pp 이동 중 일부는 포맷 credit이지 능력 credit이 아니다. 이 뱅크로는
+둘을 깨끗하게 분리할 수 없다.
 
-## 3. n is below what a 5 pp claim needs — **quantified**
+## 3. n이 5 pp 주장에 필요한 수준에 미달 — **수치화함**
 
-Pre-registration computed that a 5 pp paired gap needs n ≈ 628 at an assumed q = 0.20. The
-**measured** q is 0.0588 (85 items with both reps, 5 discordant), giving a **minimum detectable
-effect of 7.3701 pp** at 1 rep and **5.2114 pp** at the mean of 2 reps.
+사전등록은 가정 q = 0.20에서 5 pp 짝격차에 n ≈ 628이 필요하다고 계산했다. **실측** q는 0.0588이다
+(두 반복이 모두 있는 항목 85개, 불일치 5개). 그래서 1회 반복에서 **최소 검출 가능 효과 7.3701 pp**,
+2회 평균에서 **5.2114 pp**가 나온다.
 
-We share **45 items** (43 scorable) and the anchors ran **1 repetition**. **Both anchor gaps
-(+4.65 pp, −2.33 pp) are inside the floor.** A 5 pp claim is not available at this design; the
-declared-effect rule was tightened to **≥10 pp**.
+우리는 **45문항**을 공유하고(채점 가능 43개) 앵커는 **1회 반복**을 돌렸다. **두 앵커 gap(+4.65 pp,
+−2.33 pp) 모두 floor 안이다.** 이 설계에서 5 pp 주장은 불가능하다. 선언 효과 규칙을 **≥10 pp**로
+조였다.
 
-`q` rests on 5 discordant items, so the floor carries real sampling uncertainty: read it as
-**7.4 pp ± ~1 pp**, not as a constant.
+`q`는 불일치 문항 5개에 얹혀 있으므로 floor가 실제 표본 불확실성을 안고 있다. 상수가 아니라
+**7.4 pp ± ~1 pp**로 읽어라.
 
-## 4. `function_calling` and `code` are proxies, not agentic success
+## 4. `function_calling`과 `code`는 대리지표이지 에이전틱 성공이 아니다
 
-The isolated harness **exposes no tools and has no final-state check**. Nothing is executed and
-no final state is compared. What is actually measured is *a schema-shaped call was emitted* —
-a proxy for the thing it is named after.
+격리된 하네스는 **도구를 노출하지 않고 최종 상태 검사도 없다.** 아무것도 실행되지 않고 최종 상태도
+비교되지 않는다. 실제로 재는 것은 *스키마 모양의 호출이 나갔다*는 것 — 즉 그 이름이 가리키는 것의
+대리값이다.
 
-**Worse: the scaffold moved inside a single measurement.** 5 subject runs called `bash` (7 calls)
-and all 5 passed; two of them computed a fast-doubling modular Fibonacci, so without the tool the
-item would have been a different and harder task. `--pure` blocks ambient workspace *injection*
-but does not stop the model from using tools itself.
+**더 나쁘다: 하나의 측정 안에서 스캐폴드가 움직였다.** subject 실행 5회가 `bash`를 호출했고(7회 호출)
+5회 모두 통과했다. 그중 두 회는 고속 두 배 가법(fast-doubling) 모듈러 피보나치를 계산했다. 도구가
+없으면 그 문항은 다른 그리고 더 어려운 과제가 되었을 것이다. `--pure`는 주변 워크스페이스의 *주입*은
+막지만 모델의 자체 도구 사용은 못 막는다.
 
-Those 5 runs are **reported as a diagnostic, not corrected** — excluding them would invent a
-second bias in the opposite direction.
+그 5회 실행은 **정정하지 않고 진단으로 보고한다** — 제외하면 반대 방향의 또 다른 편향을 만들어 내기
+때문이다.
 
-## 5. The reasoning budget is chosen by the service and never disclosed
+## 5. 추론 예산은 서비스가 정하고 끝내 공개하지 않는다
 
-The subject emitted **22,876 reasoning tokens** (median 79.5, max 1,200) across the 174 runs that
-reported the field. **The effort parameter is not exposed.** This is precisely the axis that is
-worth **15.44–28.00 pp** on HLE and GPQA Diamond for frontier models — and we cannot locate
-ourselves on it.
+subject는 그 필드를 보고한 174회 실행에서 **22,876 추론 토큰**을 냈다(중앙값 79.5, 최댓값 1,200).
+**effort 파라미터는 노출되지 않는다.** 프런티어 모델이 HLE과 GPQA Diamond에서 **15.44–28.00 pp**를
+받는 바로 그 축인데, 우리는 그 위치를 알 수 없다.
 
-**Falsification F4** would settle it: run the same 45 items at minimum and maximum effort. If
-the band shift exceeds 7.4 pp, the subject's score is a property of the scaffold and no frontier
-comparison is meaningful until the budget is fixed.
+**페일시피케이션 F4**가 이걸 정리해 준다: 같은 45문항을 최소 effort와 최대 effort로 돌린다. 밴드
+이동이 7.4 pp를 넘으면 subject의 점수는 스캐폴드의 성질이고, 예산이 고정되기 전까지 어떤 프런티어
+비교도 의미가 없다.
 
-## 6. Scaffold dominates score identity — and no constant correction exists
+## 6. 스캐폴드가 점수 정체성을 지배한다 — 그리고 상수 보정은 존재하지 않는다
 
-Same model, same benchmark, only the agent harness or thinking mode changed, read from
-first-party leaderboards:
+동일 모델, 동일 벤치마크, 오직 에이전트 하네스나 사고 모드만 바뀐 경우. `first-party` 리더보드에서
+읽었다:
 
-| benchmark | model | Δ |
+| 벤치마크 | 모델 | Δ |
 |---|---|---|
 | GAIA | Claude Sonnet 4.5 | **+43.64 pp** |
 | GAIA | Claude 3.7 Sonnet | +19.39 pp |
 | GAIA | Claude Opus 4 (May 2025) | +7.27 pp |
-| GAIA | **GPT-5 Medium** | **−3.41 pp (sign reverses)** |
-| BFCL V4 | **Gemini-3-Pro-Preview** | **−4.37 pp (sign reverses)** |
+| GAIA | **GPT-5 Medium** | **−3.41 pp (부호 역전)** |
+| BFCL V4 | **Gemini-3-Pro-Preview** | **−4.37 pp (부호 역전)** |
 | HLE | gpt-5.1 | +16.88 pp |
 | GPQA Diamond | gpt-5.6-luna | +28.00 pp |
 
-**The range is −4.37 to +43.64 pp and the sign reverses for at least two models.** A single
-"correct for scaffold" factor would be wrong. Our subject was measured under exactly one
-scaffold, so **an absolute-score match to any frontier row is not supportable.** This is why the
-conclusion is a range, not a name.
+**범위는 −4.37에서 +43.64 pp이고 적어도 두 모델에서 부호가 뒤집힌다.** 단일한 "스캐폴드 보정" 계수는
+틀릴 것이다. 우리 subject는 정확히 하나의 스캐폴드에서 측정됐으므로 **어떤 프런티어 행과도 절대 점수
+매칭은 지지 가능하다고 할 수 없다.** 결론이 이름이 아니라 범위인 이유가 이것이다.
 
-## 7. Anchors ran 1 repetition, the subject 2
+## 7. 앵커는 1회 반복, subject는 2회
 
-The subject's item-level accuracy is a **range**: 90.70% (both reps correct) / 95.35% (mean) /
-100% (either rep) — **9.3 pp wide, wider than the 6.98 pp difference between the two anchors.**
+subject의 항목 수준 정확도는 **범위**다: 90.70%(두 반복 모두 정답) / 95.35%(평균) /
+100%(어느 한 반복이라도 정답) — **폭 9.3 pp, 두 앵커 간 차이 6.98 pp보다 넓다.**
 
-The mean is used for the gap because it is the unbiased estimator. McNemar is computed on the
-conservative reading, which is maximally generous to the single-draw anchors. Note the direction:
-the subject's extra repetition **helps the subject**, so p-values are inflated in both
-directions and must be read as weak boundaries, never as verdicts.
+gap에는 평균을 쓴다. 평균이 비편향 추량자이기 때문이다. McNemar은 보수적 읽기로 계산하는데, 그것이
+단일 draw 앵커에 최대한 유리하게 때문이다. 방향에 주의하라: subject의 추가 반복은 **subject에게
+유리하게** 작용한다. 그래서 p값은 **양방향으로** 부풀려지며, 판정이 아니라 약한 경계로만 읽어야 한다.
 
-**Falsification F5** would symmetrise this and let the floor be measured per model. If an
-anchor's own q approaches 0.0588, the muse gap may become separable; if it is larger, the
-inseparability is confirmed.
+**페일시피케이션 F5**가 이것을 대칭화하고 floor를 모델별로 잴 수 있게 해 준다. 앵커 자신의 q가
+0.0588에 접근하면 muse 격차가 분리 가능해질 수 있고, 더 크면 분리 불가라는 것이 확정된다.
 
-## 8. The abstention family has no convention-free F — **RESOLVED BY NAMING IT**
+## 8. abstention 계열에는 규약 없는 F가 없다 — **명시함으로써 해결**
 
-`F = 2c/(2c+2i+n)`, verified against 6/6 published values. On the same adjudicated runs:
+`F = 2c/(2c+2i+n)`, 게시된 값 6/6으로 검증했다. 동일한 심사 후 실행에서:
 
-| convention | c | i | n | F |
+| 규약 | c | i | n | F |
 |---|---|---|---|---|
-| (i) declining = correct | 12 | 0 | 0 | **1.000** |
-| (ii) declining = not-attempted (SimpleQA's letter) | 6 | 0 | 6 | **0.667** |
-| (iii) declining = incorrect | 12 | 6 | 0 | **0.500** |
+| (i) decline = correct | 12 | 0 | 0 | **1.000** |
+| (ii) decline = not-attempted (SimpleQA의 문자) | 6 | 0 | 6 | **0.667** |
+| (iii) decline = incorrect | 12 | 6 | 0 | **0.500** |
 
-**50 F-points separate two defensible readings of identical runs** — larger than any effect the
-round could detect. Leaving it unnamed would make the family unreportable; choosing silently
-would be a choice made in the reader's absence.
+**동일한 실행의 두 방어 가능한 해석을 50 F-point가 가른다** — 이 라운드가 검출할 수 있는 어떤 효과보다
+크다. 명시하지 않으면 그 계열을 보고할 수 없게 되고, 조용히 고르면 독자 없는 곳에서 선택한 셈이 된다.
 
-**Resolution:** convention (ii) is used on the frontier axis, because the axis it is compared
-against is SimpleQA Verified and the convention must mean the same thing. (i) is reported as
-this bank's own reading and (iii) as a lower bound. Note the frontier axis uses
-convention-free accuracy `c/(c+i+n)`, under which (ii) and (iii) **coincide at 0.500** while
-differing on F — and that choice *changes* the matching result.
+**해결:** 프런티어 축에서는 규약 (ii)를 쓴다. 비교 대상이 SimpleQA Verified이므로 규약이 같은
+뜻이어야 하기 때문이다. (i)은 이 뱅크 자체의 읽기로, (iii)은 하한으로 보고한다. 프런티어 축은 규약
+없는 정확도 `c/(c+i+n)`를 쓰는데, 그 아래에서 (ii)와 (iii)는 F는 다른데 **0.500에서 일치한다** — 그리고
+그 선택이 매칭 결과를 *바꾼다*.
 
-**Hallucination count: 0** across 6 unanswerable slots. 6 of 6 answerable slots correct.
+**환각 건수: 0.** 답 불가능 슬롯 6개 전부. 답 가능 슬롯 6개 중 6개 정답.
 
-## 9. Five of nine categories have no frontier counterpart — the axis count is capped at 4
+## 9. 아홉 개 범주 중 다섯 개에 프런티어 대응물이 없다 — 축 개수는 4에서 캡된다
 
-`instruction_following`, `format_control`, `multilingual`, `long_context`, `robustness` have
-**0 cells** in the frontier table. That caps k at 4, where the minimum attainable permutation p is
-`2/k! = 0.0833` — **structurally above α = .05 for any n and any data quality.** k = 5 is the
-first reachable value, and it needs **two** new axes; one new axis only buys k = 4, which is
-still unresolvable.
+`instruction_following`, `format_control`, `multilingual`, `long_context`, `robustness`은 프런티어 표에
+**0셀**이다. 그래서 k가 4에서 캡되는데, 그 지점의 최소 도달 가능 순열 p는 `2/k! = 0.0833` — **어떤
+n에도 어떤 데이터 품질에도 구조적으로 α = .05 위다.** k = 5가 처음 도달 가능한 값이고, 거기에는 새
+축이 **두 개** 필요하다. 새 축 하나는 k = 4만 사는데 그것도 여전히 미해결이다.
 
-The missing axes point at the field's own largest gap: **prompt injection and agent hijacking are
-absent from the frontier table entirely** (AgentDojo, InjecAgent, CyberGym, XSTest, OR-Bench all
-unconfirmed at first-party sources, so nothing was asserted). Also missing: LMArena / Elo — there
-is not one Elo number in this repository.
+빠진 축들은 이 영역 자체의 가장 큰 공백을 가리킨다: **프롬프트 인젝션과 에이전트 하이재킹이 프런티어
+표에 전혀 없다**(AgentDojo, InjecAgent, CyberGym, XSTest, OR-Bench 모두 `first-party` 출처에서 미확인이므로
+아무것도 단언하지 않았다). 추가로 없는 것: LMArena / Elo — 이 저장소에는 Elo 숫자가 하나도 없다.
 
-**Falsification F3** (first-party `instruction_following` and multilingual scores) needs new data
-collection but **no new model round** — the highest-value analysis-only option.
+**페일시피케이션 F3**(`first-party` `instruction_following`과 다국어 점수)는 새 데이터 수집이 필요하지만
+**새 모델 라운드는 필요 없다** — 분석만으로 가능한 선택 중 가치가 가장 높다.
 
-## 10. The 4-axis corner is 2025-vintage and two-vendor only
+## 10. 4축 코너는 2025년식이고 두 회사뿐이다
 
-All six models reaching 4 axes are from **2025-04-14 to 2025-10-15**, and all are OpenAI or
-Anthropic: `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `gpt-5-mini`, `claude-haiku-4-5`,
-`claude-sonnet-4-5`. The fourth axis is BFCL, **last updated 2026-04-12**.
+4개 축에 도달하는 여섯 개 모델은 모두 **2025-04-14~2025-10-15** 출신이고 전부 OpenAI 또는 Anthropic다:
+`gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `gpt-5-mini`, `claude-haiku-4-5`, `claude-sonnet-4-5`.
+네 번째 축이 BFCL이고 **마지막 갱신이 2026-04-12**다.
 
-**2026 flagships are missing from that corner by data staleness, not by weakness.** Reading it as
-"the subject resembles a 2025 mid-tier model" is a restatement of the fact that the instrument
-can only see that corner. More data makes this bias *worse*, not better: the axis that arrives
-last is the stale one.
+**2026 플래깅십이 그 코너에서 빠진 것은 약해서가 아니라 데이터 낡음 때문이다.** 그걸 "subject가 2025
+중급 모델과 닮았다"로 읽는 것은 도구기가 그 코너만 볼 수 있다는 사실의 재진술일 뿐이다. 데이터가 늘면
+이 편향은 *더 나빠지고* 나아지지 않는다: 마지막에 도착하는 축이 바로 낡은 축이기 때문이다.
 
 ---
 
-## Threats that were found and are **not** counted above
+## 찾아냈지만 위에서 세지 **않은** 위협
 
-Recorded because a reader deserves to know they were checked.
+독자가 확인했다는 것을 알 자격이 있으므로 적어 둔다.
 
-| checked | result |
+| 확인한 것 | 결과 |
 |---|---|
-| workspace content leaking into answers | **0 of 184** answers reference the charter, the repository source, or the agent protocols. 181 of 184 records carry `pure=true, format=json, cwd=<isolated temp dir>`; the other 3 are synthetic failure records that never spawned a subprocess |
-| per-run boilerplate leakage | 2 of 176 (1.14%), **directional bias 0**; the item is clean in its other repetition, so it is a per-run coin flip, not a per-item property |
-| "someone is still awake" flagged as a tool-written note | **false positive** — it is that item's own natural English answer and the forbidden word (`basically`) was avoided |
-| answers re-rolled until correct | **never** — a run that produced an answer is not retried, by design and in code |
-| malformed or unparseable model output | 0 runs |
-| harness self-consistency | 72 unit tests + 824 item-bank checks + 234 statistical checks, 0 failures |
-| adjudicated log determinism | two consecutive runs byte-identical |
-| raw log integrity | md5 unchanged before/after the audit; no adjudication field leaked into it |
-| cross-round verdict consistency | 8/8 shared run_ids get the same verdict in two independent rounds, including the structural exclusion |
-| `json_schema` fail-open bug | present in the code, **0 impact on this round** — all 16 items carry byte-identical `expected` and `scorer_args.schema` |
-| double-counted transport failures | 2 runs were simultaneously 1.1% unreliability and 1.1% accuracy failure; fixed in the adjudicated denominator, **not** in the code |
+| 답변으로 새는 워크스페이스 내용 | **184개 중 0개** 답이 헌장, 저장소 소스, 에이전트 프로토콜을 참조한다. 184개 레코드 중 181개가 `pure=true, format=json, cwd=<isolated temp dir>`를 갖고 있고, 나머지 3개는 서브프로세스를 한 번도 띄우지 않은 합성 실패 레코드다 |
+| 실행 단위 보일러플레이트 누출 | 176회 중 2회(1.14%), **방향성 편향 0** 해당 문항은 다른 반복에서 깨끗하므로 문항 속성이 아니라 실행 단위의 동전 던지기다 |
+| `"someone is still awake"`가 도구가 쓴 노트로 표시됨 | **오탐** — 그 문항 자신의 자연스러운 영어 답이고 금지어(`basically`)는 피했다 |
+| 정답이 나올 때까지 다시 굴린 답 | **전혀 없음** — 답을 내놓은 실행은 설계와 코드 모두에서 재시도하지 않는다 |
+| 형식이 깨졌거나 파싱 불가한 모델 출력 | 0회 |
+| 하네스 자기 일관성 | 단위 테스트 72개 + 문항 뱅크 검사 824개 + 통계 검사 234개, 0 failures |
+| 심사 후 로그의 결정성 | 연속 두 실행이 바이트 단위로 같다 |
+| 원본 로그 무결성 | 감사 전후 md5 불변. 심사 필드가 새어 들어간 자 없다 |
+| 라운드 간 판정 일관성 | 공유 run_id 8/8이 두 독립 라운드에서 같은 판정을 받는다. 구조적 제외도 포함해서 |
+| `json_schema` fail-open 버그 | 코드에 존재한다. **이번 라운드 영향 없음** — 16개 문항 전부가 바이트 단위로 같은 `expected`와 `scorer_args.schema`를 갖는다 |
+| 이중 계상된 운송 실패 | 2회 실행이 동시에 1.1% 비신뢰와 1.1% 정확도 실패였다. 심사 후 분모에서 고쳤고, 코드에서는 **아니다** |
 
 ---
 
-## The harness defects this repository ships with
+## 이 저장소가 함께 배포하는 하네스 결함
 
-Fixed in the numbers, **not** in the code, because patching mid-round would change what a re-run
-means while the round is live. Full detail in [`METHODOLOGY.md`](METHODOLOGY.md) §3 and
+숫자에서는 고쳤고, 코드에서는 **아니다.** 라운드 도중에 고치면 라운드가 살아 있는 동안 재실행의
+의미가 바뀌기 때문이다. 자세한 내용은 [`METHODOLOGY.md`](METHODOLOGY.md) §3과
 `data/qc-summary.json`.
 
-| file:line | defect |
+| file:line | 결함 |
 |---|---|
-| `harness/runner.mjs:328` | temporal dead zone on `const outChunks` (`:331`) — the `catch` throws from inside a catch, so the promise **rejects**, violating the documented contract at `:278` |
-| `harness/pool.mjs:244` | `applyScore` runs on failure records, so `answer: ''` becomes `passed: false` |
-| `harness/aggregate.mjs:81-83` | `isScored` checks neither `r.failure` nor the answer, while its docstring and `harness/README.md` both claim it does — **a false contract** |
-| `harness/scorers.mjs:407` | `json_schema` reads the schema from `item.expected` instead of `item.scorer_args.schema`, and a non-object schema fails **open**. Measured impact on this round: 0 |
-| `harness/scorers.mjs:332` | `numeric` reads the **first** number in the text (documented in its own comment), so a correct multi-step trace that starts at step 1 scores wrong |
-| abstention item patterns | open with `^(?![\s\S]*\d)`, forbidding **any digit** in the answer — the sole blocker in 5 of 6 affected runs |
+| `harness/runner.mjs:328` | `const outChunks`(`:331`)의 temporal dead zone — `catch`가 catch 안에서 던지므로 promise가 **reject**된다. `:278`의 문서화된 계약 위반 |
+| `harness/pool.mjs:244` | `applyScore`가 실패 레코드에서도 실행되어 `answer: ''`가 `passed: false`가 된다 |
+| `harness/aggregate.mjs:81-83` | `isScored`가 `r.failure`도 답도 보지 않는다. 그런데 docstring과 `harness/README.md`는 둘 다 그렇다고 적고 있다 — **거짓 계약** |
+| `harness/scorers.mjs:407` | `json_schema`가 `item.scorer_args.schema` 대신 `item.expected`에서 스키마를 읽고, 오브젝트가 아닌 스키마는 **open**으로 실패한다. 이번 라운드에 대한 실측 영향: 0 |
+| `harness/scorers.mjs:332` | `numeric`이 텍스트의 **첫 번째** 숫자를 읽는다(자기 주석에도 적혀 있다). 그래서 1단계에서 시작하는 올바른 다단계 추적이 오답으로 채점된다 |
+| abstention 문항 패턴 | `^(?![\s\S]*\d)`로 시작해서 답변의 **모든 숫자**를 금지한다 — 영향을 받은 6회 실행 중 5회에서 유일한 차단자였다 |
 
-**Two of these are design lessons rather than typos.** The lookahead makes the *more informative*
-abstention the *more certain* failure. The `numeric` first-number rule makes a *correct
-multi-step trace* the *wrong* answer. In both cases the scorer encodes a simpler fiction about
-what a good answer looks like than the task actually requires.
+**이 중 둘은 오타가 아니라 설계 교훈이다.** 그 룩어헤드는 *정보성이 높은* 기권을 *더 확실한* 실패로
+만든다. `numeric`의 첫 숫자 규칙은 *올바른 다단계 추적*을 *오답*으로 만든다. 두 경우 모두 스코어러가
+과업이 실제로 요구하는 것보다 단순한 신화를 "좋은 답의 모습"으로 새기고 있다.
 
-**Additionally, one item is unmeasurable through a command-line harness:** `lc-needle-08`'s
-prompt is 180,351 characters and Linux caps a single `argv` element at 131,072
-(`MAX_ARG_STRLEN`), so `spawn` throws `E2BIG` synchronously and the model is never called.
-Measured: 131,000 → ok, 131,073 → `E2BIG`. It is the **only** such item of 88. Passing it would
-require stdin or a file, not a longer command line.
+**추가로, 커맨드라인 하네스로 측정할 수 없는 문항이 하나 있다:** `lc-needle-08`의 프롬프트는
+180,351자이고 Linux는 `argv` 원소 하나를 131,072(`MAX_ARG_STRLEN`)에서 자른다. 그래서 `spawn`이
+동기적으로 `E2BIG`를 던지고 모델은 한 번도 호출되지 않는다. 실측: 131,000 → ok, 131,073 → `E2BIG`.
+88개 중 **유일한** 그런 문항이다. 통과시키려면 명령줄을 길게 하는 것이 아니라 stdin이나 파일이
+필요하다.
 
 ---
 
-## Privacy scrubbing
+## 개인정보 정소
 
-This repository was assembled from a working tree containing an operator's home directory,
-absolute workspace paths, a GitHub token, and a machine with a fixed hostname. **The assembled
-tree was scanned and scrubbed**; the command and its verbatim clean output are in
-[`PII-SCAN.md`](PII-SCAN.md), so any reader can re-run it.
+이 저장소는 운영자의 홈 디렉터리, 절대 경로 워크스페이스, GitHub 토큰, 고정 호스트네임을 포함한
+워킹 트리에서 조립됐다. **조립된 트리를 스캔하고 정소했다.** 명령과 깨끗한 원문 출력은
+[`PII-SCAN.md`](PII-SCAN.md)에 있으므로 아무 독자나 다시 돌릴 수 있다.
 
-**Deliberately kept**, because they are evidence, not identifiers: the per-run isolated working
-directories (`/tmp/t2bench-XXXXXXXX` — `mkdtemp` names, and the audit cites them as proof that
-isolation ran), model names, benchmark names, public URLs, and every research number.
+**의도적으로 남긴 것** — 식별자가 아니라 증거이기 때문이다: 실행마다 격리된 워킹 디렉터리
+(`/tmp/t2bench-XXXXXXXX` — `mkdtemp` 이름이며, 감사는 격리가 실제로 수행됐다는 증거로 그것을
+인용한다), 모델 이름, 벤치마크 이름, 공개 URL, 그리고 모든 연구 수치.
 
-**Not included:** a GitHub token was present in the measurement environment. It is **not in this
-repository** and nothing here needs one except pushing.
+**포함하지 않은 것:** 측정 환경에 GitHub 토큰이 있었다. 이 저장소에는 **없고** 여기서 토큰이 필요한
+일은 push뿐이다.

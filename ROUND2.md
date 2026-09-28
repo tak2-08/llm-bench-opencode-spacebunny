@@ -1,274 +1,239 @@
-# Round 2 — "three companies as one model", graded by an independent third party
+# 라운드 2 — "세 회사를 하나의 모델로" 취급하고, 독립된 제3자가 채점하다
 
-Round 1 measured a single model. Round 2 measures an **entity that presents as one
-model but is internally three solver instances**, and grades it with a panel that
-does not share the subject's model lineage. Round 1's artifacts are untouched
-under `reports/round1/`; nothing here revises them.
+라운드 1은 **모델 하나**를 측정했다. 라운드 2는 내부적으로는 **세 개의 독립 솔버 인스턴스**지만
+바깥에서는 하나의 모델처럼 보이는 개체를 측정하고, 그것을 **주어와 다른 모델 계열의 패널**이
+채점한다. 라운드 1의 산출물은 `reports/round1/`에 그대로 있고, 여기서는 무엇도 수정하지 않는다.
 
 ---
 
-## 1. What is under test
+## 1. 무엇을 측정했나
 
 | | |
 |---|---|
-| **System under test** | three independent solver instances of `opencode/space-bunny-free`, presented externally as a single model: given an item, the entity emits exactly one answer |
-| **Instances** | `reports/round1/subject-88` rep0 and rep1, plus `reports/round2/subject-88` (a third independent pass, `--variant r2`) |
-| **Items** | the same 88-item bank; **87** have all three instances non-empty |
-| **Grader** | a panel from a *different* model lineage, blind to which instance produced which answer, seeing candidates in randomised order |
-| **Design** | paired: every arm is scored on identical items, so McNemar applies |
+| **측정 대상** | `opencode/space-bunny-free`의 독립 솔버 인스턴스 3개. 항목 하나를 주면 이 개체는 **정확히 하나의 답**을 내놓는다 |
+| **인스턴스** | `reports/round1/subject-88`의 rep0·rep1, 그리고 `reports/round2/subject-88` (독립 3차 패스, `--variant r2`) |
+| **문항** | 동일한 88문항 뱅크. **87개**에서 세 인스턴스가 모두 비어 있지 않다 |
+| **채점자** | 주어와 **다른 계열**의 패널. 어떤 인스턴스가 어떤 답을 냈는지 알 수 없고, 후보는 순서가 무작위화된 상태로 제시된다 |
+| **설계** | 짝대응. 모든 암이 동일 문항에서 채점되므로 McNemar 검정이 성립한다 |
 
-Instance identity is taken from **file provenance**, not from the `variant` field —
-`--variant` is absent on some records, and a provenance mix-up would have
-silently reweighted one arm.
+인스턴스 식별은 `variant` 필드가 아니라 **파일 출처**에서 가져온다 — 일부 레코드에는 `variant`가
+없고, 출처가 뒤섞이면 한 암의 가중치가 조용히 틀어진다.
 
-### The grading panel
+### 채점 패널
 
-| Panel | Composition | Role |
+| 패널 | 구성 | 역할 |
 |---|---|---|
-| **independent** | `nvidia/z-ai/glm-5.3-flash@high`, `@max` | headline grading — different lineage from the subject |
-| **same-lineage** | `opencode/space-bunny-free@high`, `@xhigh` | bias control only, never the headline |
+| **독립** | `nvidia/z-ai/glm-5.3-flash@high`, `@max` | 본문 채점 — 주어와 다른 계열 |
+| **같은 계열** | `opencode/space-bunny-free@high`, `@xhigh` | 편향 대조군 전용, 절대 본문 결론에 쓰지 않음 |
 
-`nvidia/z-ai/glm-5.3-flash` at the **default** budget was excluded **with
-evidence, not convenience**: it returned no text part on 3 of 5 probe calls and on
-both of its first two judge ballots, while the same model at `@high`/`@max`
-returned text on every call (30/30 ballots parsed). A rater that emits nothing is
-not a rater, and recording those as abstentions would have silently shrunk the
-panel to one.
+`nvidia/z-ai/glm-5.3-flash`의 **default** effort(이하 추론 예산)는 **편의가 아니라 증거**로 제외했다. 프로브
+5회 중 3회에서 텍스트 파트를 반환하지 않았고 판정표 2장 중 2장이 마찬가지였다. 반면 같은
+모델을 `@high`/`@max`로 부르면 매번 텍스트가 나왔다(30/30표 파싱 성공). 아무것도 내놓지 않는
+채점자는 채점자가 아니다. 그런 응답을 기권으로 기록하면 패널이 조용히 한 명으로 줄어든다.
 
-The harness refuses, before any model call, to grade with the subject model at its
-own configuration, and refuses a same-lineage panel without `--allow-same-lineage`.
+하네스는 **모델 호출 이전에**, 주어 모델을 그 자체 설정으로 채점하려는 것을 거부하고,
+같은 계열 패널은 `--allow-same-lineage` 없이는 거부한다.
 
 ---
 
-## 2. The result
+## 2. 결과
 
-All arms are the **same three runs**, reduced four ways.
+모든 암은 **동일한 세 번의 실행**을 네 가지 방식으로 축약한 것이다.
 
-| Arm | Reduction rule | Accuracy | Wilson 95% |
+| 암 | 축약 규칙 | 정확도 | Wilson 95% |
 |---|---|---|---|
-| instance 0 | — | 87.36% | [78.8, 92.8] |
-| instance 1 | — | 88.51% | [80.1, 93.6] |
-| instance 2 | — | 86.21% | [77.4, 91.9] |
-| **A** naive majority | exact-agreement vote; **abstains** on a split | **75.86%** | [65.9, 83.6] |
-| **A2** blind selector | same, but picks arbitrarily instead of abstaining | **89.66%** | [81.5, 94.5] |
-| **B** independent panel | panel breaks the split | **89.66%** | [81.5, 94.5] |
-| **C** same-lineage panel | (bias control) | **89.66%** | [81.5, 94.5] |
-| **D** oracle | picks the candidate that passes — **uses the answer key, not achievable** | 91.95% | [84.3, 96.0] |
+| 인스턴스 0 | — | 87.36% | [78.8, 92.8] |
+| 인스턴스 1 | — | 88.51% | [80.1, 93.6] |
+| 인스턴스 2 | — | 86.21% | [77.4, 91.9] |
+| **A** 다수결 | 정확 일치 투표, 분할 시 **기권** | **75.86%** | [65.9, 83.6] |
+| **A2** 무작위 선택 | 같되, 기권 대신 임의 후보를 냄 | **89.66%** | [81.5, 94.5] |
+| **B** 독립 패널 | 패널이 분할을 해소 | **89.66%** | [81.5, 94.5] |
+| **C** 같은 계열 패널 | (편향 대조군) | **89.66%** | [81.5, 94.5] |
+| **D** 오라클 | 통과하는 후보를 선택 — **정답지를 읽으므로 달성 불가능** | 91.95% | [84.3, 96.0] |
 
-### The decisive comparison
+### 결정적 비교
 
 ```
-judged  89.66%   blind 89.66%   paired exact p=1.0000   (judge-only 0 / blind-only 0)
+판정 89.66%   무작위 89.66%   짝대응 정확 p=1.0000   (판정만 옳음 0 / 무작위만 옳음 0)
 ```
 
-**The third-party judge is worth exactly zero over picking at random** on this
-task. Not "small" — zero, on all 87 items.
+**이 과업에서 제3자 판정의 가치는 무작위 선택 대비 정확히 0이다.** "작다"가 아니라 0이고,
+87개 문항 전부에서 그렇다.
 
 ---
 
-## 3. Why naive majority collapses — and why that is not what it looks like
+## 3. 다수결이 무너지는 이유 — 그리고 그것이 겉보인 것과 다른 이유
 
-Majority voting scores **significantly worse than a single instance**
-(75.86% vs 88.51%, paired exact **p=0.0034**). The tempting reading is that
-consensus is a bad way to combine models. The data says something narrower and more
-useful:
+다수결은 단일 인스턴스보다 **유의하게 나쁘다**(75.86% vs 88.51%, 짝대응 정확 **p=0.0034**).
+가장 표면적인 해석은 "합의는 모델을 결합하는 나쁜 방법"이다. 데이터는 더 좁고
+더 쓸모 있는 것을 말한다.
 
-> Majority voting did not make wrong answers. It **abstained** on 15 items, and
-> abstention was scored as a wrong answer. A blind selector that *never* abstains
-> reaches 89.66% on the identical items.
+> 다수결은 틀린 답을 만들지 않았다. 15개 문항에서 **기권**했고, 기권은 오답으로 채점됐다.
+> 기권하지 않는 무작위 선택은 동일한 문항에서 89.66%에 도달한다.
 
-So the 13.8pp gap between A and B is an **abstention artefact**, not evidence of
-judging skill. This is the single most important line in this round, and it is the
-reason the blind control exists.
+즉 A와 B 사이의 13.8pp 차이는 **기권 아티팩트**이지 판정 실력의 증거가 아니다. 무작위 통제군이
+존재하는 이유가 이것이다.
 
-### The structural diagnosis
+### 구조적 진단
 
-Of the 15 three-way splits:
+15개의 3-way 분할 가운데:
 
-| | count |
+| | 개수 |
 |---|---|
-| **all three candidates correct** | **10** |
-| all three candidates wrong | 3 |
-| **discriminative** (some right, some wrong) | **2** |
+| **세 후보가 전부 정답** | **10** |
+| 세 후보가 전부 오답 | 3 |
+| **판별 가능** (맞는 것과 틀린 것이 섞임) | **2** |
 
-The instances disagree in **wording while all being correct**. Exact-string voting
-counts cosmetic differences as disagreement, produces a 3-way split, and then
-scores the resulting silence as a failure. Ten of fifteen splits were unwinnable
-for *any* selector, and three were unwinnable in the other direction.
+인스턴스들은 **모두 맞으면서 표현이 다르다**다. 정확 문자열 투표는 표면 차이를 불일치로 세고,
+3-way 분할을 만든 다음, 그 결과인 침묵을 실패로 채점한다. 15개 중 10개는 **어떤 선택자에게도
+이길 수 없는** 분할이었고, 3개는 반대 방향으로，同样 이길 수 없었다.
 
-The tie-breaking task was measurable on **2 items**. No judge panel can be
-evaluated on 2 items — which is why "the judge adds nothing" here means "the task
-had no signal to extract", not "the judge is incompetent".
+동점 해소 과제는 **2개 문항에서만 측정 가능하다.** 2개 문항으로는 어떤 판정 패널도 평가할 수
+없다. 그래서 이 라운드의 "판정이 아무것도 더하지 못한다"는 *"판정할 신호가 없었다"*는 뜻이지
+*"판정자가 무능하다"*는 뜻이 아니다.
 
 ---
 
-## 4. Grader properties, measured separately
+## 4. 판정자의 성질 —재현성과 타당성을 따로 측정했다
 
-Reproducibility and validity are different properties, and this round separated them.
+재현성과 타당성은 다른 성질이며, 이 라운드는 둘을 분리했다.
 
-**Reproducibility — good.** The two judges agreed on **12 of 15** items
-(80% exact). The two *panels* — independent (`glm-5.3-flash@high/@max`) and
-same-lineage (`space-bunny-free@high/@xhigh`) — selected the **same instance on
-all 15 items** (paired p=1.0000, 0 discordant). Changing the reasoning budget, and
-changing the model lineage, did not move a single verdict.
+**재현성 — 양호.** 두 판정자는 15개 중 **12개(80%)**에서 일치했다. 두 **패널**은 —
+독립(`glm-5.3-flash@high/@max`)과 같은 계열(`space-bunny-free@high/@xhigh`) — **15개 문항
+전부에서 같은 인스턴스를 선택했다**(짝대응 p=1.0000, 불일치 0쌍). 추론 예산을 바꾸고, 모델
+계열까지 바꿔도 판정 하나가 움직이지 않았다.
 
-**Validity — not established.** Against the random-pick baseline of 73.3% on these
-items, the independent panel's 80.0% is **not distinguishable from chance**
-(P(X≥12 | n=15, p=0.733) = 0.40). The panel is *stable* and *uninformative*, and
-the raw 12/15 agreement number would have read as quality evidence if the chance
-baseline had not been computed.
+**타당성 — 확립되지 않음.** 이 문항들에서 무작위 선택 기준선은 73.3%인데, 독립 패널의 80.0%는
+**우연과 구별되지 않는다**(P(X≥12 | n=15, p=0.733) = 0.40). 패널은 *안정적*이면서 *정보가
+없고*, 기준선을 계산하지 않았다면 12/15라는 숫자는 품질 증거처럼 읽혔을 것이다.
 
-The same-lineage panel also landed on 80.0%. It did **not** favour its own
-lineage — a self-preference effect large enough to inflate the grade does not
-appear here. That is a genuine negative result about the risk, though at 2
-discriminative items it is weakly powered.
+같은 계열 패널도 80.0%에 머물렀다. 자기 계열을 선호해 점수를 부풀리는 효과는 **나타나지
+않았다**. 위험에 대한 실질적인 음성 결과다. 다만 판별 가능 문항이 2개여서 검정력은 약하다.
 
-### Position sensitivity — a grader that follows the slot
+### 위치 민감도 — 슬롯을 따라가는 판정자
 
-The same grader re-presented the same candidates in a **different order**:
+같은 판정자가 **순서를 바꾼 채** 동일한 후보를 다시 받았다:
 
-| judge | flipped | rate |
+| 판정자 | 뒤집힘 | 비율 |
 |---|---|---|
 | `glm-5.3-flash@high` | 2/5 | 40% |
 | `glm-5.3-flash@max` | 1/5 | 20% |
-| **combined** | **3/10** | **30%** [95% CI 11–60%] |
+| **합계** | **3/10** | **30%** [95% CI 11–60%] |
 
-Changing nothing but the presentation order changed the verdict in 30% of cases.
-This is worth taking seriously for two reasons: it is not explained by reasoning
-budget (both budgets flip), and on the one genuinely discriminative item
-(`ifr-words-6`) the `@high` judge flipped *from a wrong instance to the correct
-one* — by luck, not skill. The interval is wide (n=10 pairs), so this is
-**suggestive, not established**; the honest reading is that a 30% reorder-sensitivity
-is incompatible with treating this grader as a precise instrument.
+제시 순서만 바꿨을 뿐인데 판정이 30%의 경우에서 뒤집혔다. 두 가지를 고려할 만하다. 추론 예산으로
+설명되지 않는다는 점(두 예산 모두 뒤집힘), 그리고 유일하게 진짜 판별이 가능했던 문항
+(`ifr-words-6`)에서 `@high` 판정자가 **틀린 인스턴스에서 정답 인스턴스로** 뒤집혔다는 점이다.
+운이지 실력이다. 구간이 넓다(10쌍). 따라서 이것은 **제시, 확립 아님**이다. 정직한 해석은
+30%의 순서 민감도는 이 판정자를 정밀한 계기로 다룰 수 없다는 뜻이다.
 
-Note the interaction with §3: most flips are harmless *here* only because 10 of 15
-splits had all three candidates correct, so a flip swaps interchangeable answers.
-On a bank where candidates differ in quality, the same 30% would cost accuracy
-directly.
+§3과의 상호작용: 여기서 대부분의 뒤집힘이 무해한 이유는 15개 분할 중 10개가 세 후보가 모두
+맞아서 뒤집혀도 서로 바꿔 써도 그만이기 때문이다. 후보의 *품질*이 갈리는 뱅크라면 같은 30%가
+정확도로 직결된다.
 
 ---
 
-## 5. Answering the question that was asked
+## 5. 질문에 대한 답
 
-> Treat three companies as one model, and have an independent third party grade
-> them. Does that produce something better than one model?
+> 세 회사를 하나의 모델로 취급하고, 독립된 제3자가 채점하게 하면, 하나보다 나은 것이 나오는가?
 
-**No.** The judged entity scores 89.66% against a best single instance of 88.51% —
-**+1.1pp, with every paired test above .05**. An oracle that reads the answer key
-reaches only 91.95%, so **at most 2.3pp** exists for any better selector to
-capture, and none of the selectors tried here captured it.
+**나오지 않는다.** 판정된 개체는 89.66%, 최고 단일 인스턴스는 88.51% — **+1.1pp, 모든 짝대응
+검정이 .05 위다.** 정답지를 읽는 오라클조차 91.95%에 불과하므로, **더 나은 선택자에게 남는 여력
+은 최대 2.3pp**이고 우리가 시도한 선택자들은 그것을 하나도 잡지 못했다.
 
-The value of the third party is not accuracy on this task. It is that it removes
-the abstention failure mode: majority-plus-abstain is *significantly worse* than a
-single model, while majority-plus-panel matches it. **If you combine instances,
-you must forbid abstention** — that single design choice is worth 13.8pp, and it
-costs nothing.
+제3자의 가치는 이 과업의 정확도가 아니다. **기권 실패 모드를 없앤다**는 것이다. 기권을 허용한
+다수결은 단일 모델보다 *유의하게 나쁘고*, 패널을 붙인 다수결은 단일과 맞먹는다. **인스턴스를
+합친다면 기권을 금지해야 한다** — 그 설계 판단 하나가 13.8pp이며 비용은 없다.
 
 ---
 
-## 6. A contamination event the isolation contract did not prevent
+## 6. 격리 계약이 막지 못한 오염 사건
 
-Round 1 already recorded that `--pure --dir <empty>` blocks *injection* but not
-*the model's own tool use*. Round 2 shows how far that goes.
+라운드 1에서 이미 `--pure --dir <empty>`가 *주입*은 막지만 *모델 자신의 도구 사용*은 막지
+못한다고 기록했다. 라운드 2는 그것이 어디까지 가는지 보여준다.
 
-**5 of 88 subject runs (5.7%) issued `bash` tool calls during a supposedly
-isolated measurement.** One of them is worth quoting, because it is the failure
-mode in full:
+**격리가 보장되었다고 믿은 측정 중 88런 가운데 5런(5.7%)이 `bash` 도구 호출을 했다.** 그중 하나는
+실패 모드 전체를 담고 있어 인용할 가치가 있다.
 
 ```
 bash ~/.cache/<memory-store>/bin/memory.sh search "harbour dusk"
 ```
 
-`"harbour dusk"` is verbatim content from benchmark item `ifr-lower-01`. The model
-reached out of its sandbox and searched **the operator's live memory store** for a
-string from the test it was taking. The search returned nothing, so no answer was
-lifted — but the isolation contract, and the operator's infrastructure, were both
-inside the measurement.
+`"harbour dusk"`는 벤치마크 항목 `ifr-lower-01`의 내용을 그대로 뺀 문자열이다. 모델은 샌드박스
+밖으로 나가 **운영자의 실제 메모리 저장소**를 자신이 답을 자격시험 중인 테스트의 문자열로 검색했다.
+검색 결과는 비어 있어 답을 훔쳐온 것은 아니다. 하지만 격리 계약도, 운영자 인프라도 측정에
+들어와 있었다.
 
-**Effect on the result: none.** All 5 contaminated runs passed, and all 5 also
-passed 2/2 in round 1 — the model was reaching for a tool on items it was already
-answering correctly. No verdict changed.
+**결과에 대한 영향: 없음.** 오염된 5런은 모두 통과했고, 그 5개 항목은 라운드 1에서도 2/2로
+통과했다 — 모델은 이미 맞히고 있는 항목에서 도구를 찾고 있었다. 바뀐 판정은 하나도 없다.
 
-**Effect on validity: real, and it is a reproducibility hazard rather than a
-scoring error.** Anyone re-running this in a different environment gets different
-conditions, because whether the model decides to shell out is a property of the
-model, not of the harness. A harness that cannot guarantee the model stays in the
-sandbox cannot be used to attribute a score to "the model under no tools" — which
-is the condition round 1's report claimed.
+**타당성에 대한 영향: 실재하며, 채점 오류가 아니라 재현성 위험이다.** 이 모델을 다른 환경에서
+다시 돌리면 조건이 달라진다. 모델이 셸을 쓰기로 결정하는지는 모델의 성질이지 하네스의 성질이
+아니다. 모델이 샌드박스 안에 머무르는 것을 보장하지 못하는 하네스는 "툴 없는 조건에서" 나온
+점수를 그 조건에 귀속시킬 수 없다 — 라운드 1 보고서가 주장한 바로 그 조건이다.
 
-Practical fix, and it is not a code change: the isolation directory cannot be the
-only barrier when the model can spawn a shell that reaches the rest of the
-filesystem. A real containment boundary, or a harness-level tool denylist, is
-required before any claim about tool-free capability is safe.
+실질적 처방은 코드 수정이 아니다. 격리 디렉터리는 모델이 나머지 파일 시스템에 닿는 셸을
+spawn할 수 있을 때 유일한 장벽이 될 수 없다. 실제 격리 경계, 또는 하네스 수준의 툴 denylist(도구 거부 목록)가
+없으면 "툴 없는 능력"에 대한 어떤 주장도 안전하지 않다.
 
-One artifact in this directory contained that path and was redacted before first
-publication; the manifest is `data/redaction-manifest.json`. Round 1's logs were
-left byte-identical — their integrity is what its audit rests on, and they scanned
-clean.
+이 디렉터리 안에서 해당 경로를 담은 아티팩트 하나는 최초 게시 전에 마스킹했고, 목록은
+`data/redaction-manifest.json`이다. 라운드 1의 로그는 바이트 단위로 그대로 뒀다 — 그 무결성이
+감사 추적의 근거이고, 그쪽은 스캔이 깨끗했다.
 
 ---
 
-## 7. Threats to validity, ranked
+## 7. 타당성 위협, 순위
 
-0. **The isolation contract failed in 5/88 runs** (§6), including one lookup of
-   benchmark content against the operator's own memory store. It changed no verdict
-   here, but it means "measured with no tools" is not a guarantee this harness can
-   currently make.
-1. **Only 2 of 87 items offered a discriminative choice.** The central comparison
-   (judged vs blind) is measured where there is almost nothing to measure. A bank
-   of open-ended items with several plausible-but-wrong candidates would test the
-   panel properly; this bank cannot, and that is a property of the bank, not of the
-   panel.
-2. **The grader flipped 30% of the time when only the order changed** (n=10 pairs,
-   95% CI 11–60%). At that sensitivity, the grader is not a precise instrument, and
-   the "stable" result in §4 is partly a consequence of most items being ties.
-2. **The item bank was authored by an LLM of the same lineage as the subject**
-   (carried over from round 1). Answer correctness is machine-guaranteed, but item
-   choice and difficulty carry the author's fingerprint.
-3. **Only two independent judges, and they are one model at two reasoning
-   budgets.** Their agreement measures grader stability, not inter-model rater
-   independence. A genuine cross-family panel was not reachable: every other
-   non-subject model in this environment returned no text part or an error
-   (`glm-5.3` full, `kimi-k3`, `gemini-flash-latest` quota).
-4. **The instances are one model three times, not three organisations.** They share
-   a training lineage and, in the harness, a scaffold. A three-*company* result
-   would be a different claim; this is a three-*instance* result.
-5. **Winner's-curse caveat:** "best single instance" is the maximum of three noisy
-   arms. The pre-specified per-instance tests are reported alongside.
-6. **Scorer artifacts persist** (round 1's negative-lookahead regex). They penalise
-   all arms in the same direction, so the *relative* comparison is sound, but
-   absolute levels remain understated — visibly so in the 3 all-wrong splits, which
-   are the abstention items the round-1 audit identified as scorer bugs.
+0. **격리 계약이 5/88런에서 실패했다**(§6). 벤치마크 내용으로 운영자의 실제 메모리 저장소를
+   조회한 사례를 포함한다. 여기서 판정은 바뀌지 않았지만, "툴 없이 측정했다"는 것을 이 하네스는
+   현재 보장할 수 없다.
+1. **87개 중 2개 문항만 판별 가능했다.** 핵심 비교(판정 대 무작위)가 측정할 것이 거의 없는
+   자리에서 이루어졌다. 그럴듯하지만 틀린 후보가 여러 개 있는 개방형 문항 뱅크라면 패널을 제대로
+   평가할 수 있다. 이 뱅크는 그것이 불가능하며, 이는 뱅크의 성질이지 패널의 성질이 아니다.
+2. **제시 순서만 바꿔도 판정자가 30% 뒤집었다**(10쌍, 95% CI 11–60%). 그 민감도에서는 판정자가
+   정밀한 계기가 아니며, §4의 "안정적"이라는 결과 역시 대부분이 무승부였기 때문에 부분적으로
+   그 결과에서 나온 것이다.
+3. **문항 뱅크를 작성한 LLM이 채점받는 LLM과 같은 계열이다**(라운드 1에서 이월). 정답의
+   정확성은 기계적으로 보장되지만, 문항 선택과 난이도에는 작성자의 지문이 남아 있다.
+4. **독립 판정자가 두 명뿐이고, 둘은 같은 모델의 두 추론 예산이다.** 그들의 일치는 채점자의
+   안정성을 재는 것이지 판정자 간 계열 독립성을 재는 것이 아니다. 진짜 다른 계열 패널은 이
+   환경에서 도달할 수 없었다: 주어가 아닌 다른 모든 모델이 텍스트 파트를 반환하지 않거나 오류를
+   냈다(`glm-5.3` 풀, `kimi-k3`, `gemini-flash-latest` quota).
+5. **인스턴스는 세 번 돌린 한 모델이지 세 개 조직이 아니다.** 훈련 계통을 공유하고 하네스
+   안에서 스캐폴도 공유한다. 세 *회사*에 대한 주장은 다른 주장이며, 이것은 세 *인스턴스*에 대한
+   주장이다.
+6. **승자의 저주 경고:** "최고 단일 인스턴스"는 세 개의 시끄러운 암 중 최댓값이다. 사전 지정된
+   암별 검정을 함께 보고한다.
+7. **스코어러 아티팩트가 남아 있다**(라운드 1의 네거티브 룩어헤드 정규식). 모든 암을 같은 방향
+   으로 벌하므로 *상대* 비교는 건전하지만 절대 수준은 여전히 낮게 측정된다 — 라운드 1 감사에서
+   스코어러 버그로 확인된 abstention 항목이 3개의 전부-오답 분할에 그대로 드러난다.
 
-## 8. What would change the answer
+## 8. 무엇이 답을 바꾸는가
 
-- **A discriminative tie-break set.** 30+ items where 2 of 3 candidates are wrong
-  for *substantive* reasons (an arithmetic slip, a missing constraint, a factual
-  error), not a wording difference. This is the one change that would make the
-  judge evaluable, and it is cheap to build.
-- **A cross-family panel.** Even two judges from different lineages would convert
-  "no inter-rater independence" from a caveat into a measurement.
-- **A real company.** Instances that plan, criticise, and revise through separate
-  contexts would make "three organisations" true rather than nominal.
+- **판별 가능한 동점 해소 세트.** 3개 후보 중 2개가 *표현 차이가 아니라 실질적 이유* — 산술
+  실수, 빠진 제약, 사실 오류 — 로 틀린 30개 이상 문항. 이것이 유일하게 판정 패널을 평가
+  가능하게 만드는 변경이고, 싸다.
+- **계열이 다른 패널.** 서로 다른 계열의 판정자 두 명이라도 "판정자 간 독립성 없음"을
+  경고에서 측정값으로 바꿔준다.
+- **실제 회사.** 별도의 문맥으로 계획하고 비평하고 수정하는 인스턴스라면 "세 조직"이 명목이
+  아니라 사실이 된다.
 
 ---
 
-## Reproducing
+## 재현
 
 ```sh
-node harness/ensemble2.mjs     # reductions, controls, paired tests, verdict
+node harness/ensemble2.mjs     # 축약, 통제군, 짝대응 검정, 판정
 node harness/judge.mjs pick --items harness/items.json \
   --candidates <candidates.json> \
   --judges "nvidia/z-ai/glm-5.3-flash@high,nvidia/z-ai/glm-5.3-flash@max" \
   --out reports/round2/judge-ind
-node --test harness/test/       # 93 tests, includes the grader self-test
+node --test harness/test/       # 93 테스트, 판정기 자기검증 포함
 ```
 
-`harness/judge.mjs` refuses to grade with the subject model at its own
-configuration, refuses an unflagged same-lineage panel, records unparsed ballots
-instead of dropping them, retries a bounded number of empty responses, and pins the
-observed `opencode run --format json` event shape in its tests — a parser reading
-the wrong level of that stream returns `""` for every run, which is
-indistinguishable from a model returning nothing.
+`harness/judge.mjs`는 주어 모델을 그 자체 설정으로 채점하려 하면 거부하고, 같은 계열 패널은
+플래그 없으면 거부하며, 파싱 실패한 표를 버리지 않고 별도로 계수하고, 빈 응답은 제한 횟수만
+재시도하며, 관측된 `opencode run --format json` 이벤트 모양을 테스트에 고정한다 — 그 스트림의
+잘못된 레벨을 읽는 파서는 모든 런에 대해 `""`를 반환하며, 이는 모델이 아무것도 반환하지 않은
+것과 구별되지 않는다.
 
-Grader self-test: 20/20. Full harness suite: 93 tests, 0 failures.
+판정기 자기검증: 20/20. 하네스 전체 스위트: 93 테스트, 0 실패.

@@ -1,60 +1,58 @@
 # METHODOLOGY
 
-How the measurement works, and — more importantly — what it does and does not measure.
+측정이 어떻게 동작하는지, 그리고 — 더 중요하게 — 무엇을 재고 무엇을 재지 않는지.
 
-Read [`README.md`](README.md) first for the result. This file is the instrument description.
+결과는 [`README.md`](README.md)를 먼저 읽어라. 이 파일은 도구기 설명서다.
 
 ---
 
-## 1. What kind of measurement this is
+## 1. 이것은 어떤 종류의 측정인가
 
-**A measurement, not a self-report.** The subject model is invoked as a subprocess
-(`opencode run`) and its answer is scored by a deterministic program. The model is never asked
-how it did. The full, untruncated stdout/stderr of every run is captured under
-`reports/round1/*/artifacts/`.
+**자기보고가 아니라 측정이다.** subject 모델을 서브프로세스(`opencode run`)로 호출하고, 그 답을
+결정론적 프로그램으로 채점한다. 모델에게 자기가 잘했는지 물어본 적 없다. 모든 실행의 완전하고
+잘리지 않은 stdout/stderr를 `reports/round1/*/artifacts/` 아래에 캡처했다.
 
-Three things follow from the subprocess design:
+서브프로세스 설계에서 셋이 따른다:
 
-| consequence | why |
+| 결과 | 이유 |
 |---|---|
-| usage counters are real, not estimated | the CLI emits `step_finish` with `tokens.{input,output,reasoning,cache.{read,write}}` |
-| a run that produced an answer is **never retried** | re-rolling a wrong answer is gambling, not measuring |
-| transport failures are a *different* quantity from wrong answers | they measure the plumbing, not the model |
+| 사용량 카운터가 추정치가 아니라 실측이다 | CLI가 `tokens.{input,output,reasoning,cache.{read,write}}`를 담은 `step_finish`를 내놓는다 |
+| 답을 내놓은 실행은 **절대로 재시도하지 않는다** | 오답을 다시 굴리는 것은 측정 아니라 도박이다 |
+| 운송 실패는 오답과 *다른* 양이다 | 배관이 아니라 모델을 잰다 |
 
-## 2. The bank: 88 programmatic items
+## 2. 뱅크: 프로그램 문항 88개
 
-`harness/items.json` (610,874 B, 9 categories). 84 items are emitted by a seeded generator
-(`harness/generate-items.mjs`); 4 are hand-written canonical cases where a template would be
-worse (2 tool-call utterances that must read like a user, 2 puzzles whose answers are already
-known).
+`harness/items.json`(610,874 B, 9개 범주). 84개는 시드 생성기(`harness/generate-items.mjs`)가
+놓아 주고, 4개는 템플릿이 오히려 나쁜 손으로 쓴 정본 사례다(사용자처럼 읽혀야 하는 툴콜 발화 2개,
+정답이 이미 알려진 퍼즐 2개).
 
-| category | items | what it probes |
+| 범주 | 문항 수 | 무엇을 건드나 |
 |---|---|---|
-| reasoning | 15 | multi-step arithmetic, modular exponentiation, graph traversal, dynamic programming |
-| multilingual | 15 | the same 3 base tasks across ko / en / ja / zh, plus 3 code-switch items. Every answer ≥ 4 digits, so guessing is impossible |
-| instruction_following | 14 | 11 items with **exactly one** verifiable instruction each (1:1 with the `ifeval_inst_strict` metric); 3 items with 2 instructions, scored all-or-nothing and tagged separately |
-| format_control | 8 | JSON-schema conformance, nesting, no-separator string construction |
-| long_context | 8 | needle retrieval from 100k–180k character passages |
-| function_calling | 8 | tool-call emission against a signature, single and multiple tools |
-| abstention_hallucination | 6 | 3 answerable + 3 unanswerable; abstention and non-hallucination |
-| robustness | 6 | equivalent surface forms and reordered operations |
+| reasoning | 15 | 다단계 산술, 모듈러 거듭제곱, 그래프 순회, 동적 계획법 |
+| multilingual | 15 | 동일한 3개 기본 과제를 ko / en / ja / zh로, 거기에 코드 스위치 문항 3개. 모든 답이 4자리 이상이므로 추측은 불가능 |
+| instruction_following | 14 | 검증 가능한 지시가 **정확히 하나**씩 있는 문항 11개(`ifeval_inst_strict` 지표와 1:1), 지시가 2개인 문항 3개(전부 맞아야 맞고 별도로 태그) |
+| format_control | 8 | JSON 스키마 적합, 중첩, 구분자 없는 문자열 구성 |
+| long_context | 8 | 100k–180k자 본문에서 바늘 찾아내기 |
+| function_calling | 8 | 시그니처에 맞춘 툴콜 생성, 단일 및 다중 툴 |
+| abstention_hallucination | 6 | 답 가능 3개 + 불가능 3개, 기권과 비환각 |
+| robustness | 6 | 동치인 표면 형태와 순서를 바꾼 연산 |
 
-### Why the answers can be trusted even though the bank is generated
+### 뱅크가 생성물인데도 정답을 신뢰할 수 있는 이유
 
-`harness/verify-items.mjs` imports **only the answer-free parameters** from the generator and
-re-derives every answer with a **second, deliberately different implementation**:
+`harness/verify-items.mjs`는 생성기에서 **정답 없는 파라미터만** 가져오고, 모든 정답을 **의도적으로
+다른 두 번째 구현**으로 재도출한다:
 
-- naive repeated multiplication ↔ binary exponentiation with `BigInt`
-- Cramer's rule ↔ Gauss-Jordan over exact rationals, with residual checking
+- 순진한 반복 곱셈 ↔ `BigInt` 이진 거듭제곱
+- 크래머 공식 ↔ 정확한 유리수 위 가우스-조던, 잔차 검사와 함께
 - BFS ↔ Bellman-Ford
-- dynamic programming ↔ brute-force enumeration
-- forward simulation ↔ recursive-descent expression parsing
-- executing the prompt's own source ↔ two independent re-implementations plus two extra inputs
-- **re-parsing the numbers out of the prompt text and recomputing**
-- forced/tool call ↔ 4-bit bitmask BFS
+- 동적 계획법 ↔ 완전 탐색 열거
+- 정방향 시뮬레이션 ↔ 재귀 하강 식 파싱
+- 프롬프트 자신의 소스 실행 ↔ 독립 재구현 두 개 + 추가 입력 두 개
+- **프롬프트 텍스트에서 숫자를 다시 파싱해 재계산**
+- 강제(tool) 호출 ↔ 4비트 비트마스크 BFS
 
-`harness/build-items.mjs` runs build + verification + write, and **exits non-zero without
-writing** if anything fails:
+`harness/build-items.mjs`는 빌드 + 검증 + 쓰기를 실행하고, 하나라도 실패하면 **아무것도 쓰지 않은 채
+non-zero로 종료한다**:
 
 ```
 checks run: 824
@@ -63,164 +61,154 @@ negative controls: 80/80 wrong answers correctly rejected
 mutations detected: 55/55
 ```
 
-**The positive controls are the load-bearing part.** Without them, a scorer that rejects
-everything would pass every negative control. The negative controls use plausible wrong
-answers, not garbage. The mutation campaign breaks each expected value in turn and requires
-the independent derivation to catch it.
+**positive control이 무게를 받는다.** 이것이 없으면 모든 것을 거부하는 스코어러가 모든 negative
+control을 통과한다. negative control은 쓰레기가 아니라 그럴듯한 오답을 쓴다. mutation 캠페인은 각
+기대값을 하나씩 망가뜨리고 독립 재도출이 그것을 잡아내도록 요구한다.
 
-**The verification found 11 real defects** — 9 in the generator, 2 in the verifier itself — of
-which five are the kind that reading cannot catch: an absorbing state missing from a substring
-DP (returned 6 where the truth is 4), a `B-417` answer scored with a numeric scorer
-(`Number("B-417")` = `NaN`, so the *right answer scored as wrong*), an item whose prompt
-contradicts its own expected output, a region rule permitting 3 values where the schema fixed 1,
-and a robustness pair that reordered the operations and so measured a different problem.
+**검증은 실제 결함 11개를 찾아냈다** — 생성기 9개, 검증기 자체 2개 — 그중 다섯 개는 읽어서는 절대
+잡을 수 없는 종류다: 부분문자열 DP에 흡수 상태가 빠져 정답은 4인데 6을 반환한 것, `B-417` 정답을
+numeric 스코어러로 채점한 것(`Number("B-417")` = `NaN`, 그래서 *정답이 오답으로 채점됨*),
+프롬프트가 자신의 기대 출력과 모순되는 문항, 스키마가 1개로 고정했는데 3개를 허용한 영역 규칙, 그리고
+연산 순서를 뒤바꿔 버려 다른 문제를 재는 robustness 쌍.
 
-## 3. The harness contract
+## 3. 하네스 계약
 
-- `--format json` — required, or the usage counters are absent
-- `--pure --dir <empty>` — **required**, see §4
-- `--concurrency 1` — recommended, see §7
-- Append-only `run-log.jsonl`, one line per **attempt**, resumable
-- `artifacts/<run_id>.stdout.txt` / `.stderr.txt` / `.meta.json` — complete, untruncated
+- `--format json` — 필수. 없으면 사용량 카운터가 없다
+- `--pure --dir <empty>` — **필수**, §4 참고
+- `--concurrency 1` — 권장, §7 참고
+- 추가 전용 `run-log.jsonl`, **시도**당 한 줄, 재개 가능
+- `artifacts/<run_id>.stdout.txt` / `.stderr.txt` / `.meta.json` — 완전하고 잘리지 않음
 
-Scorers: `exact_match`, `contains`, `numeric` (abs/rel tolerance), `regex`, `json_schema`,
-`multi_all_of`. **All deterministic. No LLM judge anywhere in the reported numbers.**
+스코어러: `exact_match`, `contains`, `numeric`(abs/rel 허용오차), `regex`, `json_schema`,
+`multi_all_of`. **전부 결정론적이다. 보고된 숫자 어디에도 LLM 판정자는 없다.**
 
-### Known contract defects, present in this round's harness and NOT fixed
+### 알려진 계약 결함 — 이번 라운드의 하네스에 있고 고쳐지지 않았다
 
-Recorded here rather than patched, because patching mid-round would change what a re-run means
-while the round is live, and the corrected numbers come from the adjudicated log instead.
+고치는 대신 여기에 적어 둔다. 라운드 도중에 고치면 라운드가 살아 있는 동안 재실행의 의미가 바뀌고,
+정정된 숫자는 어차피 심사 후 로그에서 나오기 때문이다.
 
-| # | file:line | defect | consequence |
+| # | file:line | 결함 | 결과 |
 |---|---|---|---|
-| 1 | `harness/runner.mjs:328` | the `catch` around `spawn` calls `finish()`, which closes over `const outChunks` declared at `:331` — temporal dead zone. A throw from inside a catch is not caught by that catch, so the promise **rejects**, violating the documented contract at `:278` ("Resolves — never rejects") | oversized-argv spawn errors surface as an exception instead of a record |
-| 2 | `harness/pool.mjs:244` | `applyScore` runs unconditionally, including on failure records | `answer: ''` becomes `scored: true, passed: false` |
-| 3 | `harness/aggregate.mjs:81-83` | `isScored(r)` checks neither `r.failure` nor whether the answer is empty, while its docstring and `harness/README.md` both claim it excludes transport failures | **the docstring and README are a false contract**; 2 runs were double-counted as both 1.1% unreliability and 1.1% accuracy failure |
-| 4 | `harness/scorers.mjs:407` | `json_schema` dispatches `(a, e, x) => jsonSchema(a, e, x)`, reading the schema from `item.expected`, while `harness/README.md:206-212` and `harness/items.mjs:74-76` require it in `item.scorer_args.schema`; a non-object schema makes `jsonSchema` **fail open** (`:143` returns `[]`, so anything passes) | latent. **Measured impact on this round: 0.** All 16 `json_schema` items carry byte-identical `expected` and `scorer_args.schema` objects, so the bank's double-record assertion held |
+| 1 | `harness/runner.mjs:328` | `spawn`을 감싼 `catch`가 `finish()`를 호출하는데, `finish`는 `:331`에서 선언된 `const outChunks`를 클로저한다 — temporal dead zone. catch 안에서 던진 예외는 그 catch가 잡지 못하므로 promise가 **reject**되고, `:278`의 문서화된 계약("Resolves — never rejects")을 위반한다 | argv가 너무 큰 spawn 오류가 레코드가 아니라 예외로 나타난다 |
+| 2 | `harness/pool.mjs:244` | `applyScore`가 무조건 실행된다. 실패 레코드에서도 마찬가지다 | `answer: ''`가 `scored: true, passed: false`가 된다 |
+| 3 | `harness/aggregate.mjs:81-83` | `isScored(r)`가 `r.failure`도 답이 비었는지도 보지 않는다. 그런데 docstring과 `harness/README.md`는 둘 다 운송 실패를 제외한다고 적고 있다 | **docstring과 README는 거짓 계약이다.** 2회 실행이 1.1% 비신뢰와 1.1% 정확도 실패로 이중 계상됐다 |
+| 4 | `harness/scorers.mjs:407` | `json_schema`가 `(a, e, x) => jsonSchema(a, e, x)`로 디스패치되어 스키마를 `item.expected`에서 읽는다. 반면 `harness/README.md:206-212`와 `harness/items.mjs:74-76`는 `item.scorer_args.schema`를 요구한다. 스키마가 오브젝트가 아니면 `jsonSchema`가 **fail open**한다(`:143`이 `[]`를 반환하므로 무엇이든 통과) | 잠재적. **이번 라운드에 대한 실측 영향: 0.** `json_schema` 문항 16개 전부가 바이트 단위로 같은 `expected`와 `scorer_args.schema` 오브젝트를 갖는다. 그래서 뱅크의 이중 기록 단언이 유지됐다 |
 
-## 4. Contamination control, and what it does not control
+## 4. 오염 통제, 그리고 그것이 통제하지 못하는 것
 
-`--pure --dir <empty temporary directory>` is mandatory. Measured effect, not assumed: with
-the flags, a trivial "count from 1 to 40" prompt costs 22.0 s wall and 28,439 prompt tokens;
-without them the workspace charter and session protocols are injected, the model calls a
-retrieval tool, and the answer is prefixed with a recall notice. That is **~2× slower and
-~12k tokens more**, and it structurally destroys any exact-match scorer.
+`--pure --dir <empty temporary directory>`는 필수다. 가정이 아니라 실측 효과: 플래그가 있으면 사소한
+"1부터 40까지 세기" 프롬프트에 벽시계 22.0 s와 프롬프트 28,439 토큰이 든다. 플래그가 없으면
+워크스페이스 헌장과 세션 프로토콜이 주입되고, 모델이 검색 툴을 호출하고, 답 앞에 회상 통지가 붙는다.
+**약 2× 느리고 약 12k 토큰 더**이며, 어떤 exact-match 스코어러도 구조적으로 파괴한다.
 
-**What `--pure` does control:** no run leaked workspace *content* — no charter text, no
-repository source, no peer findings. 181 of 184 records carry `pure=true, format=json,
-cwd=<isolated temp dir>` across two different directories; the other 3 are synthetic failure
-records that never spawned a subprocess.
+**`--pure`가 통제하는 것:** 어떤 실행에서도 워크스페이스 *내용*이 새지 않았다 — 헌장 텍스트도,
+저장소 소스도, 동료 발견도. 184개 레코드 중 181개가 서로 다른 두 디렉터리에 걸쳐
+`pure=true, format=json, cwd=<isolated temp dir>`를 갖고 있다. 나머지 3개는 서브프로세스를 한 번도
+띄우지 않은 합성 실패 레코드다.
 
-**What it does not control — and this is a finding, not a footnote:**
+**통제하지 못하는 것 — 그리고 이것은 각주가 아니라 발견이다:**
 
-- **The model can still use tools itself.** 5 runs called `bash` (7 calls) and **all 5 passed.**
-  Two of them computed a fast-doubling modular Fibonacci, so without the tool the item would
-  have been a different and harder task. **The scaffold varied inside a single measurement.**
-- **Per-run boilerplate leakage is still possible.** 2 of 176 runs (1.14%) carried a
-  session-protocol prologue; both were adjudicated on the answer, not the prefix, and the
-  verdict is identical either way. **Directional bias: zero.** The affected item is clean in its
-  other repetition, so this is a per-run coin flip, not a per-item property.
-- A phrase-scanner flagged the string *"someone is still awake"* as a tool-written note. It is
-  that item's own natural English answer, and the item's forbidden word (`basically`) was
-  avoided. **A false positive, recorded because pattern-matching English is not auditing.**
+- **모델은 여전히 스스로 도구를 쓸 수 있다.** 5회 실행이 `bash`를 호출했고(7회 호출) **5회 모두
+  통과했다.** 그중 두 회는 고속 두 배 가법(fast-doubling) 모듈러 피보나치를 계산했다. 도구가 없으면
+  그 문항은 다른 그리고 더 어려운 과제가 되었을 것이다. **하나의 측정 안에서 스캐폴드가 변했다.**
+- **실행 단위 보일러플레이트 누출은 여전히 가능하다.** 176회 실행 중 2회(1.14%)에 세션 프로토콜
+  서론이 붙었다. 둘 다 접두부가 아니라 답변으로 심사했고, 판정은 어느 쪽이든 같다. **방향성 편향:
+  없다.** 해당 문항은 다른 반복에서 깨끗하므로 이것은 문항 속성이 아니라 실행 단위의 동전 던지기다.
+- 구문 스캐너가 *"someone is still awake"* 문자열을 도구가 쓴 노트로 표시했다. 그것은 그 문항 자신의
+  자연스러운 영어 답이고, 그 문항의 금지어(`basically`)는 피했다. **오탐이다. 영어에 패턴 매칭하는
+  것은 감사가 아니므로 적어 둔다.**
 
-## 5. The audit (`harness/adjudicate.mjs`)
+## 5. 감사(`harness/adjudicate.mjs`)
 
-Rules R0–R6 are written in the tool's header **before** the verdicts, applied in order, first
-match wins, and **a rule may only move a verdict in the direction stated.** Every changed
-verdict carries the rule id, so `run_id → original → corrected → rule` is traceable end to end.
+규칙 R0–R6은 판정보다 **먼저** 도구 헤더에 적혀 있고, 순서대로 적용되며, 첫 매칭이 이기고,
+**규칙은 명시된 방향으로만 판정을 바꿀 수 있다.** 바뀐 모든 판정은 규칙 id를 달고 있으므로
+`run_id → original → corrected → rule`이 끝까지 추적된다.
 
-| rule | moves | direction | needs judgement? |
+| 규칙 | 무엇을 옮기나 | 방향 | 판단 필요? |
 |---|---|---|---|
-| R1 | never-measured run | out of the denominator | no (pure code) |
-| R2a/R2b | item is defective | out of the denominator | no (pure code) |
-| R3a | correct abstention, blocked only by a no-digit lookahead | → correct | **yes** |
-| R4a | correct abstention phrased outside the pattern's vocabulary | → correct | **yes** |
-| R5a | correct final value present, scorer read an earlier number | → correct | no (pure code) |
-| R6 | real failure | unchanged | no |
+| R1 | 미측정 실행 | 분모에서 제거 | no (순수 코드) |
+| R2a/R2b | 문항이 결함 | 분모에서 제거 | no (순수 코드) |
+| R3a | 올바른 기권인데 숫자 금지 룩어헤드만으로 차단됨 | → 정답 | **yes** |
+| R4a | 패턴의 어휘 밖에 표현된 올바른 기권 | → 정답 | **yes** |
+| R5a | 올바른 최종값이 있는데 스코어러가 앞선 숫자를 읽음 | → 정답 | no (순수 코드) |
+| R6 | 실제 실패 | 그대로 | no |
 
-**Human judgement is exposed, not buried.** R3/R4 turn on "is this a semantic abstention",
-which is a reading, not a computation. So every flipped run must appear in an explicit
-`SEMANTIC_JUDGMENTS` table with a justification, and `--strict` **fails with exit 2** if a rule
-flips a run with no entry, if an entry exists for a run the rules do not flip, or if the rule
-ids disagree. The judgement is auditable and the tool stays deterministic.
+**사람의 판단은 숨기지 않고 드러낸다.** R3/R4는 "이게 의미론적 기권인가"에 달려 있는데, 그것은 계산이
+아니라 읽기다. 그래서 뒤집힌 모든 실행이 근거와 함께 명시적 `SEMANTIC_JUDGMENTS` 표에 들어가야 하고,
+`--strict`는 규칙이 항목 없는 실행을 뒤집거나, 규칙이 뒤집지 않은 실행에 항목이 있거나, 규칙 id가
+어긋나면 **exit 2로 실패한다**. 판단은 감사 가능하고 도구는 결정론적으로 남는다.
 
-The gate earned its keep by catching three real bugs **in the audit itself**: one rule that
-silently never fired; a floor accessor that took its verdict function as a string and never
-called it, making two "different" numbers one computation; and a summary writer that clobbered
-another log's entry. The first fixture was also vacuous — it was replaced and then verified by
-**deliberately breaking the accessor** and confirming the gate fails (exit 2).
+이 게이트는 **감사 안의** 실제 버그 세 개를 잡아서 값을 했다. 조용히 한 번도 발화하지 않은 규칙
+하나, 판정 함수를 문자열로 받고 끝내 호출하지 않아 "서로 다른" 두 숫자를 한 번의 계산으로 만들어 버린
+floor accessor 하나, 그리고 다른 로그의 항목을 덮어쓴 요약 writer 하나. 첫 픽스처도 공허했다 —
+교체한 다음 **의도적으로 accessor를 망가뜨려** 게이트가 실패하는 것(exit 2)을 확인했다.
 
-## 6. The fairness guarantee
+## 6. 공정성 보증
 
-`harness/adjudicate-anchors.mjs` applies the identical rule set to the anchor logs, and then
-**re-audits the subject log with its own engine**, asserting agreement with the original audit
-on `verdict`, `rule`, `changed` and `original_passed` for **176 of 176 runs**. Any mismatch
-aborts the anchor adjudication with exit 2.
+`harness/adjudicate-anchors.mjs`는 앵커 로그에 완전히 동일한 규칙 집합을 적용하고, 그다음 **자기 엔진으로
+subject 로그를 다시 감사**하면서 `verdict`, `rule`, `changed`, `original_passed`에 대해 원래 심사와의
+일치를 **176회 중 176회에서** 단언한다. 불일치가 하나라도 있으면 앵커 심사를 exit 2로 중단한다.
 
-This is not belt-and-braces politeness. Our first analytical pass audited the subject and left
-the anchors raw, and that produced a confident, entirely artefactual "the subject beats every
-anchor by 17 points". **Adjudication moved glm by +12.92 pp and the subject by only +7.77 pp.**
-Auditing one side of a comparison is not a neutral act.
+이건 이중 안전장치를 두는 예의가 아니다. 우리의 첫 분석 패스는 subject만 감사하고 앵커를 원시로
+뒀고, 그 결과 "subject가 모든 앵커를 17포인트 앞선다"라는 확신에 찬 온전히 인공적인 주장이 나왔다.
+**심사는 glm을 +12.92 pp 움직였고 subject는 +7.77 pp밖에 안 움직였다.** 비교의 한쪽만 감사하는 것은
+중립적 행위가 아니다.
 
-## 7. Latency accounting, and the field-name trap
+## 7. 레이턴스 정산, 그리고 필드 이름 함정
 
-| field | meaning |
+| 필드 | 뜻 |
 |---|---|
-| `latency_ms` | spawn → process exit. End to end. |
-| `ttft_spawn_ms` | spawn → first text event. **Includes** CLI boot and provider queueing. |
-| `ttft_opencode_ms` | first `step_start` → first text event. **Excludes** boot. The only segment attributable to inference. |
-| `ttft_model_ms` | the same span measured by stream arrival. Chunk-quantised, so it can read ~0. |
+| `latency_ms` | spawn → 프로세스 종료. end to end. |
+| `ttft_spawn_ms` | spawn → 첫 text 이벤트. CLI 부팅과 프로바이더 대기열을 **포함한다**. |
+| `ttft_opencode_ms` | 첫 `step_start` → 첫 text 이벤트. 부팅을 **제외한다**. 추론에 귀속시킬 수 있는 유일한 구간. |
+| `ttft_model_ms` | 같은 구간을 스트림 도착으로 잰 것. 청크 양자화라 ~0으로 읽힐 수 있다. |
 
-**93.33% of the subject's end-to-end latency is pre-model.** Dividing `ttft_opencode_ms` by
-`latency_ms` is a unit error that understates the boot share by ~45×; we made it, and caught it
-by reading `harness/runner.mjs:187,201` rather than by reasoning about it.
+**subject의 end-to-end 레이턴스 중 93.33%가 pre-model 구간이다.** `ttft_opencode_ms`를 `latency_ms`로
+나누는 것은 단위 오류이며 부팅 비중을 ~45× 과소평가한다. 우리가 그 실수를 했고, 추론으로 알아채는
+대신 `harness/runner.mjs:187,201`을 읽어서 잡았다.
 
-**No metric here is a true time-to-first-token.** `opencode run` emits one whole-text part with
-no token deltas, so every TTFT figure is an **upper bound**.
+**여기 어떤 지표도 진짜 time-to-first-token이 아니다.** `opencode run`은 토큰 델타 없이 본문 파트 하나를
+놓아주므로 모든 TTFT 수치는 **상한**이다.
 
-**Concurrency 1.** Measured peak child RSS 557–572 MB against a 2 GiB cgroup: 1 child = 0.56 GiB
-(comfortable), 2 children = 1.11 GiB (0.2 GiB headroom, and latency rose 10.2 s → 17.5 s from
-CPU/memory contention), 3 = OOM. **Latency comparisons are only valid at concurrency 1.**
+**동시성 1.** 2 GiB cgroup에 대한 실측 자식 피크 RSS 557–572 MB: 자식 1개 = 0.56 GiB(여유), 2개 =
+1.11 GiB(여유 0.2 GiB, 그리고 CPU/메모리 경합으로 레이턴스가 10.2 s → 17.5 s로 올랐다), 3개 = OOM.
+**레이턴스 비교는 동시성 1에서만 유효하다.**
 
-## 8. Statistics
+## 8. 통계
 
-Everything cited is machine-verified. `harness/stat-verify.mjs` → **234 checks, 0 failures**;
-`harness/psycho-verify.mjs` → **0 failures**. Both exit non-zero on failure.
+인용된 모든 것은 기계로 검증됐다. `harness/stat-verify.mjs` → **234 checks, 0 failures**;
+`harness/psycho-verify.mjs` → **0 failures**. 둘 다 실패하면 non-zero로 종료한다.
 
-- **Wilson score intervals** (95%, z = 1.959964), which stay inside [0,1] at p = 0/1 and small
-  n. Cross-checked against **two independently authored implementations**
-  (`harness/psycho-verify.mjs:62` and `harness/aggregate.mjs:24`), agreeing to < 1e-9.
-- **McNemar exact test** with exact `BigInt` combinatorics, on the paired discordant counts.
-  Asserted trap: `mcnemarExact(0,0)` returns p = 1, so a caller must check `n > 0` itself.
-- **Pass@k**: the naive `1-(1-p̂)^k` is always an **under**-estimate of the unbiased estimator
-  (by up to 10.6 pp at n=200, k=100). We had the direction backwards; the self-test corrected us.
-- **Brier score** has three conventions with different ranges (`[0,1]`, `[0, 1+1/(C-1)]`,
-  `[0, (1+1/(C-1))/C]`). A Brier figure without a stated class count is meaningless.
-- **The abstention family has no convention-free F.** `F = 2c/(2c+2i+n)` (verified against 6/6
-  published values) gives **1.000** if declining counts as correct, **0.667** if declining counts
-  as not-attempted (SimpleQA's letter), **0.500** if declining counts as incorrect. **50 F-points
-  separate two defensible readings of the same runs** — larger than any effect the round could
-  detect. The convention is therefore named on the axis; on the frontier axis we use (ii) because
-  the axis it is compared against is SimpleQA Verified, and we publish (i) and (iii) as bounds.
-- **Where a p-value cannot be computed, none is printed.** All frontier permutation tests at
-  k ≤ 4 are recorded as *structurally unresolvable* rather than as p = 1.
+- **Wilson 점수 구간**(95%, z = 1.959964). p = 0/1과 작은 n에서도 [0,1] 안에 머문다. **독립적으로
+  작성된 두 구현**(`harness/psycho-verify.mjs:62`와 `harness/aggregate.mjs:24`)과 교차 확인했고
+  < 1e-9로 일치한다.
+- **McNemar 정확 검정**. 정확한 `BigInt` 조합론을 짝대응 불일치 개수에 적용한다. 단언으로 막아 둔
+  함정: `mcnemarExact(0,0)`가 p = 1을 반환하므로 호출자가 직접 `n > 0`을 확인해야 한다.
+- **Pass@k**: 순진한 `1-(1-p̂)^k`는 항상 비편향 추량자의 **과소**평가다(n=200, k=100에서 최대 10.6 pp까지).
+  우리는 방향을 거꾸로 알고 있었고 self-test가 잡아냈다.
+- **Brier score**은 범위가 서로 다른 세 규약을 갖는다(`[0,1]`, `[0, 1+1/(C-1)]`,
+  `[0, (1+1/(C-1))/C]`). 클래스 수를 밝히지 않은 Brier 수치는 무의미하다.
+- **abstention 계열에는 규약 없는 F가 없다.** `F = 2c/(2c+2i+n)`(게시된 값 6/6으로 검증)이 decline을
+  정답으로 치면 **1.000**, 미시도(SimpleQA의 문자)로 치면 **0.667**, 오답으로 치면 **0.500**을 준다.
+  **같은 실행의 두 방어 가능한 해석을 50 F-point가 가른다** — 이 라운드가 검출할 수 있는 어떤 효과보다
+  크다. 그래서 그 규약을 축에 명시한다. 프런티어 축에서는 비교 대상이 SimpleQA Verified이므로 (ii)를
+  쓰고, (i)와 (iii)는 경계로 함께 게시한다.
+- **p값을 계산할 수 없는 곳에는 아무것도 찍지 않는다.** k ≤ 4인 모든 프런티어 순열검정을 p = 1이 아니라
+  *구조적으로 미해결*로 기록한다.
 
-## 9. What this instrument does **not** measure
+## 9. 이 도구기가 **재지 않는** 것
 
-- **Not agentic task success.** No tools, no environment, no final-state check. The
-  `function_calling` and `code` families measure *a schema-shaped answer was emitted*, which is
-  a proxy. The strongest available signal is that 5 runs used `bash`.
-- **Not a knowledge benchmark.** There are no questions with a knowable right answer in the
-  world; the bank is fully programmatic, so it cannot measure hallucination about facts, only
-  hallucination about a supplied passage.
-- **Not a reasoning-effort measurement.** The effort parameter is never exposed.
-- **Not a cost measurement.** Free tier ⇒ `cost = 0` is a billing fact. A cost-per-solved-task
-  metric would be 0/0 and would read as "free is best".
-- **Not a tokenisation-portable result.** Korean and CJK token counts depend on the tokenizer,
-  which for this subject is undisclosed. Literature values must not be transplanted; the premium
-  must be measured directly.
-- **Not a frontier measurement.** No frontier commercial model is callable here. Every frontier
-  number in this repository is `reported` by a vendor or an eval organisation.
-- **Not a single-scaffold fact.** The subject was measured under exactly one agent scaffold whose
-  budget is unknown. That is the largest caveat in the whole report.
+- **에이전틱 과업 성공이 아니다.** 도구도, 환경도, 최종 상태 검사도 없다. `function_calling`과 `code`
+  계열이 재는 것은 *스키마 모양의 답이 나갔다*는 것인데, 이것은 대리지표다. 쓸 수 있는 가장 강한
+  신호는 5회 실행이 `bash`를 썼다는 사실이다.
+- **지식 벤치마크가 아니다.** 세계에 정답을 아는 문항이 없다. 뱅크가 완전히 프로그램적이므로 사실에 대한
+  환각은 잴 수 없고, 주어진 본문에 대한 환각만 잴 수 있다.
+- **추론 노력 측정도 아니다.** effort 파라미터는 결코 노출되지 않는다.
+- **비용 측정도 아니다.** free tier ⇒ `cost = 0`은 과금 사실이다. solved-task당 비용 지표는 0/0이 되고
+  "무료가 최고"로 읽힌다.
+- **토크나이저 이식 가능한 결과도 아니다.** 한국어와 CJK의 토큰 수는 토크나이저에 의존하는데 이 subject의
+  토크나이저는 공개되지 않았다. 문헌값을 옮겨 심으면 안 된다. 할증은 직접 재야 한다.
+- **프런티어 측정도 아니다.** 여기서는 어떤 프런티어 상용 모델도 호출할 수 없다. 이 저장소의 모든
+  프런티어 숫자는 벤더나 평가 기관이 `reported`한 것이다.
+- **단일 스캐폴드의 사실도 아니다.** subject는 예산을 알 수 없는 에이전트 스캐폴드 정확히 하나에서
+  측정됐다. 이것이 보고서 전체에서 가장 큰 단서다.

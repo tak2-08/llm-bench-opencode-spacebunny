@@ -1,75 +1,70 @@
-# What does `opencode/space-bunny-free` resemble among frontier commercial models?
+# 프런티어 상용 모델 가운데 `opencode/space-bunny-free`은 무엇과 닮았나?
 
-**A self-measured comparison, published with its audit trail intact.**
+**자기 측정 비교. 감사 추적째로 공개한다.**
 
-Subject: `opencode/space-bunny-free` · Round 1 · 88 programmatic items × 2 repetitions = **176 measured runs** ·
-Harness and audit written from scratch, no third-party dependencies.
-
----
-
-> # 📌 ROUND 2 — a different question
->
-> Round 1 measured **one model**. Round 2 measures an entity that presents as one
-> model but is internally **three solver instances**, graded by a panel from a
-> different model lineage. Its answer, in one line:
->
-> **No gain.** The judged entity scores 89.66% against a best single instance of
-> 88.51% (+1.1pp, every paired test above .05). Naive majority voting scores
-> **significantly worse** than a single model (75.86%, p=0.0034) — but not because
-> consensus is bad: it abstains on three-way splits and abstention was scored as a
-> wrong answer. A blind selector that never abstains reaches 89.66% on the same
-> items, i.e. **the third-party judge is worth exactly zero over picking at random
-> here**, and only 2.3pp separates even an answer-key oracle from that.
->
-> → **[ROUND2.md](ROUND2.md)** for the full result, the grader panel's measured
-> stability-vs-validity split, and the reason 10 of 15 "disagreements" were not
-> disagreements at all.
+주어: `opencode/space-bunny-free` · 라운드 1 · 프로그램 문항 88개 × 2회 반복 = **176회 실측 실행** ·
+하네스와 감사를 처음부터 작성했고, 서드파티 의존성이 없다.
 
 ---
 
-> # ⚠️ READ THIS FIRST — measured vs. reported
+> # 📌 라운드 2 — 다른 질문
 >
-> This repository contains **two different kinds of number** and conflating them would
-> invalidate everything below.
+> 라운드 1은 **모델 하나**를 측정했다. 라운드 2는 바깥으로는 모델 하나처럼 보이지만 내부적으로는
+> **세 개의 솔버 인스턴스**인 개체를, **다른 모델 계열**의 패널이 채점한다. 답은 한 줄로:
 >
-> | | What it means | How many |
+> **나오지 않는다.** 판정된 개체는 89.66%, 최고 단일 인스턴스는 88.51%다(+1.1pp, 모든 짝대응
+> 검정이 .05 위). 순진한 다수결은 단일 모델보다 **유의하게 나쁘다**(75.86%, p=0.0034) — 하지만
+> 합의가 나빴기 때문이 아니다: 3-way 분할에서 **기권**했고, 기권은 오답으로 채점됐다. 기권하지
+> 않는 무작위 선택자는 같은 문항에서 89.66%에 도달한다. 즉 **이 과업에서 제3자 판정자는 무작위로
+> 고르는 것 대비 정확히 0의 가치가 있다.** 정답지를 읽는 오라클조차도 그와 2.3pp 차이다.
+>
+> → **[ROUND2.md](ROUND2.md)** 전체 결과, 채점 패널의 실측 안정성 대 타당성 분리, 그리고 15개 중
+> 10개의 "불일치"가 애초에 불일치가 아니었던 이유.
+
+---
+
+> # ⚠️ 먼저 읽을 것 — measured 대 reported
+>
+> 이 저장소에는 **두 종류의 서로 다른 숫자**가 들어 있고, 둘을 섞으면 아래 모든 것이 무효가 된다.
+>
+> | | 뜻 | 몇 개 |
 > |---|---|---|
-> | **`measured`** | We ran it ourselves, in this environment, and the raw log is in `reports/round1/` and `reports/round2/`. | subject `opencode/space-bunny-free` (3 instances), plus the grader panel, plus the anchor models this service could actually reach |
-> | **`reported`** | Somebody else ran it and published the number. We read their page. | **1,711 of the 1,711 frontier cells** in `data/frontier-scores.json` |
+> | **`measured`** | 우리가 이 환경에서 직접 돌렸고, 원본 로그가 `reports/round1/`과 `reports/round2/`에 있다 | subject `opencode/space-bunny-free`(인스턴스 3개), 채점 패널, 그리고 이 서비스가 실제로 도달할 수 있었던 앵커 모델 |
+> | **`reported`** | 다른 누군가가 돌려 숫자를 공개했다. 우리는 그 페이지를 읽었다 | `data/frontier-scores.json`의 프런티어 셀 **1,711개 중 1,711개** |
 >
-> **We measured no frontier commercial model, and that is a hard environmental fact, not a choice.**
-> From this environment, `gpt-5.x`, `claude-opus-5`, `gemini-3-pro` and `grok-4.7` all return
-> `"Unexpected server error"` (the provider endpoint has no API credits for this account);
-> `gemini-3.1-pro-preview` exceeded its free-tier quota. So every frontier number in this
-> repository is **second-hand**, tagged `reported`, and carries the URL it was read from.
+> **프런티어 상용 모델은 하나도 측정하지 못했다. 그것은 선택이 아니라 환경의 확정된 사실이다.**
+> 이 환경에서 `gpt-5.x`, `claude-opus-5`, `gemini-3-pro`, `grok-4.7`은 모두
+> `"Unexpected server error"`를 반환한다(해당 계정에 프로바이더 엔드포인트 API 크레딧이 없다).
+> `gemini-3.1-pro-preview`는 free-tier 쿼터를 초과했다. 따라서 이 저장소의 모든 프런티어 숫자는
+> **간접 자료**이고 `reported` 태그가 붙어 있으며, 어느 페이지에서 읽었는지 URL을 함께 실었다.
 >
-> The models we *could* reach — `nvidia/z-ai/glm-5.3-flash`, `meta/muse-spark-1.3`,
-> `nvidia/moonshotai/kimi-k3`, `google/gemini-flash-latest` — are **not frontier flagship
-> models**. They are anchors of convenience. Calling them "frontier" would be false.
+> 도달할 수 있었던 모델 — `nvidia/z-ai/glm-5.3-flash`, `meta/muse-spark-1.3`,
+> `nvidia/moonshotai/kimi-k3`, `google/gemini-flash-latest` — 은 **프런티어 플래깅십 모델이
+> 아니다**. 편의상 고른 앵커다. 이것을 "프런티어"라고 부르는 것은 거짓이다.
 >
-> Every claim in this repository is tagged `measured` | `reported` | `derived` | `assumed`.
-> If a number has no tag, treat it as a mistake and report it.
+> 이 저장소의 모든 명제는 `measured` | `reported` | `derived` | `assumed` 중 하나로 태그되어
+> 있다. 태그가 없는 숫자가 보이면 오류로 보고해라.
 
 ---
 
-## 1. The headline, stated correctly
+## 1. 결론을 올바르게 말하면
 
-The harness's own report said **86.9%**. **That number was wrong**, and an independent audit of
-the same raw log corrected it. The correction is the interesting part of this repository.
+하네스 자체 보고서는 **86.9%**라고 말했다. **그 숫자는 틀렸고**, 같은 원본 로그를 독립 감사가
+정정했다. 이 정정이야말로 이 저장소에서 흥미로운 부분이다.
 
-| Denominator | n | correct | accuracy | Wilson 95% CI | source |
+| 분모 | n | 정답 | 정확도 | Wilson 95% CI | 출처 |
 |---|---|---|---|---|---|
-| `raw` — harness as shipped, any failure counts as wrong | 176 | 153 | **86.93%** | [81.15, 91.15] | `data/matching.json` → `subject_profile.run_level.raw` |
-| `conservative` — never-measured runs removed, scorer artifacts credited, broken items **kept and scored wrong** | 174 | 161 | **92.53%** | [87.64, 95.58] | `…run_level.adjudicated_conservative` |
-| `full` — additionally drops the 2 items that cannot be answered from their own text | 170 | 161 | **94.71%** | [90.25, 97.19] | `…run_level.adjudicated_full` |
+| `raw` — 하네스 그대로, 어떤 실패든 오답 | 176 | 153 | **86.93%** | [81.15, 91.15] | `data/matching.json` → `subject_profile.run_level.raw` |
+| `conservative` — 미측정 실행 제거, 스코어러 아티팩트 credit, 결함 문항은 **남겨 오답 채점** | 174 | 161 | **92.53%** | [87.64, 95.58] | `…run_level.adjudicated_conservative` |
+| `full` — 여기에 더해 자기 본문만으로는 답할 수 없는 2개 문항을 제외 | 170 | 161 | **94.71%** | [90.25, 97.19] | `…run_level.adjudicated_full` |
 
-**Quote 92.5% if you want the least generous correction. 94.7% is the same data with the two
-defective items removed.** Both CIs barely overlap the naive CI, so the *direction* is not in
-doubt even though the *level* moved 7.8 points. All three: `measured`.
+**가장 최소한으로 정정한 값을 인용하려면 92.5%를 쓰라. 94.7%는 결함 문항 두 개를 뺀 같은 데이터다.**
+두 CI 모두 원시 CI와 거의 겹치지 않으므로 *방향*은 확실하고, *수준*만 7.8포인트 움직였다.
+셋 다 `measured`.
 
-### Per category (adjudicated, full) — `measured`
+### 범주별 (심사 후, full) — `measured`
 
-| category | correct/n | accuracy | Wilson 95% | as-shipped | artifact flips |
+| 범주 | 정답/n | 정확도 | Wilson 95% | 하네스 원시 | 아티팩트 flip |
 |---|---|---|---|---|---|
 | reasoning | 30/30 | 100% | [88.65, 100] | 100% | 0 |
 | function_calling | 16/16 | 100% | [80.64, 100] | 100% | 0 |
@@ -81,423 +76,395 @@ doubt even though the *level* moved 7.8 points. All three: `measured`.
 | multilingual | 25/30 | 83.33% | [66.44, 92.66] | 76.67% | 2 |
 | code | 13/16 | 81.25% | [56.99, 93.41] | 81.25% | 0 |
 
-Source: `data/matching.json` → `subject_profile.per_category`; narrative in
+출처: `data/matching.json` → `subject_profile.per_category`. 서술은
 `reports/C2-matching-analysis.md` §1.2.
 
-> **Do not read a ranking into this table.** The Wilson half-widths run 0.10–0.31. The gap
-> between the 100% categories and the 81% category is 18.75 pp — *smaller than the sampling
-> error inside a single category*. Any "the model is better at reasoning than at code" story
-> is unsupported by this data. The 50% → 100% move in `abstention_hallucination` is the one
-> real change, and all 6 flips were harness defects, not model behaviour (§5).
+> **이 표에서 순위를 읽어내지 마라.** Wilson 반폭이 0.10–0.31이다. 100% 범주와 81% 범주의 간격은
+> 18.75 pp인데, 이는 *한 범주 안의 표본오차보다 작다*. "이 모델은 reasoning에서 code보다 낫다" 같은
+> 이야기는 이 데이터가 지지하지 않는다. `abstention_hallucination`의 50% → 100% 이동이 유일한 진짜
+> 변화인데, 6건의 flip 전부 모델 행동이 아니라 하네스 결함이다(§5).
 
 ---
 
-## 2. The scaffold caveat — read this before any comparison
+## 2. 스캐폴드 단서 — 어떤 비교보다 먼저 읽을 것
 
-> ### An agentic benchmark score is not a model property.
-> ### It identifies a tuple of (model × scaffold × reasoning budget × tool access).
+> ### 에이전틱 벤치마크 점수는 모델의 속성이 아니다.
+> ### 그것은 (모델 × 스캐폴드 × 추론 예산 × 툴 접근) 튜플을 식별한다.
 
-We did not assume this; we read it off first-party leaderboards. Same model, same benchmark,
-**only the harness or the thinking mode changed**:
+우리가 가정하지 않았다. `first-party` 리더보드에서 직접 읽었다. 동일 모델, 동일 벤치마크,
+**오직 하네스나 사고 모드만 바뀐 경우**:
 
-| Benchmark | Source | Model | Configuration A | Configuration B | Δ |
+| 벤치마크 | 출처 | 모델 | 구성 A | 구성 B | Δ |
 |---|---|---|---|---|---|
 | GAIA | HAL (Princeton) | Claude Sonnet 4.5 | HAL generalist agent **74.55%** | HF Open Deep Research **30.91%** | **43.64 pp** |
 | GAIA | HAL (Princeton) | Claude 3.7 Sonnet | HAL 56.36% | HF Open Deep Research 36.97% | 19.39 pp |
 | GAIA | HAL (Princeton) | Claude Opus 4 (May 2025) | HAL 64.85% | HF Open Deep Research 57.58% | 7.27 pp |
-| GAIA | HAL (Princeton) | **GPT-5 Medium** | HF-ODR **62.80%** | HAL 59.39% | **−3.41 pp (sign reverses)** |
+| GAIA | HAL (Princeton) | **GPT-5 Medium** | HF-ODR **62.80%** | HAL 59.39% | **−3.41 pp (부호 역전)** |
 | BFCL V4 | Berkeley | GPT-5.2-2025-12-11 | native tool calling 55.87% | text-prompt 45.27% | 10.60 pp |
-| BFCL V4 | Berkeley | **Gemini-3-Pro-Preview** | native FC 68.14% | text-prompt **72.51%** | **−4.37 pp (sign reverses)** |
+| BFCL V4 | Berkeley | **Gemini-3-Pro-Preview** | native FC 68.14% | text-prompt **72.51%** | **−4.37 pp (부호 역전)** |
 | HLE | Epoch AI | gpt-5.1 | `thinking` 23.68% | `instant` 6.80% | 16.88 pp |
 | HLE | Epoch AI | claude-opus-4-6 | `thinking-max` 34.44% | `Non-Thinking` 19.00% | 15.44 pp |
 | GPQA Diamond | Epoch AI | gpt-5.6-luna | best effort 91.6% | lowest effort 63.6% | 28.0 pp |
 
-Source: `reports/C1-frontier-scores.md` §3; all rows `reported`, every number read from the
-first-party table named in its row.
+출처: `reports/C1-frontier-scores.md` §3. 모든 행 `reported`, 각 숫자는 그 행이 명시한 `first-party` 출처
+표에서 읽었다.
 
-Three consequences, and they are not hedges:
+따라서 셋이 따른다. 이것들은 완충 표현이 아니다:
 
-1. **A constant correction factor does not exist.** The swing ranges from −4.37 pp to
-   +43.64 pp and reverses sign for at least two models. Any "adjust for scaffold" step is
-   guesswork.
-2. **The GAIA spread (43.6 pp) is roughly six times a generational model gap.** A model's
-   GAIA number identifies the *agent* more than the *model*.
-3. **Our subject was measured under exactly one scaffold**, whose reasoning budget the
-   service does not disclose. So an absolute-score match to any frontier row is not
-   supportable — not "imprecise", **not supportable**.
+1. **상수 보정 계수는 존재하지 않는다.** 스윙 폭이 −4.37 pp에서 +43.64 pp까지이고, 적어도 두
+   모델에서는 부호가 뒤집힌다. "스캐폴드로 보정"하는 어떤 단계도 추측이다.
+2. **GAIA의 폭(43.6 pp)은 세대 격차의 약 여섯 배다.** 어떤 모델의 GAIA 숫자는 *모델*보다
+   *에이전트*를 식별한다.
+3. **우리 subject는 정확히 하나의 스캐폴드에서 측정됐다.** 그 스캐폴드의 추론 예산은 서비스가
+   공개하지 않는다. 따라서 어떤 프런티어 행과도 절대 점수 매칭은 지지 가능하다고 할 수 없다 —
+   "정밀도가 낮다"가 아니라, **지지 불가능하다**.
 
-This is why the answer below is a range and not a name.
+아래 답이 이름이 아니라 범위인 이유가 이것이다.
 
 ---
 
-## 3. The two measured anchors — and the fairness trap
+## 3. 실측 앵커 둘 — 그리고 공정성 함정
 
-Three other models were reachable. Two produced usable data. All were run on the **identical
-45-item stratified subset** of the same bank, and — critically — **the same adjudication was
-applied to the anchors as to the subject.**
+다른 세 모델에 도달할 수 있었다. 둘은 쓸 만한 데이터를 냈다. 셋 다 같은 뱅크의 **동일한
+45문항 계층적 부분집합**에서 돌렸고, 결정적으로 **앵커에도 subject와 동일한 심사를 적용했다.**
 
 | | subject | `nvidia/z-ai/glm-5.3-flash` | `meta/muse-spark-1.3` | `nvidia/moonshotai/kimi-k3` |
 |---|---|---|---|---|
-| raw (first attempt) | 86.93% | 77.78% | 91.11% | 61.90% |
-| **after adjudication** | **94.71%** | **90.70%** | **97.67%** | **94.74%** |
-| movement from adjudication | **+7.77 pp** | **+12.92 pp** | **+6.56 pp** | **+32.83 pp** |
+| 원시 (first attempt) | 86.93% | 77.78% | 91.11% | 61.90% |
+| **심사 후** | **94.71%** | **90.70%** | **97.67%** | **94.74%** |
+| 심사 이동폭 | **+7.77 pp** | **+12.92 pp** | **+6.56 pp** | **+32.83 pp** |
 
-Source: `data/matching.json` → `anchor_comparison.correction_asymmetry`.
+출처: `data/matching.json` → `anchor_comparison.correction_asymmetry`.
 
-> ### The single most important methodological result in this repository
+> ### 이 저장소에서 가장 중요한 방법론적 결과 하나
 >
-> **Adjudication moved the anchors *more* than it moved the subject.**
+> **심사가 앵커를 subject보다 더 크게 움직였다.**
 >
-> Our first analytical pass audited the subject and left the anchors raw — the natural,
-> obvious thing to do when the subject is the thing under study. That produced
-> "subject 94.71% vs glm 77.78%", a 17-point gap, and the confident claim *the subject beats
-> every anchor*. **That entire finding was an artefact of auditing only one side.**
+> 우리의 첫 분석 패스는 subject만 감사하고 앵커는 원시로 뒀다 — 연구 대상이 subject일 때 당연히
+> 하는 일이다. 그 결과 "subject 94.71% vs glm 77.78%"라는 17포인트 격차, 그리고 *subject가 모든
+> 앵커를 이긴다*라는 확신에 찬 주장이 나왔다. **그 결론 전체가 한쪽만 감사한 인공물이었다.**
 >
-> This is why `harness/adjudicate-anchors.mjs` re-audits the subject log with *its own* rule
-> engine and **asserts verdict/rule/changed/original agreement with the original audit on
-> 176 of 176 runs**, refusing to proceed (exit 2) on any mismatch. Fairness here is not a
-> promise; it is a check that fails loudly.
+> 그래서 `harness/adjudicate-anchors.mjs`는 *자기 자신의* 규칙 엔진으로 subject 로그를 다시
+> 감사하고, **176회 중 176회에서 원래 심사와 verdict/rule/changed/original 일치를 단언**하며,
+> 불일치가 하나라도 있으면 진행을 거부한다(exit 2). 여기서 공정은 약속이 아니다. 소리 내며 실패하는
+> 검사다.
 
-### Like-for-like on the 43 shared scorable items
+### 채점 가능한 공유 43문항에서의 조건 동일 비교
 
 | | `glm-5.3-flash` | `muse-spark-1.3` |
 |---|---|---|
-| anchor accuracy | 90.70% (39/43) | 97.67% (42/43) |
-| subject — both reps correct (conservative) | 90.70% (39/43) | 90.70% (39/43) |
-| subject — mean of 2 reps (unbiased) | 95.35% (41/43) | 95.35% (41/43) |
-| subject — either rep correct (optimistic) | 100% (43/43) | 100% (43/43) |
-| **gap (unbiased mean)** | **+4.65 pp** | **−2.33 pp** |
+| 앵커 정확도 | 90.70% (39/43) | 97.67% (42/43) |
+| subject — 두 반복 모두 정답 (conservative) | 90.70% (39/43) | 90.70% (39/43) |
+| subject — 2회 반복 평균 (비편향) | 95.35% (41/43) | 95.35% (41/43) |
+| subject — 어느 한 반복이라도 정답 (optimistic) | 100% (43/43) | 100% (43/43) |
+| **gap (비편향 평균)** | **+4.65 pp** | **−2.33 pp** |
 | McNemar b / c | 3 / 3 | 0 / 3 |
 | **McNemar exact two-sided p** | **1.000** | **0.250** |
-| vs. the reproducibility floor (§4) | **inside — not resolvable** | **inside — not resolvable** |
+| vs. 재현성 floor (§4) | **안 — 미해결** | **안 — 미해결** |
 
-Source: `data/matching.json` → `anchor_comparison.paired`; all `measured`.
+출처: `data/matching.json` → `anchor_comparison.paired`. 전부 `measured`.
 
-**Read the subject's row as a range, not a number.** The anchors ran 1 repetition; the subject
-ran 2. The subject's item-level accuracy is therefore 90.70 / 95.35 / 100 — a **9.3 pp wide
-range, wider than the 6.98 pp difference between the two anchors.** Reporting the mean alone
-would be a choice; we report the bracket and take the mean for the gap, because the mean is
-the unbiased estimator.
+**subject의 행은 수가 아니라 범위로 읽어라.** 앵커는 1회 반복, subject는 2회다. 따라서 subject의
+항목 수준 정확도는 90.70 / 95.35 / 100이고 — **폭 9.3 pp, 두 앵커 간 차이 6.98 pp보다 넓다.**
+평균만 보고하는 것은 하나의 선택이다. 우리는 구간을 보고 gap은 평균에서 잡는다. 평균이 비편향
+추량자이기 때문이다.
 
-Two other anchors were run and are reported in the appendix rather than the headline:
-`kimi-k3` failed on **reliability, not capability** (9 of 28 runs returned no text part, so
-only 21 of 45 items were ever reached — its 61.9% measures the transport); `gemini-flash-latest`
-produced an API error on both runs, 0 of 45 items attempted.
+다른 두 앵커도 돌렸으며 본문이 아니라 부록에 실었다. `kimi-k3`는 **신뢰도에서 실패했고 능력이
+아니다**(28회 실행 중 9회가 텍스트 파트 없이 반환되어 45문항 중 21개에만 도달했다 — 그 61.9%는
+운송을 잰다). `gemini-flash-latest`는 두 실행 모두 API 오류, 45문항 중 0개 시도.
 
 ---
 
-## 4. The reproducibility floor — a measurement, not an estimate
+## 4. 재현성 floor — 추정이 아니라 측정
 
-We measured our own noise instead of assuming it. 85 items have both repetitions in the
-adjudicated log:
+우리 자신의 잡음을 가정하지 않고 측정했다. 심사 후 로그에 두 반복이 모두 있는 항목은 85개다:
 
-| | n items | agree | rate | discordant | b (r0 wrong→r1 right) | c (r0 right→r1 wrong) | q | exact McNemar p |
+| | 항목 수 | 일치 | 비율 | 불일치 | b (r0 오답→r1 정답) | c (r0 정답→r1 오답) | q | exact McNemar p |
 |---|---|---|---|---|---|---|---|---|
-| raw verdicts | 88 | 83 | 94.32% | 5 | 3 | 2 | 0.0568 | 1.000 |
-| **adjudicated verdicts** | **85** | **80** | **94.12%** | **5** | **3** | **2** | **0.0588** | **1.000** |
+| 원시 판정 | 88 | 83 | 94.32% | 5 | 3 | 2 | 0.0568 | 1.000 |
+| **심사 후 판정** | **85** | **80** | **94.12%** | **5** | **3** | **2** | **0.0588** | **1.000** |
 
-Source: `data/matching.json` → `subject_profile.rep_agreement`; `reports/B3-qc-audit.md` §4.
+출처: `data/matching.json` → `subject_profile.rep_agreement`; `reports/B3-qc-audit.md` §4.
 
-Inverting the pre-registered sample-size formula at the **measured** q = 0.0588:
+사전등록 표본크기 공식을 **실측** q = 0.0588에서 역산하면:
 
-| design | α | power | **minimum detectable effect** |
+| 설계 | α | 검정력 | **최소 검출 가능 효과** |
 |---|---|---|---|
-| paired (McNemar), 1 rep/item | .05 | .80 | **7.37 pp** |
-| paired, mean of 2 reps | .05 | .80 | **≈5.21 pp** |
+| 짝대응 (McNemar), 항목당 1회 | .05 | .80 | **7.37 pp** |
+| 짝대응, 2회 평균 | .05 | .80 | **≈5.21 pp** |
 
-Source: `data/matching.json` → `subject_profile.reproducibility_floor_pp`.
+출처: `data/matching.json` → `subject_profile.reproducibility_floor_pp`.
 
-Three things follow, and they are load-bearing:
+여기서 넷이 따르고, 넷 다 무게를 받는다:
 
-1. **Both anchor gaps are inside the floor.** +4.65 pp and −2.33 pp against a 7.37 pp floor.
-   We cannot separate the subject from either anchor. Not "the difference is small" — *not
-   resolvable at this n*.
-2. **A 5 pp claim was never available.** Our pre-registered declared-effect rule therefore
-   holds at **≥10 pp**, not 5 pp.
-3. **This floor is our harness's, not the domain's.** The same model on the same benchmark
-   swings 4.24–43.64 pp when only the scaffold changes (§2). **That is up to ~6× our entire
-   reproducibility floor.** Our *n* is adequate for separating models that differ by more than
-   ~7 pp on *this bank under this one scaffold*; it says nothing about models that differ
-   mainly in scaffold.
-4. `q` rests on 5 discordant items, so the floor carries real sampling uncertainty of its own.
-   Treat it as **7.4 pp ± ~1 pp**, not as a constant.
+1. **두 앵커 gap 모두 floor 안이다.** 7.37 pp floor에 대해 +4.65 pp와 −2.33 pp다. 어느 앵커와도
+   subject를 분리할 수 없다. "차이가 작다"가 아니다 — *이 n에서는 미해결*이다.
+2. **5 pp 주장은 애초에 불가능했다.** 그래서 우리 사전등록 선언 효과 규칙은 5 pp가 아니라
+   **≥10 pp**에서 성립한다.
+3. **이 floor는 우리 하네스의 것이지 영역 전체의 것이 아니다.** 동일 모델이 동일 벤치마크에서
+   스캐폴드만 바꿔도 4.24–43.64 pp 스윙한다(§2). **그것은 우리 재현성 floor 전체의 최대 약 6×다.**
+   우리 *n*은 *이 뱅크를 이 하나의 스캐폴드에서* 돌렸을 때 약 7 pp를 넘게 차이 나는 모델을
+   분리하기에 충분하다. 주로 스캐폴드가 다른 모델에 대해서는 아무것도 말해주지 않는다.
+4. `q`가 불일치 문항 5개에 얹혀 있으니 floor 자체가 실제 표본 불확실성을 안고 있다.
+   **7.4 pp ± ~1 pp**로 읽어라. 상수가 아니다.
 
 ---
 
-## 5. What we got wrong — and how we found out
+## 5. 우리가 틀린 것 — 그리고 어떻게 알아챘는가
 
-This section is the point of the repository, not an apology for it.
+이 절이 이 저장소의 요점이다. 사과가 아니다.
 
-### 5.1 The harness shipped a false contract
+### 5.1 하네스는 거짓 계약과 함께 배포됐다
 
-`harness/report.mjs` and `harness/README.md` both state:
+`harness/report.mjs`와 `harness/README.md`는 둘 다 다음처럼 적고 있다:
 
-> *"Accuracy counts only runs that produced a non-empty answer and were scored; transport
-> failures are excluded from the denominator and reported separately as reliability."*
+> *"정확도는 비어 있지 않은 답을 내놓고 채점된 실행만 센다. 운송 실패는 분모에서 제외하고 신뢰도로
+> 별도 보고한다."*
 
-**That sentence was false in code.** `harness/aggregate.mjs:81-83` implements `isScored(r)` as
-`r.scored === true && typeof r.passed === 'boolean'`, which checks neither `r.failure` nor
-whether the answer is empty. The same report printed `reliability: 98.9%`, computed correctly
-and separately — so 2 runs were counted **simultaneously** as 1.1% unreliability *and* 1.1%
-accuracy failure. A docstring and a README were describing behaviour the code did not have.
+**그 문장은 코드에서 거짓이었다.** `harness/aggregate.mjs:81-83`의 `isScored(r)`는
+`r.scored === true && typeof r.passed === 'boolean'`인데 `r.failure`도 답이 비었는지도 보지
+않는다. 같은 보고서는 `reliability: 98.9%`를 정확히 별도로 계산해 출력했으므로, 2회 실행이
+**동시에** 1.1% 비신뢰 *이면서* 1.1% 정확도 실패로 집계됐다. docstring과 README가 코드에 없는
+행동을 기술하고 있었다.
 
-Behind it sat a three-link chain, each link independently sufficient:
+그 뒤에는 세 단 체인이 있었다. 각 단만으로도 충분하다:
 
-1. `harness/runner.mjs:328` — the `catch` around `spawn` calls `finish()`, which closes over
-   `const outChunks` declared three lines later at `runner.mjs:331`. Temporal dead zone →
-   `ReferenceError` thrown *from inside a catch*, which the same catch cannot catch → the
-   promise **rejects**, violating `runner.mjs`'s own documented contract at `:278`
-   ("Resolves — never rejects").
-2. `harness/pool.mjs:244` — `applyScore` runs unconditionally, including on failure records,
-   so `answer: ''` becomes `scored: true, passed: false`.
-3. `harness/aggregate.mjs:81-83` — as above.
+1. `harness/runner.mjs:328` — `spawn`을 감싼 `catch`가 `finish()`를 호출하는데, `finish`는 세 줄
+   뒤 `runner.mjs:331`에서 선언된 `const outChunks`를 클로저한다. Temporal dead zone →
+   `ReferenceError`가 *catch 안에서* 던져지는데 같은 catch가 잡을 수 없다 → promise가
+   **reject**된다. `runner.mjs:278`의 자체 문서화 계약("Resolves — never rejects") 위반.
+2. `harness/pool.mjs:244` — `applyScore`가 무조건 실행된다. 실패 레코드에서도 마찬가지라
+   `answer: ''`가 `scored: true, passed: false`가 된다.
+3. `harness/aggregate.mjs:81-83` — 위와 같다.
 
-**What actually triggered it, measured not inferred:** item `lc-needle-08`'s prompt is
-**180,351 characters**. Linux caps a single `argv` element at `MAX_ARG_STRLEN = 131,072`.
-Measured: 131,000 → ok, 131,073 → `E2BIG`, and a real `spawn` of `opencode` with that prompt
-throws synchronously. **`lc-needle-08` is the only item of 88 over the limit** (2nd longest:
-120,454), and the other 7 long-context items all pass — exactly the pattern a size limit
-predicts. **The model was never called.** `lc-needle-08` is unmeasurable through this harness
-as built; it reproduced in a second independent round and is marked non-retriable, so it will
-never self-heal. Source: `reports/B3-qc-audit.md` §1.
+**실제로 무엇이 촉발했나 — 추정이 아니라 실측:** 문항 `lc-needle-08`의 프롬프트는
+**180,351자**다. Linux는 `argv` 원소 하나를 `MAX_ARG_STRLEN = 131,072`에서 자른다. 실측:
+131,000 → ok, 131,073 → `E2BIG`, 그리고 그 프롬프트를 실은 `opencode`의 실제 `spawn`은 동기적으로
+throw한다. **88개 중 한계치를 넘는 것은 `lc-needle-08` 단 하나**이며(2순위: 120,454),
+long_context 나머지 7개는 모두 통과한다 — 크기 한계가 예측하는 패턴과 정확히 같다. **모델은 한 번도
+호출되지 않았다.** 지금 구조의 이 하네스로는 `lc-needle-08`을 측정할 수 없다. 두 번째 독립 라운드에서
+도 재현됐고 non-retriable로 표시됐으므로 자가 치유되지 않는다. 출처:
+`reports/B3-qc-audit.md` §1.
 
-### 5.2 Eight scorer artifacts were charged to the model
+### 5.2 스코어러 아티팩트 여덟 건이 모델에 청구됐다
 
-The abstention items are scored with a pattern opening `^(?![\s\S]*\d)`, a negative lookahead
-that forbids **any digit anywhere in the answer**. The natural, informative way to abstain from
-a passage full of dates is to enumerate the dates that *are* present and then say the asked-for
-fact is absent. Every one of these answers does exactly that, and that is what the regex
-punishes. Strip **only** the lookahead and 5 of 6 match immediately. The 6th is a second,
-independent defect (a correct abstention phrased outside the pattern's closed ~15-word
-vocabulary). The effect **inverts the intended difficulty: the more informative the
-abstention, the more certain the failure.**
+abstention 문항은 `^(?![\s\S]*\d)`로 시작하는 패턴으로 채점된다. **답변 어디에든 숫자 어떤 것이든
+금지하는** 네거티브 룩어헤드다. 날짜가 가득한 본문에서 자연스럽고 정보성 높은 기권 방식은 *있는*
+날짜를 열거한 다음 묻는 사실이 없다고 말하는 것이다. 이 답들은 모두 정확히 그렇게 했고, 그 점을
+정규식이 처벌한다. 룩어헤드만 **떼면** 6건 중 5건이 즉시 매칭된다. 여섯째는 두 번째 독립 결함이다
+(패턴의 닫힌 약 15단어 어휘 밖에 표현된 올바른 기권). 이 효과는 **의도한 난이도를 뒤집는다:
+기권이 정보성 높은수록 실패는 더 확실하다.**
 
-Two `numeric` failures have the same shape; `harness/scorers.mjs:332` documents itself as
-*"First number in the text"* while a correct multi-step trace starts at step 1.
+`numeric` 실패 두 건도 같은 꼴이다. `harness/scorers.mjs:332`는 스스로를 *"First number in the
+text"*라고 문서화하는데, 올바른 다단계 추적은 1단계에서 시작한다.
 
-**We did not patch the harness mid-round.** The round's log was already in hand, and changing
-what a re-run means while the round is live is worse than a known defect. The three code
-locations are recorded in `data/qc-summary.json` for whoever patches them.
+**라운드 도중에는 하네스를 고치지 않았다.** 그 라운드의 로그는 이미 손에 들어 있었고, 라운드가
+살아 있는 동안 재실행의 의미를 바꾸는 것은 알려진 결함보다 나쁘다. 세 코드 위치는
+`data/qc-summary.json`에 남겨 두었다. 고칠 사람의 몫이다.
 
-### 5.3 The item bank itself had two defective items
+### 5.3 문항 뱅크 자체에 결함 문항 두 개가 있었다
 
-Neither found by a test; both found by auditing the failures.
+둘 다 테스트로는 찾지 못했다. 실패를 감사해서 찾았다.
 
-- **`fmt-nested-02` — the prompt contradicts its own expected answer.** The prompt says the id
-  must be *"the letter S followed by the digits of 2 and then 40 **with no separator**"*; the
-  scored value is `"S-240"`, which contains a hyphen. The model answered `"S240"` — exactly
-  what it was told. **On the merits the model is right and the bank is wrong.** Excluded rather
-  than credited, because crediting it would assert a capability the item never tested.
-- **`fmt-flat-01` — the item is unanswerable.** It gives readings `-1, 4, 22` and asks for
-  *"the string that matches the warmest reading: drizzle, clear, windy"*, but the passage
-  contains **no mapping from a reading to a condition**. The bank's `"windy"` and the model's
-  `"clear"` are equally unconstrained guesses. There is no right answer.
+- **`fmt-nested-02` — 프롬프트가 자신의 기대 답과 모순된다.** 프롬프트는 id가 *"the letter S
+  followed by the digits of 2 and then 40 **with no separator**"*라고 명시하는데, 채점되는 값은
+  하이픈이 들어간 `"S-240"`다. 모델은 `"S240"`이라고 답했다 — 지시된 그대로다. **소질상 모델이
+  옳고 뱅크가 틀렸다.** credit이 아니라 제외했다. credit하면 그 문항이 한 번도 시험하지 않은
+  능력을 주장하게 되기 때문이다.
+- **`fmt-flat-01` — 답할 수 없는 문항이다.** 판독값 `-1, 4, 22`를 주고 *"the string that matches
+  the warmest reading: drizzle, clear, windy"*를 묻는데, 본문에는 **판독값에서 조건으로 가는 대응이
+  없다.** 뱅크의 `"windy"`와 모델의 `"clear"`는 똑같이 무제약 추측이다. 정답이 없다.
 
-Both are excluded for **all** models, and both are inside the 45-item anchor subset — so the
-anchor *ranking* is unaffected (both anchors hold both items); only the level moves, 45 → 43.
+두 문항 모두 **모든** 모델에 대해 제외했고, 둘 다 앵커의 45문항 부분집합 안에 있다 — 그래서 앵커
+*순위*는 영향받지 않는다(두 앵커 모두 두 문항을 갖고 있다). 움직이는 것은 수준뿐이다, 45 → 43.
 
-### 5.4 Contamination: partly confirmed, partly a false positive
+### 5.4 오염: 부분 확인, 부분 오탐
 
-- **Refuted.** The phrase *"someone is still awake"* in one answer was flagged as a
-  tool-written note. It is that item's own natural English answer, and the item's forbidden
-  word was `basically`, which the model avoided. A scanner reading this as contamination is
-  pattern-matching on English, not auditing.
-- **Confirmed, and small.** 2 of 176 runs (1.14%) carried a session-protocol prologue. Both
-  were adjudicated on the answer, not the prefix; the verdict is identical either way.
-  **Directional bias: zero.** The item in question is boilerplate-free in its other
-  repetition, so the leakage is a per-run coin flip, not a per-item property.
-- **The finding that matters for interpretation.** `--pure` blocks ambient workspace
-  *injection*; it does not stop the model from *using tools itself*. **5 runs called `bash`
-  (7 calls) and all 5 passed** — two of them computed a fast-doubling modular Fibonacci, so
-  without the tool the task would have been different and harder. **The scaffold varied inside
-  a single measurement.** Reported as a diagnostic, not corrected: excluding those runs would
-  invent a second bias.
+- **기각.** 한 답변의 *"someone is still awake"* 구절이 도구가 쓴 노트로 표시되었다. 그것은 그
+  문항 자신의 자연스러운 영어 답이고, 그 문항의 금지어는 `basically`였으며 모델은 피했다. 이것을
+  오염으로 읽는 스캐너는 영어에 패턴 매칭한 것이지 감사를 한 게 아니다.
+- **확인, 그리고 작다.** 176회 실행 중 2회(1.14%)에 세션 프로토콜 서론이 붙었다. 둘 다 접두부가
+  아니라 답변으로 심사했다. 판정은 어느 쪽이든 같다. **방향성 편향: 없다.** 해당 문항은 다른 반복에서
+  보일러플레이트가 없으므로, 이 누출은 문항 속성이 아니라 실행 단위의 동전 던지기다.
+- **해석에서 중요한 발견.** `--pure`는 주변 워크스페이스의 *주입*은 막지만, 모델이 *스스로 도구를
+  쓰는 것*은 못 막는다. **5회 실행이 `bash`를 호출했고(7회 호출) 5회 모두 통과했다** — 그중 두
+  회는 고속 두 배 가법(fast-doubling) 모듈러 피보나치를 계산했다. 도구가 없으면 다른, 더 어려운
+  과제가 되었을 것이다. **하나의 측정 안에서 스캐폴드가 변했다.** 진단으로 보고했고 정정하지
+  않았다. 그 실행들을 빼면 또 다른 편향을 만들어 내기 때문이다.
 
-### 5.5 Statistical tools that lie, and how we knew
+### 5.5 거짓말하는 통계 도구들, 그리고 어떻게 알게 됐나
 
-Both were caught by auditing rather than by a test, and both are documented because they are
-the kind of thing that silently flattens a correlation:
+아래 넷은 모두 테스트가 아니라 감사로 잡혔고, 넷 다 문서화한다. 상관관계를 조용히 납작하게 만드는
+종류이기 때문이다:
 
-- A `gap()` helper returned **0 when two intervals overlapped**. Read as a distance, "0" looks
-  like "identical"; it actually means *no information*. An entire first analytical pass ranked
-  candidates by that zero. Replaced with centre distance.
-- A floor accessor accepted its verdict function as a **string** and never called it, so the
-  "naive floor" was a byte-copy of the "corrected floor" — two numbers, one computation, and
-  both about to be published with `p = 1`.
-- The audit's own `--strict` gate caught **three real bugs in the audit itself** (one rule that
-  silently never fired, the accessor above, a summary writer that clobbered another log's
-  entry). Its first fixture was also vacuous; it was fixed and then verified by *deliberately
-  breaking the accessor* and confirming the gate fails with exit 2. A test that cannot fail is
-  not a test.
-- We recomputed one formula in the wrong direction. The naive `1-(1-p̂)^k` pass@k estimator is
-  always an **under**-estimate of the unbiased one, by up to 10.6 pp at n=200 — we had it
-  backwards, and the self-test corrected us.
+- `gap()` 헬퍼가 **두 구간이 겹치면 0을 반환**했다. 거리로 읽으면 "0"은 "동일"처럼 보이지만 실제로는
+  *정보 없음*이다. 첫 분석 패스 전체가 그 반환값으로 후보를 정렬했다. 중심 거리로 교체했다.
+- floor accessor가 판정 함수를 **문자열**로 받고 호출하지 않았다. 그래서 "naive floor"는
+  "corrected floor"의 바이트 복사본이었다 — 두 개의 수, 한 번의 계산, 둘 다 `p = 1`로 게시될 뻔했다.
+- 감사 자신의 `--strict` 게이트가 **감사 안의 실제 버그 세 개**를 잡았다(조용히 한 번도 발화하지 않은
+  규칙 하나, 위의 accessor, 다른 로그의 항목을 덮어쓴 요약 writer). 첫 픽스처도 공허했다. 고친
+  다음 *의도적으로 accessor를 망가뜨려* 게이트가 exit 2로 실패하는 것을 확인했다. 실패할 수 없는
+  테스트는 테스트가 아니다.
+- 한 공식을 방향이 반대로 되게 다시 계산했다. 순진한 `1-(1-p̂)^k` pass@k 추량자는 비편향 추량자의
+  **과소**평가이며, n=200에서 최대 10.6 pp까지 나른다 — 우리는 방향을 거꾸로 알고 있었고 self-test가
+  잡아냈다.
 
-**What we did *not* get wrong, and checked anyway:** the item bank's answers are not
-hand-typed. 84 of 88 items are emitted by a seeded generator, and every answer is re-derived
-by a **second, deliberately different implementation** (naive repeated multiplication ↔ binary
-exponentiation with BigInt; Cramer's rule ↔ Gauss-Jordan over exact rationals; BFS ↔
-Bellman-Ford; forward simulation ↔ recursive-descent expression parsing). 824 checks, 0
-failures — including 88/88 positive controls (a correct answer must be *accepted*), 80/80
-negative controls (a plausible wrong answer must be *rejected*) and 55/55 mutations. Without
-positive controls, a scorer that rejects everything would pass every negative control.
+**우리가 틀리지 *않은* 것 — 그래도 확인한 것:** 문항 뱅크의 정답은 손으로 타이핑한 게 아니다. 88개
+중 84개는 시드 생성기가 내놓고, 모든 정답은 **의도적으로 다른 두 번째 구현**으로 재도출된다(순진한
+반복 곱셈 ↔ BigInt 이진 거듭제곱; 크래머 공식 ↔ 정확한 유리수 위 가우스-조던; BFS ↔ 벨만-포드;
+정방향 시뮬레이션 ↔ 재귀 하강 식 파싱). 824 checks, 0 failures — 여기에는 88/88 positive
+control(정답은 반드시 *수용*되어야 함), 80/80 negative control(그럴듯한 오답은 반드시 *거부*되어야
+함), 55/55 mutation이 들어 있다. positive control이 없으면 모든 걸 거부하는 스코어러가 모든
+negative control을 통과한다.
 
-**The raw trail is preserved byte-identical.** `reports/round1/subject-88/run-log.jsonl` has
-md5 `e6f8d8a29525f66e064ef5dbaf0b4f14` before the audit, after it, and after two further runs.
-Corrected verdicts live in a **separate** file (`run-log.adjudicated.jsonl`) with the raw
-fields preserved. Adjudication emits the rule id that fired for every changed verdict, so
-`run_id → original → corrected → rule` is traceable end to end, and the human readings are in
-an explicit table rather than buried in code.
+**원본 추적은 바이트 단위로 그대로 보존됐다.** `reports/round1/subject-88/run-log.jsonl`의 md5는
+감사 전, 감사 후, 추가로 두 번 돌린 후 모두 `e6f8d8a29525f66e064ef5dbaf0b4f14`다. 정정된 판정은
+원본 필드를 보존한 **별도** 파일(`run-log.adjudicated.jsonl`)에 있다. 심사는 바뀐 판정마다 발동한
+규칙 id를 내놓으므로 `run_id → original → corrected → rule`이 끝까지 추적되고, 사람의 판독은
+코드에 묻히지 않고 명시적 표에 있다.
 
 ---
 
-## 6. The answer to the question
+## 6. 질문에 대한 답
 
-> ### Within this round's precision, the subject is **not distinguishable** from either measured anchor…
+> ### 이 라운드의 정밀도 안에서 subject는 어느 실측 앵커와도 **구분되지 않는다**…
 >
-> +4.65 pp vs `glm-5.3-flash` (McNemar exact p = 1.000) and −2.33 pp vs `muse-spark-1.3`
-> (p = 0.250), both inside the 7.37 pp reproducibility floor.
+> `glm-5.3-flash` 대비 +4.65 pp(McNemar exact p = 1.000), `muse-spark-1.3` 대비 −2.33 pp(p = 0.250),
+> 둘 다 7.37 pp 재현성 floor 안이다.
 >
-> ### …and against the frontier table, **no single model can be named.**
+> ### …그리고 프런티어 표에 대해서는 **어떤 단일 모델도 지목할 수 없다.**
 >
-> - The subject's per-axis bands (n = 6–15 items, Wilson half-width 0.10–0.31) contain the
->   score interval of **86 of the 119** comparable models **on every live axis**.
-> - **Straddler count is 0.** There is no profile that is above the subject on some axes and
->   below on others — the shape that "resembles" would have to take does not exist in this data.
-> - The **minimum attainable permutation p is 2/k! = 0.0833 at k = 4**, and 0 models reach
->   k = 4 axes. This is an integer, not a data limitation: **at k = 4 no sample size and no
->   data quality can reach α = .05.** Zero candidates are resolvable.
-> - Per-axis, only 3 of 4 axes discriminate at all: `abstention` is a **null axis** (0 of 66
->   models fall outside the subject's band there).
+> - subject의 축별 밴드(n = 6–15 문항, Wilson 반폭 0.10–0.31)가 비교 가능한 모델 119개 중 **86개**의
+>   점수 구간을 **유효한 모든 축에서** 담고 있다.
+> - **straddler 수는 0이다.** 어떤 축에서는 subject보다 위고 다른 축에서는 아래인 프로필이 없다 —
+>   "닮았다"가 취해야 할 모양이 이 데이터에 존재하지 않는다.
+> - **순열검정의 최소 도달 가능 p는 k = 4에서 2/k! = 0.0833**이고, k = 4개 축에 도달한 모델은 0개다.
+>   이것은 정수이지 데이터 한계가 아니다: **k = 4에서는 어떤 표본크기도 어떤 데이터 품질도
+>   α = .05에 닿을 수 없다.** 해결가능 후보는 하나도 없다.
+> - 축별로 보면 4개 축 중 3개만 아예 구분력을 가진다: `abstention`은 **null 축**이다(66개 모델 중
+>   0개가 그곳에서 subject의 밴드 밖에 든다).
 >
-> **The defensible claim is a range, not a name:** *the subject is consistent with the
-> mid-to-upper region of the 2025–2026 frontier field, and excludes nothing inside it.*
+> **방어 가능한 명제는 이름이 아니라 범위다:** *subject는 2025–2026 프런티어 진영의 mid-to-upper
+> 영역과 양립하며, 그 안의 무엇도 배제하지 않는다.*
 
-Source: `data/matching.json` → `frontier_match.discriminating_power`, `frontier_match.coverage`.
+출처: `data/matching.json` → `frontier_match.discriminating_power`, `frontier_match.coverage`.
 
-### Why the name-matching attempt is a dead end — 4-axis coverage is an artefact
+### 이름 매칭 시도가 막다른 길인 이유 — 4축 커버리지는 인공물이다
 
-Six models reach 4 axes, and **all six are 2025-vintage from two vendors** (`gpt-4.1`,
-`gpt-4.1-mini`, `gpt-4.1-nano`, `gpt-5-mini`, `claude-haiku-4-5`, `claude-sonnet-4-5`). The
-fourth axis is BFCL, last updated **2026-04-12**, so 2026 flagships are missing from it
-**by data staleness, not by weakness**. Reading that corner as "the subject resembles a 2025
-mid-tier model" is a restatement of the fact that our instrument can only see that corner.
+여섯 개 모델이 4개 축에 도달하고, **6개 전부가 두 회사의 2025년식**이다(`gpt-4.1`,
+`gpt-4.1-mini`, `gpt-4.1-nano`, `gpt-5-mini`, `claude-haiku-4-5`, `claude-sonnet-4-5`). 네 번째
+축이 BFCL이고 마지막 갱신이 **2026-04-12**이므로, 2026 플래깅십은 **약해서가 아니라 데이터 낡음
+때문에** 그곳에 없다. 그 코너를 "subject가 2025 중급 모델과 닮았다"로 읽는 것은 우리 도구기가 그
+코너만 볼 수 있다는 사실을 재진술한 것일 뿐이다.
 
-Five of the bank's nine categories have **no counterpart at all** in the frontier table
-(`instruction_following`, `format_control`, `multilingual`, `long_context`, `robustness` →
-0 cells), which caps the axis count at 4. Reaching k = 5 — the first k that *can* clear α = .05
-— needs **two** new axes, and one new axis only buys k = 4, which is still structurally
-unresolvable.
+뱅크 아홉 개 범주 중 다섯 개가 프런티어 표에 **아예 대응물이 없다**(`instruction_following`,
+`format_control`, `multilingual`, `long_context`, `robustness` → 0셀). 그래서 축 개수가 4에서 캡된다.
+k = 5에 도달하려면 — *α = .05를 넘길 수 있는* 첫 k — **새 축 두 개**가 필요한데, 새 축 하나로 사면
+k = 4뿐이고 그것도 여전히 구조적으로 미해결이다.
 
-### The obvious alternative is a trap: do not rank the "closest" models
+### 뻔한 대안은 함정이다: "가장 가까운" 모델을 정렬하지 말 것
 
-Centre distances to the nearest candidates are `gemini-2.5-pro-preview-03-25` 6.40 pp (2 axes),
-`qwen3.6-max-preview` 7.32 pp (2 axes), `deepseek-r1-0528` 7.48 pp (2 axes), `kimi-k3` 12.77 pp
-(3 axes), `claude-opus-4-8` 15.14 pp (3 axes), `gpt-5` 15.80 pp (3 axes). **This is not a
-ranking.** Centre distances across different axis counts are not comparable, and the top three
-sit within our own floor. The ordering is a technical product of axis count, nothing more.
+가장 가까운 후보까지의 중심 거리는 `gemini-2.5-pro-preview-03-25` 6.40 pp(2축),
+`qwen3.6-max-preview` 7.32 pp(2축), `deepseek-r1-0528` 7.48 pp(2축), `kimi-k3` 12.77 pp(3축),
+`claude-opus-4-8` 15.14 pp(3축), `gpt-5` 15.80 pp(3축)다. **이것은 순위가 아니다.** 축 개수가 다르면
+중심 거리는 비교할 수 없고, 상위 세 개는 우리 floor 안에 있다. 이 순서는 축 개수에서 나온 기술적
+산물일 뿐이다.
 
 ---
 
-## 7. Latency, with the units right
+## 7. 단위를 정확히 한 레이턴스
 
-| | end-to-end median | pure-model segment median | pre-model share |
+| | end-to-end 중앙값 | 순수 모델 구간 중앙값 | pre-model 비중 |
 |---|---|---|---|
 | **subject** `opencode/space-bunny-free` | 24,817 ms | **496 ms** | **93.33%** |
 | `meta/muse-spark-1.3` | 25,201 ms | 2,541 ms | 85.51% |
 | `nvidia/z-ai/glm-5.3-flash` | 63,270 ms | 8,203 ms | 78.71% |
 | `nvidia/moonshotai/kimi-k3` | 78,544 ms | 2,933 ms | 98.03% |
 
-Source: `data/matching.json` → `subject_profile.latency`, `anchor_comparison.anchor_latency`.
+출처: `data/matching.json` → `subject_profile.latency`, `anchor_comparison.anchor_latency`.
 
-**93% of the subject's end-to-end latency is process boot and provider queueing, not
-inference.** End-to-end, the subject and `muse-spark-1.3` are indistinguishable (1.01×). The
-subject is 5–16× faster only in the pure-model segment. Reporting end-to-end wall time as
-"model latency" would measure the CLI, not the model. This is also why the concurrency
-recommendation is 1: measured peak child RSS was ~557–572 MB against a 2 GiB cgroup, and at
-concurrency 2 the same runs took 17.5 s instead of 10.2 s.
+**subject의 end-to-end 레이턴스 중 93%는 프로세스 부팅과 프로바이더 대기열이지 추론이 아니다.**
+end-to-end로 subject와 `muse-spark-1.3`는 구분되지 않는다(1.01×). subject가 5–16× 빠르다는 건 순수
+모델 구간에서만 성립한다. end-to-end 벽시계 시간을 "모델 레이턴스"로 보고하면 CLI를 재는 것이지
+모델을 재는 게 아니다. 동시성 권고가 1인 이유도 이것이다: 실측 자식 프로세스 피크 RSS가 2 GiB
+cgroup에 대해 ~557–572 MB였고, 동시성 2에서는 같은 실행이 10.2 s 대신 17.5 s가 걸렸다.
 
-**No metric here is a true time-to-first-token.** `opencode run` emits one whole-text part with
-no token deltas, so every TTFT figure here is an **upper bound** on the true first-token time.
+**여기 어떤 지표도 진짜 time-to-first-token이 아니다.** `opencode run`은 토큰 델타 없이 본문 파트
+하나를 한 번에 내놓으므로, 여기 모든 TTFT 수치는 진짜 첫 토큰 시간의 **상한**이다.
 
-**Cost is not reported as a capability.** The subject ran on a free tier, so `cost = 0` is a
-billing fact, not efficiency. A cost-per-solved-task metric would be 0/0. Token counters are
-recorded instead, and any shadow price must carry a dated, sourced price table.
+**비용은 능력으로 보고하지 않는다.** subject는 free tier로 돌았으므로 `cost = 0`은 효율이 아니라
+과금 사실이다. solved-task당 비용 지표는 0/0이 된다. 대신 토큰 카운터를 기록했고, 어떤 shadow
+price든 날짜와 출처가 있는 가격표를 달아야 한다.
 
-### Token counters — the real cost proxies
+### 토큰 카운터 — 진짜 비용 대리 지표
 
-| counter | n | median | mean | p95 | max | total |
+| 카운터 | n | 중앙값 | 평균 | p95 | 최댓값 | 합계 |
 |---|---|---|---|---|---|---|
-| prompt tokens | 174 | 18,539 | 20,063 | 34,129 | 57,060 | 3,491,015 |
-| reasoning tokens | 174 | 79.5 | 131.5 | 526 | 1,200 | **22,876** |
-| output tokens | 176 | 3 | 15.5 | 46 | 284 | 2,728 |
-| cost | 176 | — | — | — | — | **0** (free tier) |
+| 프롬프트 토큰 | 174 | 18,539 | 20,063 | 34,129 | 57,060 | 3,491,015 |
+| 추론 토큰 | 174 | 79.5 | 131.5 | 526 | 1,200 | **22,876** |
+| 출력 토큰 | 176 | 3 | 15.5 | 46 | 284 | 2,728 |
+| 비용 | 176 | — | — | — | — | **0** (free tier) |
 
-Source: `reports/round1/subject-88/report.json` → `overall`.
+출처: `reports/round1/subject-88/report.json` → `overall`.
 
-Two cautions. First, `token_source` is **`mixed|char4`**: output tokens come from the
-`step_finish` usage counters where available and fall back to a `ceil(chars/4)` proxy
-otherwise, which **under-counts code and over-counts Hangul/CJK** — our multilingual items are
-affected. Second, a median of **3 output tokens** is the honest shape of this bank: these are
-short factual answers, not essays. That is a property of the instrument, and it is why
-`long_context` shows 42 total output tokens across 16 runs.
-
----
-
-## 8. Threats to validity, ranked
-
-Full list with quantifications in [`LIMITATIONS.md`](LIMITATIONS.md). The top five:
-
-1. **The item bank was written by an LLM of the same family that grades it.** Answer
-   *correctness* is machine-guaranteed by two independent derivations (824 checks, 0 fail), but
-   item *selection*, vocabulary and difficulty calibration carry the author's fingerprint. An
-   advantage on this bank cannot be separated from genealogy. **Unresolvable within one
-   session.**
-2. **Format compliance is confounded with capability.** 52 of 88 items use strict format
-   scorers. The subject's *hinted* abstentions were correct but scored wrong, costing 6 runs.
-3. **n is below what a 5 pp claim needs.** Measured q = 0.0588 → floor 7.37 pp; we share 45
-   items and the anchors ran 1 repetition. Both gaps sit inside the floor.
-4. **`function_calling` and `code` are proxies, not agentic success.** The isolated harness
-   exposes no tools and has no final-state check, so "task success" here means *a
-   schema-shaped call was emitted*. Worse, 5 subject runs used `bash` — the scaffold moved
-   inside one measurement.
-5. **The reasoning budget is chosen by the service and never disclosed.** The subject emitted
-   **22,876 reasoning tokens** (median 79.5, max 1,200) across the 174 runs that reported the
-   field, but the effort parameter itself is not exposed. This is exactly the axis worth
-   15–28 pp on the benchmarks we are compared against, and we cannot locate ourselves on it.
-
-Ranks 6–10 (5, 3, 9, 10, 2 in the internal ordering) cover: the service is free-tier so cost
-degenerate; the abstention family has **no convention-free F** — two defensible readings of the
-same runs are 50 F-points apart, and the convention is named explicitly on the axis; nine
-categories but five have no frontier counterpart; the 4-axis corner is 2025-only; one
-long-context item is unmeasurable through a command-line harness.
+주의가 둘이다. 첫째, `token_source`는 **`mixed|char4`**다: 출력 토큰은 가능한 경우 `step_finish`
+사용량 카운터에서 나오고, 그렇지 않으면 `ceil(chars/4)` 대리값으로 떨어진다. 이 대리값은 **코드를
+과소 집계하고 한글/CJK를 과대 집계한다** — 우리 다국어 문항이 영향을 받는다. 둘째, 출력 토큰 중앙값
+**3**은 이 뱅크의 정직한 모양이다. 짧은 사실 답이지 essay가 아니다. 그것은 도구기의 성질이며,
+`long_context`가 16회 실행에 걸쳐 출력 토큰 합계 42를 보이는 이유다.
 
 ---
 
-## 9. Reproducing this
+## 8. 타당성 위협, 순위
 
-**Requirements: Node.js v20+ and nothing else.** The harness imports only Node built-ins
-(`node:fs`, `node:path`, `node:crypto`, `node:child_process`, `node:url`, `node:os`, `node:vm`).
-There is no `package.json`, no lockfile, no `node_modules`, and no third-party package. You can
-confirm it yourself:
+전체 목록과 수치는 [`LIMITATIONS.md`](LIMITATIONS.md). 상위 다섯 개:
+
+1. **문항 뱅크를 그것을 채점하는 것과 같은 계열의 LLM이 작성했다.** 정답의 *정확성*은 두 개의 독립
+   재도출로 기계 보장된다(824 checks, 0 fail). 그러나 *문항 선별*·어휘·난이도 보정에는 작성자의 지문이
+   남는다. 이 뱅크에서의 우위는 계보와 분리할 수 없다. **한 세션 안에서는 해결 불가.**
+2. **포맷 준수는 능력과 뒤엉켜 있다.** 88개 중 52개가 엄격한 포맷 스코어러를 쓴다. subject의 *힌트가
+   있는* 기권은 정답이었지만 오답으로 채점돼서 6회 실행을 잃었다.
+3. **n이 5 pp 주장에 필요한 수준에 못 미친다.** 실측 q = 0.0588 → floor 7.37 pp. 우리는 45문항을
+   공유하고 앵커는 1회 반복이었다. 두 gap 모두 floor 안이다.
+4. **`function_calling`과 `code`는 대리지표이지 에이전틱 성공이 아니다.** 격리된 하네스는 도구를
+   노출하지 않고 최종 상태 검사도 없다. 그래서 여기의 "task success"는 *스키마 모양의 호출이
+   나갔다*는 뜻이다. 더 나쁜 것은 subject 실행 5회가 `bash`를 썼다는 것 — 하나의 측정 안에서
+   스캐폴드가 움직였다.
+5. **추론 예산은 서비스가 정하고 끝내 공개하지 않는다.** subject는 그 필드를 보고한 174회 실행에서
+   **22,876 추론 토큰**을 냈다(중앙값 79.5, 최댓값 1,200). 그러나 effort 파라미터 자체는 노출되지
+   않는다. 우리가 비교 대상인 벤치마크들에서 15–28 pp를 좌우하는 바로 그 축인데, 우리는 그 위치를
+   알 수 없다.
+
+6–10위(내부 정렬에서는 5, 3, 9, 10, 2)는 다음을 다룬다: 서비스가 free tier라 비용이 퇴화한다.
+abstention 계열은 **규약 없는 F가 없다** — 같은 실행의 두 가지 방어 가능한 해석이 50 F-point 차이고,
+그 규약은 축에 명시했다. 범주는 아홉 개인데 다섯 개는 프런티어 대응물이 없다. 4축 코너는 2025년식
+뿐이다. long_context 문항 하나는 커맨드라인 하네스로 측정 불가능하다.
+
+---
+
+## 9. 이것을 재현하는 법
+
+**요구 사항: Node.js v20+ 그것뿐이다.** 하네스는 Node 내장 모듈만 import한다(`node:fs`,
+`node:path`, `node:crypto`, `node:child_process`, `node:url`, `node:os`, `node:vm`).
+`package.json`도, 락파일도, `node_modules`도, 서드파티 패키지도 없다. 직접 확인할 수 있다:
 
 ```bash
 grep -rhoE "from '[^']+'" harness/*.mjs harness/bin/*.mjs | sort -u
 ```
 
-A GitHub token was present in the original measurement environment; it is **not** in this
-repository, and nothing here needs one except pushing.
+원래 측정 환경에는 GitHub 토큰이 있었다. 이 저장소에는 **없고**, 여기서 토큰이 필요한 일은
+push뿐이다.
 
-### One command
+### 명령 하나
 
 ```bash
 ./scripts/verify.sh
 ```
 
-Runs the offline unit tests, rebuilds and byte-compares the item bank, and executes both
-statistical self-test suites. No model calls, no network, a few seconds.
+오프라인 단위 테스트를 돌리고, 문항 뱅크를 재생성해 바이트 단위로 비교하고, 두 통계 self-test
+스위트를 실행한다. 모델 호출 없음, 네트워크 없음, 몇 초면 끝난다.
 
-### Re-running the measurement (costs real model calls)
+### 측정 다시 돌리기 (실제 모델 호출 비용이 든다)
 
 ```bash
 cd harness
@@ -506,7 +473,7 @@ node bin/run-bench.mjs --items items.json \
   --reps 2 --concurrency 1 --out ../reports/round1/subject-88
 ```
 
-Then re-derive every number in this README:
+그리고 이 README의 모든 숫자를 다시 도출한다:
 
 ```bash
 node harness/adjudicate.mjs --strict        # per-run verdicts + floor
@@ -516,66 +483,62 @@ node harness/psycho-verify.mjs                # formula self-tests
 node harness/matching.mjs                     # data/matching.json
 ```
 
-Rebuilding the frontier table requires network access and the raw downloads described in
-`extract/c1/README.md`; `data/frontier-scores.json` and `reports/C1-frontier-scores.md` are
-committed, and `node extract/c1/report.mjs` regenerates the report from the JSON with no
-hand-typed numbers (verified byte-identical).
+프런티어 표를 다시 만드는 데는 네트워크와 `extract/c1/README.md`에 서술된 원본 다운로드가 필요하다.
+`data/frontier-scores.json`과 `reports/C1-frontier-scores.md`는 커밋되어 있고,
+`node extract/c1/report.mjs`가 JSON에서 손으로 친 숫자 없이 보고서를 재생성한다(바이트 동일 확인함).
 
-### Determinism
+### 결정성
 
-`data/matching.json` is deterministic apart from its `generated_at` field. The adjudicated
-logs are byte-identical across consecutive runs. `harness/items.json` is byte-identical to a
-rebuild from the recorded seed.
+`data/matching.json`은 `generated_at` 필드를 빼면 결정적이다. 심사 후 로그는 연속 실행 간 바이트
+단위로 같다. `harness/items.json`은 기록된 seed로 재생성한 것과 바이트 단위로 같다.
 
 ---
 
-## 10. Repository map
+## 10. 저장소 지도
 
-| path | what |
+| 경로 | 내용 |
 |---|---|
-| `README.md` | this document |
-| **`ROUND2.md`** | **round 2: three instances treated as one model, graded by an independent third party** |
-| `METHODOLOGY.md` | how the measurement works; what it does and does not measure |
-| `FINDINGS.md` | condensed result tables |
-| `LIMITATIONS.md` | threats to validity, ranked and quantified |
-| `PII-SCAN.md` | the scrubbing command and its verbatim clean output |
-| `CITATION.cff` | citation metadata |
-| `LICENSE` | CC BY 4.0 (see `data/ATTRIBUTION.md` for the Epoch carve-out) |
-| `harness/` | the measurement harness, the audit tool, the item-bank generator, statistical self-tests, `METRICS.md`, `PSYCHOMETRICS.md`, **the third-party grader (`judge.mjs`) and the ensemble reducer (`ensemble2.mjs`)**, 93 tests |
-| `data/` | `benchmarks.json` (76 benchmarks), `metrics.json` (96 metrics), **`frontier-scores.json` (1,711 reported cells — Epoch AI, CC BY 4.0)**, `matching.json`, `qc-summary.json`, `ATTRIBUTION.md` |
-| `reports/` | the six working reports (mostly Korean, as written), `round1/` — **the raw evidence**: per-run logs, full untruncated subprocess captures, adjudication tables, per-round reports — and `round2/` (third instance, grader verdicts, ensemble reductions) |
-| `work/` | blind candidate packets handed to the grader, derived from the raw logs by `harness/make-candidates.mjs` |
-| `extract/c1/` | the scripts that built `frontier-scores.json`, plus the audit scripts and a record of two bugs they caught |
-| `scripts/` | `verify.sh` (offline, no model calls) and `reproduce.sh` (full analysis chain) |
+| `README.md` | 이 문서 |
+| **`ROUND2.md`** | **라운드 2: 세 회사(솔버 인스턴스 3개)를 하나의 모델로 취급하고, 독립된 제3자가 채점** |
+| `METHODOLOGY.md` | 측정이 어떻게 동작하는지, 무엇을 재고 무엇을 재지 않는지 |
+| `FINDINGS.md` | 압축한 결과 표 |
+| `LIMITATIONS.md` | 순위와 수치가 붙은 타당성 위협 |
+| `PII-SCAN.md` | 정소 명령과 그 깨끗한 원문 출력 |
+| `CITATION.cff` | 인용 메타데이터 |
+| `LICENSE` | CC BY 4.0 (Epoch 예외는 `data/ATTRIBUTION.md` 참고) |
+| `harness/` | 측정 하네스, 감사 도구, 문항 뱅크 생성기, 통계 self-test, `METRICS.md`, `PSYCHOMETRICS.md`, **제3자 채점기(`judge.mjs`)와 앙상블 축약기(`ensemble2.mjs`)**, 테스트 93개 |
+| `data/` | `benchmarks.json`(벤치마크 76종), `metrics.json`(지표 96종), **`frontier-scores.json`(reported 셀 1,711개 — Epoch AI, CC BY 4.0)**, `matching.json`, `qc-summary.json`, `ATTRIBUTION.md` |
+| `reports/` | 여섯 개의 작업 보고서(대부분 쓰인 그대로 한국어), `round1/` — **원본 증거**: 실행별 로그, 잘리지 않은 서브프로세스 캡처, 심사표, 라운드별 보고서 — 그리고 `round2/`(세 번째 인스턴스, 채점자 판정, 앙상블 축약) |
+| `work/` | 채점자에게 넘긴 식별자를 지운 후보 패킷. `harness/make-candidates.mjs`가 원본 로그에서 만들어 낸다 |
+| `extract/c1/` | `frontier-scores.json`을 만든 스크립트, 감사 스크립트, 그리고 그것들이 잡은 버그 두 건의 기록 |
+| `scripts/` | `verify.sh`(오프라인, 모델 호출 없음)와 `reproduce.sh`(전체 분석 체인) |
 
-The raw run logs and subprocess captures are ~9 MB and are kept deliberately: **a claim
-without its raw trail is not publishable.** `reports/round1/*/artifacts/<run_id>.stdout.txt`
-is the complete, untruncated child output for every single run.
+원본 실행 로그와 서브프로세스 캡처는 ~9 MB이며 의도적으로 남겨 둔다: **원본 추적 없는 주장은 게시할
+수 없다.** `reports/round1/*/artifacts/<run_id>.stdout.txt`는 단 한 번의 실행에 대해서도 완전하고
+잘리지 않은 자식 프로세스 출력을 담고 있다.
 
 ---
 
-## 11. Attribution
+## 11. 저작 표시
 
-**Our own work — harness, audit tool, item bank, analysis, prose — is CC BY 4.0.**
+**우리의 자체 작업 — 하네스, 감사 도구, 문항 뱅크, 분석, 산문 — 은 CC BY 4.0이다.**
 
-`data/frontier-scores.json` is **not** ours. 1,685 of its 1,711 cells are derived from the
-**Epoch AI public benchmark dataset, licensed CC BY 4.0**, which requires crediting the source
-and authors. That data remains under CC BY 4.0 regardless of this repository's licence terms.
-The remaining 26 cells come from other first-party sources, each with its own terms, listed in
-[`data/ATTRIBUTION.md`](data/ATTRIBUTION.md).
+`data/frontier-scores.json`은 우리의 것이 **아니다**. 1,711셀 중 1,685셀은 **CC BY 4.0 라이선스의
+Epoch AI 공개 벤치마크 데이터셋**에서 파생되며, 그 라이선스는 출처와 저자의 표기를 요구한다. 그
+데이터는 이 저장소의 라이선스 조항과 무관하게 CC BY 4.0 아래에 남는다. 나머지 26셀은 다른 `first-party`
+출처에서 왔고 각자 별도의 조건을 갖는다. 목록은 [`data/ATTRIBUTION.md`](data/ATTRIBUTION.md).
 
-`data/benchmarks.json` and `data/metrics.json` describe benchmarks and metrics that other
-people designed; their definitions are quoted from the primary papers and official
-documentation, with URLs.
+`data/benchmarks.json`과 `data/metrics.json`은 다른 사람이 설계한 벤치마크와 지표를 기술한다.
+정의는 원 논문과 공식 문서에서 URL과 함께 인용했다.
 
-Full credits, licences, retrieval dates and per-cell confidence in
+전체 저작표시·라이선스·수취 날짜·셀별 확신도는
 **[`data/ATTRIBUTION.md`](data/ATTRIBUTION.md)**.
 
 ---
 
-## 12. Citation
+## 12. 인용
 
-See [`CITATION.cff`](CITATION.cff). If you use the frontier-score table, cite Epoch AI; if you
-use the harness, item bank or audit, cite this repository. The measured-vs-reported distinction
-in the banner is the citation boundary: **citing this repository does not make you cite our
-second-hand frontier numbers as our own.**
+[`CITATION.cff`](CITATION.cff)를 보라. 프런티어 점수 표를 쓴다면 Epoch AI를 인용하고, 하네스·문항
+뱅크·감사를 쓴다면 이 저장소를 인용한다. 배너의 measured 대 reported 구분이 인용 경계다:
+**이 저장소를 인용한다고 우리가 전달받은 프런티어 숫자를 우리 것인 것처럼 인용해야 하는 것은
+아니다.**
