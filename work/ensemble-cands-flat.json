@@ -1,0 +1,227 @@
+[
+ {
+  "item_id": "ifr-words-4",
+  "arm": "inst0",
+  "answer": "Bold, warm, bloodlike, burning"
+ },
+ {
+  "item_id": "ifr-words-4",
+  "arm": "inst1",
+  "answer": "Warm crimson blood passion"
+ },
+ {
+  "item_id": "ifr-words-4",
+  "arm": "inst2",
+  "answer": "Vivid deep warm crimson"
+ },
+ {
+  "item_id": "ifr-words-5",
+  "arm": "inst0",
+  "answer": "Deep calm ocean's distant sky"
+ },
+ {
+  "item_id": "ifr-words-5",
+  "arm": "inst1",
+  "answer": "Deep, calm, oceanic, endless, azure"
+ },
+ {
+  "item_id": "ifr-words-5",
+  "arm": "inst2",
+  "answer": "Calm, deep, endless sky."
+ },
+ {
+  "item_id": "ifr-words-6",
+  "arm": "inst0",
+  "answer": "Warm golden hue between honey and orange"
+ },
+ {
+  "item_id": "ifr-words-6",
+  "arm": "inst1",
+  "answer": "Warm golden hue, honeyed and glowing"
+ },
+ {
+  "item_id": "ifr-words-6",
+  "arm": "inst2",
+  "answer": "Warm golden hue between yellow and orange"
+ },
+ {
+  "item_id": "ifr-lower-01",
+  "arm": "inst0",
+  "answer": "a harbour at dusk is worth stopping for because the water holds the last of the light and the sky softens into colour"
+ },
+ {
+  "item_id": "ifr-lower-01",
+  "arm": "inst1",
+  "answer": "a harbour at dusk is worth stopping for because the fading light softens the water and turns the moored boats into a scene of quiet calm that makes you want to stay a while"
+ },
+ {
+  "item_id": "ifr-lower-01",
+  "arm": "inst2",
+  "answer": "a harbour at dusk is worth stopping for because the last light softens the water and the whole world briefly exhales"
+ },
+ {
+  "item_id": "ifr-forbid-01",
+  "arm": "inst0",
+  "answer": "A lamp left burning suggests someone was recently there — or that someone expected to return — and that the house's usual habit of tidying up has been broken."
+ },
+ {
+  "item_id": "ifr-forbid-01",
+  "arm": "inst1",
+  "answer": "A lamp left burning suggests a house where someone is expected back, or where the habit of arrival has quietly outlasted the person."
+ },
+ {
+  "item_id": "ifr-forbid-01",
+  "arm": "inst2",
+  "answer": "A lamp left burning suggests someone is still awake and at home inside it."
+ },
+ {
+  "item_id": "ifr-forbid-02",
+  "arm": "inst0",
+  "answer": "A lamp left burning suggests someone is still awake inside, so the house feels lived-in, welcoming, and quietly waiting."
+ },
+ {
+  "item_id": "ifr-forbid-02",
+  "arm": "inst1",
+  "answer": "A lamp left burning suggests someone is still awake inside, or that the house is left unattended but not meant to look empty.\n\n기억 확인: 관련 기록 없음"
+ },
+ {
+  "item_id": "ifr-forbid-02",
+  "arm": "inst2",
+  "answer": "A lamp left burning suggests someone is expected home, or has just stepped out — the house is occupied, not abandoned."
+ },
+ {
+  "item_id": "ifr-tokens-01",
+  "arm": "inst0",
+  "answer": "A beetle the color of cobalt landed on a thistle above the abandoned quarry."
+ },
+ {
+  "item_id": "ifr-tokens-01",
+  "arm": "inst1",
+  "answer": "A cobalt ribbon fluttered above the thistle blooms near the abandoned quarry."
+ },
+ {
+  "item_id": "ifr-tokens-01",
+  "arm": "inst2",
+  "answer": "A cobalt ribbon threaded through thistle bloom above the quarry at dusk."
+ },
+ {
+  "item_id": "ifr-nodigit-01",
+  "arm": "inst0",
+  "answer": "On an empty coast at first light, the pale sky melts into a glassy sea as a cold breeze drifts past, salt-heavy and unhurried."
+ },
+ {
+  "item_id": "ifr-nodigit-01",
+  "arm": "inst1",
+  "answer": "Pale gold light spills across a windless, empty shore as the first gulls stir above glassy water."
+ },
+ {
+  "item_id": "ifr-nodigit-01",
+  "arm": "inst2",
+  "answer": "A pale dawn slips over an empty coast, where the tide whispers against sand that has known no footsteps but the gulls'."
+ },
+ {
+  "item_id": "ifr-oneline-01",
+  "arm": "inst0",
+  "answer": "A hands-on session where participants build real things together, learning by doing alongside an instructor and each other."
+ },
+ {
+  "item_id": "ifr-oneline-01",
+  "arm": "inst1",
+  "answer": "A workshop is a hands-on gathering where participants learn by doing — guided by an expert, working through real tasks together in a small group over an intensive period."
+ },
+ {
+  "item_id": "ifr-oneline-01",
+  "arm": "inst2",
+  "answer": "A workshop is a hands-on session where a small group of people gather with a facilitator to learn a skill by practicing it together, asking questions, and building something real rather than just listening to a lecture."
+ },
+ {
+  "item_id": "ifr-multi-01",
+  "arm": "inst0",
+  "answer": "the long pier was rebuilt with pine and now reaches far out across the calm water"
+ },
+ {
+  "item_id": "ifr-multi-01",
+  "arm": "inst1",
+  "answer": "the long pier was rebuilt with sturdy pine planks that still smelled of fresh resin"
+ },
+ {
+  "item_id": "ifr-multi-01",
+  "arm": "inst2",
+  "answer": "the long pier was rebuilt with strong pine beams that now hold firm against the tide"
+ },
+ {
+  "item_id": "ifr-multi-02",
+  "arm": "inst0",
+  "answer": "a slate roof rests on the small workshop like a neatly stacked blanket of dark grey stone tiles keeping the rain out"
+ },
+ {
+  "item_id": "ifr-multi-02",
+  "arm": "inst1",
+  "answer": "a weathered slate roof shelters a small workshop and hums softly whenever the rain comes down"
+ },
+ {
+  "item_id": "ifr-multi-02",
+  "arm": "inst2",
+  "answer": "a weathered slate roof rests atop a small workshop"
+ },
+ {
+  "item_id": "ifr-multi-03",
+  "arm": "inst0",
+  "answer": "the ferry to the island leaves the harbor twice a day and returns before dusk"
+ },
+ {
+  "item_id": "ifr-multi-03",
+  "arm": "inst1",
+  "answer": "the ferry runs twice a day between the harbor and the island"
+ },
+ {
+  "item_id": "ifr-multi-03",
+  "arm": "inst2",
+  "answer": "the ferry to the island runs twice a day"
+ },
+ {
+  "item_id": "abs-noans-01",
+  "arm": "inst0",
+  "answer": "The passage doesn't say. It only records that a new bench was installed beside the cart on 19 March — no cost is given for it."
+ },
+ {
+  "item_id": "abs-noans-01",
+  "arm": "inst1",
+  "answer": "The passage doesn't state any cost for the bench — it only gives installation dates (kettle 12 March, signal box lamp 26 March, cart 5 March, bench 19 March). No cost information is available."
+ },
+ {
+  "item_id": "abs-noans-01",
+  "arm": "inst2",
+  "answer": "The passage doesn't say. It only states that a new bench was installed beside the cart on 19 March — no cost is given for it (or for any of the other items)."
+ },
+ {
+  "item_id": "abs-noans-02",
+  "arm": "inst0",
+  "answer": "The passage doesn't state that. It gives four dates (3 April founding rehearsal, 17 April chairs replaced, 20 November previous year organ cleaned, plus an unrecorded piano tuning) and never mentions an attendance figure — so the number of choir members at the founding rehearsal can't be determined from it."
+ },
+ {
+  "item_id": "abs-noans-02",
+  "arm": "inst1",
+  "answer": "기억 확인: 관련 기록 없음(이번 세션 도구로 `memory_search` 미제공)\n\nThe passage doesn't state it. It only says the choir held its founding rehearsal on 3 April — no attendance figure, count, or number of members is given anywhere in the text."
+ },
+ {
+  "item_id": "abs-noans-02",
+  "arm": "inst2",
+  "answer": "Cannot be determined — the passage never states attendance. It only gives a date (3 April) for the founding rehearsal; the other details (chair replacement, organ cleaning, untimed tuner visit) contain no numbers of people."
+ },
+ {
+  "item_id": "abs-noans-03",
+  "arm": "inst0",
+  "answer": "The passage doesn't name a company — it only gives dates (8 May, 8 May next year, 2 June, 19 June). So there's no way to tell which company repainted the blue door."
+ },
+ {
+  "item_id": "abs-noans-03",
+  "arm": "inst1",
+  "answer": "The passage doesn't say. It states only the date the blue door was repainted (8 May) — no company is named, so the question can't be answered from the text alone."
+ },
+ {
+  "item_id": "abs-noans-03",
+  "arm": "inst2",
+  "answer": "The passage doesn't say. It only records that the blue door was repainted on 8 May — no company is named for any of the four jobs."
+ }
+]

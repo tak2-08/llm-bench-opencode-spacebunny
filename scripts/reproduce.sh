@@ -14,7 +14,11 @@ cd "$(dirname "$0")/.."
 REPS="${1:-2}"
 CONC="${2:-2}"
 SUBJECT="opencode/space-bunny-free"
-ANCHORS="nvidia/z-ai/glm-5.3-flash,meta/muse-spark-1.3"
+# Anchor set for any NEW measurement. `meta/muse-spark-1.3` is deliberately
+# absent: it was measured in round 1 (its results remain in reports/round1/ and
+# are quoted in README.md, which is preserved evidence), but the operator
+# subsequently asked that no Meta API be called, so it is not re-measured.
+ANCHORS="nvidia/z-ai/glm-5.3-flash"
 STAMP="$(date -u +%Y%m%dT%H%M%SZ)"
 OUT="reports/reproduce-$STAMP"
 

@@ -7,6 +7,26 @@ Harness and audit written from scratch, no third-party dependencies.
 
 ---
 
+> # 📌 ROUND 2 — a different question
+>
+> Round 1 measured **one model**. Round 2 measures an entity that presents as one
+> model but is internally **three solver instances**, graded by a panel from a
+> different model lineage. Its answer, in one line:
+>
+> **No gain.** The judged entity scores 89.66% against a best single instance of
+> 88.51% (+1.1pp, every paired test above .05). Naive majority voting scores
+> **significantly worse** than a single model (75.86%, p=0.0034) — but not because
+> consensus is bad: it abstains on three-way splits and abstention was scored as a
+> wrong answer. A blind selector that never abstains reaches 89.66% on the same
+> items, i.e. **the third-party judge is worth exactly zero over picking at random
+> here**, and only 2.3pp separates even an answer-key oracle from that.
+>
+> → **[ROUND2.md](ROUND2.md)** for the full result, the grader panel's measured
+> stability-vs-validity split, and the reason 10 of 15 "disagreements" were not
+> disagreements at all.
+
+---
+
 > # ⚠️ READ THIS FIRST — measured vs. reported
 >
 > This repository contains **two different kinds of number** and conflating them would
@@ -14,7 +34,7 @@ Harness and audit written from scratch, no third-party dependencies.
 >
 > | | What it means | How many |
 > |---|---|---|
-> | **`measured`** | We ran it ourselves, in this environment, and the raw log is in `reports/round1/`. | subject `opencode/space-bunny-free`, plus 3 other models that this service could actually reach |
+> | **`measured`** | We ran it ourselves, in this environment, and the raw log is in `reports/round1/` and `reports/round2/`. | subject `opencode/space-bunny-free` (3 instances), plus the grader panel, plus the anchor models this service could actually reach |
 > | **`reported`** | Somebody else ran it and published the number. We read their page. | **1,711 of the 1,711 frontier cells** in `data/frontier-scores.json` |
 >
 > **We measured no frontier commercial model, and that is a hard environmental fact, not a choice.**
@@ -514,15 +534,17 @@ rebuild from the recorded seed.
 | path | what |
 |---|---|
 | `README.md` | this document |
+| **`ROUND2.md`** | **round 2: three instances treated as one model, graded by an independent third party** |
 | `METHODOLOGY.md` | how the measurement works; what it does and does not measure |
 | `FINDINGS.md` | condensed result tables |
 | `LIMITATIONS.md` | threats to validity, ranked and quantified |
 | `PII-SCAN.md` | the scrubbing command and its verbatim clean output |
 | `CITATION.cff` | citation metadata |
 | `LICENSE` | CC BY 4.0 (see `data/ATTRIBUTION.md` for the Epoch carve-out) |
-| `harness/` | the measurement harness, the audit tool, the item-bank generator, statistical self-tests, `METRICS.md`, `PSYCHOMETRICS.md`, 73 tests |
+| `harness/` | the measurement harness, the audit tool, the item-bank generator, statistical self-tests, `METRICS.md`, `PSYCHOMETRICS.md`, **the third-party grader (`judge.mjs`) and the ensemble reducer (`ensemble2.mjs`)**, 93 tests |
 | `data/` | `benchmarks.json` (76 benchmarks), `metrics.json` (96 metrics), **`frontier-scores.json` (1,711 reported cells — Epoch AI, CC BY 4.0)**, `matching.json`, `qc-summary.json`, `ATTRIBUTION.md` |
-| `reports/` | the six working reports (mostly Korean, as written) and `round1/` — **the raw evidence**: per-run logs, full untruncated subprocess captures, adjudication tables, per-round reports |
+| `reports/` | the six working reports (mostly Korean, as written), `round1/` — **the raw evidence**: per-run logs, full untruncated subprocess captures, adjudication tables, per-round reports — and `round2/` (third instance, grader verdicts, ensemble reductions) |
+| `work/` | blind candidate packets handed to the grader, derived from the raw logs by `harness/make-candidates.mjs` |
 | `extract/c1/` | the scripts that built `frontier-scores.json`, plus the audit scripts and a record of two bugs they caught |
 | `scripts/` | `verify.sh` (offline, no model calls) and `reproduce.sh` (full analysis chain) |
 

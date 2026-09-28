@@ -1,0 +1,126 @@
+{
+  "schema": "llm-bench/openended/v1",
+  "purpose": "Track 2 of round 2. These items have NO programmatic ground truth, so an independent third party must grade them. Each item carries a rubric with checkable criteria so the judge is scoring against a fixed standard rather than taste. Where a verifiable value exists it is embedded in prose, which lets us measure judge-vs-truth agreement on the same items.",
+  "judge_blinding": "Candidates are presented position-randomised with all identity markers stripped. The judge is never told which arm produced which answer, nor that any answer came from a model in the panel.",
+  "arms": [
+    "company-1",
+    "company-2",
+    "company-3",
+    "single-instance-baseline"
+  ],
+  "items": [
+    {
+      "id": "oe-trap-01",
+      "category": "reasoning_audit",
+      "title": "Audit a plausible-but-wrong derivation",
+      "prompt": "A colleague writes: 'The mean of 2, 4, 4, 4, 5, 5, 7, 9 is 5.00, so this dataset is symmetric about 5. Because the mean equals the median for symmetric data, the standard deviation is 2.'\n\nFind every error in that paragraph. There are more than one, and they are different KINDS of error. State each error separately, say what the correct value or concept is, and say which specific word or phrase in the paragraph commits the error. Then state whether any of your corrections change the conclusion that the data is roughly symmetric.",
+      "verifiable": {
+        "what": "the mean is 5.0 (correct) but the symmetry inference and the SD value are wrong; SD of the population is sqrt(4) = 2.0 exactly, so the number 2 is right for a different reason than given",
+        "why": "lets us check the judge against a deterministic fact without revealing the expected structure"
+      },
+      "rubric": [
+        "identifies that mean=5.00 is correct and does not claim it is wrong",
+        "identifies the mean-equals-median argument is invalid (mean=median does not imply symmetry)",
+        "identifies the SD claim is justified by a false route, and gives the correct SD (population SD = 2.0)",
+        "cites the specific offending phrase for each error",
+        "addresses the final question about symmetry with a clear yes/no plus reason"
+      ],
+      "max_score": 5
+    },
+    {
+      "id": "oe-decompose-01",
+      "category": "planning",
+      "title": "Decompose a task into a dependency-correct plan",
+      "prompt": "You must migrate a live web app: 40,000 rows in a PostgreSQL table need a NOT NULL column added, the running application still writes to that table, and a nightly report job reads it. Downtime is not allowed and the report must not read partial data.\n\nProduce the step-by-step plan. State the order, state what makes each step safe to run while the app is live, and name the one thing that must be true before the final step. Do not write SQL; describe the operations and their safety properties.",
+      "verifiable": {
+        "what": "an expand-contract sequence is required: add nullable, backfill in batches, add NOT NULL via validated constraint, then optionally set DEFAULT; the report must read a consistent snapshot or run after the backfill commits",
+        "why": "any plan that omits the nullable-then-validate order, or that backfills in one blocking transaction, is wrong on a stated constraint"
+      },
+      "rubric": [
+        "plan has an explicit ordered step list, not a description of an approach",
+        "each step states why it is safe with the application live",
+        "identifies the add-as-nullable / backfill / add-constraint ordering rather than adding NOT NULL directly",
+        "backfill is batched or otherwise non-blocking rather than a single long transaction",
+        "addresses the report job specifically (consistent snapshot or ordering constraint)",
+        "names the precondition that must hold before the final step"
+      ],
+      "max_score": 6
+    },
+    {
+      "id": "oe-code-review-01",
+      "category": "code_review",
+      "title": "Review code that is correct-looking and wrong",
+      "prompt": "Review this JavaScript:\n\n```js\nfunction dedupeById(rows) {\n  const seen = new Set();\n  const out = [];\n  for (const r of rows) {\n    if (!seen.has(r.id)) {\n      seen.add(r.id);\n      out.push(r);\n    }\n  }\n  return out;\n}\n```\n\nA colleague says: 'This is O(n) and returns unique rows, so it is safe for production.'\n\nList every defect you can justify, separate the ones that make it INCORRECT from the ones that are only DESIGN CONCERNS, and state what input would demonstrate each correctness defect. Then give the corrected version.",
+      "verifiable": {
+        "what": "the function is correct for a plain array of objects; the real defects are the non-array inputs (null/undefined throws), non-string or missing id (undefined collapses distinct rows into one), and NaN ids never equal themselves in Set; the design concerns are retaining the first occurrence silently and O(n) claim being fine",
+        "why": "the key discrimination is whether the reviewer separates correctness from style, and whether they resist inventing defects that are not there"
+      },
+      "rubric": [
+        "does not claim the core dedupe logic is broken",
+        "identifies missing/undefined id collapsing distinct rows",
+        "identifies non-array or null input causing a throw",
+        "labels style/design points as concerns, not correctness defects",
+        "gives a specific input that demonstrates each correctness defect",
+        "provides corrected code",
+        "does not invent a defect that does not exist (penalise hallucinated defects)"
+      ],
+      "max_score": 7
+    },
+    {
+      "id": "oe-selfcorrect-01",
+      "category": "self_correction",
+      "title": "Solve, then find your own error",
+      "prompt": "A factory makes 3 sizes of bolts. Small bolts use 1 machine-minute each, medium use 3, large use 5. A batch takes 9 machine-minutes and contains exactly 12 bolts. Additionally, the number of large bolts equals the number of small bolts. Let s, m, l be the counts.\n\nSolve the system and report s, m, l. Then re-derive the answer a second, independent way. Then check whether your two derivations agree. If they do not, say so and give the corrected answer. Finally state whether the system has exactly one solution.",
+      "verifiable": {
+        "what": "s+m+l=12, 1s+3m+5l=9, l=s. Substituting: 2s+m+5s=9, 3s+m=9, m=12-2s, so 3s+12-2s=9, s=-3, m=18, l=-3. Negative counts mean the stated constraints are INFEASIBLE for physical counts. The correct answer is that no valid batch exists.",
+        "why": "a model that returns s=-3 without noticing the physical impossibility has failed the actual task; the point of the item is whether the second derivation is genuinely independent and whether the infeasibility is caught"
+      },
+      "rubric": [
+        "algebra is correct and yields s=-3, m=18, l=-3 (or an equivalent statement)",
+        "explicitly recognises that negative counts are physically impossible, so no valid batch exists",
+        "the second derivation is methodologically different, not a restatement (penalise re-deriving identically)",
+        "reports agreement or disagreement between the two derivations explicitly",
+        "states the uniqueness of the solution correctly (unique over the reals, infeasible over non-negative integers)"
+      ],
+      "max_score": 5
+    },
+    {
+      "id": "oe-translate-01",
+      "category": "multilingual_audit",
+      "title": "Translation plus a technical term trap",
+      "prompt": "Translate the following into Korean, then explain your two term choices:\n\n'The server rejected the request because the client sent a stale token; the operator should refresh the credential and retry once before escalating the incident.'\n\nFor each of the two terms you chose, give the alternative you rejected and the reason. Then state whether either choice could be ambiguous to a Korean-speaking sysadmin in a way that changes the operational action they would take.",
+      "verifiable": {
+        "what": "'token' and 'credential' are distinct in Korean sysadmin register (토큰 vs 자격 증명/인증 정보); 'escalate the incident' has a specific IT meaning (에스컬레이션) and 'stale' has a security-specific sense (만료/무효화된)",
+        "why": "the discrimination is whether the model treats this as translation or as a terminological risk assessment"
+      },
+      "rubric": [
+        "translation is accurate and idiomatic Korean, not literal word-by-word",
+        "'token' is rendered with a term a Korean sysadmin would recognise",
+        "'escalate' preserves its incident-management sense rather than a literal military sense",
+        "names a rejected alternative for each choice and gives a substantive reason",
+        "addresses whether ambiguity could change the operator's action, with a concrete example if yes",
+        "does not pad with generic translation commentary"
+      ],
+      "max_score": 5
+    },
+    {
+      "id": "oe-constraint-01",
+      "category": "instruction_adherence",
+      "title": "Hard format constraint that conflicts with helpfulness",
+      "prompt": "Explain in exactly 25 words, using no letter 'e' in the whole answer, what a mutex is. The constraint makes the task genuinely hard.\n\nAfter your constrained answer, add a section headed 'WHY THIS IS HARD' and explain in normal prose which words in the concept are hardest to express without the letter 'e'. The second section is exempt from the constraints.\n\nFormat exactly:\nANSWER: <25 words, no letter e>\nWHY THIS IS HARD: <prose>",
+      "verifiable": {
+        "what": "the first section is programmatically checkable: exactly 25 words and zero occurrences of the letter e. The second section is judge-scored.",
+        "why": "this item deliberately mixes a hard programmatic check with a subjective explanation, so we can measure judge behaviour when part of the answer is machine-checkable"
+      },
+      "rubric": [
+        "first section respects the 25-word limit and is verifiable as such",
+        "first section contains no letter e",
+        "the explanation is still comprehensible to a reader who knows the term",
+        "second section correctly identifies which terms are hard to write without 'e' (e.g. exclude, lock, serialise) and why",
+        "format markers ANSWER: and WHY THIS IS HARD: are used exactly",
+        "does not silently violate a constraint to sound better"
+      ],
+      "max_score": 6
+    }
+  ]
+}

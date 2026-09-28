@@ -1,0 +1,34 @@
+{
+  "mode": "pick",
+  "judges": [
+    "opencode/space-bunny-free@high",
+    "opencode/space-bunny-free@xhigh"
+  ],
+  "panel": [
+    {
+      "spec": "opencode/space-bunny-free@high",
+      "model": "opencode/space-bunny-free",
+      "variant": "high",
+      "lineage": "subject"
+    },
+    {
+      "spec": "opencode/space-bunny-free@xhigh",
+      "model": "opencode/space-bunny-free",
+      "variant": "xhigh",
+      "lineage": "subject"
+    }
+  ],
+  "independent_judges": 0,
+  "repeats": 1,
+  "items": 15,
+  "tasks": 30,
+  "verdicts": 30,
+  "unparsed": 0,
+  "unparsed_by_judge": {
+    "opencode/space-bunny-free@high": 0,
+    "opencode/space-bunny-free@xhigh": 0
+  },
+  "position_sensitivity": null,
+  "inter_judge": null,
+  "per_item": null
+}

@@ -1,0 +1,2146 @@
+{
+  "schema": "llm-bench/summary/v1",
+  "overall": {
+    "attempts": 88,
+    "n": 88,
+    "correct": 75,
+    "accuracy": 0.8523,
+    "ci95": {
+      "low": 0.7635,
+      "high": 0.9116
+    },
+    "ci95_centre": 0.8375,
+    "failed_attempts": 1,
+    "reliability": 0.9886,
+    "latency_ms": {
+      "n": 88,
+      "mean": 16244.81,
+      "median": 15490,
+      "p95": 23763,
+      "max": 39714,
+      "min": 0,
+      "stdev": 4937.19,
+      "sum": 1429543
+    },
+    "ttft_spawn_ms": {
+      "n": 87,
+      "mean": 16178.56,
+      "median": 15307,
+      "p95": 23498,
+      "max": 39296,
+      "min": 9396,
+      "stdev": 4608.13,
+      "sum": 1407535
+    },
+    "ttft_model_ms": {
+      "n": 87,
+      "mean": 1746.26,
+      "median": 984,
+      "p95": 5473,
+      "max": 21627,
+      "min": 0,
+      "stdev": 3030.27,
+      "sum": 151925
+    },
+    "ttft_opencode_ms": {
+      "n": 87,
+      "mean": 1745.83,
+      "median": 985,
+      "p95": 5474,
+      "max": 21627,
+      "min": 0,
+      "stdev": 3030.31,
+      "sum": 151887
+    },
+    "generation_ms": {
+      "n": 87,
+      "mean": 67.37,
+      "median": 15,
+      "p95": 385,
+      "max": 454,
+      "min": 7,
+      "stdev": 109.16,
+      "sum": 5861
+    },
+    "output_tokens": {
+      "n": 88,
+      "mean": 18.27,
+      "median": 4.5,
+      "p95": 47,
+      "max": 216,
+      "min": 0,
+      "stdev": 31.69,
+      "sum": 1608
+    },
+    "reasoning_tokens": {
+      "n": 87,
+      "mean": 166.47,
+      "median": 85,
+      "p95": 732,
+      "max": 2381,
+      "min": 0,
+      "stdev": 322.34,
+      "sum": 14483
+    },
+    "prompt_tokens": {
+      "n": 87,
+      "mean": 20606.44,
+      "median": 18538,
+      "p95": 37528,
+      "max": 56142,
+      "min": 18478,
+      "stdev": 6456.63,
+      "sum": 1792760
+    },
+    "output_tokens_total": 1608,
+    "token_source": "mixed|char4",
+    "cost_total": 0
+  },
+  "per_model": {
+    "opencode/space-bunny-free": {
+      "attempts": 88,
+      "n": 88,
+      "correct": 75,
+      "accuracy": 0.8523,
+      "ci95": {
+        "low": 0.7635,
+        "high": 0.9116
+      },
+      "ci95_centre": 0.8375,
+      "failed_attempts": 1,
+      "reliability": 0.9886,
+      "latency_ms": {
+        "n": 88,
+        "mean": 16244.81,
+        "median": 15490,
+        "p95": 23763,
+        "max": 39714,
+        "min": 0,
+        "stdev": 4937.19,
+        "sum": 1429543
+      },
+      "ttft_spawn_ms": {
+        "n": 87,
+        "mean": 16178.56,
+        "median": 15307,
+        "p95": 23498,
+        "max": 39296,
+        "min": 9396,
+        "stdev": 4608.13,
+        "sum": 1407535
+      },
+      "ttft_model_ms": {
+        "n": 87,
+        "mean": 1746.26,
+        "median": 984,
+        "p95": 5473,
+        "max": 21627,
+        "min": 0,
+        "stdev": 3030.27,
+        "sum": 151925
+      },
+      "ttft_opencode_ms": {
+        "n": 87,
+        "mean": 1745.83,
+        "median": 985,
+        "p95": 5474,
+        "max": 21627,
+        "min": 0,
+        "stdev": 3030.31,
+        "sum": 151887
+      },
+      "generation_ms": {
+        "n": 87,
+        "mean": 67.37,
+        "median": 15,
+        "p95": 385,
+        "max": 454,
+        "min": 7,
+        "stdev": 109.16,
+        "sum": 5861
+      },
+      "output_tokens": {
+        "n": 88,
+        "mean": 18.27,
+        "median": 4.5,
+        "p95": 47,
+        "max": 216,
+        "min": 0,
+        "stdev": 31.69,
+        "sum": 1608
+      },
+      "reasoning_tokens": {
+        "n": 87,
+        "mean": 166.47,
+        "median": 85,
+        "p95": 732,
+        "max": 2381,
+        "min": 0,
+        "stdev": 322.34,
+        "sum": 14483
+      },
+      "prompt_tokens": {
+        "n": 87,
+        "mean": 20606.44,
+        "median": 18538,
+        "p95": 37528,
+        "max": 56142,
+        "min": 18478,
+        "stdev": 6456.63,
+        "sum": 1792760
+      },
+      "output_tokens_total": 1608,
+      "token_source": "mixed|char4",
+      "cost_total": 0
+    }
+  },
+  "per_category": {
+    "abstention_hallucination": {
+      "attempts": 6,
+      "n": 6,
+      "correct": 3,
+      "accuracy": 0.5,
+      "ci95": {
+        "low": 0.1876,
+        "high": 0.8124
+      },
+      "ci95_centre": 0.5,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 6,
+        "mean": 15504.67,
+        "median": 13885.5,
+        "p95": 21491,
+        "max": 21491,
+        "min": 12106,
+        "stdev": 3884.59,
+        "sum": 93028
+      },
+      "ttft_spawn_ms": {
+        "n": 6,
+        "mean": 15346.17,
+        "median": 13740.5,
+        "p95": 21257,
+        "max": 21257,
+        "min": 11959,
+        "stdev": 3849.44,
+        "sum": 92077
+      },
+      "ttft_model_ms": {
+        "n": 6,
+        "mean": 1201.67,
+        "median": 960.5,
+        "p95": 2767,
+        "max": 2767,
+        "min": 0,
+        "stdev": 984.94,
+        "sum": 7210
+      },
+      "ttft_opencode_ms": {
+        "n": 6,
+        "mean": 1201.67,
+        "median": 960.5,
+        "p95": 2767,
+        "max": 2767,
+        "min": 0,
+        "stdev": 984.94,
+        "sum": 7210
+      },
+      "generation_ms": {
+        "n": 6,
+        "mean": 223.5,
+        "median": 224,
+        "p95": 440,
+        "max": 440,
+        "min": 10,
+        "stdev": 228.51,
+        "sum": 1341
+      },
+      "output_tokens": {
+        "n": 6,
+        "mean": 20,
+        "median": 17,
+        "p95": 45,
+        "max": 45,
+        "min": 2,
+        "stdev": 19.86,
+        "sum": 120
+      },
+      "reasoning_tokens": {
+        "n": 6,
+        "mean": 89.67,
+        "median": 84,
+        "p95": 177,
+        "max": 177,
+        "min": 0,
+        "stdev": 57.9,
+        "sum": 538
+      },
+      "prompt_tokens": {
+        "n": 6,
+        "mean": 18524.67,
+        "median": 18524.5,
+        "p95": 18529,
+        "max": 18529,
+        "min": 18520,
+        "stdev": 3.56,
+        "sum": 111148
+      },
+      "output_tokens_total": 120,
+      "token_source": "usage",
+      "cost_total": 0
+    },
+    "code": {
+      "attempts": 8,
+      "n": 8,
+      "correct": 7,
+      "accuracy": 0.875,
+      "ci95": {
+        "low": 0.5291,
+        "high": 0.9776
+      },
+      "ci95_centre": 0.7533,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 8,
+        "mean": 17131.75,
+        "median": 16863.5,
+        "p95": 23763,
+        "max": 23763,
+        "min": 10983,
+        "stdev": 4480.6,
+        "sum": 137054
+      },
+      "ttft_spawn_ms": {
+        "n": 8,
+        "mean": 16883.38,
+        "median": 16559,
+        "p95": 23498,
+        "max": 23498,
+        "min": 10860,
+        "stdev": 4478.17,
+        "sum": 135067
+      },
+      "ttft_model_ms": {
+        "n": 8,
+        "mean": 3260.63,
+        "median": 2876.5,
+        "p95": 7638,
+        "max": 7638,
+        "min": 649,
+        "stdev": 2640.83,
+        "sum": 26085
+      },
+      "ttft_opencode_ms": {
+        "n": 8,
+        "mean": 3261,
+        "median": 2875,
+        "p95": 7639,
+        "max": 7639,
+        "min": 652,
+        "stdev": 2640.87,
+        "sum": 26088
+      },
+      "generation_ms": {
+        "n": 8,
+        "mean": 29.75,
+        "median": 12,
+        "p95": 150,
+        "max": 150,
+        "min": 8,
+        "stdev": 48.89,
+        "sum": 238
+      },
+      "output_tokens": {
+        "n": 8,
+        "mean": 32.5,
+        "median": 2,
+        "p95": 126,
+        "max": 126,
+        "min": 1,
+        "stdev": 52.49,
+        "sum": 260
+      },
+      "reasoning_tokens": {
+        "n": 8,
+        "mean": 355.13,
+        "median": 176.5,
+        "p95": 1292,
+        "max": 1292,
+        "min": 33,
+        "stdev": 441.96,
+        "sum": 2841
+      },
+      "prompt_tokens": {
+        "n": 8,
+        "mean": 23375.75,
+        "median": 18632,
+        "p95": 37707,
+        "max": 37707,
+        "min": 18591,
+        "stdev": 8790.38,
+        "sum": 187006
+      },
+      "output_tokens_total": 260,
+      "token_source": "usage",
+      "cost_total": 0
+    },
+    "format_control": {
+      "attempts": 8,
+      "n": 8,
+      "correct": 6,
+      "accuracy": 0.75,
+      "ci95": {
+        "low": 0.4093,
+        "high": 0.9285
+      },
+      "ci95_centre": 0.6689,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 8,
+        "mean": 17553.63,
+        "median": 17699,
+        "p95": 19273,
+        "max": 19273,
+        "min": 14581,
+        "stdev": 1428.87,
+        "sum": 140429
+      },
+      "ttft_spawn_ms": {
+        "n": 8,
+        "mean": 17232.25,
+        "median": 17437,
+        "p95": 18880,
+        "max": 18880,
+        "min": 14194,
+        "stdev": 1424.79,
+        "sum": 137858
+      },
+      "ttft_model_ms": {
+        "n": 8,
+        "mean": 788.88,
+        "median": 991.5,
+        "p95": 1401,
+        "max": 1401,
+        "min": 1,
+        "stdev": 561.17,
+        "sum": 6311
+      },
+      "ttft_opencode_ms": {
+        "n": 8,
+        "mean": 788.63,
+        "median": 991,
+        "p95": 1401,
+        "max": 1401,
+        "min": 1,
+        "stdev": 561.04,
+        "sum": 6309
+      },
+      "generation_ms": {
+        "n": 8,
+        "mean": 54,
+        "median": 20,
+        "p95": 158,
+        "max": 158,
+        "min": 8,
+        "stdev": 57.8,
+        "sum": 432
+      },
+      "output_tokens": {
+        "n": 8,
+        "mean": 23.13,
+        "median": 22,
+        "p95": 35,
+        "max": 35,
+        "min": 14,
+        "stdev": 8.69,
+        "sum": 185
+      },
+      "reasoning_tokens": {
+        "n": 8,
+        "mean": 59.63,
+        "median": 83.5,
+        "p95": 110,
+        "max": 110,
+        "min": 0,
+        "stdev": 50.17,
+        "sum": 477
+      },
+      "prompt_tokens": {
+        "n": 8,
+        "mean": 18554.38,
+        "median": 18555,
+        "p95": 18576,
+        "max": 18576,
+        "min": 18525,
+        "stdev": 17.02,
+        "sum": 148435
+      },
+      "output_tokens_total": 185,
+      "token_source": "usage",
+      "cost_total": 0
+    },
+    "function_calling": {
+      "attempts": 8,
+      "n": 8,
+      "correct": 8,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.6756,
+        "high": 1
+      },
+      "ci95_centre": 0.8378,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 8,
+        "mean": 13399,
+        "median": 13474.5,
+        "p95": 15584,
+        "max": 15584,
+        "min": 11783,
+        "stdev": 1363.06,
+        "sum": 107192
+      },
+      "ttft_spawn_ms": {
+        "n": 8,
+        "mean": 13158.5,
+        "median": 13200,
+        "p95": 15307,
+        "max": 15307,
+        "min": 11640,
+        "stdev": 1344.73,
+        "sum": 105268
+      },
+      "ttft_model_ms": {
+        "n": 8,
+        "mean": 180.38,
+        "median": 176.5,
+        "p95": 278,
+        "max": 278,
+        "min": 116,
+        "stdev": 55.04,
+        "sum": 1443
+      },
+      "ttft_opencode_ms": {
+        "n": 8,
+        "mean": 180.5,
+        "median": 176.5,
+        "p95": 277,
+        "max": 277,
+        "min": 116,
+        "stdev": 54.62,
+        "sum": 1444
+      },
+      "generation_ms": {
+        "n": 8,
+        "mean": 133,
+        "median": 120,
+        "p95": 236,
+        "max": 236,
+        "min": 77,
+        "stdev": 53.46,
+        "sum": 1064
+      },
+      "output_tokens": {
+        "n": 8,
+        "mean": 30.75,
+        "median": 28,
+        "p95": 47,
+        "max": 47,
+        "min": 27,
+        "stdev": 6.71,
+        "sum": 246
+      },
+      "reasoning_tokens": {
+        "n": 8,
+        "mean": 0,
+        "median": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0,
+        "stdev": 0,
+        "sum": 0
+      },
+      "prompt_tokens": {
+        "n": 8,
+        "mean": 18577.63,
+        "median": 18583.5,
+        "p95": 18606,
+        "max": 18606,
+        "min": 18543,
+        "stdev": 23.49,
+        "sum": 148621
+      },
+      "output_tokens_total": 246,
+      "token_source": "usage",
+      "cost_total": 0
+    },
+    "instruction_following": {
+      "attempts": 14,
+      "n": 14,
+      "correct": 12,
+      "accuracy": 0.8571,
+      "ci95": {
+        "low": 0.6006,
+        "high": 0.9599
+      },
+      "ci95_centre": 0.7802,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 14,
+        "mean": 18119.57,
+        "median": 17373.5,
+        "p95": 29240,
+        "max": 29240,
+        "min": 13617,
+        "stdev": 3576.68,
+        "sum": 253674
+      },
+      "ttft_spawn_ms": {
+        "n": 14,
+        "mean": 17693.93,
+        "median": 17125,
+        "p95": 29028,
+        "max": 29028,
+        "min": 13366,
+        "stdev": 3529.06,
+        "sum": 247715
+      },
+      "ttft_model_ms": {
+        "n": 14,
+        "mean": 1834.36,
+        "median": 888,
+        "p95": 11207,
+        "max": 11207,
+        "min": 0,
+        "stdev": 2996.27,
+        "sum": 25681
+      },
+      "ttft_opencode_ms": {
+        "n": 14,
+        "mean": 1832.07,
+        "median": 871.5,
+        "p95": 11207,
+        "max": 11207,
+        "min": 0,
+        "stdev": 2997.03,
+        "sum": 25649
+      },
+      "generation_ms": {
+        "n": 14,
+        "mean": 108.71,
+        "median": 35,
+        "p95": 454,
+        "max": 454,
+        "min": 8,
+        "stdev": 149.4,
+        "sum": 1522
+      },
+      "output_tokens": {
+        "n": 14,
+        "mean": 22.36,
+        "median": 13,
+        "p95": 118,
+        "max": 118,
+        "min": 5,
+        "stdev": 29.14,
+        "sum": 313
+      },
+      "reasoning_tokens": {
+        "n": 14,
+        "mean": 107.79,
+        "median": 74.5,
+        "p95": 401,
+        "max": 401,
+        "min": 0,
+        "stdev": 134.27,
+        "sum": 1509
+      },
+      "prompt_tokens": {
+        "n": 14,
+        "mean": 21187.07,
+        "median": 18498.5,
+        "p95": 56142,
+        "max": 56142,
+        "min": 18486,
+        "stdev": 10060.72,
+        "sum": 296619
+      },
+      "output_tokens_total": 313,
+      "token_source": "usage",
+      "cost_total": 0
+    },
+    "long_context": {
+      "attempts": 8,
+      "n": 8,
+      "correct": 7,
+      "accuracy": 0.875,
+      "ci95": {
+        "low": 0.5291,
+        "high": 0.9776
+      },
+      "ci95_centre": 0.7533,
+      "failed_attempts": 1,
+      "reliability": 0.875,
+      "latency_ms": {
+        "n": 8,
+        "mean": 13329.88,
+        "median": 15141.5,
+        "p95": 16957,
+        "max": 16957,
+        "min": 0,
+        "stdev": 5571.77,
+        "sum": 106639
+      },
+      "ttft_spawn_ms": {
+        "n": 7,
+        "mean": 15050.86,
+        "median": 14980,
+        "p95": 16719,
+        "max": 16719,
+        "min": 12567,
+        "stdev": 1513.36,
+        "sum": 105356
+      },
+      "ttft_model_ms": {
+        "n": 7,
+        "mean": 17.57,
+        "median": 0,
+        "p95": 121,
+        "max": 121,
+        "min": 0,
+        "stdev": 45.61,
+        "sum": 123
+      },
+      "ttft_opencode_ms": {
+        "n": 7,
+        "mean": 17.57,
+        "median": 0,
+        "p95": 121,
+        "max": 121,
+        "min": 0,
+        "stdev": 45.61,
+        "sum": 123
+      },
+      "generation_ms": {
+        "n": 7,
+        "mean": 20.29,
+        "median": 10,
+        "p95": 84,
+        "max": 84,
+        "min": 8,
+        "stdev": 28.12,
+        "sum": 142
+      },
+      "output_tokens": {
+        "n": 8,
+        "mean": 2.63,
+        "median": 3,
+        "p95": 3,
+        "max": 3,
+        "min": 0,
+        "stdev": 1.06,
+        "sum": 21
+      },
+      "reasoning_tokens": {
+        "n": 7,
+        "mean": 0,
+        "median": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0,
+        "stdev": 0,
+        "sum": 0
+      },
+      "prompt_tokens": {
+        "n": 7,
+        "mean": 27971.43,
+        "median": 24933,
+        "p95": 44462,
+        "max": 44462,
+        "min": 19853,
+        "stdev": 8796.26,
+        "sum": 195800
+      },
+      "output_tokens_total": 21,
+      "token_source": "mixed|char4",
+      "cost_total": 0
+    },
+    "multilingual": {
+      "attempts": 15,
+      "n": 15,
+      "correct": 11,
+      "accuracy": 0.7333,
+      "ci95": {
+        "low": 0.4805,
+        "high": 0.891
+      },
+      "ci95_centre": 0.6858,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 15,
+        "mean": 14663.93,
+        "median": 14802,
+        "p95": 18399,
+        "max": 18399,
+        "min": 11501,
+        "stdev": 1967.96,
+        "sum": 219959
+      },
+      "ttft_spawn_ms": {
+        "n": 15,
+        "mean": 14461.53,
+        "median": 14593,
+        "p95": 18154,
+        "max": 18154,
+        "min": 11374,
+        "stdev": 1946.44,
+        "sum": 216923
+      },
+      "ttft_model_ms": {
+        "n": 15,
+        "mean": 1325.13,
+        "median": 1009,
+        "p95": 3772,
+        "max": 3772,
+        "min": 0,
+        "stdev": 1216.94,
+        "sum": 19877
+      },
+      "ttft_opencode_ms": {
+        "n": 15,
+        "mean": 1324.67,
+        "median": 1009,
+        "p95": 3773,
+        "max": 3773,
+        "min": 0,
+        "stdev": 1216.64,
+        "sum": 19870
+      },
+      "generation_ms": {
+        "n": 15,
+        "mean": 42.8,
+        "median": 18,
+        "p95": 354,
+        "max": 354,
+        "min": 7,
+        "stdev": 87.18,
+        "sum": 642
+      },
+      "output_tokens": {
+        "n": 15,
+        "mean": 12.07,
+        "median": 2,
+        "p95": 46,
+        "max": 46,
+        "min": 2,
+        "stdev": 17.3,
+        "sum": 181
+      },
+      "reasoning_tokens": {
+        "n": 15,
+        "mean": 101.33,
+        "median": 89,
+        "p95": 384,
+        "max": 384,
+        "min": 0,
+        "stdev": 101.07,
+        "sum": 1520
+      },
+      "prompt_tokens": {
+        "n": 15,
+        "mean": 19746.07,
+        "median": 18501,
+        "p95": 37183,
+        "max": 37183,
+        "min": 18478,
+        "stdev": 4823.8,
+        "sum": 296191
+      },
+      "output_tokens_total": 181,
+      "token_source": "usage",
+      "cost_total": 0
+    },
+    "reasoning": {
+      "attempts": 15,
+      "n": 15,
+      "correct": 15,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.7961,
+        "high": 1
+      },
+      "ci95_centre": 0.8981,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 15,
+        "mean": 18005.33,
+        "median": 16128,
+        "p95": 39714,
+        "max": 39714,
+        "min": 9518,
+        "stdev": 7099.01,
+        "sum": 270080
+      },
+      "ttft_spawn_ms": {
+        "n": 15,
+        "mean": 17802.93,
+        "median": 15954,
+        "p95": 39296,
+        "max": 39296,
+        "min": 9396,
+        "stdev": 7042.37,
+        "sum": 267044
+      },
+      "ttft_model_ms": {
+        "n": 15,
+        "mean": 3769.93,
+        "median": 1803,
+        "p95": 21627,
+        "max": 21627,
+        "min": 167,
+        "stdev": 5732.52,
+        "sum": 56549
+      },
+      "ttft_opencode_ms": {
+        "n": 15,
+        "mean": 3769.93,
+        "median": 1803,
+        "p95": 21627,
+        "max": 21627,
+        "min": 168,
+        "stdev": 5732.27,
+        "sum": 56549
+      },
+      "generation_ms": {
+        "n": 15,
+        "mean": 19.2,
+        "median": 10,
+        "p95": 67,
+        "max": 67,
+        "min": 8,
+        "stdev": 18.21,
+        "sum": 288
+      },
+      "output_tokens": {
+        "n": 15,
+        "mean": 15.8,
+        "median": 1,
+        "p95": 216,
+        "max": 216,
+        "min": 1,
+        "stdev": 55.4,
+        "sum": 237
+      },
+      "reasoning_tokens": {
+        "n": 15,
+        "mean": 437.67,
+        "median": 245,
+        "p95": 2381,
+        "max": 2381,
+        "min": 15,
+        "stdev": 601.46,
+        "sum": 6565
+      },
+      "prompt_tokens": {
+        "n": 15,
+        "mean": 19849.27,
+        "median": 18541,
+        "p95": 38039,
+        "max": 38039,
+        "min": 18497,
+        "stdev": 5032.3,
+        "sum": 297739
+      },
+      "output_tokens_total": 237,
+      "token_source": "usage",
+      "cost_total": 0
+    },
+    "robustness": {
+      "attempts": 6,
+      "n": 6,
+      "correct": 6,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.6097,
+        "high": 1
+      },
+      "ci95_centre": 0.8048,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 6,
+        "mean": 16914.67,
+        "median": 13601.5,
+        "p95": 36012,
+        "max": 36012,
+        "min": 11812,
+        "stdev": 9403.39,
+        "sum": 101488
+      },
+      "ttft_spawn_ms": {
+        "n": 6,
+        "mean": 16704.5,
+        "median": 13341.5,
+        "p95": 35880,
+        "max": 35880,
+        "min": 11605,
+        "stdev": 9437.74,
+        "sum": 100227
+      },
+      "ttft_model_ms": {
+        "n": 6,
+        "mean": 1441,
+        "median": 1583,
+        "p95": 2505,
+        "max": 2505,
+        "min": 222,
+        "stdev": 841.01,
+        "sum": 8646
+      },
+      "ttft_opencode_ms": {
+        "n": 6,
+        "mean": 1440.83,
+        "median": 1583,
+        "p95": 2505,
+        "max": 2505,
+        "min": 222,
+        "stdev": 840.88,
+        "sum": 8645
+      },
+      "generation_ms": {
+        "n": 6,
+        "mean": 32,
+        "median": 9.5,
+        "p95": 137,
+        "max": 137,
+        "min": 8,
+        "stdev": 51.64,
+        "sum": 192
+      },
+      "output_tokens": {
+        "n": 6,
+        "mean": 7.5,
+        "median": 2,
+        "p95": 20,
+        "max": 20,
+        "min": 1,
+        "stdev": 9.31,
+        "sum": 45
+      },
+      "reasoning_tokens": {
+        "n": 6,
+        "mean": 172.17,
+        "median": 184.5,
+        "p95": 312,
+        "max": 312,
+        "min": 38,
+        "stdev": 99.82,
+        "sum": 1033
+      },
+      "prompt_tokens": {
+        "n": 6,
+        "mean": 18533.5,
+        "median": 18541,
+        "p95": 18565,
+        "max": 18565,
+        "min": 18496,
+        "stdev": 31.6,
+        "sum": 111201
+      },
+      "output_tokens_total": 45,
+      "token_source": "usage",
+      "cost_total": 0
+    }
+  },
+  "per_model_category": {
+    "opencode/space-bunny-free :: abstention_hallucination": {
+      "attempts": 6,
+      "n": 6,
+      "correct": 3,
+      "accuracy": 0.5,
+      "ci95": {
+        "low": 0.1876,
+        "high": 0.8124
+      },
+      "ci95_centre": 0.5,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 6,
+        "mean": 15504.67,
+        "median": 13885.5,
+        "p95": 21491,
+        "max": 21491,
+        "min": 12106,
+        "stdev": 3884.59,
+        "sum": 93028
+      },
+      "ttft_spawn_ms": {
+        "n": 6,
+        "mean": 15346.17,
+        "median": 13740.5,
+        "p95": 21257,
+        "max": 21257,
+        "min": 11959,
+        "stdev": 3849.44,
+        "sum": 92077
+      },
+      "ttft_model_ms": {
+        "n": 6,
+        "mean": 1201.67,
+        "median": 960.5,
+        "p95": 2767,
+        "max": 2767,
+        "min": 0,
+        "stdev": 984.94,
+        "sum": 7210
+      },
+      "ttft_opencode_ms": {
+        "n": 6,
+        "mean": 1201.67,
+        "median": 960.5,
+        "p95": 2767,
+        "max": 2767,
+        "min": 0,
+        "stdev": 984.94,
+        "sum": 7210
+      },
+      "generation_ms": {
+        "n": 6,
+        "mean": 223.5,
+        "median": 224,
+        "p95": 440,
+        "max": 440,
+        "min": 10,
+        "stdev": 228.51,
+        "sum": 1341
+      },
+      "output_tokens": {
+        "n": 6,
+        "mean": 20,
+        "median": 17,
+        "p95": 45,
+        "max": 45,
+        "min": 2,
+        "stdev": 19.86,
+        "sum": 120
+      },
+      "reasoning_tokens": {
+        "n": 6,
+        "mean": 89.67,
+        "median": 84,
+        "p95": 177,
+        "max": 177,
+        "min": 0,
+        "stdev": 57.9,
+        "sum": 538
+      },
+      "prompt_tokens": {
+        "n": 6,
+        "mean": 18524.67,
+        "median": 18524.5,
+        "p95": 18529,
+        "max": 18529,
+        "min": 18520,
+        "stdev": 3.56,
+        "sum": 111148
+      },
+      "output_tokens_total": 120,
+      "token_source": "usage",
+      "cost_total": 0
+    },
+    "opencode/space-bunny-free :: code": {
+      "attempts": 8,
+      "n": 8,
+      "correct": 7,
+      "accuracy": 0.875,
+      "ci95": {
+        "low": 0.5291,
+        "high": 0.9776
+      },
+      "ci95_centre": 0.7533,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 8,
+        "mean": 17131.75,
+        "median": 16863.5,
+        "p95": 23763,
+        "max": 23763,
+        "min": 10983,
+        "stdev": 4480.6,
+        "sum": 137054
+      },
+      "ttft_spawn_ms": {
+        "n": 8,
+        "mean": 16883.38,
+        "median": 16559,
+        "p95": 23498,
+        "max": 23498,
+        "min": 10860,
+        "stdev": 4478.17,
+        "sum": 135067
+      },
+      "ttft_model_ms": {
+        "n": 8,
+        "mean": 3260.63,
+        "median": 2876.5,
+        "p95": 7638,
+        "max": 7638,
+        "min": 649,
+        "stdev": 2640.83,
+        "sum": 26085
+      },
+      "ttft_opencode_ms": {
+        "n": 8,
+        "mean": 3261,
+        "median": 2875,
+        "p95": 7639,
+        "max": 7639,
+        "min": 652,
+        "stdev": 2640.87,
+        "sum": 26088
+      },
+      "generation_ms": {
+        "n": 8,
+        "mean": 29.75,
+        "median": 12,
+        "p95": 150,
+        "max": 150,
+        "min": 8,
+        "stdev": 48.89,
+        "sum": 238
+      },
+      "output_tokens": {
+        "n": 8,
+        "mean": 32.5,
+        "median": 2,
+        "p95": 126,
+        "max": 126,
+        "min": 1,
+        "stdev": 52.49,
+        "sum": 260
+      },
+      "reasoning_tokens": {
+        "n": 8,
+        "mean": 355.13,
+        "median": 176.5,
+        "p95": 1292,
+        "max": 1292,
+        "min": 33,
+        "stdev": 441.96,
+        "sum": 2841
+      },
+      "prompt_tokens": {
+        "n": 8,
+        "mean": 23375.75,
+        "median": 18632,
+        "p95": 37707,
+        "max": 37707,
+        "min": 18591,
+        "stdev": 8790.38,
+        "sum": 187006
+      },
+      "output_tokens_total": 260,
+      "token_source": "usage",
+      "cost_total": 0
+    },
+    "opencode/space-bunny-free :: format_control": {
+      "attempts": 8,
+      "n": 8,
+      "correct": 6,
+      "accuracy": 0.75,
+      "ci95": {
+        "low": 0.4093,
+        "high": 0.9285
+      },
+      "ci95_centre": 0.6689,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 8,
+        "mean": 17553.63,
+        "median": 17699,
+        "p95": 19273,
+        "max": 19273,
+        "min": 14581,
+        "stdev": 1428.87,
+        "sum": 140429
+      },
+      "ttft_spawn_ms": {
+        "n": 8,
+        "mean": 17232.25,
+        "median": 17437,
+        "p95": 18880,
+        "max": 18880,
+        "min": 14194,
+        "stdev": 1424.79,
+        "sum": 137858
+      },
+      "ttft_model_ms": {
+        "n": 8,
+        "mean": 788.88,
+        "median": 991.5,
+        "p95": 1401,
+        "max": 1401,
+        "min": 1,
+        "stdev": 561.17,
+        "sum": 6311
+      },
+      "ttft_opencode_ms": {
+        "n": 8,
+        "mean": 788.63,
+        "median": 991,
+        "p95": 1401,
+        "max": 1401,
+        "min": 1,
+        "stdev": 561.04,
+        "sum": 6309
+      },
+      "generation_ms": {
+        "n": 8,
+        "mean": 54,
+        "median": 20,
+        "p95": 158,
+        "max": 158,
+        "min": 8,
+        "stdev": 57.8,
+        "sum": 432
+      },
+      "output_tokens": {
+        "n": 8,
+        "mean": 23.13,
+        "median": 22,
+        "p95": 35,
+        "max": 35,
+        "min": 14,
+        "stdev": 8.69,
+        "sum": 185
+      },
+      "reasoning_tokens": {
+        "n": 8,
+        "mean": 59.63,
+        "median": 83.5,
+        "p95": 110,
+        "max": 110,
+        "min": 0,
+        "stdev": 50.17,
+        "sum": 477
+      },
+      "prompt_tokens": {
+        "n": 8,
+        "mean": 18554.38,
+        "median": 18555,
+        "p95": 18576,
+        "max": 18576,
+        "min": 18525,
+        "stdev": 17.02,
+        "sum": 148435
+      },
+      "output_tokens_total": 185,
+      "token_source": "usage",
+      "cost_total": 0
+    },
+    "opencode/space-bunny-free :: function_calling": {
+      "attempts": 8,
+      "n": 8,
+      "correct": 8,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.6756,
+        "high": 1
+      },
+      "ci95_centre": 0.8378,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 8,
+        "mean": 13399,
+        "median": 13474.5,
+        "p95": 15584,
+        "max": 15584,
+        "min": 11783,
+        "stdev": 1363.06,
+        "sum": 107192
+      },
+      "ttft_spawn_ms": {
+        "n": 8,
+        "mean": 13158.5,
+        "median": 13200,
+        "p95": 15307,
+        "max": 15307,
+        "min": 11640,
+        "stdev": 1344.73,
+        "sum": 105268
+      },
+      "ttft_model_ms": {
+        "n": 8,
+        "mean": 180.38,
+        "median": 176.5,
+        "p95": 278,
+        "max": 278,
+        "min": 116,
+        "stdev": 55.04,
+        "sum": 1443
+      },
+      "ttft_opencode_ms": {
+        "n": 8,
+        "mean": 180.5,
+        "median": 176.5,
+        "p95": 277,
+        "max": 277,
+        "min": 116,
+        "stdev": 54.62,
+        "sum": 1444
+      },
+      "generation_ms": {
+        "n": 8,
+        "mean": 133,
+        "median": 120,
+        "p95": 236,
+        "max": 236,
+        "min": 77,
+        "stdev": 53.46,
+        "sum": 1064
+      },
+      "output_tokens": {
+        "n": 8,
+        "mean": 30.75,
+        "median": 28,
+        "p95": 47,
+        "max": 47,
+        "min": 27,
+        "stdev": 6.71,
+        "sum": 246
+      },
+      "reasoning_tokens": {
+        "n": 8,
+        "mean": 0,
+        "median": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0,
+        "stdev": 0,
+        "sum": 0
+      },
+      "prompt_tokens": {
+        "n": 8,
+        "mean": 18577.63,
+        "median": 18583.5,
+        "p95": 18606,
+        "max": 18606,
+        "min": 18543,
+        "stdev": 23.49,
+        "sum": 148621
+      },
+      "output_tokens_total": 246,
+      "token_source": "usage",
+      "cost_total": 0
+    },
+    "opencode/space-bunny-free :: instruction_following": {
+      "attempts": 14,
+      "n": 14,
+      "correct": 12,
+      "accuracy": 0.8571,
+      "ci95": {
+        "low": 0.6006,
+        "high": 0.9599
+      },
+      "ci95_centre": 0.7802,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 14,
+        "mean": 18119.57,
+        "median": 17373.5,
+        "p95": 29240,
+        "max": 29240,
+        "min": 13617,
+        "stdev": 3576.68,
+        "sum": 253674
+      },
+      "ttft_spawn_ms": {
+        "n": 14,
+        "mean": 17693.93,
+        "median": 17125,
+        "p95": 29028,
+        "max": 29028,
+        "min": 13366,
+        "stdev": 3529.06,
+        "sum": 247715
+      },
+      "ttft_model_ms": {
+        "n": 14,
+        "mean": 1834.36,
+        "median": 888,
+        "p95": 11207,
+        "max": 11207,
+        "min": 0,
+        "stdev": 2996.27,
+        "sum": 25681
+      },
+      "ttft_opencode_ms": {
+        "n": 14,
+        "mean": 1832.07,
+        "median": 871.5,
+        "p95": 11207,
+        "max": 11207,
+        "min": 0,
+        "stdev": 2997.03,
+        "sum": 25649
+      },
+      "generation_ms": {
+        "n": 14,
+        "mean": 108.71,
+        "median": 35,
+        "p95": 454,
+        "max": 454,
+        "min": 8,
+        "stdev": 149.4,
+        "sum": 1522
+      },
+      "output_tokens": {
+        "n": 14,
+        "mean": 22.36,
+        "median": 13,
+        "p95": 118,
+        "max": 118,
+        "min": 5,
+        "stdev": 29.14,
+        "sum": 313
+      },
+      "reasoning_tokens": {
+        "n": 14,
+        "mean": 107.79,
+        "median": 74.5,
+        "p95": 401,
+        "max": 401,
+        "min": 0,
+        "stdev": 134.27,
+        "sum": 1509
+      },
+      "prompt_tokens": {
+        "n": 14,
+        "mean": 21187.07,
+        "median": 18498.5,
+        "p95": 56142,
+        "max": 56142,
+        "min": 18486,
+        "stdev": 10060.72,
+        "sum": 296619
+      },
+      "output_tokens_total": 313,
+      "token_source": "usage",
+      "cost_total": 0
+    },
+    "opencode/space-bunny-free :: long_context": {
+      "attempts": 8,
+      "n": 8,
+      "correct": 7,
+      "accuracy": 0.875,
+      "ci95": {
+        "low": 0.5291,
+        "high": 0.9776
+      },
+      "ci95_centre": 0.7533,
+      "failed_attempts": 1,
+      "reliability": 0.875,
+      "latency_ms": {
+        "n": 8,
+        "mean": 13329.88,
+        "median": 15141.5,
+        "p95": 16957,
+        "max": 16957,
+        "min": 0,
+        "stdev": 5571.77,
+        "sum": 106639
+      },
+      "ttft_spawn_ms": {
+        "n": 7,
+        "mean": 15050.86,
+        "median": 14980,
+        "p95": 16719,
+        "max": 16719,
+        "min": 12567,
+        "stdev": 1513.36,
+        "sum": 105356
+      },
+      "ttft_model_ms": {
+        "n": 7,
+        "mean": 17.57,
+        "median": 0,
+        "p95": 121,
+        "max": 121,
+        "min": 0,
+        "stdev": 45.61,
+        "sum": 123
+      },
+      "ttft_opencode_ms": {
+        "n": 7,
+        "mean": 17.57,
+        "median": 0,
+        "p95": 121,
+        "max": 121,
+        "min": 0,
+        "stdev": 45.61,
+        "sum": 123
+      },
+      "generation_ms": {
+        "n": 7,
+        "mean": 20.29,
+        "median": 10,
+        "p95": 84,
+        "max": 84,
+        "min": 8,
+        "stdev": 28.12,
+        "sum": 142
+      },
+      "output_tokens": {
+        "n": 8,
+        "mean": 2.63,
+        "median": 3,
+        "p95": 3,
+        "max": 3,
+        "min": 0,
+        "stdev": 1.06,
+        "sum": 21
+      },
+      "reasoning_tokens": {
+        "n": 7,
+        "mean": 0,
+        "median": 0,
+        "p95": 0,
+        "max": 0,
+        "min": 0,
+        "stdev": 0,
+        "sum": 0
+      },
+      "prompt_tokens": {
+        "n": 7,
+        "mean": 27971.43,
+        "median": 24933,
+        "p95": 44462,
+        "max": 44462,
+        "min": 19853,
+        "stdev": 8796.26,
+        "sum": 195800
+      },
+      "output_tokens_total": 21,
+      "token_source": "mixed|char4",
+      "cost_total": 0
+    },
+    "opencode/space-bunny-free :: multilingual": {
+      "attempts": 15,
+      "n": 15,
+      "correct": 11,
+      "accuracy": 0.7333,
+      "ci95": {
+        "low": 0.4805,
+        "high": 0.891
+      },
+      "ci95_centre": 0.6858,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 15,
+        "mean": 14663.93,
+        "median": 14802,
+        "p95": 18399,
+        "max": 18399,
+        "min": 11501,
+        "stdev": 1967.96,
+        "sum": 219959
+      },
+      "ttft_spawn_ms": {
+        "n": 15,
+        "mean": 14461.53,
+        "median": 14593,
+        "p95": 18154,
+        "max": 18154,
+        "min": 11374,
+        "stdev": 1946.44,
+        "sum": 216923
+      },
+      "ttft_model_ms": {
+        "n": 15,
+        "mean": 1325.13,
+        "median": 1009,
+        "p95": 3772,
+        "max": 3772,
+        "min": 0,
+        "stdev": 1216.94,
+        "sum": 19877
+      },
+      "ttft_opencode_ms": {
+        "n": 15,
+        "mean": 1324.67,
+        "median": 1009,
+        "p95": 3773,
+        "max": 3773,
+        "min": 0,
+        "stdev": 1216.64,
+        "sum": 19870
+      },
+      "generation_ms": {
+        "n": 15,
+        "mean": 42.8,
+        "median": 18,
+        "p95": 354,
+        "max": 354,
+        "min": 7,
+        "stdev": 87.18,
+        "sum": 642
+      },
+      "output_tokens": {
+        "n": 15,
+        "mean": 12.07,
+        "median": 2,
+        "p95": 46,
+        "max": 46,
+        "min": 2,
+        "stdev": 17.3,
+        "sum": 181
+      },
+      "reasoning_tokens": {
+        "n": 15,
+        "mean": 101.33,
+        "median": 89,
+        "p95": 384,
+        "max": 384,
+        "min": 0,
+        "stdev": 101.07,
+        "sum": 1520
+      },
+      "prompt_tokens": {
+        "n": 15,
+        "mean": 19746.07,
+        "median": 18501,
+        "p95": 37183,
+        "max": 37183,
+        "min": 18478,
+        "stdev": 4823.8,
+        "sum": 296191
+      },
+      "output_tokens_total": 181,
+      "token_source": "usage",
+      "cost_total": 0
+    },
+    "opencode/space-bunny-free :: reasoning": {
+      "attempts": 15,
+      "n": 15,
+      "correct": 15,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.7961,
+        "high": 1
+      },
+      "ci95_centre": 0.8981,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 15,
+        "mean": 18005.33,
+        "median": 16128,
+        "p95": 39714,
+        "max": 39714,
+        "min": 9518,
+        "stdev": 7099.01,
+        "sum": 270080
+      },
+      "ttft_spawn_ms": {
+        "n": 15,
+        "mean": 17802.93,
+        "median": 15954,
+        "p95": 39296,
+        "max": 39296,
+        "min": 9396,
+        "stdev": 7042.37,
+        "sum": 267044
+      },
+      "ttft_model_ms": {
+        "n": 15,
+        "mean": 3769.93,
+        "median": 1803,
+        "p95": 21627,
+        "max": 21627,
+        "min": 167,
+        "stdev": 5732.52,
+        "sum": 56549
+      },
+      "ttft_opencode_ms": {
+        "n": 15,
+        "mean": 3769.93,
+        "median": 1803,
+        "p95": 21627,
+        "max": 21627,
+        "min": 168,
+        "stdev": 5732.27,
+        "sum": 56549
+      },
+      "generation_ms": {
+        "n": 15,
+        "mean": 19.2,
+        "median": 10,
+        "p95": 67,
+        "max": 67,
+        "min": 8,
+        "stdev": 18.21,
+        "sum": 288
+      },
+      "output_tokens": {
+        "n": 15,
+        "mean": 15.8,
+        "median": 1,
+        "p95": 216,
+        "max": 216,
+        "min": 1,
+        "stdev": 55.4,
+        "sum": 237
+      },
+      "reasoning_tokens": {
+        "n": 15,
+        "mean": 437.67,
+        "median": 245,
+        "p95": 2381,
+        "max": 2381,
+        "min": 15,
+        "stdev": 601.46,
+        "sum": 6565
+      },
+      "prompt_tokens": {
+        "n": 15,
+        "mean": 19849.27,
+        "median": 18541,
+        "p95": 38039,
+        "max": 38039,
+        "min": 18497,
+        "stdev": 5032.3,
+        "sum": 297739
+      },
+      "output_tokens_total": 237,
+      "token_source": "usage",
+      "cost_total": 0
+    },
+    "opencode/space-bunny-free :: robustness": {
+      "attempts": 6,
+      "n": 6,
+      "correct": 6,
+      "accuracy": 1,
+      "ci95": {
+        "low": 0.6097,
+        "high": 1
+      },
+      "ci95_centre": 0.8048,
+      "failed_attempts": 0,
+      "reliability": 1,
+      "latency_ms": {
+        "n": 6,
+        "mean": 16914.67,
+        "median": 13601.5,
+        "p95": 36012,
+        "max": 36012,
+        "min": 11812,
+        "stdev": 9403.39,
+        "sum": 101488
+      },
+      "ttft_spawn_ms": {
+        "n": 6,
+        "mean": 16704.5,
+        "median": 13341.5,
+        "p95": 35880,
+        "max": 35880,
+        "min": 11605,
+        "stdev": 9437.74,
+        "sum": 100227
+      },
+      "ttft_model_ms": {
+        "n": 6,
+        "mean": 1441,
+        "median": 1583,
+        "p95": 2505,
+        "max": 2505,
+        "min": 222,
+        "stdev": 841.01,
+        "sum": 8646
+      },
+      "ttft_opencode_ms": {
+        "n": 6,
+        "mean": 1440.83,
+        "median": 1583,
+        "p95": 2505,
+        "max": 2505,
+        "min": 222,
+        "stdev": 840.88,
+        "sum": 8645
+      },
+      "generation_ms": {
+        "n": 6,
+        "mean": 32,
+        "median": 9.5,
+        "p95": 137,
+        "max": 137,
+        "min": 8,
+        "stdev": 51.64,
+        "sum": 192
+      },
+      "output_tokens": {
+        "n": 6,
+        "mean": 7.5,
+        "median": 2,
+        "p95": 20,
+        "max": 20,
+        "min": 1,
+        "stdev": 9.31,
+        "sum": 45
+      },
+      "reasoning_tokens": {
+        "n": 6,
+        "mean": 172.17,
+        "median": 184.5,
+        "p95": 312,
+        "max": 312,
+        "min": 38,
+        "stdev": 99.82,
+        "sum": 1033
+      },
+      "prompt_tokens": {
+        "n": 6,
+        "mean": 18533.5,
+        "median": 18541,
+        "p95": 18565,
+        "max": 18565,
+        "min": 18496,
+        "stdev": 31.6,
+        "sum": 111201
+      },
+      "output_tokens_total": 45,
+      "token_source": "usage",
+      "cost_total": 0
+    }
+  },
+  "per_scorer": {
+    "contains": {
+      "n": 3,
+      "correct": 3,
+      "accuracy": 1
+    },
+    "exact_match": {
+      "n": 20,
+      "correct": 18,
+      "accuracy": 0.9
+    },
+    "json_schema": {
+      "n": 16,
+      "correct": 14,
+      "accuracy": 0.875
+    },
+    "multi_all_of": {
+      "n": 1,
+      "correct": 1,
+      "accuracy": 1
+    },
+    "numeric": {
+      "n": 32,
+      "correct": 28,
+      "accuracy": 0.875
+    },
+    "regex": {
+      "n": 16,
+      "correct": 11,
+      "accuracy": 0.6875
+    }
+  },
+  "failure_kinds": {
+    "harness": 1
+  },
+  "diagnostics": {
+    "runs_with_tool_calls": 5,
+    "runs_with_stripped_banner": 0,
+    "runs_with_malformed_json": 0,
+    "runs_with_empty_answer": 1,
+    "peak_rss_kb": {
+      "n": 87,
+      "mean": 560179.13,
+      "median": 561352,
+      "p95": 572760,
+      "max": 574972,
+      "min": 516712,
+      "stdev": 11395.36,
+      "sum": 48735584
+    }
+  },
+  "problems": [
+    {
+      "run_id": "acef8c17f9055ccf",
+      "model": "opencode/space-bunny-free",
+      "item_id": "cod-rle",
+      "rep": 0,
+      "category": "code",
+      "scorer": "exact_match",
+      "failure": null,
+      "detail": "normalized: \"b1e1f1a1c4e1d4e1d2c1\" != \"b1e1f1a1c3e1d4e1d2c1\"",
+      "answer_preview": "b1e1f1a1c4e1d4e1d2c1"
+    },
+    {
+      "run_id": "8fc861d462e272cc",
+      "model": "opencode/space-bunny-free",
+      "item_id": "ifr-words-6",
+      "rep": 0,
+      "category": "instruction_following",
+      "scorer": "regex",
+      "failure": null,
+      "detail": "regex no match: /^\\s*(?:\\S+\\s+){5}\\S+\\s*$/",
+      "answer_preview": "Warm golden hue between yellow and orange"
+    },
+    {
+      "run_id": "589e80987cd51996",
+      "model": "opencode/space-bunny-free",
+      "item_id": "ifr-words-5",
+      "rep": 0,
+      "category": "instruction_following",
+      "scorer": "regex",
+      "failure": null,
+      "detail": "regex no match: /^\\s*(?:\\S+\\s+){4}\\S+\\s*$/",
+      "answer_preview": "Calm, deep, endless sky."
+    },
+    {
+      "run_id": "69daff915f826e32",
+      "model": "opencode/space-bunny-free",
+      "item_id": "fmt-nested-02",
+      "rep": 0,
+      "category": "format_control",
+      "scorer": "json_schema",
+      "failure": null,
+      "detail": "json_schema: $.survey.id: \"S240\" not in enum [\"S-240\"]",
+      "answer_preview": "{\"survey\":{\"id\":\"S240\",\"region\":\"coast\",\"scored\":{\"raw\":80,\"bonus\":42}}}"
+    },
+    {
+      "run_id": "a1537395cd5bf653",
+      "model": "opencode/space-bunny-free",
+      "item_id": "fmt-flat-01",
+      "rep": 0,
+      "category": "format_control",
+      "scorer": "json_schema",
+      "failure": null,
+      "detail": "json_schema: $.warmest_condition: \"clear\" not in enum [\"windy\"]",
+      "answer_preview": "{\"station\":\"ridge-top\",\"readings_c\":[-1,4,22],\"mean_c\":8.3,\"warmest_condition\":\"clear\"}"
+    },
+    {
+      "run_id": "30df5242f62248df",
+      "model": "opencode/space-bunny-free",
+      "item_id": "ml-sum-ja",
+      "rep": 0,
+      "category": "multilingual",
+      "scorer": "numeric",
+      "failure": null,
+      "detail": "numeric 7016 != 25498 (|d|=1.85e+4, absTol=0, relTol=0)",
+      "answer_preview": "기억 확인: 관련 기록 없음\n\n7016 + 453 + 9432 + 8172 + 425 = 29498"
+    },
+    {
+      "run_id": "ff5c55f55c001edb",
+      "model": "opencode/space-bunny-free",
+      "item_id": "ml-chain-ja",
+      "rep": 0,
+      "category": "multilingual",
+      "scorer": "numeric",
+      "failure": null,
+      "detail": "numeric 71 != 23854 (|d|=2.38e+4, absTol=0, relTol=0)",
+      "answer_preview": "71 × 7 = 497\n497 × 47 = 23359\n23359 − 376 = 22983\n22983 + 871 = 23854\n\n**合計: 23854**"
+    },
+    {
+      "run_id": "c57b03e3a25db504",
+      "model": "opencode/space-bunny-free",
+      "item_id": "ml-chain-zh",
+      "rep": 0,
+      "category": "multilingual",
+      "scorer": "numeric",
+      "failure": null,
+      "detail": "numeric 59 != 44694 (|d|=4.46e+4, absTol=0, relTol=0)",
+      "answer_preview": "59 × 21 × 36 = 1239 × 36 = 44604\n44604 − 784 + 874 = 44694\n\n**44694 元**"
+    },
+    {
+      "run_id": "f092df850dbf3df5",
+      "model": "opencode/space-bunny-free",
+      "item_id": "ml-reverse_sub-ja",
+      "rep": 0,
+      "category": "multilingual",
+      "scorer": "numeric",
+      "failure": null,
+      "detail": "numeric 87832 != 33957 (|d|=5.39e+4, absTol=0, relTol=0)",
+      "answer_preview": "87832"
+    },
+    {
+      "run_id": "64663944f481cf8b",
+      "model": "opencode/space-bunny-free",
+      "item_id": "lc-needle-08",
+      "rep": 0,
+      "category": "long_context",
+      "scorer": "exact_match",
+      "failure": {
+        "kind": "harness",
+        "retriable": false,
+        "reason": "runner threw: Cannot access 'outChunks' before initialization"
+      },
+      "detail": "normalized: \"\" != \"7542\"",
+      "answer_preview": ""
+    },
+    {
+      "run_id": "0ae0dde24b6d57a5",
+      "model": "opencode/space-bunny-free",
+      "item_id": "abs-noans-01",
+      "rep": 0,
+      "category": "abstention_hallucination",
+      "scorer": "regex",
+      "failure": null,
+      "detail": "regex no match: /^(?![\\s\\S]*\\d)[\\s\\S]*(?:(do(?:es)?\\s+not\\s+(?:say|state|mention|specify|provide|record)|no\\s+information\\s+(?:about|on|in|is\\s+given)|(?:the|this)\\s+(?:passage|text|diary|log|notes|record)\\s+(?:does\\s+not|doesn't|never)\\s+(?:say|state|mention|specify)|is\\s+not\\s+(?:stated|mentioned|specified|recorded|given|provided|addressed)|not\\s+mentioned|not\\s+stated|not\\s+specified|not\\s+recorded|cannot\\s+be\\s+(?:determined|answered|inferred)|can(?:not|'t)\\s+answer|unable\\s+to\\s+(?:answer|determine)|no\\s+(?:such\\s+)?(?:record|mention|detail)s?\\s+(?:of|for|in|exist)|i\\s+(?:do\\s+not|don't)\\s+know|unknown|insufficient\\s+information))[\\s\\S]*$/i",
+      "answer_preview": "The passage doesn't say. It only states that a new bench was installed beside the cart on 19 March — no cost is given for it (or for any of the other items)."
+    },
+    {
+      "run_id": "f5d50efafec1dff2",
+      "model": "opencode/space-bunny-free",
+      "item_id": "abs-noans-02",
+      "rep": 0,
+      "category": "abstention_hallucination",
+      "scorer": "regex",
+      "failure": null,
+      "detail": "regex no match: /^(?![\\s\\S]*\\d)[\\s\\S]*(?:(do(?:es)?\\s+not\\s+(?:say|state|mention|specify|provide|record)|no\\s+information\\s+(?:about|on|in|is\\s+given)|(?:the|this)\\s+(?:passage|text|diary|log|notes|record)\\s+(?:does\\s+not|doesn't|never)\\s+(?:say|state|mention|specify)|is\\s+not\\s+(?:stated|mentioned|specified|recorded|given|provided|addressed)|not\\s+mentioned|not\\s+stated|not\\s+specified|not\\s+recorded|cannot\\s+be\\s+(?:determined|answered|inferred)|can(?:not|'t)\\s+answer|unable\\s+to\\s+(?:answer|determine)|no\\s+(?:such\\s+)?(?:record|mention|detail)s?\\s+(?:of|for|in|exist)|i\\s+(?:do\\s+not|don't)\\s+know|unknown|insufficient\\s+information))[\\s\\S]*$/i",
+      "answer_preview": "Cannot be determined — the passage never states attendance. It only gives a date (3 April) for the founding rehearsal; the other details (chair replacement, org"
+    },
+    {
+      "run_id": "5ac1375a7cc900c0",
+      "model": "opencode/space-bunny-free",
+      "item_id": "abs-noans-03",
+      "rep": 0,
+      "category": "abstention_hallucination",
+      "scorer": "regex",
+      "failure": null,
+      "detail": "regex no match: /^(?![\\s\\S]*\\d)[\\s\\S]*(?:(do(?:es)?\\s+not\\s+(?:say|state|mention|specify|provide|record)|no\\s+information\\s+(?:about|on|in|is\\s+given)|(?:the|this)\\s+(?:passage|text|diary|log|notes|record)\\s+(?:does\\s+not|doesn't|never)\\s+(?:say|state|mention|specify)|is\\s+not\\s+(?:stated|mentioned|specified|recorded|given|provided|addressed)|not\\s+mentioned|not\\s+stated|not\\s+specified|not\\s+recorded|cannot\\s+be\\s+(?:determined|answered|inferred)|can(?:not|'t)\\s+answer|unable\\s+to\\s+(?:answer|determine)|no\\s+(?:such\\s+)?(?:record|mention|detail)s?\\s+(?:of|for|in|exist)|i\\s+(?:do\\s+not|don't)\\s+know|unknown|insufficient\\s+information))[\\s\\S]*$/i",
+      "answer_preview": "The passage doesn't say. It only records that the blue door was repainted on 8 May — no company is named for any of the four jobs."
+    }
+  ],
+  "generated_at": "2026-09-27T18:32:13.535Z",
+  "provenance": {
+    "models": {
+      "opencode/space-bunny-free": {
+        "id": "opencode/space-bunny-free"
+      }
+    },
+    "opencode_bin": "/usr/local/bin/opencode",
+    "format": "json",
+    "pure": true,
+    "isolation_dir": "/tmp/t2bench-EhfaVN",
+    "concurrency": 2,
+    "item_bank": "/tmp/r2-77.json",
+    "logPath": "/workspace/llm-bench/reports/round2/subject-88/run-log.jsonl",
+    "n_items": 11,
+    "reps": 1
+  }
+}

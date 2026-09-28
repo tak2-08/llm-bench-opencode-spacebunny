@@ -1,0 +1,14 @@
+{
+  "schema": "llm-bench/redaction/v1",
+  "reason": "operator-local path fragments in captured subprocess output, first publication",
+  "rule_count": 6,
+  "files": [
+    {
+      "file": "reports/round2/subject-88/artifacts/569c3b6b75501e35.stdout.txt",
+      "bytes_before": 3680,
+      "bytes_after": 3688
+    }
+  ],
+  "files_scanned": 275,
+  "files_changed": 1
+}

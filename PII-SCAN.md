@@ -56,3 +56,34 @@ before the first commit:
 git config user.name  "LLM Benchmark Federation"
 git config user.email "noreply@users.noreply.github.com"
 ```
+
+## Round 2 addendum
+
+Round 2 artifacts were scanned with the same four commands above and were **not
+clean on the first pass**. One captured subprocess output
+(`reports/round2/subject-88/artifacts/569c3b6b75501e35.stdout.txt`) contained an
+operator-local path fragment, because the subject model — during a supposedly
+isolated run — issued a `bash` call that touched the operator's memory-store
+directory. See ROUND2.md §6.
+
+Because round 2 had not been published at that point, the path fragment was
+redacted before first publication by `harness/redact-paths.mjs`, which replaces
+only operator-local path fragments. It does **not** touch any measured value,
+answer, verdict, or any `.json`/`.jsonl` result file, so every number in the
+reports remains derivable from an unmodified file. The manifest of what was
+changed is `data/redaction-manifest.json`.
+
+Round 1's logs were left byte-identical: their integrity is what the round-1 audit
+rests on, and they scanned clean. The scan is therefore asymmetric by design and
+the asymmetry is deliberate, not an oversight.
+
+The scan command must now exclude one more file. `harness/redact-paths.mjs`
+contains the patterns it rewrites, so a naive scan flags itself:
+
+```sh
+grep -rIlE "$NEEDLE_HOME|$NEEDLE_MEM" . \
+  | grep -vE '^\./(PII-SCAN\.md|scripts/verify\.sh|harness/redact-paths\.mjs)$'
+```
+
+`scripts/verify.sh` performs exactly this exclusion, so running it is the
+authoritative check.

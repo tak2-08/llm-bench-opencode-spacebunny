@@ -1,0 +1,2260 @@
+{
+  "schema": "llm-bench/ensemble2/v1",
+  "items": 87,
+  "panels": {
+    "independent": {
+      "dir": "/workspace/llm-bench/reports/round2/judge-ind",
+      "judges": [
+        "nvidia/z-ai/glm-5.3-flash@high",
+        "nvidia/z-ai/glm-5.3-flash@max"
+      ],
+      "items": {
+        "ifr-words-4": {
+          "choice": 2,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "2": 2
+          }
+        },
+        "ifr-words-5": {
+          "choice": 0,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "0": 2
+          }
+        },
+        "ifr-words-6": {
+          "choice": 1,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "1": 2
+          }
+        },
+        "ifr-lower-01": {
+          "choice": 2,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "2": 2
+          }
+        },
+        "ifr-forbid-01": {
+          "choice": 2,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "2": 2
+          }
+        },
+        "ifr-forbid-02": {
+          "choice": 0,
+          "votes": 2,
+          "unanimous": false,
+          "unparsed": 0,
+          "tally": {
+            "0": 1,
+            "2": 1
+          }
+        },
+        "ifr-tokens-01": {
+          "choice": 1,
+          "votes": 2,
+          "unanimous": false,
+          "unparsed": 0,
+          "tally": {
+            "1": 1,
+            "2": 1
+          }
+        },
+        "ifr-nodigit-01": {
+          "choice": 1,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "1": 2
+          }
+        },
+        "ifr-oneline-01": {
+          "choice": 0,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "0": 2
+          }
+        },
+        "ifr-multi-01": {
+          "choice": 0,
+          "votes": 2,
+          "unanimous": false,
+          "unparsed": 0,
+          "tally": {
+            "0": 1,
+            "1": 1
+          }
+        },
+        "ifr-multi-02": {
+          "choice": 2,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "2": 2
+          }
+        },
+        "ifr-multi-03": {
+          "choice": 2,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "2": 2
+          }
+        },
+        "abs-noans-01": {
+          "choice": 0,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "0": 2
+          }
+        },
+        "abs-noans-02": {
+          "choice": 2,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "2": 2
+          }
+        },
+        "abs-noans-03": {
+          "choice": 2,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "2": 2
+          }
+        }
+      },
+      "ballots": 30,
+      "unparsed": 0
+    },
+    "same_lineage": {
+      "dir": "/workspace/llm-bench/reports/round2/judge-lineage",
+      "judges": [
+        "opencode/space-bunny-free@xhigh",
+        "opencode/space-bunny-free@high"
+      ],
+      "items": {
+        "ifr-words-4": {
+          "choice": 2,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "2": 2
+          }
+        },
+        "ifr-words-5": {
+          "choice": 0,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "0": 2
+          }
+        },
+        "ifr-words-6": {
+          "choice": 1,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "1": 2
+          }
+        },
+        "ifr-lower-01": {
+          "choice": 0,
+          "votes": 2,
+          "unanimous": false,
+          "unparsed": 0,
+          "tally": {
+            "0": 1,
+            "2": 1
+          }
+        },
+        "ifr-forbid-01": {
+          "choice": 1,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "1": 2
+          }
+        },
+        "ifr-forbid-02": {
+          "choice": 0,
+          "votes": 2,
+          "unanimous": false,
+          "unparsed": 0,
+          "tally": {
+            "0": 1,
+            "2": 1
+          }
+        },
+        "ifr-tokens-01": {
+          "choice": 1,
+          "votes": 2,
+          "unanimous": false,
+          "unparsed": 0,
+          "tally": {
+            "1": 1,
+            "2": 1
+          }
+        },
+        "ifr-nodigit-01": {
+          "choice": 1,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "1": 2
+          }
+        },
+        "ifr-oneline-01": {
+          "choice": 0,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "0": 2
+          }
+        },
+        "ifr-multi-01": {
+          "choice": 0,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "0": 2
+          }
+        },
+        "ifr-multi-02": {
+          "choice": 2,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "2": 2
+          }
+        },
+        "ifr-multi-03": {
+          "choice": 2,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "2": 2
+          }
+        },
+        "abs-noans-01": {
+          "choice": 0,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "0": 2
+          }
+        },
+        "abs-noans-02": {
+          "choice": 2,
+          "votes": 2,
+          "unanimous": true,
+          "unparsed": 0,
+          "tally": {
+            "2": 2
+          }
+        },
+        "abs-noans-03": {
+          "choice": 1,
+          "votes": 2,
+          "unanimous": false,
+          "unparsed": 0,
+          "tally": {
+            "1": 1,
+            "2": 1
+          }
+        }
+      },
+      "ballots": 30,
+      "unparsed": 0
+    }
+  },
+  "reduction_counts": {
+    "majority_decided": 72,
+    "no_majority": 15,
+    "three_way_splits": 15,
+    "judge_ind_used": 15,
+    "judge_ind_unresolved": 0
+  },
+  "accuracy": {
+    "instance_0": 0.8735632183908046,
+    "instance_1": 0.8850574712643678,
+    "instance_2": 0.8620689655172413,
+    "A_majority": 0.7586206896551724,
+    "A2_random_selector": 0.896551724137931,
+    "B_judge_independent": 0.896551724137931,
+    "C_judge_same_lineage": 0.896551724137931,
+    "D_oracle": 0.9195402298850575
+  },
+  "ci95": {
+    "instance_0": {
+      "low": 0.7876218503970871,
+      "high": 0.9279104715236401
+    },
+    "instance_1": {
+      "low": 0.8011941787191399,
+      "high": 0.9363545223376097
+    },
+    "instance_2": {
+      "low": 0.7742137253558132,
+      "high": 0.9193022174288916
+    },
+    "A_majority": {
+      "low": 0.6590101616216221,
+      "high": 0.8363583689388813
+    },
+    "A2_random_selector": {
+      "low": 0.8149501902614857,
+      "high": 0.9446148899312863
+    },
+    "B_judge_independent": {
+      "low": 0.8149501902614857,
+      "high": 0.9446148899312863
+    },
+    "C_judge_same_lineage": {
+      "low": 0.8149501902614857,
+      "high": 0.9446148899312863
+    },
+    "D_oracle": {
+      "low": 0.8431181093389192,
+      "high": 0.9604797291258976
+    }
+  },
+  "reproducibility_floor": {
+    "discordant_wins": 9,
+    "discordant_losses": 7,
+    "pairs": 261,
+    "q": 0.06130268199233716,
+    "instance_vs_instance_accuracy": 0.5625,
+    "note": "one instance vs another on the same item, same model, same scaffold. Any ensemble gain smaller than this spread is noise."
+  },
+  "paired_tests": {
+    "instance_0 vs instance_1": {
+      "a_only": 3,
+      "b_only": 2,
+      "p": 1,
+      "b": 3,
+      "c": 2
+    },
+    "instance_1 vs instance_1": {
+      "a_only": 0,
+      "b_only": 0,
+      "p": 1,
+      "b": 0,
+      "c": 0,
+      "note": "no discordant pairs"
+    },
+    "instance_2 vs instance_1": {
+      "a_only": 3,
+      "b_only": 1,
+      "p": 0.625,
+      "b": 3,
+      "c": 1
+    },
+    "A_majority vs instance_1": {
+      "a_only": 12,
+      "b_only": 1,
+      "p": 0.00341796875,
+      "b": 12,
+      "c": 1
+    },
+    "A2_random_selector vs instance_1": {
+      "a_only": 0,
+      "b_only": 1,
+      "p": 1,
+      "b": 0,
+      "c": 1
+    },
+    "B_judge_independent vs instance_1": {
+      "a_only": 0,
+      "b_only": 1,
+      "p": 1,
+      "b": 0,
+      "c": 1
+    },
+    "C_judge_same_lineage vs instance_1": {
+      "a_only": 0,
+      "b_only": 1,
+      "p": 1,
+      "b": 0,
+      "c": 1
+    },
+    "B_vs_C_panel_agreement": {
+      "a_only": 0,
+      "b_only": 0,
+      "p": 1,
+      "b": 0,
+      "c": 0,
+      "note": "no discordant pairs"
+    }
+  },
+  "selector_headroom": {
+    "oracle_minus_majority": 16.09195402298851,
+    "oracle_minus_random": 2.298850574712641,
+    "oracle_minus_judge": 2.298850574712641
+  },
+  "B_vs_random_selector": {
+    "a_only": 0,
+    "b_only": 0,
+    "p": 1,
+    "b": 0,
+    "c": 0,
+    "note": "no discordant pairs"
+  },
+  "per_category": {
+    "reasoning": {
+      "n": 15,
+      "instance": 15,
+      "A": 15,
+      "B": 15,
+      "D": 15
+    },
+    "code": {
+      "n": 8,
+      "instance": 7,
+      "A": 7,
+      "B": 7,
+      "D": 7
+    },
+    "instruction_following": {
+      "n": 14,
+      "instance": 14,
+      "A": 2,
+      "B": 14,
+      "D": 14
+    },
+    "format_control": {
+      "n": 8,
+      "instance": 6,
+      "A": 6,
+      "B": 6,
+      "D": 6
+    },
+    "multilingual": {
+      "n": 15,
+      "instance": 14,
+      "A": 12,
+      "B": 12,
+      "D": 14
+    },
+    "long_context": {
+      "n": 7,
+      "instance": 7,
+      "A": 7,
+      "B": 7,
+      "D": 7
+    },
+    "function_calling": {
+      "n": 8,
+      "instance": 8,
+      "A": 8,
+      "B": 8,
+      "D": 8
+    },
+    "abstention_hallucination": {
+      "n": 6,
+      "instance": 3,
+      "A": 3,
+      "B": 3,
+      "D": 3
+    },
+    "robustness": {
+      "n": 6,
+      "instance": 6,
+      "A": 6,
+      "B": 6,
+      "D": 6
+    }
+  },
+  "rows": [
+    {
+      "item_id": "rsn-modpow-01",
+      "category": "reasoning",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rsn-modpow-02",
+      "category": "reasoning",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rsn-modpow-03",
+      "category": "reasoning",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rsn-linear-01",
+      "category": "reasoning",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rsn-linear-02",
+      "category": "reasoning",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rsn-grid-01",
+      "category": "reasoning",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rsn-grid-02",
+      "category": "reasoning",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rsn-substr-01",
+      "category": "reasoning",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rsn-substr-02",
+      "category": "reasoning",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rsn-path-01",
+      "category": "reasoning",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rsn-path-02",
+      "category": "reasoning",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rsn-pathcount-01",
+      "category": "reasoning",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rsn-chain-01",
+      "category": "reasoning",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "cod-two_sum",
+      "category": "code",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "cod-anagram",
+      "category": "code",
+      "scorer": "exact_match",
+      "s0": false,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority2/3",
+        "random": "majority2/3",
+        "judge_ind": "majority2/3",
+        "judge_lineage": "majority2/3"
+      }
+    },
+    {
+      "item_id": "cod-longest_palindrome",
+      "category": "code",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "cod-primes",
+      "category": "code",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "cod-nested_sum",
+      "category": "code",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "cod-brackets",
+      "category": "code",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "cod-rle",
+      "category": "code",
+      "scorer": "exact_match",
+      "s0": false,
+      "s1": false,
+      "s2": false,
+      "a_majority": false,
+      "a2_random": false,
+      "b_judge": false,
+      "c_judge_lineage": false,
+      "d_oracle": false,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "cod-fib_mod",
+      "category": "code",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "ifr-words-4",
+      "category": "instruction_following",
+      "scorer": "regex",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": false,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "no-majority",
+        "random": "random-among-split",
+        "judge_ind": "no-majority+judge-ind(2votes,unanimous)",
+        "judge_lineage": "no-majority+judge-lineage(2votes,unanimous)",
+        "distinct": 3
+      }
+    },
+    {
+      "item_id": "ifr-words-5",
+      "category": "instruction_following",
+      "scorer": "regex",
+      "s0": true,
+      "s1": true,
+      "s2": false,
+      "a_majority": false,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "no-majority",
+        "random": "random-among-split",
+        "judge_ind": "no-majority+judge-ind(2votes,unanimous)",
+        "judge_lineage": "no-majority+judge-lineage(2votes,unanimous)",
+        "distinct": 3
+      }
+    },
+    {
+      "item_id": "ifr-words-6",
+      "category": "instruction_following",
+      "scorer": "regex",
+      "s0": false,
+      "s1": true,
+      "s2": false,
+      "a_majority": false,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "no-majority",
+        "random": "random-among-split",
+        "judge_ind": "no-majority+judge-ind(2votes,unanimous)",
+        "judge_lineage": "no-majority+judge-lineage(2votes,unanimous)",
+        "distinct": 3
+      }
+    },
+    {
+      "item_id": "ifr-lower-01",
+      "category": "instruction_following",
+      "scorer": "regex",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": false,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "no-majority",
+        "random": "random-among-split",
+        "judge_ind": "no-majority+judge-ind(2votes,unanimous)",
+        "judge_lineage": "no-majority+judge-lineage(2votes)",
+        "distinct": 3
+      }
+    },
+    {
+      "item_id": "ifr-forbid-01",
+      "category": "instruction_following",
+      "scorer": "regex",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": false,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "no-majority",
+        "random": "random-among-split",
+        "judge_ind": "no-majority+judge-ind(2votes,unanimous)",
+        "judge_lineage": "no-majority+judge-lineage(2votes,unanimous)",
+        "distinct": 3
+      }
+    },
+    {
+      "item_id": "ifr-forbid-02",
+      "category": "instruction_following",
+      "scorer": "regex",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": false,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "no-majority",
+        "random": "random-among-split",
+        "judge_ind": "no-majority+judge-ind(2votes)",
+        "judge_lineage": "no-majority+judge-lineage(2votes)",
+        "distinct": 3
+      }
+    },
+    {
+      "item_id": "ifr-tokens-01",
+      "category": "instruction_following",
+      "scorer": "multi_all_of",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": false,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "no-majority",
+        "random": "random-among-split",
+        "judge_ind": "no-majority+judge-ind(2votes)",
+        "judge_lineage": "no-majority+judge-lineage(2votes)",
+        "distinct": 3
+      }
+    },
+    {
+      "item_id": "ifr-nodigit-01",
+      "category": "instruction_following",
+      "scorer": "regex",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": false,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "no-majority",
+        "random": "random-among-split",
+        "judge_ind": "no-majority+judge-ind(2votes,unanimous)",
+        "judge_lineage": "no-majority+judge-lineage(2votes,unanimous)",
+        "distinct": 3
+      }
+    },
+    {
+      "item_id": "ifr-bullets-01",
+      "category": "instruction_following",
+      "scorer": "regex",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "ifr-oneline-01",
+      "category": "instruction_following",
+      "scorer": "regex",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": false,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "no-majority",
+        "random": "random-among-split",
+        "judge_ind": "no-majority+judge-ind(2votes,unanimous)",
+        "judge_lineage": "no-majority+judge-lineage(2votes,unanimous)",
+        "distinct": 3
+      }
+    },
+    {
+      "item_id": "ifr-prefix-01",
+      "category": "instruction_following",
+      "scorer": "regex",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "ifr-multi-01",
+      "category": "instruction_following",
+      "scorer": "regex",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": false,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "no-majority",
+        "random": "random-among-split",
+        "judge_ind": "no-majority+judge-ind(2votes)",
+        "judge_lineage": "no-majority+judge-lineage(2votes,unanimous)",
+        "distinct": 3
+      }
+    },
+    {
+      "item_id": "ifr-multi-02",
+      "category": "instruction_following",
+      "scorer": "regex",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": false,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "no-majority",
+        "random": "random-among-split",
+        "judge_ind": "no-majority+judge-ind(2votes,unanimous)",
+        "judge_lineage": "no-majority+judge-lineage(2votes,unanimous)",
+        "distinct": 3
+      }
+    },
+    {
+      "item_id": "ifr-multi-03",
+      "category": "instruction_following",
+      "scorer": "regex",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": false,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "no-majority",
+        "random": "random-among-split",
+        "judge_ind": "no-majority+judge-ind(2votes,unanimous)",
+        "judge_lineage": "no-majority+judge-lineage(2votes,unanimous)",
+        "distinct": 3
+      }
+    },
+    {
+      "item_id": "fmt-flat-01",
+      "category": "format_control",
+      "scorer": "json_schema",
+      "s0": false,
+      "s1": false,
+      "s2": false,
+      "a_majority": false,
+      "a2_random": false,
+      "b_judge": false,
+      "c_judge_lineage": false,
+      "d_oracle": false,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "fmt-nested-02",
+      "category": "format_control",
+      "scorer": "json_schema",
+      "s0": false,
+      "s1": false,
+      "s2": false,
+      "a_majority": false,
+      "a2_random": false,
+      "b_judge": false,
+      "c_judge_lineage": false,
+      "d_oracle": false,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "fmt-array_of_objects-03",
+      "category": "format_control",
+      "scorer": "json_schema",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "fmt-enum_array-04",
+      "category": "format_control",
+      "scorer": "json_schema",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "fmt-bool_array-05",
+      "category": "format_control",
+      "scorer": "json_schema",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority2/3",
+        "random": "majority2/3",
+        "judge_ind": "majority2/3",
+        "judge_lineage": "majority2/3"
+      }
+    },
+    {
+      "item_id": "fmt-nullable-06",
+      "category": "format_control",
+      "scorer": "json_schema",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "fmt-strict-07",
+      "category": "format_control",
+      "scorer": "json_schema",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "fmt-matrix-08",
+      "category": "format_control",
+      "scorer": "json_schema",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "ml-sum-ko",
+      "category": "multilingual",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "ml-sum-en",
+      "category": "multilingual",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "ml-sum-ja",
+      "category": "multilingual",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": false,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority2/3",
+        "random": "majority2/3",
+        "judge_ind": "majority2/3",
+        "judge_lineage": "majority2/3"
+      }
+    },
+    {
+      "item_id": "ml-sum-zh",
+      "category": "multilingual",
+      "scorer": "numeric",
+      "s0": false,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority2/3",
+        "random": "majority2/3",
+        "judge_ind": "majority2/3",
+        "judge_lineage": "majority2/3"
+      }
+    },
+    {
+      "item_id": "ml-chain-ko",
+      "category": "multilingual",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "ml-chain-en",
+      "category": "multilingual",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "ml-chain-ja",
+      "category": "multilingual",
+      "scorer": "numeric",
+      "s0": false,
+      "s1": false,
+      "s2": false,
+      "a_majority": false,
+      "a2_random": false,
+      "b_judge": false,
+      "c_judge_lineage": false,
+      "d_oracle": false,
+      "methods": {
+        "majority": "majority2/3",
+        "random": "majority2/3",
+        "judge_ind": "majority2/3",
+        "judge_lineage": "majority2/3"
+      }
+    },
+    {
+      "item_id": "ml-chain-zh",
+      "category": "multilingual",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": false,
+      "s2": false,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "ml-reverse_sub-ko",
+      "category": "multilingual",
+      "scorer": "numeric",
+      "s0": false,
+      "s1": false,
+      "s2": true,
+      "a_majority": false,
+      "a2_random": false,
+      "b_judge": false,
+      "c_judge_lineage": false,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority2/3",
+        "random": "majority2/3",
+        "judge_ind": "majority2/3",
+        "judge_lineage": "majority2/3"
+      }
+    },
+    {
+      "item_id": "ml-reverse_sub-en",
+      "category": "multilingual",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "ml-reverse_sub-ja",
+      "category": "multilingual",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": false,
+      "s2": false,
+      "a_majority": false,
+      "a2_random": false,
+      "b_judge": false,
+      "c_judge_lineage": false,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority2/3",
+        "random": "majority2/3",
+        "judge_ind": "majority2/3",
+        "judge_lineage": "majority2/3"
+      }
+    },
+    {
+      "item_id": "ml-reverse_sub-zh",
+      "category": "multilingual",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "ml-mixed-ko",
+      "category": "multilingual",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "ml-mixed-ja",
+      "category": "multilingual",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "ml-mixed-zh",
+      "category": "multilingual",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "lc-needle-01",
+      "category": "long_context",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "lc-needle-02",
+      "category": "long_context",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "lc-needle-03",
+      "category": "long_context",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "lc-needle-04",
+      "category": "long_context",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "lc-needle-05",
+      "category": "long_context",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "lc-needle-06",
+      "category": "long_context",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "lc-needle-07",
+      "category": "long_context",
+      "scorer": "exact_match",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "fc-single-01",
+      "category": "function_calling",
+      "scorer": "json_schema",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "fc-single-02",
+      "category": "function_calling",
+      "scorer": "json_schema",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "fc-single-03",
+      "category": "function_calling",
+      "scorer": "json_schema",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "fc-single-04",
+      "category": "function_calling",
+      "scorer": "json_schema",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "fc-multi-01",
+      "category": "function_calling",
+      "scorer": "json_schema",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "fc-multi-02",
+      "category": "function_calling",
+      "scorer": "json_schema",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "fc-hand-01",
+      "category": "function_calling",
+      "scorer": "json_schema",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "fc-hand-02",
+      "category": "function_calling",
+      "scorer": "json_schema",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "abs-ans-01",
+      "category": "abstention_hallucination",
+      "scorer": "contains",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "abs-noans-01",
+      "category": "abstention_hallucination",
+      "scorer": "regex",
+      "s0": false,
+      "s1": false,
+      "s2": false,
+      "a_majority": false,
+      "a2_random": false,
+      "b_judge": false,
+      "c_judge_lineage": false,
+      "d_oracle": false,
+      "methods": {
+        "majority": "no-majority",
+        "random": "random-among-split",
+        "judge_ind": "no-majority+judge-ind(2votes,unanimous)",
+        "judge_lineage": "no-majority+judge-lineage(2votes,unanimous)",
+        "distinct": 3
+      }
+    },
+    {
+      "item_id": "abs-ans-02",
+      "category": "abstention_hallucination",
+      "scorer": "contains",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "abs-noans-02",
+      "category": "abstention_hallucination",
+      "scorer": "regex",
+      "s0": false,
+      "s1": false,
+      "s2": false,
+      "a_majority": false,
+      "a2_random": false,
+      "b_judge": false,
+      "c_judge_lineage": false,
+      "d_oracle": false,
+      "methods": {
+        "majority": "no-majority",
+        "random": "random-among-split",
+        "judge_ind": "no-majority+judge-ind(2votes,unanimous)",
+        "judge_lineage": "no-majority+judge-lineage(2votes,unanimous)",
+        "distinct": 3
+      }
+    },
+    {
+      "item_id": "abs-ans-03",
+      "category": "abstention_hallucination",
+      "scorer": "contains",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "abs-noans-03",
+      "category": "abstention_hallucination",
+      "scorer": "regex",
+      "s0": false,
+      "s1": false,
+      "s2": false,
+      "a_majority": false,
+      "a2_random": false,
+      "b_judge": false,
+      "c_judge_lineage": false,
+      "d_oracle": false,
+      "methods": {
+        "majority": "no-majority",
+        "random": "random-among-split",
+        "judge_ind": "no-majority+judge-ind(2votes,unanimous)",
+        "judge_lineage": "no-majority+judge-lineage(2votes)",
+        "distinct": 3
+      }
+    },
+    {
+      "item_id": "can-wolfgoat-01",
+      "category": "reasoning",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "can-hanoi-01",
+      "category": "reasoning",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rob-chain-base",
+      "category": "robustness",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rob-chain-perturbed",
+      "category": "robustness",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rob-sum-base",
+      "category": "robustness",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rob-sum-perturbed",
+      "category": "robustness",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority2/3",
+        "random": "majority2/3",
+        "judge_ind": "majority2/3",
+        "judge_lineage": "majority2/3"
+      }
+    },
+    {
+      "item_id": "rob-path-base",
+      "category": "robustness",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    },
+    {
+      "item_id": "rob-path-perturbed",
+      "category": "robustness",
+      "scorer": "numeric",
+      "s0": true,
+      "s1": true,
+      "s2": true,
+      "a_majority": true,
+      "a2_random": true,
+      "b_judge": true,
+      "c_judge_lineage": true,
+      "d_oracle": true,
+      "methods": {
+        "majority": "majority3/3",
+        "random": "majority3/3",
+        "judge_ind": "majority3/3",
+        "judge_lineage": "majority3/3"
+      }
+    }
+  ],
+  "verdict": {
+    "best_single_instance": 88.50574712643679,
+    "naive_majority": 75.86206896551724,
+    "judge_assisted": 89.65517241379311,
+    "same_lineage_panel": 89.65517241379311,
+    "oracle_ceiling": 91.95402298850574,
+    "gain_over_best_single_pp": 1.1494252873563204,
+    "judged_ensemble_vs_each_instance": {
+      "instance_0": {
+        "a_only": 1,
+        "b_only": 3,
+        "p": 0.625,
+        "b": 1,
+        "c": 3
+      },
+      "instance_1": {
+        "a_only": 0,
+        "b_only": 1,
+        "p": 1,
+        "b": 0,
+        "c": 1
+      },
+      "instance_2": {
+        "a_only": 1,
+        "b_only": 4,
+        "p": 0.375,
+        "b": 1,
+        "c": 4
+      }
+    },
+    "significant_vs_any_instance": false,
+    "best_single_is_winners_curse": true,
+    "naive_majority_significantly_worse": true,
+    "panels_disagree": false,
+    "judge_beats_blind_selector": false,
+    "statement": "3 instances as one model: naive majority 75.9%, blind no-abstain selector 89.7%, independent third-party panel 89.7%, best single instance 88.5%, oracle ceiling 92.0%. Neither the naive nor the judged ensemble separates from a single instance: the judged ensemble is +1.1pp against the best single instance and every paired test is above .05. The naive majority looks catastrophic only because a 3-way split forces it to abstain and abstention is scored as failure — a blind selector that never abstains reaches 89.7% on the same items. The judged panel is 89.7%, i.e. +0.0pp versus blind at paired exact p=1.0000, which is NOT distinguishable from blind selection — so the panel advantage is an abstention artefact, not judging skill. Only 2.3pp separates the judged selector from an oracle that reads the answer key."
+  },
+  "judge_control": {
+    "split_items": 15,
+    "any_candidate_correct": 12,
+    "all_candidates_correct": 10,
+    "random_pick_expected_accuracy": 0.7333333333333333,
+    "independent_panel": {
+      "items": 15,
+      "correct": 12,
+      "accuracy": 0.8
+    },
+    "same_lineage_panel": {
+      "items": 15,
+      "correct": 12,
+      "accuracy": 0.8
+    },
+    "note": "random_pick_expected_accuracy is the mean chance level of picking one of the three candidates uniformly. A panel below it is worse than chance; a panel above it is extracting signal."
+  },
+  "discriminative_items": {
+    "split_items": 15,
+    "all_three_correct": 10,
+    "all_three_wrong": 3,
+    "discriminative": 2,
+    "discriminative_ids": [
+      "ifr-words-5",
+      "ifr-words-6"
+    ],
+    "note": "A split where every candidate is correct cannot reward a better selector, and one where none is cannot either. The tie-breaking task is only measurable on `discriminative` items."
+  },
+  "position_sensitivity": {
+    "pairs": 10,
+    "flips": 3,
+    "flip_rate": 0.3,
+    "flip_rate_ci95": {
+      "low": 0.10779126655639398,
+      "high": 0.6032218546540291
+    },
+    "per_judge": {
+      "nvidia/z-ai/glm-5.3-flash@high": {
+        "pairs": 5,
+        "flips": 2,
+        "flip_rate": 0.4
+      },
+      "nvidia/z-ai/glm-5.3-flash@max": {
+        "pairs": 5,
+        "flips": 1,
+        "flip_rate": 0.2
+      }
+    },
+    "note": "A high flip rate is only harmful where the candidates differ in quality. On this bank 10 of 15 split items had all three candidates correct, so most flips swap between interchangeable answers. The one informative item (ifr-words-6) was flipped by @high from a wrong instance to the correct one — by luck, not skill.",
+    "power_caveat": "n is 10 pairs. The 95% interval is wide enough that this is suggestive, not established."
+  }
+}

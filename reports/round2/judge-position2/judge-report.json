@@ -1,0 +1,65 @@
+{
+  "mode": "pick",
+  "judges": [
+    "nvidia/z-ai/glm-5.3-flash@high",
+    "nvidia/z-ai/glm-5.3-flash@max"
+  ],
+  "panel": [
+    {
+      "spec": "nvidia/z-ai/glm-5.3-flash@high",
+      "model": "nvidia/z-ai/glm-5.3-flash",
+      "variant": "high",
+      "lineage": "other"
+    },
+    {
+      "spec": "nvidia/z-ai/glm-5.3-flash@max",
+      "model": "nvidia/z-ai/glm-5.3-flash",
+      "variant": "max",
+      "lineage": "other"
+    }
+  ],
+  "independent_judges": 2,
+  "repeats": 2,
+  "items": 5,
+  "tasks": 20,
+  "verdicts": 20,
+  "unparsed": 0,
+  "unparsed_by_judge": {
+    "nvidia/z-ai/glm-5.3-flash@high": 0,
+    "nvidia/z-ai/glm-5.3-flash@max": 0
+  },
+  "position_sensitivity": {
+    "items_judged": 10,
+    "stable": 7,
+    "flipped": 3,
+    "flip_rate": 0.3,
+    "flips": [
+      {
+        "judge": "nvidia/z-ai/glm-5.3-flash@max",
+        "item_id": "ifr-words-4",
+        "picks": [
+          1,
+          2
+        ]
+      },
+      {
+        "judge": "nvidia/z-ai/glm-5.3-flash@high",
+        "item_id": "ifr-words-6",
+        "picks": [
+          2,
+          1
+        ]
+      },
+      {
+        "judge": "nvidia/z-ai/glm-5.3-flash@high",
+        "item_id": "ifr-forbid-01",
+        "picks": [
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "inter_judge": null,
+  "per_item": null
+}

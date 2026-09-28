@@ -1,0 +1,152 @@
+{
+  "schema": "llm-bench/ensemble/v1",
+  "items_scored": 87,
+  "items_with_three_instances": 87,
+  "judge_panel_loaded": false,
+  "reduction": {
+    "majorityOnly": 72,
+    "judgeAssisted": 0,
+    "unresolved": 15
+  },
+  "accuracy": {
+    "instance_0": 0.8735632183908046,
+    "instance_1": 0.8850574712643678,
+    "instance_2": 0.8620689655172413,
+    "ensemble_single_output": 0.7586206896551724,
+    "ci95": {
+      "instance_0": {
+        "low": 0.7876218503970871,
+        "high": 0.9279104715236401
+      },
+      "instance_1": {
+        "low": 0.8011941787191399,
+        "high": 0.9363545223376097
+      },
+      "instance_2": {
+        "low": 0.7742137253558132,
+        "high": 0.9193022174288916
+      },
+      "ensemble": {
+        "low": 0.6590101616216221,
+        "high": 0.8363583689388813
+      }
+    }
+  },
+  "paired_tests": {
+    "s0_vs_ensemble": {
+      "ensemble_only": 2,
+      "arm_only": 12,
+      "p": 0.012939453125,
+      "b": 2,
+      "c": 12
+    },
+    "s1_vs_ensemble": {
+      "ensemble_only": 1,
+      "arm_only": 12,
+      "p": 0.00341796875,
+      "b": 1,
+      "c": 12
+    },
+    "s2_vs_ensemble": {
+      "ensemble_only": 2,
+      "arm_only": 11,
+      "p": 0.0224609375,
+      "b": 2,
+      "c": 11
+    }
+  },
+  "reproducibility_floor": {
+    "discordant_wins": 9,
+    "discordant_losses": 7,
+    "discordance_rate_q": 0.06130268199233716,
+    "instance_vs_instance_accuracy": 0.5625,
+    "note": "one instance vs another instance, same item, same model, same scaffold. This is the noise the ensemble must exceed."
+  },
+  "per_category": {
+    "reasoning": {
+      "n": 15,
+      "s0": 15,
+      "s1": 15,
+      "s2": 15,
+      "ens": 15
+    },
+    "code": {
+      "n": 8,
+      "s0": 6,
+      "s1": 7,
+      "s2": 7,
+      "ens": 7
+    },
+    "instruction_following": {
+      "n": 14,
+      "s0": 13,
+      "s1": 14,
+      "s2": 12,
+      "ens": 2
+    },
+    "format_control": {
+      "n": 8,
+      "s0": 6,
+      "s1": 6,
+      "s2": 6,
+      "ens": 6
+    },
+    "multilingual": {
+      "n": 15,
+      "s0": 12,
+      "s1": 11,
+      "s2": 11,
+      "ens": 12
+    },
+    "long_context": {
+      "n": 7,
+      "s0": 7,
+      "s1": 7,
+      "s2": 7,
+      "ens": 7
+    },
+    "function_calling": {
+      "n": 8,
+      "s0": 8,
+      "s1": 8,
+      "s2": 8,
+      "ens": 8
+    },
+    "abstention_hallucination": {
+      "n": 6,
+      "s0": 3,
+      "s1": 3,
+      "s2": 3,
+      "ens": 3
+    },
+    "robustness": {
+      "n": 6,
+      "s0": 6,
+      "s1": 6,
+      "s2": 6,
+      "ens": 6
+    }
+  },
+  "suspect_artifacts": [
+    "ifr-words-4",
+    "ifr-words-5",
+    "ifr-words-6",
+    "ifr-lower-01",
+    "ifr-forbid-01",
+    "ifr-forbid-02",
+    "ifr-tokens-01",
+    "ifr-nodigit-01",
+    "ifr-oneline-01",
+    "ifr-multi-01",
+    "ifr-multi-02",
+    "ifr-multi-03"
+  ],
+  "verdict": {
+    "best_single_instance": 0.8850574712643678,
+    "ensemble_gain_pp": -12.643678160919547,
+    "floor_discordance_q": 0.06130268199233716,
+    "any_pair_significant": true,
+    "clears_floor": false,
+    "statement": "3 instances as one model did NOT separate from the best single instance (gain -12.6pp, no paired test below alpha=.05). The ensemble is not distinguishable from one instance at this n."
+  }
+}

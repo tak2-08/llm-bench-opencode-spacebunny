@@ -53,15 +53,15 @@ step "6. PII scan (expect no operator paths, no secrets)"
 # The patterns are assembled from fragments to keep this file self-excluding.
 NEEDLE_HOME="/home""/node"
 NEEDLE_MEM="agent""-memory"
-hits=$(grep -rIlE "$NEEDLE_HOME|$NEEDLE_MEM" . 2>/dev/null \
-         | grep -v '^./PII-SCAN.md$' | grep -v '^./scripts/verify.sh$' || true)
+# These three files legitimately contain the patterns they search for.
+SELFREF='^\./(PII-SCAN\.md|scripts/verify\.sh|harness/redact-paths\.mjs)$'
+hits=$(grep -rIlE "$NEEDLE_HOME|$NEEDLE_MEM" . 2>/dev/null | grep -vE "$SELFREF" || true)
 if [ -n "$hits" ]; then
   bad "operator-local paths found in:"; printf '         %s\n' $hits
 else
   ok "no operator-local paths outside the scan documentation itself"
 fi
-hits=$(grep -rIoE "gh[op]_[A-Za-z0-9]{10,}" . 2>/dev/null \
-         | grep -v '^./PII-SCAN.md$' | grep -v '^./scripts/verify.sh$' || true)
+hits=$(grep -rIoE "gh[op]_[A-Za-z0-9]{10,}" . 2>/dev/null | grep -vE "$SELFREF" || true)
 if [ -n "$hits" ]; then
   bad "token-like string found:"; printf '         %s\n' $hits
 else
